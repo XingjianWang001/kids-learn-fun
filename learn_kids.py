@@ -250,6 +250,7 @@ class InteractiveLearningApp:
         self.font_button = ("Arial", 14)
 
         # --- 状态变量 ---
+        self.language_mode = "zh" # 'zh', 'en', 'bilingual'
         self.courses = get_courses()
         self.current_course_name = None
         self.current_topic_key = None # "Topic" is now a "Unit"
@@ -261,6 +262,24 @@ class InteractiveLearningApp:
         self.total_max_score = 0
         self.failed_attempts = {}
         self.MAX_FAILED_ATTEMPTS = 5
+
+        # --- 顶部控制栏 (语言切换等) ---
+        self.top_control_frame = ttk.Frame(master)
+        self.top_control_frame.pack(fill=tk.X, padx=10, pady=5)
+
+        lang_frame = ttk.LabelFrame(self.top_control_frame, text="语言 (Language)")
+        lang_frame.pack(side=tk.LEFT, padx=5)
+
+        self.lang_var = tk.StringVar(value=self.language_mode)
+        ttk.Radiobutton(lang_frame, text="中文", variable=self.lang_var, value="zh", command=self.switch_language).pack(side=tk.LEFT, padx=5)
+        ttk.Radiobutton(lang_frame, text="English", variable=self.lang_var, value="en", command=self.switch_language).pack(side=tk.LEFT, padx=5)
+        ttk.Radiobutton(lang_frame, text="中英对照", variable=self.lang_var, value="bilingual", command=self.switch_language).pack(side=tk.LEFT, padx=5)
+
+        review_frame = ttk.LabelFrame(self.top_control_frame, text="学习模式")
+        review_frame.pack(side=tk.LEFT, padx=10)
+        self.review_button = ttk.Button(review_frame, text="开始复习", command=self.start_review_session, state=tk.DISABLED)
+        self.review_button.pack(side=tk.LEFT, padx=5, pady=5)
+
 
         # --- 主窗口布局 ---
         self.main_paned_window = ttk.PanedWindow(master, orient=tk.HORIZONTAL)
@@ -300,6 +319,7 @@ class InteractiveLearningApp:
         self.input_frame = ttk.Frame(self.lesson_frame)
         self.input_frame.pack(pady=5, fill=tk.X, expand=False)
         self.answer_entry = None; self.radio_var = None; self.radio_buttons = []; self.code_input_area = None
+        self.flashcard_widgets = {} # For flashcard elements
 
         # Frame for submit and format buttons
         self.action_buttons_frame = ttk.Frame(self.lesson_frame)
@@ -331,6 +351,35 @@ class InteractiveLearningApp:
         self.score_label.pack(side=tk.BOTTOM, pady=10)
 
         self.display_courses()
+
+    def _get_display_text(self, data):
+        """
+        Gets the appropriate text from a data dictionary based on the current language mode.
+        Handles both dicts ({'zh': '...', 'en': '...'}) and plain strings.
+        """
+        if isinstance(data, dict):
+            zh_text = data.get('zh', '')
+            en_text = data.get('en', '')
+            if self.language_mode == 'zh':
+                return zh_text
+            elif self.language_mode == 'en':
+                return en_text
+            elif self.language_mode == 'bilingual':
+                return f"{zh_text}\n{en_text}"
+        elif isinstance(data, str):
+            return data # Fallback for old format
+        return ""
+
+    def switch_language(self):
+        self.language_mode = self.lang_var.get()
+        # Reload the current lesson to reflect the language change
+        if self.current_topic_key:
+            self.load_lesson()
+
+    def start_review_session(self):
+        # This will be implemented later
+        messagebox.showinfo("即将推出", "复习功能正在开发中！")
+
 
     def display_courses(self):
         """Clears the left panel and shows the list of available courses."""
@@ -406,7 +455,7 @@ class InteractiveLearningApp:
     def select_topic(self, topic_key):
         self.current_topic_key = topic_key
         self.current_lesson_index = 0
-        self.lesson_title_label.config(text=f"单元: {topic_key}")
+        # The title is now set inside load_lesson to support language switching
         self.load_lesson()
         self.update_score_display()
 
@@ -416,6 +465,10 @@ class InteractiveLearningApp:
             for rb in self.radio_buttons: rb.destroy()
             self.radio_buttons = []
         if self.code_input_area: self.code_input_area.destroy(); self.code_input_area = None
+        if self.flashcard_widgets:
+            for widget in self.flashcard_widgets.values():
+                if widget: widget.destroy()
+            self.flashcard_widgets = {}
         self.question_label.config(text="")
         self.output_title_label.pack_forget()
         self.output_display_area.pack_forget()
@@ -426,11 +479,14 @@ class InteractiveLearningApp:
     def load_lesson(self):
         self.feedback_label.config(text="", foreground="black")
         self._clear_input_widgets()
+
+        # Ensure the submit button is visible before being potentially disabled
+        self.submit_button.pack(side=tk.LEFT, padx=5, expand=True)
+
         self.submit_button.config(state=tk.DISABLED)
         self.format_code_button.config(state=tk.DISABLED) # Ensure format button is disabled initially
 
         if not self.current_topic_key or not LESSONS_DATA.get(self.current_topic_key):
-            # ... (rest of the initial message if no topic selected)
             return
 
         topic_lessons = LESSONS_DATA[self.current_topic_key]
@@ -447,8 +503,12 @@ class InteractiveLearningApp:
         lesson_id = (self.current_topic_key, self.current_lesson_index)
         points_already_awarded = self.lesson_points_awarded.get(lesson_id, False)
 
+        # Update lesson title with language support
+        self.lesson_title_label.config(text=self._get_display_text(self.current_topic_key))
+
+
         self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
-        self.explanation_text.insert(tk.END, lesson.get("text", "")); self.explanation_text.config(state=tk.DISABLED)
+        self.explanation_text.insert(tk.END, self._get_display_text(lesson.get("text", ""))); self.explanation_text.config(state=tk.DISABLED)
         self.code_display_text.config(state=tk.NORMAL); self.code_display_text.delete('1.0', tk.END)
         self.code_display_text.insert(tk.END, lesson.get("code", "")); self.code_display_text.config(state=tk.DISABLED)
 
@@ -458,49 +518,65 @@ class InteractiveLearningApp:
         else: self.submit_button.config(state=tk.DISABLED)
 
         if lesson_type == "code_challenge":
-            self.question_label.config(text=lesson.get("question", "请根据说明编写代码："))
-            self.code_input_area = CodeEditor(self.input_frame, font=self.font_code_text) # Removed height=10
+            self.question_label.config(text=self._get_display_text(lesson.get("question", "请根据说明编写代码：")))
+            self.code_input_area = CodeEditor(self.input_frame, font=self.font_code_text)
             self.code_input_area.pack(pady=5, fill=tk.BOTH, expand=True)
             if not points_already_awarded:
-                self.format_code_button.config(state=tk.NORMAL) # Enable format button
+                self.format_code_button.config(state=tk.NORMAL)
 
-            self.output_title_label.pack(pady=(10,0), anchor="w", before=self.action_buttons_frame) # Adjusted packing order
-            self.output_display_area.pack(pady=5, fill=tk.X, before=self.action_buttons_frame)   # Adjusted packing order
+            self.output_title_label.pack(pady=(10,0), anchor="w", before=self.action_buttons_frame)
+            self.output_display_area.pack(pady=5, fill=tk.X, before=self.action_buttons_frame)
 
-            # ... (rest of code_challenge setup, including standard answer check)
-            if "standard_answer_code" in lesson and "cpp_context" in lesson and "expected_output" in lesson: # Shortened for brevity
-                pass # Standard answer check logic
             if points_already_awarded:
                 self.code_input_area.insert(tk.END, "你已经通过了这个挑战！\n（此处不显示之前提交的代码）")
                 self.code_input_area.config(state=tk.DISABLED)
                 self.feedback_label.config(text="你已经通过了这个编程挑战！", foreground="blue")
             else: self.code_input_area.focus()
 
-        # ... (fill_blank, multiple_choice logic)
         elif lesson_type == "fill_blank":
-            q_parts = lesson["question_parts"]
-            full_q_text = q_parts[0] + "______" + (q_parts[1] if len(q_parts) > 1 else "")
+            q_parts = lesson.get("question_parts", ["", ""])
+            part1 = self._get_display_text(q_parts[0]) if isinstance(q_parts[0], dict) else q_parts[0]
+            part2 = self._get_display_text(q_parts[1]) if len(q_parts) > 1 and isinstance(q_parts[1], dict) else (q_parts[1] if len(q_parts) > 1 else "")
+            full_q_text = part1 + "______" + part2
             self.question_label.config(text=full_q_text)
             self.answer_entry = ttk.Entry(self.input_frame, font=self.font_normal_text, width=30)
             self.answer_entry.pack(pady=5)
             if points_already_awarded:
-                self.answer_entry.insert(0, str(lesson["answer"]))
+                self.answer_entry.insert(0, self._get_display_text(lesson["answer"]))
                 self.answer_entry.config(state=tk.DISABLED)
                 self.feedback_label.config(text="你已经答对过这题啦！", foreground="blue")
             else:
                 self.answer_entry.focus()
         elif lesson_type == "multiple_choice":
-            self.question_label.config(text=lesson["question"])
+            self.question_label.config(text=self._get_display_text(lesson["question"]))
             self.radio_var = tk.StringVar(value=None)
             correct_answer_idx_str = str(lesson["answer_index"])
-            for i, option in enumerate(lesson["options"]):
-                rb = ttk.Radiobutton(self.input_frame, text=option, variable=self.radio_var, value=str(i), style="Large.TRadiobutton")
+            for i, option_data in enumerate(lesson["options"]):
+                option_text = self._get_display_text(option_data)
+                rb = ttk.Radiobutton(self.input_frame, text=option_text, variable=self.radio_var, value=str(i), style="Large.TRadiobutton")
                 rb.pack(anchor=tk.W, padx=20, pady=2)
                 self.radio_buttons.append(rb)
             if points_already_awarded:
                 self.radio_var.set(correct_answer_idx_str)
                 for rb_widget in self.radio_buttons: rb_widget.config(state=tk.DISABLED)
                 self.feedback_label.config(text="你已经答对过这题啦！", foreground="blue")
+        elif lesson_type == "flashcard":
+            self.question_label.config(text=self._get_display_text(lesson.get("concept", "")))
+
+            self.submit_button.pack_forget()
+
+            self.flashcard_widgets['show_answer_btn'] = ttk.Button(self.action_buttons_frame, text="显示答案", command=self._show_flashcard_answer)
+            self.flashcard_widgets['show_answer_btn'].pack(side=tk.LEFT, padx=5, expand=True)
+
+            self.flashcard_widgets['answer_label'] = ttk.Label(self.input_frame, text="", font=self.font_normal_text, wraplength=700)
+            self.flashcard_widgets['answer_label'].pack(pady=10)
+
+            self.flashcard_widgets['feedback_frame'] = ttk.Frame(self.action_buttons_frame)
+            self.flashcard_widgets['know_btn'] = ttk.Button(self.flashcard_widgets['feedback_frame'], text="认识", command=lambda: self._rate_flashcard(True))
+            self.flashcard_widgets['not_know_btn'] = ttk.Button(self.flashcard_widgets['feedback_frame'], text="不认识", command=lambda: self._rate_flashcard(False))
+
+            if points_already_awarded:
+                self._show_flashcard_answer(is_already_answered=True)
 
 
         self.update_topic_button_text(self.current_topic_key)
@@ -508,6 +584,39 @@ class InteractiveLearningApp:
         canvas = self.scrollable_lesson_outer_frame.winfo_children()[0]
         canvas.yview_moveto(0); canvas.xview_moveto(0)
         canvas.configure(scrollregion=canvas.bbox("all"))
+
+    def _show_flashcard_answer(self, is_already_answered=False):
+        topic_lessons = LESSONS_DATA[self.current_topic_key]
+        lesson = topic_lessons[self.current_lesson_index]
+
+        definition_text = self._get_display_text(lesson.get("definition", ""))
+        self.flashcard_widgets['answer_label'].config(text=definition_text)
+
+        if self.flashcard_widgets.get('show_answer_btn'):
+            self.flashcard_widgets['show_answer_btn'].pack_forget()
+
+        if is_already_answered:
+            self.feedback_label.config(text="你已经学过这个卡片啦！", foreground="blue")
+        else:
+            self.flashcard_widgets['feedback_frame'].pack(side=tk.LEFT, expand=True, fill=tk.X)
+            self.flashcard_widgets['know_btn'].pack(side=tk.LEFT, expand=True, padx=5)
+            self.flashcard_widgets['not_know_btn'].pack(side=tk.LEFT, expand=True, padx=5)
+
+    def _rate_flashcard(self, knew_it):
+        topic_lessons = LESSONS_DATA[self.current_topic_key]
+        lesson = topic_lessons[self.current_lesson_index]
+        lesson_id = (self.current_topic_key, self.current_lesson_index)
+
+        if knew_it:
+            self._handle_correct_answer(lesson, lesson_id)
+        else:
+            self.feedback_label.config(text=f"没关系，多复习几次！提示：{self._get_display_text(lesson.get('hint', ''))}", foreground="red")
+            self.submit_button.config(state=tk.DISABLED)
+
+        self.flashcard_widgets['feedback_frame'].pack_forget()
+        self.update_score_display()
+        self.update_topic_button_text(self.current_topic_key)
+
 
     def _auto_indent_code(self, code_text):
         lines = code_text.split('\n')
@@ -532,7 +641,6 @@ class InteractiveLearningApp:
 
     def _parse_compiler_errors(self, stderr):
         """Attempts to parse g++ errors and provide friendlier messages."""
-        # Simple error mapping (can be expanded)
         error_map = {
             r"expected ';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
             r"was not declared in this scope": "嗯，你用了一个变量或者函数，但是好像忘记先告诉电脑它是什么了（忘记声明了）。",
@@ -556,16 +664,14 @@ class InteractiveLearningApp:
             r"too many arguments to function": "调用函数的时候，给的参数数量太多了哦。",
             r"error: (ld returned 1 exit status|linker command failed)": "代码编译好了，但是在最后组合（链接）的时候出错了。通常是找不到 main 函数或者某些库函数。"
         }
-        # More specific error patterns can be added above less specific ones.
         for pattern, friendly_message in error_map.items():
             if re.search(pattern, stderr, re.IGNORECASE):
-                # Try to extract line number if possible
                 line_match = re.search(r":(\d+):\d+:", stderr)
                 if line_match:
-                    return f"提示：在第 {line_match.group(1)} 行附近，{friendly_message}\n\n原始错误片段：\n{stderr[:300]}" # Show a snippet
+                    return f"提示：在第 {line_match.group(1)} 行附近，{friendly_message}\n\n原始错误片段：\n{stderr[:300]}"
                 return f"提示：{friendly_message}\n\n原始错误片段：\n{stderr[:300]}"
 
-        return f"原始编译错误：\n{stderr}" # Fallback to original error if no match
+        return f"原始编译错误：\n{stderr}"
 
     def execute_cpp_code(self, user_code_snippet, context_template):
         try:
@@ -587,7 +693,7 @@ class InteractiveLearningApp:
             )
             if compile_process.returncode != 0:
                 friendly_error = self._parse_compiler_errors(compile_process.stderr)
-                return {'success': False, 'output': '', 'error': friendly_error} # Use friendly error
+                return {'success': False, 'output': '', 'error': friendly_error}
 
             run_process = subprocess.run([exe_file_path], capture_output=True, text=True, timeout=5)
             runtime_error_info = f"\n运行时信息/错误:\n{run_process.stderr}" if run_process.stderr else ""
@@ -609,12 +715,12 @@ class InteractiveLearningApp:
                 except OSError as e: print(f"Warning: Could not remove temp directory {temp_dir}: {e}")
 
     def _get_correct_answer_display_text(self, lesson):
-        # ... (no changes here)
         lesson_type = lesson["type"]
         if lesson_type == "fill_blank":
-            return f"“{lesson['answer']}”"
+            return f"“{self._get_display_text(lesson['answer'])}”"
         elif lesson_type == "multiple_choice":
-            return f"“{lesson['options'][lesson['answer_index']]}”"
+            correct_option_data = lesson['options'][lesson['answer_index']]
+            return f"“{self._get_display_text(correct_option_data)}”"
         elif lesson_type == "code_challenge":
             expected_out = lesson.get("expected_output", "未定义预期输出")
             return f"\n预期输出是:\n---\n{expected_out.strip()}\n---"
@@ -622,7 +728,6 @@ class InteractiveLearningApp:
 
 
     def _handle_correct_answer(self, lesson, lesson_id):
-        # ... (no changes here)
         points = lesson.get("points", 0)
         feedback_msg = ""
 
@@ -641,12 +746,12 @@ class InteractiveLearningApp:
         if self.answer_entry: self.answer_entry.config(state=tk.DISABLED)
         for rb in self.radio_buttons: rb.config(state=tk.DISABLED)
         if self.code_input_area: self.code_input_area.config(state=tk.DISABLED)
-        self.format_code_button.config(state=tk.DISABLED) # Disable format button on correct answer
+        if self.flashcard_widgets.get('feedback_frame'): self.flashcard_widgets['feedback_frame'].pack_forget()
+        self.format_code_button.config(state=tk.DISABLED)
 
         self.failed_attempts[lesson_id] = 0
 
     def _handle_incorrect_answer(self, lesson, lesson_id, cpp_error_message=""):
-        # ... (no changes here, but cpp_error_message will now be friendlier if parsed)
         self.failed_attempts.setdefault(lesson_id, 0)
         self.failed_attempts[lesson_id] += 1
 
@@ -657,7 +762,7 @@ class InteractiveLearningApp:
 
             self.feedback_label.config(text=feedback_msg, foreground="orange")
             self.submit_button.config(state=tk.DISABLED)
-            self.format_code_button.config(state=tk.DISABLED) # Disable format button
+            self.format_code_button.config(state=tk.DISABLED)
             if self.answer_entry: self.answer_entry.config(state=tk.DISABLED)
             for rb in self.radio_buttons: rb.config(state=tk.DISABLED)
             if self.code_input_area: self.code_input_area.config(state=tk.DISABLED)
@@ -665,11 +770,11 @@ class InteractiveLearningApp:
             self.failed_attempts[lesson_id] = 0
         else:
             remaining_attempts = self.MAX_FAILED_ATTEMPTS - self.failed_attempts[lesson_id]
-            hint_text = lesson.get('hint', '没有提示。')
+            hint_text = self._get_display_text(lesson.get('hint', '没有提示。'))
 
             if lesson["type"] == "code_challenge" and cpp_error_message:
                 self.feedback_label.config(text=f"{cpp_error_message}\n剩余尝试次数: {remaining_attempts}", foreground="red")
-            else: # Fallback for other errors or non-code challenges
+            else:
                 self.feedback_label.config(text=f"不对哦，再想想看! 提示：{hint_text}\n剩余尝试次数: {remaining_attempts}", foreground="red")
 
             if self.answer_entry:
@@ -677,16 +782,17 @@ class InteractiveLearningApp:
 
 
     def check_answer(self):
-        # ... (no changes to the start of this method)
-        if not self.current_topic_key: return
+        if not self.current_topic_key:
+            return
         topic_lessons = LESSONS_DATA[self.current_topic_key]
-        if self.current_lesson_index >= len(topic_lessons): return
+        if self.current_lesson_index >= len(topic_lessons):
+            return
 
         lesson = topic_lessons[self.current_lesson_index]
         lesson_id = (self.current_topic_key, self.current_lesson_index)
         lesson_type = lesson["type"]
         is_correct = False
-        cpp_specific_error_message = "" # Will hold friendly or original error
+        cpp_specific_error_message = ""
 
         if lesson_type == "code_challenge":
             self.output_display_area.config(state=tk.NORMAL)
@@ -694,12 +800,13 @@ class InteractiveLearningApp:
             self.output_display_area.config(state=tk.DISABLED, foreground="black")
 
         if lesson_type == "fill_blank":
-            # ...
             if self.answer_entry:
                 user_answer = self.answer_entry.get().strip()
-                is_correct = (user_answer.lower() == str(lesson["answer"]).lower())
+                correct_answer_zh = lesson["answer"].get("zh", "").lower() if isinstance(lesson["answer"], dict) else str(lesson["answer"]).lower()
+                correct_answer_en = lesson["answer"].get("en", "").lower() if isinstance(lesson["answer"], dict) else str(lesson["answer"]).lower()
+                is_correct = (user_answer.lower() == correct_answer_zh or user_answer.lower() == correct_answer_en)
+
         elif lesson_type == "multiple_choice":
-            # ...
             if self.radio_var:
                 user_answer_idx = self.radio_var.get()
                 if user_answer_idx is not None and user_answer_idx.isdigit():
@@ -707,6 +814,10 @@ class InteractiveLearningApp:
                 else:
                     self.feedback_label.config(text="请选择一个选项哦!", foreground="orange")
                     return
+
+        elif lesson_type == "flashcard":
+            return
+
         elif lesson_type == "code_challenge":
             if self.code_input_area:
                 user_code = self.code_input_area.get("1.0", "end-1c").strip()
@@ -721,7 +832,6 @@ class InteractiveLearningApp:
                 expected_out_str = lesson.get("expected_output")
 
                 if context is None or expected_out_str is None:
-                    # ... (error handling)
                     messagebox.showerror("课程错误", "此代码挑战缺少必要的 'cpp_context' 或 'expected_output' 数据。")
                     self.feedback_label.config(text="课程配置错误，无法执行。", foreground="red")
                     self.submit_button.config(state=tk.DISABLED)
@@ -740,13 +850,13 @@ class InteractiveLearningApp:
                     if result['error']: display_text += f"\n运行时信息/错误:\n{result['error']}\n---"
                     self.output_display_area.insert(tk.END, display_text)
                     if not is_correct:
-                        cpp_specific_error_message = "输出与预期不符。" # This will be shown by _handle_incorrect_answer
+                        cpp_specific_error_message = "输出与预期不符。"
                         self.output_display_area.insert(tk.END, f"\n预期输出 (已去除首尾空格/换行进行比较):\n---\n{expected_output_trimmed}\n---")
                         self.output_display_area.insert(tk.END, f"\n你的输出 (已去除首尾空格/换行进行比较):\n---\n{actual_output_trimmed}\n---")
                 else:
                     is_correct = False
-                    cpp_specific_error_message = result['error'] # This is now the (potentially friendly) error
-                    self.output_display_area.insert(tk.END, f"{cpp_specific_error_message}") # Display the error
+                    cpp_specific_error_message = result['error']
+                    self.output_display_area.insert(tk.END, f"{cpp_specific_error_message}")
                     self.output_display_area.config(foreground="red")
                 self.output_display_area.config(state=tk.DISABLED)
 
@@ -762,13 +872,11 @@ class InteractiveLearningApp:
         canvas.configure(scrollregion=canvas.bbox("all"))
 
     def previous_lesson(self):
-        # ... (no changes)
         if self.current_topic_key and self.current_lesson_index > 0:
             self.current_lesson_index -= 1
             self.load_lesson()
 
     def next_lesson(self):
-        # ... (no changes)
         if self.current_topic_key:
             topic_lessons = LESSONS_DATA[self.current_topic_key]
             if self.current_lesson_index < len(topic_lessons):
@@ -776,16 +884,13 @@ class InteractiveLearningApp:
             self.load_lesson()
 
     def skip_lesson(self):
-        # ... (no changes)
         self.feedback_label.config(text="已跳过当前关卡。", foreground="blue")
         self.next_lesson()
 
     def update_score_display(self):
-        # ... (no changes)
         self.score_label.config(text=f"总得分: {self.total_score} / {self.total_max_score}")
 
     def update_topic_button_text(self, topic_key):
-        # ... (no changes)
         if not topic_key or topic_key not in self.topic_buttons: return
         btn = self.topic_buttons[topic_key]
         max_s = self.max_scores.get(topic_key, 0)
@@ -815,7 +920,6 @@ class InteractiveLearningApp:
         btn.config(text=progress_text)
 
     def check_all_topics_completed(self):
-        # ... (no changes)
         if not LESSONS_DATA or self.total_max_score == 0: return
 
         all_scorable_topics_completed = True
@@ -890,7 +994,7 @@ class CourseManagementWindow(tk.Toplevel):
         courses = get_courses()
         for course in courses:
             self.course_listbox.insert(tk.END, course)
-        self.on_course_select() # Clear unit list if no course is selected
+        self.on_course_select()
 
     def on_course_select(self, event=None):
         self.unit_listbox.delete(0, tk.END)
@@ -918,7 +1022,6 @@ class CourseManagementWindow(tk.Toplevel):
             return
 
         new_course_name = new_course_name.strip()
-        # Basic validation for directory names
         if any(c in r'<>:"/\|?*' for c in new_course_name):
             messagebox.showerror("错误", "课程名称包含无效字符。", parent=self)
             return
@@ -998,7 +1101,6 @@ class CourseManagementWindow(tk.Toplevel):
             return
 
         unit_title = unit_title.strip()
-        # A simple filename from title
         filename = f"{unit_title.replace(' ', '_').lower()}.json"
         filepath = os.path.join(COURSES_BASE_DIR, course_name, filename)
 
@@ -1006,7 +1108,6 @@ class CourseManagementWindow(tk.Toplevel):
             messagebox.showerror("错误", "一个使用类似标题的单元文件已存在。", parent=self)
             return
 
-        # Default template for a new unit
         template = {
             unit_title: [
                 {
@@ -1022,7 +1123,7 @@ class CourseManagementWindow(tk.Toplevel):
             with open(filepath, 'w', encoding='utf-8') as f:
                 json.dump(template, f, ensure_ascii=False, indent=4)
             messagebox.showinfo("成功", f"单元 '{filename}' 已成功创建。", parent=self)
-            self.on_course_select() # Refresh unit list
+            self.on_course_select()
         except Exception as e:
             messagebox.showerror("创建失败", f"创建单元文件时出错: {e}", parent=self)
 
@@ -1039,10 +1140,9 @@ class CourseManagementWindow(tk.Toplevel):
         filepath = os.path.join(COURSES_BASE_DIR, course_name, unit_filename)
 
         try:
-            # Open the file with the default system editor
-            if os.name == 'nt': # For Windows
+            if os.name == 'nt':
                 os.startfile(filepath)
-            elif os.name == 'posix': # For macOS, Linux
+            elif os.name == 'posix':
                 subprocess.call(('open', filepath) if sys.platform == 'darwin' else ('xdg-open', filepath))
             else:
                 messagebox.showinfo("提示", f"请手动打开文件进行编辑:\n{filepath}", parent=self)
@@ -1067,7 +1167,7 @@ class CourseManagementWindow(tk.Toplevel):
         try:
             os.remove(filepath)
             messagebox.showinfo("成功", f"单元 '{unit_filename}' 已被删除。", parent=self)
-            self.on_course_select() # Refresh unit list
+            self.on_course_select()
         except Exception as e:
             messagebox.showerror("删除失败", f"删除单元时出错: {e}", parent=self)
 
@@ -1104,7 +1204,6 @@ class CourseManagementWindow(tk.Toplevel):
         if not filepath:
             return
 
-        # The path given to make_archive should not include the extension.
         archive_path_base = filepath.rsplit('.', 1)[0]
 
         try:

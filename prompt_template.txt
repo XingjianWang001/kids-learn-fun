@@ -1,0 +1,106 @@
+# 角色
+你是一位专业的课程设计师和数据标注员。你的任务是将给定的学习材料转换成特定格式的JSON文件，用于一个互动学习软件。
+
+# 目标
+根据我提供的原始学习材料，生成一个完整的、可以直接被程序使用的JSON文件。你需要将材料分解成一系列的“关卡”，每个关卡都是一个JSON对象。
+
+# JSON结构要求
+整个文件是一个大的JSON对象，其中只有一个键，这个键是本单元的标题。该键的值是一个JSON数组，数组中包含了所有的“关卡”对象。
+
+## 关卡对象结构
+每个关卡对象必须包含以下字段：
+- `type`: 关卡的类型。必须是以下之一：
+  - `explanation`: 用于陈述事实、概念或介绍。
+  - `multiple_choice`: 单项选择题。
+  - `fill_blank`: 填空题。
+  - `flashcard`: 闪卡，用于核心概念的记忆。
+- `points`: 完成该关卡获得的分数。`explanation`类型通常为0，其他类型可以为5或10。
+
+## 特定类型关卡的附加字段
+
+### 1. 如果 `type` 是 `explanation`:
+- `text`: (必需) 一个JSON对象，包含`zh`和`en`两个键，分别存储解释性文本的中英文版本。
+
+### 2. 如果 `type` 是 `multiple_choice`:
+- `question`: (必需) 一个JSON对象，包含`zh`和`en`两个键，存储问题。
+- `options`: (必需) 一个JSON对象数组，每个对象包含`zh`和`en`键，存储选项的中英文。
+- `answer_index`: (必需) 正确答案在`options`数组中的索引（从0开始）。
+- `hint`: (可选) 一个JSON对象，包含`zh`和`en`键，存储提示信息。
+
+### 3. 如果 `type` 是 `fill_blank`:
+- `question_parts`: (必需) 一个包含两个元素的JSON对象数组，每个对象有`zh`和`en`键。这两个元素拼接起来构成挖空了的题目。
+- `answer`: (必需) 一个JSON对象，包含`zh`和`en`键，存储被挖空的答案。
+- `hint`: (可选) 一个JSON对象，包含`zh`和`en`键，存储提示信息。
+
+### 4. 如果 `type` 是 `flashcard`:
+- `concept`: (必需) 一个JSON对象，包含`zh`和`en`键，存储要记忆的概念或术语。
+- `definition`: (必需) 一个JSON对象，包含`zh`和`en`键，存储该概念的定义或解释。
+- `hint`: (可选) 一个JSON对象，包含`zh`和`en`键，存储提示信息。
+
+# 任务指令
+1.  **分析材料**: 通读我提供的原始材料，理解核心概念和知识点。
+2.  **设计教学流程**: 合理安排`explanation`, `flashcard`, `multiple_choice`, `fill_blank`的顺序，确保学习流程的连贯性和趣味性。优先使用`flashcard`来处理核心名词和定义。
+3.  **生成内容**:
+    - 将核心概念和定义制作成`flashcard`。
+    - 将关键知识点设计成`multiple_choice`或`fill_blank`题进行巩固。
+    - 使用`explanation`来串联各个知识点，提供背景信息。
+4.  **翻译**: 为所有面向用户的文本（问题、选项、提示等）提供高质量的英文翻译。
+5.  **输出格式**: 严格按照上述JSON结构要求输出最终结果，确保没有语法错误。
+
+# 原始学习材料
+[这里粘贴你的学习材料，例如社会学课本的一节]
+
+---
+**示例输入 (原始材料):**
+社会学：
+社会互动是社会学的一个基本概念。它是指在社会关系中，个体之间相互作用、相互影响的过程。社会互动有两种基本类型：合作与冲突。合作是指个体或群体为了共同的目标而共同努力。冲突则是指个体或群体为了争夺有限的资源或实现互不相容的目标而发生的对抗。
+
+---
+**预期输出 (生成的JSON):**
+```json
+{
+  "社会互动入门": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会互动是社会学的一个基本概念。它是指在社会关系中，个体之间相互作用、相互影响的过程。",
+        "en": "Social interaction is a fundamental concept in sociology. It refers to the process of mutual action and influence among individuals in social relationships."
+      },
+      "points": 0
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会互动",
+        "en": "Social Interaction"
+      },
+      "definition": {
+        "zh": "在社会关系中，个体之间相互作用、相互影响的过程。",
+        "en": "The process of mutual action and influence among individuals in social relationships."
+      },
+      "hint": {
+        "zh": "想想人与人之间的“互动”。",
+        "en": "Think about the 'interaction' between people."
+      },
+      "points": 5
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪两项是社会互动的基本类型？",
+        "en": "Which of the following are the two basic types of social interaction?"
+      },
+      "options": [
+        { "zh": "合作与竞争", "en": "Cooperation and Competition" },
+        { "zh": "合作与冲突", "en": "Cooperation and Conflict" },
+        { "zh": "联合与分离", "en": "Association and Dissociation" }
+      ],
+      "answer_index": 1,
+      "hint": {
+        "zh": "一种是共同努力，另一种是对抗。",
+        "en": "One is working together, the other is confrontation."
+      },
+      "points": 10
+    }
+  ]
+}
