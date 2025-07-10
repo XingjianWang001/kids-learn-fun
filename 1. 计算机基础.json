@@ -1,0 +1,284 @@
+{
+  "1. 计算机基础": [
+    {
+      "type": "explanation",
+      "text": "小朋友们，欢迎来到奇妙的编程世界！\n想象一下，计算机就像一个非常非常聪明的机器人，而编程就是教它怎么做事情的魔法咒语！\n我们要学习的咒语叫做 C++。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "在开始学习魔法咒语前，我们先了解一下机器人（计算机）是怎么记住东西的吧！\n计算机记东西的地方叫做“存储器”，就像我们的大脑或者书包。\n它有两种主要的存储器：一种是记性很快但容易忘事（断电就忘）的“主存储器”（像我们的临时记忆），另一种是记性慢一点但很牢固（断电也不忘）的“辅助存储器”（像我们的笔记本）。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "计算机记东西的方式很特别，它只认识两种暗号：0 和 1。\n就像电灯的开关，只有“开”（1）和“关”（0）两种状态。\n每一个 0 或 1，我们叫做一个“位”（bit），它是计算机最小的记忆单位。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "把 8 个“位”组合在一起，就变成了一个“字节”（byte）。\n一个字节可以表示一个英文字母或者一个数字。\n更大的单位有 千字节 (KB), 兆字节 (MB), 吉字节 (GB), 太字节 (TB)，它们都是由更多的字节组成的。\n记住哦，1 KB 不是正好 1000 字节，而是 1024 字节，因为计算机喜欢用 2 的倍数！",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "text": "计算机存储数据的最小单位是什么？",
+      "question": "计算机存储数据的最小单位是什么？",
+      "options": [
+        "字节 (byte)",
+        "位 (bit)",
+        "千字节 (KB)",
+        "兆字节 (MB)"
+      ],
+      "answer_index": 1,
+      "hint": "想想计算机只认识哪两种暗号？最小的那个。",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "text": "计算机用 0 和 1 来存储数据，每一个 0 或 1 叫做一个“位”。\n把 8 个“位”组合在一起，就叫做一个“_____”。",
+      "question_parts": [
+        "把 8 个“位”组合在一起，就叫做一个“",
+        "”。"
+      ],
+      "answer": "字节",
+      "hint": "这个单位可以表示一个英文字母。",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "C++ 是一种高级编程语言，就像我们平时说话一样，比较容易理解。\n它功能强大，可以用来写各种各样的程序，比如游戏、操作系统等等。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "一个最简单的 C++ 程序长这样：\n`#include <iostream>` 告诉计算机我们要用输入输出的功能（比如在屏幕上显示文字）。\n`int main() { ... }` 是程序的入口，计算机从这里开始执行命令。\n`return 0;` 表示程序顺利结束。",
+      "code": "#include <iostream>\n\nint main() {\n    // 你的魔法咒语写在这里\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "`std::cout` 就像一个“小喇叭”，可以把你想说的话显示在屏幕上。\n`<<` 符号是告诉小喇叭“把这个东西喊出来”。\n`\"Hello, C++!\"` 是你要喊的内容，要放在双引号里。\n`std::endl` 表示喊完后换一行。",
+      "code": "#include <iostream>\n\nint main() {\n    std::cout << \"Hello, C++!\" << std::endl;\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "fill_blank",
+      "text": "要让程序在屏幕上显示“你好！”，我们应该用哪个命令？\n`std::_____ << \"你好！\" << std::endl;`",
+      "question_parts": [
+        "要让程序在屏幕上显示“你好！”，我们应该用哪个命令？\n`std::",
+        " << \"你好！\" << std::endl;`"
+      ],
+      "answer": "cout",
+      "hint": "哪个是用来“输出”的命令？",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "现在，请你来写一个简单的 C++ 程序，让它在屏幕上显示你的名字吧！\n比如，如果你的名字是“小明”，程序就应该输出“小明”。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 请在这里写你的代码，输出你的名字，并换行\n    {user_code}\n    return 0;\n}",
+      "question": "请在 `main` 函数里，使用 `std::cout` 输出你的名字（例如 \"小华\"），并在名字后面加上 `std::endl`。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
+      "expected_output": "小华",
+      "standard_answer_code": "std::cout << \"小华\" << std::endl;",
+      "hint": "别忘了在名字两边加上双引号哦！使用 `std::cout << \"你的名字\" << std::endl;`",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "流程图就像是程序的“地图”，用一些图形和箭头来表示程序是怎么一步一步执行的。\n它可以帮助我们理清思路，在写代码之前先设计好步骤。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "流程图里有一些常用的图形：\n- 圆角矩形：表示开始或结束。\n- 矩形：表示一个处理步骤（比如计算）。\n- 菱形：表示一个判断（比如判断一个数是不是偶数）。\n- 箭头：表示程序的流程方向。",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "text": "在流程图中，哪个图形通常用来表示一个“判断”？",
+      "question": "在流程图中，哪个图形通常用来表示一个“判断”？",
+      "options": [
+        "圆角矩形",
+        "矩形",
+        "菱形",
+        "箭头"
+      ],
+      "answer_index": 2,
+      "hint": "想想做选择的时候，图形是什么形状的？",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "ASCII 码就像一个“字符的秘密编号本”。\n计算机内部存储和处理字符（比如字母 'A'，数字 '5'，符号 '?'）时，不是直接存图形，而是存一个数字。\nASCII 码就是规定了每个字符对应哪个数字。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "比如，大写字母 'A' 对应的 ASCII 码是 65，小写字母 'a' 是 97，数字字符 '0' 是 48。\n在 C++ 里，你可以把一个字符当成一个整数来看待，就能看到它的 ASCII 码了。",
+      "code": "#include <iostream>\n\nint main() {\n    char my_char = 'B';\n    // 把字符 'B' 当成整数输出\n    std::cout << \"字符 '\" << my_char << \"' 的 ASCII 码是: \" << (int)my_char << std::endl;\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "fill_blank",
+      "text": "根据 ASCII 码，如果 'A' 是 65，那么 'B' 的 ASCII 码是多少？\n（提示：字母是按顺序排列的）",
+      "question_parts": [
+        "根据 ASCII 码，如果 'A' 是 65，那么 'B' 的 ASCII 码是多少？\n答案是：",
+        ""
+      ],
+      "answer": "66",
+      "hint": "字母表里 'B' 在 'A' 的后面一个。",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "变量就像是计算机里的小盒子，可以用来存放数据。\n每个盒子都有一个名字（变量名），比如 `age`、`score`。\n盒子里面放什么类型的数据，需要在声明变量的时候告诉计算机。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "`int` 类型的盒子专门用来存放整数（没有小数点的数字），比如 10, -5, 100。\n`float` 或 `double` 类型的盒子用来存放带小数点的数字，比如 3.14, 0.5。",
+      "code": "#include <iostream>\n\nint main() {\n    int apple_count = 5; // 声明一个整数变量 apple_count，并放进去数字 5\n    double price = 2.5; // 声明一个带小数的变量 price，并放进去数字 2.5\n    \n    std::cout << \"苹果数量: \" << apple_count << std::endl;\n    std::cout << \"苹果单价: \" << price << std::endl;\n    \n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "code_challenge",
+      "text": "请声明一个名为 `myScore` 的整数变量，并给它赋值为 95，然后将这个变量的值打印出来。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 请在这里写你的代码\n    {user_code}\n    return 0;\n}",
+      "question": "请声明一个名为 `myScore` 的整数变量，给它赋值为 95，并使用 `std::cout` 将其值输出到屏幕上，末尾换行。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
+      "expected_output": "95",
+      "standard_answer_code": "int myScore = 95;\n    std::cout << myScore << std::endl;",
+      "hint": "声明整数变量用 `int` 关键字，然后是变量名，然后是 `=` 号，最后是值和一个分号 `;`。用 `std::cout << 变量名 << std::endl;` 输出。",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "有时候，我们需要把一个类型的数据变成另一个类型。\n比如，把一个整数变成带小数的数字，或者把一个带小数的数字变成整数（小数部分会被去掉）。\n这叫做“类型转换”。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "C++ 有时候会自动帮你转换（隐式转换），但有时候你需要明确地告诉它怎么转（显式转换）。\n显式转换可以用 `static_cast<目标类型>(要转换的变量)`。",
+      "code": "#include <iostream>\n\nint main() {\n    int total_apples = 7;\n    int students = 2;\n    \n    // 如果直接用整数相除，结果还是整数 (7 / 2 = 3)\n    std::cout << \"直接相除 (整数): \" << total_apples / students << std::endl; \n    \n    // 使用 static_cast 把其中一个变成带小数的类型，结果就是带小数的了\n    double apples_per_student = static_cast<double>(total_apples) / students;\n    std::cout << \"转换后相除 (小数): \" << apples_per_student << std::endl; // 输出 3.5\n    \n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "fill_blank",
+      "text": "要把一个整数变量 `count` 转换成带小数的 `double` 类型，应该怎么写？\n`double double_count = _____<double>(count);`",
+      "question_parts": [
+        "要把一个整数变量 `count` 转换成带小数的 `double` 类型，应该怎么写？\n`double double_count = ",
+        "<double>(count);`"
+      ],
+      "answer": "static_cast",
+      "hint": "这是一个用来明确告诉计算机进行类型转换的“魔法词”。",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "程序有时候需要根据不同的情况做不同的事情，这叫做“分支”。\n`if` 语句就像在问一个问题：“如果...是真的，就做这件事。”\n`else` 语句是说：“否则（如果不是真的），就做那件事。”",
+      "code": "#include <iostream>\n\nint main() {\n    int score = 85;\n    \n    if (score >= 60) { // 如果分数大于等于 60\n        std::cout << \"考试及格啦！\" << std::endl;\n    } else { // 否则 (分数小于 60)\n        std::cout << \"考试没及格，下次加油！\" << std::endl;\n    }\n    \n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "程序有时候需要重复做一件事情很多次，这叫做“循环”。\n`for` 循环和 `while` 循环都可以用来做重复的事情。",
+      "code": "#include <iostream>\n\nint main() {\n    // for 循环：重复打印 5 次 \"你好！\"\n    for (int i = 0; i < 5; i = i + 1) {\n        std::cout << \"你好！\" << std::endl;\n    }\n    \n    // while 循环：当 count 小于 3 时，重复打印 \"再来一次！\"\n    int count = 0;\n    while (count < 3) {\n        std::cout << \"再来一次！\" << std::endl;\n        count = count + 1;\n    }\n    \n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "text": "如果想让程序在满足某个条件时执行一段代码，不满足时执行另一段代码，应该使用什么结构？",
+      "question": "如果想让程序在满足某个条件时执行一段代码，不满足时执行另一段代码，应该使用什么结构？",
+      "options": [
+        "循环 (Loop)",
+        "分支 (Branch)",
+        "变量 (Variable)",
+        "类型转换 (Type Cast)"
+      ],
+      "answer_index": 1,
+      "hint": "这是根据情况做“选择”的结构。",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "text": "如果想重复执行一段代码固定的次数（比如 10 次），可以使用 _____ 循环。",
+      "question_parts": [
+        "如果想重复执行一段代码固定的次数（比如 10 次），可以使用 ",
+        " 循环。"
+      ],
+      "answer": "for",
+      "hint": "这个循环通常用在知道重复多少次的时候。",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "请写一个程序，使用 `for` 循环从 1 打印到 5，每个数字占一行。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 请在这里写你的代码\n    {user_code}\n    return 0;\n}",
+      "question": "请使用 `for` 循环，从数字 1 开始，打印到数字 5，每个数字占一行。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
+      "expected_output": "1\n2\n3\n4\n5",
+      "standard_answer_code": "for (int i = 1; i <= 5; i++) {\n        std::cout << i << std::endl;\n    }",
+      "hint": "for 循环通常有三个部分：开始条件、继续条件、每次循环后做什么。用 `std::cout << i << std::endl;` 打印并换行。",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "C++ 提供了一些方便的“数学工具箱”，叫做数学函数。\n使用它们之前，通常需要在程序开头加上 `#include <cmath>`。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "一些常用的数学函数：\n- `abs(x)`：计算 x 的绝对值（去掉负号）。\n- `sqrt(x)`：计算 x 的平方根（哪个数自己乘以自己等于 x）。\n- `std::max(a, b)`：找出 a 和 b 中较大的那个数 (需要 `#include <algorithm>`)。\n- `std::min(a, b)`：找出 a 和 b 中较小的那个数 (需要 `#include <algorithm>`)。",
+      "code": "#include <iostream>\n#include <cmath> // 使用数学函数需要包含这个文件\n#include <algorithm> // 使用 std::max/std::min 需要包含这个文件\n\nint main() {\n    std::cout << \"-10 的绝对值是: \" << abs(-10) << std::endl; // 输出 10\n    std::cout << \"16 的平方根是: \" << sqrt(16) << std::endl; // 输出 4\n    std::cout << \"5 和 8 中较大的数是: \" << std::max(5, 8) << std::endl; // 输出 8\n    \n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "fill_blank",
+      "text": "要计算数字 25 的平方根，应该使用哪个数学函数？\n`std::cout << _____ (25);`",
+      "question_parts": [
+        "要计算数字 25 的平方根，应该使用哪个数学函数？\n`std::cout << ",
+        " (25);`"
+      ],
+      "answer": "sqrt",
+      "hint": "平方根的英文是 square root。",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "text": "哪个函数用来找出两个数中最小的那个？",
+      "question": "哪个函数用来找出两个数中最小的那个？",
+      "options": [
+        "abs",
+        "sqrt",
+        "std::max",
+        "std::min"
+      ],
+      "answer_index": 3,
+      "hint": "最小的英文是什么？记得要加 `std::` 哦！",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "现在我们已经学习了变量、输入输出、分支、循环和数学函数。\n把这些知识结合起来，就可以解决更复杂的问题了！\n这就是“基本程序设计”——用我们学过的工具来完成任务。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "比如，我们可以写一个程序，让它读入一些数字，然后数一数里面有多少个奇数。",
+      "code": "#include <iostream>\n\nint main() {\n    int n; // 要输入的数字个数\n    std::cout << \"请问你要输入几个数字？\";\n    std::cin >> n; // 从键盘读入数字个数\n    \n    int count = 0; // 用一个变量来记住奇数的个数，一开始是 0\n    \n    std::cout << \"请依次输入 \" << n << \" 个数字：\" << std::endl;\n    \n    // 循环 n 次，每次读入一个数字\n    for (int i = 0; i < n; i = i + 1) {\n        int num; // 用一个变量来存放当前读入的数字\n        std::cin >> num; // 读入一个数字\n        \n        // 判断这个数字是不是奇数 (奇数除以 2 余数是 1)\n        if (num % 2 != 0) { // 奇数也可以是 num % 2 == 1 或 num % 2 != 0 (对于负奇数 -1 % 2 = -1)\n            count = count + 1; // 如果是奇数，奇数个数加 1\n        }\n    }\n    \n    std::cout << \"你输入的数字中，有 \" << count << \" 个奇数。\" << std::endl;\n    \n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "code_challenge",
+      "text": "请写一个程序，计算并输出从 1 加到 10 的和。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 你需要一个变量来存放总和，一个循环来遍历 1 到 10\n    {user_code}\n    return 0;\n}",
+      "question": "请使用循环计算 1 + 2 + ... + 10 的结果，并用 `std::cout` 输出总和，末尾换行。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
+      "expected_output": "55",
+      "standard_answer_code": "int sum = 0;\n    for (int i = 1; i <= 10; i++) {\n        sum = sum + i;\n    }\n    std::cout << sum << std::endl;",
+      "hint": "用一个变量 `sum` 来累加，初始值是 0。用一个 `for` 循环让一个变量 `i` 从 1 变到 10，每次循环都把 `i` 加到 `sum` 里。",
+      "points": 15
+    }
+  ]
+}
