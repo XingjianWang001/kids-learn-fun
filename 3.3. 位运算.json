@@ -1,0 +1,379 @@
+{
+  "3.3. 位运算": [
+    {
+      "type": "explanation",
+      "text": "小朋友们，我们之前学过，计算机里的所有信息，包括数字、文字、图片，最终都是用电信号表示的，就像一个个小开关。\n每个小开关只有两种状态：开（1）和关（0）。我们把这种最小的信息单位叫做“位”（bit）。\n一个数字在计算机里，就是由一串这样的“位”组成的。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "今天我们要学习的是“位运算”，也就是直接对这些表示数字的“位”（小开关）进行操作。\n这就像我们不是直接操作整个数字，而是去拨动组成数字的那些小开关。\n位运算有几种不同的方式，每种方式都有自己的规则。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "第一种位运算是“按位与”（Bitwise AND），符号是 `&`。\n它的规则是：只有当两个对应的“位”都是 1 时，结果的那个“位”才是 1；否则就是 0。\n就像有两个小开关，只有它们都拨到“开”（1）的位置，结果的灯才会亮（1）。\n\n比如数字 5 (二进制是 0101) 和数字 3 (二进制是 0011) 进行按位与操作：\n  0101 (5)\n& 0011 (3)\n------\n  0001 (1)\n所以 5 & 3 的结果是 1。",
+      "code": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int b = 3;\n    int result = a & b;\n    std::cout << \"5 & 3 = \" << result << std::endl; // 输出 1\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "按位与 `&` 的规则是什么？",
+      "options": [
+        "只要有一个位是 1，结果就是 1",
+        "只有两个位都是 1，结果才是 1",
+        "两个位不一样，结果就是 1",
+        "把位翻转过来"
+      ],
+      "answer_index": 1,
+      "hint": "想想看，什么时候灯会亮？",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        "计算 6 & 4 的结果。\n数字 6 的二进制是 0110，数字 4 的二进制是 0100。\n  0110\n& 0100\n------\n  ",
+        "\n结果是十进制的？"
+      ],
+      "answer": "0100",
+      "hint": "按位与的规则是：1 & 1 = 1，其他都是 0。",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "根据上一步的计算，6 & 4 的结果是十进制的多少？",
+      "options": [
+        "2",
+        "4",
+        "6",
+        "0"
+      ],
+      "answer_index": 1,
+      "hint": "二进制 0100 转换成十进制是多少？",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "按位与 `&` 有个小技巧：任何整数和 1 进行按位与操作，可以检查这个数是不是奇数。\n因为奇数的二进制表示，最后一位总是 1。\n例如： 5 (0101) & 1 (0001) = 0001 (1) -> 结果是 1，表示是奇数。\n     6 (0110) & 1 (0001) = 0000 (0) -> 结果是 0，表示是偶数。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 6; // 假设输入的数字是6\n    // 如果需要用户输入，可以取消下面行的注释\n    // std::cout << \"请输入一个整数: \"; std::cin >> number;\n    // 在这里写代码检查 number 是否是奇数\n    {user_code}\n    return 0;\n}",
+      "question": "请在代码中判断变量 `number` (假设其值为6) 是否是奇数。如果是奇数，请输出 1；如果是偶数，请输出 0。末尾换行。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 6;\n    {user_code}\n    return 0;\n}",
+      "expected_output": "0",
+      "standard_answer_code": "std::cout << (number & 1) << std::endl;",
+      "hint": "使用按位与 `&` 和数字 1 来检查最后一位。 `(number & 1)` 的结果就是0或1。",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "第二种位运算是“按位或”（Bitwise OR），符号是 `|`。\n它的规则是：只要两个对应的“位”中有一个是 1，结果的那个“位”就是 1；只有当两个位都是 0 时，结果才是 0。\n就像有两个小开关，只要其中一个拨到“开”（1）的位置，结果的灯就会亮（1）。\n\n比如数字 5 (二进制 0101) 和数字 3 (二进制 0011) 进行按位或操作：\n  0101 (5)\n| 0011 (3)\n------\n  0111 (7)\n所以 5 | 3 的结果是 7。",
+      "code": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int b = 3;\n    int result = a | b;\n    std::cout << \"5 | 3 = \" << result << std::endl; // 输出 7\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "按位或 `|` 的规则是什么？",
+      "options": [
+        "只有两个位都是 1，结果才是 1",
+        "两个位不一样，结果就是 1",
+        "只要有一个位是 1，结果就是 1",
+        "把位翻转过来"
+      ],
+      "answer_index": 2,
+      "hint": "想想看，什么时候灯会亮？",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        "计算 6 | 1 的结果。\n数字 6 的二进制是 0110，数字 1 的二进制是 0001。\n  0110\n| 0001\n------\n  ",
+        "\n结果是十进制的？"
+      ],
+      "answer": "0111",
+      "hint": "按位或的规则是：0 | 0 = 0，其他都是 1。",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "根据上一步的计算，6 | 1 的结果是十进制的多少？",
+      "options": [
+        "5",
+        "6",
+        "7",
+        "8"
+      ],
+      "answer_index": 2,
+      "hint": "二进制 0111 转换成十进制是多少？",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "第三种位运算是“按位异或”（Bitwise XOR），符号是 `^`。\n它的规则是：当两个对应的“位”不相同时，结果的那个“位”才是 1；当两个位相同时（都是 0 或都是 1），结果就是 0。\n就像有两个小开关，只有它们的状态不一样（一个开一个关），结果的灯才会亮（1）。\n\n比如数字 5 (二进制 0101) 和数字 3 (二进制 0011) 进行按位异或操作：\n  0101 (5)\n^ 0011 (3)\n------\n  0110 (6)\n所以 5 ^ 3 的结果是 6。",
+      "code": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int b = 3;\n    int result = a ^ b;\n    std::cout << \"5 ^ 3 = \" << result << std::endl; // 输出 6\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "按位异或 `^` 的规则是什么？",
+      "options": [
+        "只有两个位都是 1，结果才是 1",
+        "两个位不一样，结果就是 1",
+        "只要有一个位是 1，结果就是 1",
+        "把位翻转过来"
+      ],
+      "answer_index": 1,
+      "hint": "想想看，什么时候灯会亮？",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        "计算 7 ^ 7 的结果。\n数字 7 的二进制是 0111。\n  0111\n^ 0111\n------\n  ",
+        "\n结果是十进制的？"
+      ],
+      "answer": "0000",
+      "hint": "按位异或的规则是：相同的位结果是 0，不同的位结果是 1。",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "根据上一步的计算，7 ^ 7 的结果是十进制的多少？",
+      "options": [
+        "0",
+        "7",
+        "14",
+        "1"
+      ],
+      "answer_index": 0,
+      "hint": "二进制 0000 转换成十进制是多少？",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "按位异或 `^` 有个有趣的用法：任何数和 0 进行异或，结果还是它自己。\n任何数和它自己进行异或，结果是 0。\n这就像开关，和一个“关”（0）的开关异或，状态不变；和自己一样的开关异或，状态变成“关”（0）。\n我们可以用异或来“翻转”某个特定的位。比如，想翻转一个数的最后一位，就和 1 (0001) 进行异或。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 10; // 二进制 1010\n    // 在这里写代码翻转 number 的最后一位\n    {user_code}\n    std::cout << \"翻转最后一位后: \" << number << std::endl;\n    return 0;\n}",
+      "question": "请在代码中，使用按位异或 `^` 翻转变量 `number` (初始值为10) 的最后一位，并将更新后的 `number` 打印出来。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 10; // 二进制 1010\n    {user_code}\n    std::cout << \"翻转最后一位后: \" << number << std::endl;\n    return 0;\n}",
+      "expected_output": "翻转最后一位后: 11",
+      "standard_answer_code": "number = number ^ 1; // 或者 number ^= 1;",
+      "hint": "要翻转最后一位，和哪个数字进行异或呢？用 `number = number ^ 1;` 或者 `number ^= 1;`。",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "第四种位运算是“按位非”（Bitwise NOT），符号是 `~`。\n它的规则最简单：把每一个“位”都翻转过来！0 变成 1，1 变成 0。\n就像把每个小开关的状态都反过来。\n\n比如数字 5 (二进制 00000101，假设我们看8个位)：\n~ 00000101 (5)\n----------\n  11111010\n\n注意：在C++中，`int` 类型通常有更多的位（比如32个），而且计算机用一种叫“补码”的方式表示负数，所以 `~5` 的结果看起来会是一个负数，比如 -6。但核心思想是把所有的位都翻转了。",
+      "code": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int result = ~a;\n    std::cout << \"~5 = \" << result << std::endl; // 输出 -6 (在大多数系统上)\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "按位非 `~` 的作用是什么？",
+      "options": [
+        "检查两个位是否都是 1",
+        "检查两个位是否不同",
+        "把每个位都翻转过来",
+        "检查是否有位是 1"
+      ],
+      "answer_index": 2,
+      "hint": "它的名字叫“非”，就是“不是”的意思。",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "如果一个位是 0，经过按位非 `~` 运算后会变成什么？",
+      "options": [
+        "0",
+        "1",
+        "不变",
+        "错误"
+      ],
+      "answer_index": 1,
+      "hint": "它把位翻转过来。",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "接下来是“左移”（Left Shift），符号是 `<<`。\n它把一个数字的所有“位”向左移动指定的位数，右边空出来的位用 0 填充。\n\n比如数字 5 (二进制 0101) 左移 1 位：\n0101 << 1  变成  1010\n结果是 10。\n\n数字 5 (二进制 0101) 左移 2 位：\n0101 << 2  变成  10100\n结果是 20。\n\n你会发现，左移 1 位相当于乘以 2，左移 2 位相当于乘以 4 (也就是 2*2)，左移 n 位相当于乘以 2 的 n 次方！",
+      "code": "#include <iostream>\n\nint main() {\n    int a = 5;\n    int b = a << 1; // 左移 1 位\n    int c = a << 2; // 左移 2 位\n    std::cout << \"5 << 1 = \" << b << std::endl; // 输出 10\n    std::cout << \"5 << 2 = \" << c << std::endl; // 输出 20\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "左移运算符 `<<` 的作用是什么？",
+      "options": [
+        "把位向右移动",
+        "把位向左移动",
+        "翻转位",
+        "检查位是否相同"
+      ],
+      "answer_index": 1,
+      "hint": "看符号的方向，箭头指向左边。",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        "计算 3 << 2 的结果。\n数字 3 的二进制是 0011。\n0011 << 2 变成 ",
+        "\n结果是十进制的？"
+      ],
+      "answer": "1100",
+      "hint": "把 0011 向左移动 2 位，右边补 0。",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "根据上一步的计算，3 << 2 的结果是十进制的多少？",
+      "options": [
+        "6",
+        "8",
+        "12",
+        "16"
+      ],
+      "answer_index": 2,
+      "hint": "二进制 1100 转换成十进制是多少？或者想想左移 2 位相当于乘以多少？",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "左移 `<<` 可以用来快速计算乘以 2 的幂。\n比如 `n << 1` 是 `n * 2`，`n << 2` 是 `n * 4`，`n << 3` 是 `n * 8`，以此类推。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 7;\n    int result;\n    // 在这里写代码计算 7 * 8 的结果，使用左移\n    {user_code}\n    std::cout << \"7 * 8 = \" << result << std::endl;\n    return 0;\n}",
+      "question": "请在代码中，使用左移运算符计算 `7 * 8` 的结果，并将结果存入 `result` 变量。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 7;\n    int result;\n    {user_code}\n    std::cout << \"7 * 8 = \" << result << std::endl;\n    return 0;\n}",
+      "expected_output": "7 * 8 = 56",
+      "standard_answer_code": "result = number << 3;",
+      "hint": "乘以 8 相当于乘以 2 的 3 次方，所以需要左移多少位？ `result = number << 3;`",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "最后一种位运算是“右移”（Right Shift），符号是 `>>`。\n它把一个数字的所有“位”向右移动指定的位数。\n对于正数，左边空出来的位用 0 填充。\n\n比如数字 10 (二进制 1010) 右移 1 位：\n1010 >> 1  变成  0101\n结果是 5。\n\n数字 10 (二进制 1010) 右移 2 位：\n1010 >> 2  变成  0010\n结果是 2。\n\n你会发现，右移 1 位相当于整数除以 2，右移 2 位相当于整数除以 4，右移 n 位相当于整数除以 2 的 n 次方！",
+      "code": "#include <iostream>\n\nint main() {\n    int a = 10;\n    int b = a >> 1; // 右移 1 位\n    int c = a >> 2; // 右移 2 位\n    std::cout << \"10 >> 1 = \" << b << std::endl; // 输出 5\n    std::cout << \"10 >> 2 = \" << c << std::endl; // 输出 2\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "question": "右移运算符 `>>` 的作用是什么？",
+      "options": [
+        "把位向右移动",
+        "把位向左移动",
+        "翻转位",
+        "检查位是否相同"
+      ],
+      "answer_index": 0,
+      "hint": "看符号的方向，箭头指向右边。",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        "计算 12 >> 2 的结果。\n数字 12 的二进制是 1100。\n1100 >> 2 变成 ",
+        "\n结果是十进制的？"
+      ],
+      "answer": "0011",
+      "hint": "把 1100 向右移动 2 位，左边补 0。",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "根据上一步的计算，12 >> 2 的结果是十进制的多少？",
+      "options": [
+        "3",
+        "4",
+        "6",
+        "24"
+      ],
+      "answer_index": 0,
+      "hint": "二进制 0011 转换成十进制是多少？或者想想右移 2 位相当于整数除以多少？",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "右移 `>>` 可以用来快速计算整数除以 2 的幂。\n比如 `n >> 1` 是 `n / 2` (整数除法)，`n >> 2` 是 `n / 4`，`n >> 3` 是 `n / 8`，以此类推。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 20;\n    int result;\n    // 在这里写代码计算 20 / 4 的结果，使用右移\n    {user_code}\n    std::cout << \"20 / 4 = \" << result << std::endl;\n    return 0;\n}",
+      "question": "请在代码中，使用右移运算符计算 `20 / 4` 的结果，并将结果存入 `result` 变量。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 20;\n    int result;\n    {user_code}\n    std::cout << \"20 / 4 = \" << result << std::endl;\n    return 0;\n}",
+      "expected_output": "20 / 4 = 5",
+      "standard_answer_code": "result = number >> 2;",
+      "hint": "除以 4 相当于除以 2 的 2 次方，所以需要右移多少位？ `result = number >> 2;`",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "位运算虽然看起来有点复杂，但它们非常快，因为是直接操作计算机最底层的“位”。\n它们在一些特殊的地方很有用，比如：\n- 快速进行乘以或除以 2 的幂的运算 (用 `<<` 和 `>>`)\n- 检查一个数的某个特定的位是 0 还是 1 (用 `&`)\n- 设置或清除一个数的某个特定的位 (用 `|` 和 `&`)\n- 翻转一个数的某个特定的位 (用 `^`)",
+      "points": 0
+    },
+    {
+      "type": "code_challenge",
+      "text": "我们来试试检查一个数的某个特定的位。\n比如，我们想知道数字 12 (二进制 1100) 的从右边数第 3 个位（从 0 开始数，所以是索引 2 的位）是不是 1。\n12 的二进制是 `...01100` (假设更多位)\n第 0 位: 0\n第 1 位: 0\n第 2 位: 1 <--- 我们要检查这个位\n第 3 位: 1\n\n方法是：先把这个位移动到最右边（第 0 位），然后和 1 进行按位与 `&` 操作。\n把第 2 位移到第 0 位，需要右移 2 位： `12 >> 2` (1100 >> 2 = 0011)\n然后和 1 进行按位与： `(12 >> 2) & 1` (0011 & 0001 = 0001)\n结果是 1，说明第 2 个位是 1。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 12; // 二进制 1100\n    int bit_index = 2; // 我们想检查第 2 个位 (从右边数，从 0 开始)\n    int bit_value;\n    // 在这里写代码检查 number 的第 bit_index 个位\n    // 并将结果 (0 或 1) 存入 bit_value\n    {user_code}\n    std::cout << \"数字 \" << number << \" 的第 \" << bit_index << \" 个位是: \" << bit_value << std::endl;\n    return 0;\n}",
+      "question": "请在代码中，检查 `number` (值为12) 的第 `bit_index` (值为2) 个位是否为 1。将结果 (0 或 1) 存入 `bit_value` 变量。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 12;\n    int bit_index = 2;\n    int bit_value;\n    {user_code}\n    std::cout << \"数字 \" << number << \" 的第 \" << bit_index << \" 个位是: \" << bit_value << std::endl;\n    return 0;\n}",
+      "expected_output": "数字 12 的第 2 个位是: 1",
+      "standard_answer_code": "bit_value = (number >> bit_index) & 1;",
+      "hint": "先用右移 `(number >> bit_index)` 把目标位移到最右边，然后和 1 进行按位与 `& 1`。",
+      "points": 15
+    },
+    {
+      "type": "multiple_choice",
+      "question": "哪个位运算符可以用来快速乘以 2 的幂？",
+      "options": [
+        "`&` (按位与)",
+        "`|` (按位或)",
+        "`<<` (左移)",
+        "`>>` (右移)"
+      ],
+      "answer_index": 2,
+      "hint": "想想哪个操作会让数字变大？",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "哪个位运算符可以用来快速进行整数除以 2 的幂？",
+      "options": [
+        "`&` (按位与)",
+        "`|` (按位或)",
+        "`<<` (左移)",
+        "`>>` (右移)"
+      ],
+      "answer_index": 3,
+      "hint": "想想哪个操作会让数字变小？",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "哪个位运算符可以用来检查一个数的最后一位是 0 还是 1？",
+      "options": [
+        "`number & 1`",
+        "`number | 1`",
+        "`number ^ 1`",
+        "`number >> 1`"
+      ],
+      "answer_index": 0,
+      "hint": "最后一位是 1 只有在和 1 进行什么运算时结果还是 1？",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        "位运算是直接对数字的",
+        "进行操作。",
+        "（最小的数据单位）"
+      ],
+      "answer": "位",
+      "hint": "计算机里最小的信息单位是什么？",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "question": "计算 `(5 << 1) | (3 >> 1)` 的结果。\n(5 << 1 是 10， 3 >> 1 是 1)\n10 的二进制是 1010， 1 的二进制是 0001。",
+      "options": [
+        "10",
+        "11",
+        "2",
+        "0"
+      ],
+      "answer_index": 1,
+      "hint": "先算左移和右移，再算按位或。 1010 | 0001 = 1011 (十进制是11)",
+      "points": 10
+    }
+  ]
+}
