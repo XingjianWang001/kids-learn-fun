@@ -1,56 +1,59 @@
 import tkinter as tk
-from tkinter import ttk, messagebox, scrolledtext
+from tkinter import ttk, messagebox, scrolledtext, simpledialog, filedialog
 import json
 import subprocess
 import tempfile
 import os
 import re # Added for error parsing and syntax highlighting
 from tkinter import font as tk_font # Import the font module
+import shutil
+import datetime
 
-# --- 函数：加载课程数据 ---
-def load_lessons_from_file(directory="."):
+# --- 全局常量 ---
+COURSES_BASE_DIR = os.path.join(os.path.dirname(__file__), "courses")
+
+# --- 函数：获取课程列表 ---
+def get_courses():
+    """Scans the courses directory and returns a list of available courses."""
+    if not os.path.exists(COURSES_BASE_DIR) or not os.path.isdir(COURSES_BASE_DIR):
+        return []
+    return sorted([d for d in os.listdir(COURSES_BASE_DIR) if os.path.isdir(os.path.join(COURSES_BASE_DIR, d))])
+
+# --- 函数：从课程文件夹加载单元数据 ---
+def load_units_from_course(course_name):
     """
-    Loads all .json lesson files from the specified directory,
-    sorts them by filename, and merges them into a single lessons data dictionary.
-    Each JSON file is expected to contain a single top-level key (the lesson title)
-    and its corresponding lesson content array.
+    Loads all .json unit files from a specific course directory.
     """
-    all_lessons_data = {}
-    json_files = sorted([f for f in os.listdir(directory) if f.endswith('.json') and f != "lessons_data.json"]) # Exclude the old combined file
+    course_path = os.path.join(COURSES_BASE_DIR, course_name)
+    all_units_data = {}
+    if not os.path.isdir(course_path):
+        messagebox.showerror("错误", f"课程目录 '{course_path}' 不存在！")
+        return {}
+
+    json_files = sorted([f for f in os.listdir(course_path) if f.endswith('.json')])
 
     if not json_files:
-        messagebox.showerror("错误", f"在目录 '{directory}' 中没有找到任何课程JSON文件！")
+        messagebox.showwarning("警告", f"课程 '{course_name}' 中没有找到任何单元JSON文件。")
         return {}
 
     for filename in json_files:
-        filepath = os.path.join(directory, filename)
+        filepath = os.path.join(course_path, filename)
         try:
             with open(filepath, 'r', encoding='utf-8') as f:
                 data = json.load(f)
-            # Expecting each file to be a dict with one key (lesson title)
             if isinstance(data, dict) and len(data) == 1:
-                all_lessons_data.update(data)
+                all_units_data.update(data)
             else:
-                print(f"Warning: File '{filepath}' does not have the expected format (single top-level key). Skipping.")
-                messagebox.showwarning("格式警告", f"课程文件 '{filename}' 格式不符合预期（应为单个顶级键），已跳过。")
-        except FileNotFoundError:
-            messagebox.showerror("错误", f"课程数据文件 '{filepath}' 未找到！")
-            continue
-        except json.JSONDecodeError as e:
-            messagebox.showerror("JSON错误", f"课程数据文件 '{filepath}' 格式错误！\n{e}")
-            continue
+                messagebox.showwarning("格式警告", f"单元文件 '{filename}' 格式不符合预期，已跳过。")
         except Exception as e:
-            messagebox.showerror("错误", f"加载课程文件 '{filepath}' 时发生未知错误: {e}")
+            messagebox.showerror("加载错误", f"加载单元文件 '{filepath}' 时出错: {e}")
             continue
 
-    if not all_lessons_data:
-        messagebox.showerror("错误", "未能成功加载任何课程数据。")
+    return all_units_data
 
-    return all_lessons_data
-
-LESSONS_DATA = load_lessons_from_file(directory=".")
-if not LESSONS_DATA:
-    print("CRITICAL: No lesson data loaded. Application might not function correctly.")
+# --- 数据占位符 ---
+# LESSONS_DATA is now loaded dynamically after a course is selected.
+LESSONS_DATA = {}
 
 class ScrollableFrame(ttk.Frame):
     """A pure Tkinter scrollable frame that actually works!"""
@@ -234,9 +237,10 @@ class CodeEditor(tk.Frame):
 class InteractiveLearningApp:
     def __init__(self, master):
         self.master = master
-        master.title("C++ 互动学习小程序 (小学生版)")
-        master.geometry("1000x800")
+        master.title("互动学习平台")
+        master.geometry("1100x800")
 
+        # --- 字体定义 ---
         self.font_title = ("Arial", 22, "bold")
         self.font_subtitle = ("Arial", 18, "bold")
         self.font_normal_text = ("Arial", 15)
@@ -245,37 +249,43 @@ class InteractiveLearningApp:
         self.font_code_text = ("Courier New", 14)
         self.font_button = ("Arial", 14)
 
-        self.current_topic_key = None
+        # --- 状态变量 ---
+        self.courses = get_courses()
+        self.current_course_name = None
+        self.current_topic_key = None # "Topic" is now a "Unit"
         self.current_lesson_index = 0
-        self.scores = {topic: 0 for topic in LESSONS_DATA}
-        self.max_scores = {topic: sum(l.get('points', 0) for l in lessons) for topic, lessons in LESSONS_DATA.items()}
+        self.scores = {}
+        self.max_scores = {}
         self.lesson_points_awarded = {}
         self.total_score = 0
-        self.total_max_score = sum(self.max_scores.values())
+        self.total_max_score = 0
         self.failed_attempts = {}
         self.MAX_FAILED_ATTEMPTS = 5
 
+        # --- 主窗口布局 ---
         self.main_paned_window = ttk.PanedWindow(master, orient=tk.HORIZONTAL)
         self.main_paned_window.pack(fill=tk.BOTH, expand=True)
 
-        self.topic_frame_container = ttk.Frame(self.main_paned_window, width=250, height=700)
-        self.topic_frame_container.pack_propagate(False)
-        self.main_paned_window.add(self.topic_frame_container, weight=0)
+        # --- 左侧面板 (课程/单元列表) ---
+        self.left_panel_container = ttk.Frame(self.main_paned_window, width=280, height=700)
+        self.left_panel_container.pack_propagate(False)
+        self.main_paned_window.add(self.left_panel_container, weight=0)
 
-        ttk.Label(self.topic_frame_container, text="课程列表", font=self.font_subtitle).pack(pady=10)
-        self.topic_buttons_frame = ttk.Frame(self.topic_frame_container)
-        self.topic_buttons_frame.pack(fill=tk.BOTH, expand=True)
-        self.topic_buttons = {}
-        for i, topic_key in enumerate(LESSONS_DATA.keys()):
-            btn = ttk.Button(self.topic_buttons_frame, text=topic_key, command=lambda k=topic_key: self.select_topic(k), width=25, style="Large.TButton")
-            btn.pack(pady=5, padx=5, fill=tk.X)
-            self.topic_buttons[topic_key] = btn
+        self.left_panel_title = ttk.Label(self.left_panel_container, text="课程列表", font=self.font_subtitle)
+        self.left_panel_title.pack(pady=10)
 
+        # --- 课程/单元按钮的容器 ---
+        self.buttons_frame = ttk.Frame(self.left_panel_container)
+        self.buttons_frame.pack(fill=tk.BOTH, expand=True)
+        self.course_buttons = {}
+        self.topic_buttons = {} # For units within a course
+
+        # --- 右侧主内容区 ---
         self.scrollable_lesson_outer_frame = ScrollableFrame(self.main_paned_window)
         self.main_paned_window.add(self.scrollable_lesson_outer_frame, weight=1)
         self.lesson_frame = self.scrollable_lesson_outer_frame.scrollable_content_frame
 
-        self.lesson_title_label = ttk.Label(self.lesson_frame, text="请选择一个课程开始学习", font=self.font_title)
+        self.lesson_title_label = ttk.Label(self.lesson_frame, text="请从左侧选择一个课程开始学习", font=self.font_title)
         self.lesson_title_label.pack(pady=(5,10), anchor="w")
 
         self.explanation_text = scrolledtext.ScrolledText(self.lesson_frame, wrap=tk.WORD, height=5, font=self.font_normal_text, relief=tk.SOLID, borderwidth=1)
@@ -317,21 +327,88 @@ class InteractiveLearningApp:
         self.next_button = ttk.Button(self.nav_frame, text="下一关卡", command=self.next_lesson, state=tk.DISABLED)
         self.next_button.pack(side=tk.LEFT, padx=10, expand=True)
 
-        self.score_label = ttk.Label(master, text=f"总得分: 0 / {self.total_max_score}", font=self.font_subtitle)
+        self.score_label = ttk.Label(master, text="总得分: 0 / 0", font=self.font_subtitle)
         self.score_label.pack(side=tk.BOTTOM, pady=10)
 
-        self.update_score_display()
+        self.display_courses()
+
+    def display_courses(self):
+        """Clears the left panel and shows the list of available courses."""
+        for widget in self.buttons_frame.winfo_children():
+            widget.destroy()
+        self.left_panel_title.config(text="课程列表")
+        self.course_buttons = {}
+
+        if not self.courses:
+            ttk.Label(self.buttons_frame, text="没有找到课程。\n请在 'courses' 文件夹中\n创建课程子目录。", justify=tk.CENTER).pack(pady=20)
+            return
+
+        for course_name in self.courses:
+            btn = ttk.Button(self.buttons_frame, text=course_name, command=lambda c=course_name: self.select_course(c), width=25, style="Large.TButton")
+            btn.pack(pady=5, padx=5, fill=tk.X)
+            self.course_buttons[course_name] = btn
+
+        # --- 添加管理按钮 ---
+        manage_btn = ttk.Button(self.buttons_frame, text="⚙️ 课程管理", command=self.open_management_window)
+        manage_btn.pack(side=tk.BOTTOM, pady=20, padx=5, fill=tk.X)
+
+    def open_management_window(self):
+        """Opens the course management window."""
+        management_win = CourseManagementWindow(self.master, self)
+        management_win.grab_set() # Modal-like behavior
+
+    def select_course(self, course_name):
+        """Loads a course and displays its units."""
+        global LESSONS_DATA
+        self.current_course_name = course_name
+        LESSONS_DATA = load_units_from_course(course_name)
+
         if not LESSONS_DATA:
-            self.lesson_title_label.config(text="没有加载到课程数据")
+            self.lesson_title_label.config(text=f"课程 '{course_name}' 为空")
+            self._clear_input_widgets()
             self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
-            self.explanation_text.insert(tk.END, "请检查课程JSON文件是否存在于'interLearn'目录且格式正确。")
-            self.explanation_text.config(state=tk.DISABLED)
-        else: self.load_lesson()
+            self.explanation_text.insert(tk.END, "这个课程里还没有任何学习单元。"); self.explanation_text.config(state=tk.DISABLED)
+            return
+
+        # Reset scores and state for the new course
+        self.scores = {topic: 0 for topic in LESSONS_DATA}
+        self.max_scores = {topic: sum(l.get('points', 0) for l in lessons) for topic, lessons in LESSONS_DATA.items()}
+        self.lesson_points_awarded = {}
+        self.total_score = 0
+        self.total_max_score = sum(self.max_scores.values())
+        self.current_topic_key = None
+        self.current_lesson_index = 0
+
+        self.display_units()
+        self.update_score_display()
+        # Select the first unit automatically
+        first_unit_key = next(iter(LESSONS_DATA), None)
+        if first_unit_key:
+            self.select_topic(first_unit_key)
+
+    def display_units(self):
+        """Displays the units for the currently selected course."""
+        for widget in self.buttons_frame.winfo_children():
+            widget.destroy()
+        self.left_panel_title.config(text=f"课程: {self.current_course_name}")
+        self.topic_buttons = {}
+
+        # Add a "Back to Courses" button
+        back_btn = ttk.Button(self.buttons_frame, text="« 返回课程列表", command=self.display_courses)
+        back_btn.pack(pady=(5, 10), padx=5, fill=tk.X)
+
+        for topic_key in LESSONS_DATA.keys():
+            btn = ttk.Button(self.buttons_frame, text=topic_key, command=lambda k=topic_key: self.select_topic(k), width=25, style="Large.TButton")
+            btn.pack(pady=5, padx=5, fill=tk.X)
+            self.topic_buttons[topic_key] = btn
+            self.update_topic_button_text(topic_key) # Update with initial score
 
     def select_topic(self, topic_key):
-        self.current_topic_key = topic_key; self.current_lesson_index = 0
-        self.lesson_title_label.config(text=f"学习中: {topic_key}")
-        self.load_lesson(); self.update_score_display()
+        self.current_topic_key = topic_key
+        self.current_lesson_index = 0
+        self.lesson_title_label.config(text=f"单元: {topic_key}")
+        self.load_lesson()
+        self.update_score_display()
 
     def _clear_input_widgets(self):
         if self.answer_entry: self.answer_entry.destroy(); self.answer_entry = None
@@ -762,13 +839,285 @@ class InteractiveLearningApp:
             messagebox.showinfo("恭喜!", "太厉害啦! 你已经完成了所有课程的学习，并获得了所有分数! 你是最棒的!")
 
 
+class CourseManagementWindow(tk.Toplevel):
+    def __init__(self, parent, app_instance):
+        super().__init__(parent)
+        self.app = app_instance
+        self.title("课程与单元管理")
+        self.geometry("900x600")
+
+        # --- Main Paned Window ---
+        main_pane = ttk.PanedWindow(self, orient=tk.HORIZONTAL)
+        main_pane.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
+
+        # --- Courses Panel (Left) ---
+        courses_frame = ttk.LabelFrame(main_pane, text="课程管理", padding=10)
+        main_pane.add(courses_frame, weight=1)
+
+        self.course_listbox = tk.Listbox(courses_frame, font=self.app.font_normal_text)
+        self.course_listbox.pack(fill=tk.BOTH, expand=True)
+        self.course_listbox.bind("<<ListboxSelect>>", self.on_course_select)
+
+        courses_btn_frame = ttk.Frame(courses_frame)
+        courses_btn_frame.pack(fill=tk.X, pady=(10, 0))
+        ttk.Button(courses_btn_frame, text="添加课程", command=self.add_course).pack(side=tk.LEFT, expand=True, padx=2)
+        ttk.Button(courses_btn_frame, text="重命名", command=self.rename_course).pack(side=tk.LEFT, expand=True, padx=2)
+        ttk.Button(courses_btn_frame, text="删除课程", command=self.delete_course).pack(side=tk.LEFT, expand=True, padx=2)
+
+        # --- Units Panel (Right) ---
+        units_frame = ttk.LabelFrame(main_pane, text="单元管理 (请先选择左侧课程)", padding=10)
+        main_pane.add(units_frame, weight=2)
+
+        self.unit_listbox = tk.Listbox(units_frame, font=self.app.font_normal_text)
+        self.unit_listbox.pack(fill=tk.BOTH, expand=True)
+
+        units_btn_frame = ttk.Frame(units_frame)
+        units_btn_frame.pack(fill=tk.X, pady=(10, 0))
+        ttk.Button(units_btn_frame, text="添加单元", command=self.add_unit).pack(side=tk.LEFT, expand=True, padx=2)
+        ttk.Button(units_btn_frame, text="编辑单元", command=self.edit_unit).pack(side=tk.LEFT, expand=True, padx=2)
+        ttk.Button(units_btn_frame, text="删除单元", command=self.delete_unit).pack(side=tk.LEFT, expand=True, padx=2)
+
+        # --- Import/Export Frame ---
+        io_frame = ttk.LabelFrame(self, text="导入 / 导出", padding=10)
+        io_frame.pack(fill=tk.X, padx=10, pady=(0, 10))
+        ttk.Button(io_frame, text="导入课程(.zip)", command=self.import_courses).pack(side=tk.LEFT, expand=True, padx=5)
+        ttk.Button(io_frame, text="导出所有课程", command=self.export_all_courses).pack(side=tk.LEFT, expand=True, padx=5)
+
+        self.populate_course_list()
+
+    def populate_course_list(self):
+        self.course_listbox.delete(0, tk.END)
+        courses = get_courses()
+        for course in courses:
+            self.course_listbox.insert(tk.END, course)
+        self.on_course_select() # Clear unit list if no course is selected
+
+    def on_course_select(self, event=None):
+        self.unit_listbox.delete(0, tk.END)
+        selected_indices = self.course_listbox.curselection()
+        if not selected_indices:
+            return
+
+        course_name = self.course_listbox.get(selected_indices[0])
+        course_path = os.path.join(COURSES_BASE_DIR, course_name)
+
+        if os.path.isdir(course_path):
+            units = sorted([f for f in os.listdir(course_path) if f.endswith('.json')])
+            for unit in units:
+                self.unit_listbox.insert(tk.END, unit)
+
+    def _refresh_all_lists(self):
+        """Refreshes the course lists in both the management window and the main app."""
+        self.populate_course_list()
+        self.app.courses = get_courses()
+        self.app.display_courses()
+
+    def add_course(self):
+        new_course_name = simpledialog.askstring("添加新课程", "请输入新课程的名称:", parent=self)
+        if not new_course_name or not new_course_name.strip():
+            return
+
+        new_course_name = new_course_name.strip()
+        # Basic validation for directory names
+        if any(c in r'<>:"/\|?*' for c in new_course_name):
+            messagebox.showerror("错误", "课程名称包含无效字符。", parent=self)
+            return
+
+        new_course_path = os.path.join(COURSES_BASE_DIR, new_course_name)
+        if os.path.exists(new_course_path):
+            messagebox.showerror("错误", "该课程名称已存在。", parent=self)
+            return
+
+        try:
+            os.makedirs(new_course_path)
+            messagebox.showinfo("成功", f"课程 '{new_course_name}' 已成功创建。", parent=self)
+            self._refresh_all_lists()
+        except Exception as e:
+            messagebox.showerror("创建失败", f"创建课程目录时出错: {e}", parent=self)
+
+    def rename_course(self):
+        selected_indices = self.course_listbox.curselection()
+        if not selected_indices:
+            messagebox.showwarning("无选择", "请先在列表中选择一个要重命名的课程。", parent=self)
+            return
+
+        old_name = self.course_listbox.get(selected_indices[0])
+        new_name = simpledialog.askstring("重命名课程", f"请输入 '{old_name}' 的新名称:", initialvalue=old_name, parent=self)
+
+        if not new_name or not new_name.strip() or new_name.strip() == old_name:
+            return
+
+        new_name = new_name.strip()
+        if any(c in r'<>:"/\|?*' for c in new_name):
+            messagebox.showerror("错误", "课程名称包含无效字符。", parent=self)
+            return
+
+        old_path = os.path.join(COURSES_BASE_DIR, old_name)
+        new_path = os.path.join(COURSES_BASE_DIR, new_name)
+
+        if os.path.exists(new_path):
+            messagebox.showerror("错误", "该课程名称已存在。", parent=self)
+            return
+
+        try:
+            os.rename(old_path, new_path)
+            messagebox.showinfo("成功", "课程已成功重命名。", parent=self)
+            self._refresh_all_lists()
+        except Exception as e:
+            messagebox.showerror("重命名失败", f"重命名课程时出错: {e}", parent=self)
+
+    def delete_course(self):
+        selected_indices = self.course_listbox.curselection()
+        if not selected_indices:
+            messagebox.showwarning("无选择", "请先在列表中选择一个要删除的课程。", parent=self)
+            return
+
+        course_name = self.course_listbox.get(selected_indices[0])
+
+        if not messagebox.askyesno("确认删除", f"您确定要永久删除课程 '{course_name}' 吗？\n此操作将删除其包含的所有单元，且无法撤销！", parent=self):
+            return
+
+        course_path = os.path.join(COURSES_BASE_DIR, course_name)
+        try:
+            shutil.rmtree(course_path)
+            messagebox.showinfo("成功", f"课程 '{course_name}' 已被删除。", parent=self)
+            self._refresh_all_lists()
+        except Exception as e:
+            messagebox.showerror("删除失败", f"删除课程时出错: {e}", parent=self)
+
+    def add_unit(self):
+        selected_course_indices = self.course_listbox.curselection()
+        if not selected_course_indices:
+            messagebox.showwarning("无选择", "请先在左侧选择一个要添加单元的课程。", parent=self)
+            return
+
+        course_name = self.course_listbox.get(selected_course_indices[0])
+        unit_title = simpledialog.askstring("添加新单元", "请输入新单元的标题 (这将是文件名和课程标题):", parent=self)
+
+        if not unit_title or not unit_title.strip():
+            return
+
+        unit_title = unit_title.strip()
+        # A simple filename from title
+        filename = f"{unit_title.replace(' ', '_').lower()}.json"
+        filepath = os.path.join(COURSES_BASE_DIR, course_name, filename)
+
+        if os.path.exists(filepath):
+            messagebox.showerror("错误", "一个使用类似标题的单元文件已存在。", parent=self)
+            return
+
+        # Default template for a new unit
+        template = {
+            unit_title: [
+                {
+                    "type": "explanation",
+                    "text": "这是新单元的介绍。",
+                    "code": "// 在这里写一些示例代码",
+                    "points": 0
+                }
+            ]
+        }
+
+        try:
+            with open(filepath, 'w', encoding='utf-8') as f:
+                json.dump(template, f, ensure_ascii=False, indent=4)
+            messagebox.showinfo("成功", f"单元 '{filename}' 已成功创建。", parent=self)
+            self.on_course_select() # Refresh unit list
+        except Exception as e:
+            messagebox.showerror("创建失败", f"创建单元文件时出错: {e}", parent=self)
+
+    def edit_unit(self):
+        selected_course_indices = self.course_listbox.curselection()
+        selected_unit_indices = self.unit_listbox.curselection()
+
+        if not selected_course_indices or not selected_unit_indices:
+            messagebox.showwarning("无选择", "请先选择一个课程和要编辑的单元。", parent=self)
+            return
+
+        course_name = self.course_listbox.get(selected_course_indices[0])
+        unit_filename = self.unit_listbox.get(selected_unit_indices[0])
+        filepath = os.path.join(COURSES_BASE_DIR, course_name, unit_filename)
+
+        try:
+            # Open the file with the default system editor
+            if os.name == 'nt': # For Windows
+                os.startfile(filepath)
+            elif os.name == 'posix': # For macOS, Linux
+                subprocess.call(('open', filepath) if sys.platform == 'darwin' else ('xdg-open', filepath))
+            else:
+                messagebox.showinfo("提示", f"请手动打开文件进行编辑:\n{filepath}", parent=self)
+        except Exception as e:
+            messagebox.showerror("打开失败", f"无法打开文件: {e}", parent=self)
+
+    def delete_unit(self):
+        selected_course_indices = self.course_listbox.curselection()
+        selected_unit_indices = self.unit_listbox.curselection()
+
+        if not selected_course_indices or not selected_unit_indices:
+            messagebox.showwarning("无选择", "请先选择一个课程和要删除的单元。", parent=self)
+            return
+
+        course_name = self.course_listbox.get(selected_course_indices[0])
+        unit_filename = self.unit_listbox.get(selected_unit_indices[0])
+
+        if not messagebox.askyesno("确认删除", f"您确定要永久删除单元 '{unit_filename}' 吗？\n此操作无法撤销！", parent=self):
+            return
+
+        filepath = os.path.join(COURSES_BASE_DIR, course_name, unit_filename)
+        try:
+            os.remove(filepath)
+            messagebox.showinfo("成功", f"单元 '{unit_filename}' 已被删除。", parent=self)
+            self.on_course_select() # Refresh unit list
+        except Exception as e:
+            messagebox.showerror("删除失败", f"删除单元时出错: {e}", parent=self)
+
+    def import_courses(self):
+        filepath = filedialog.askopenfilename(
+            title="选择要导入的课程压缩包",
+            filetypes=[("Zip files", "*.zip")],
+            parent=self
+        )
+        if not filepath:
+            return
+
+        if not messagebox.askyesno("确认导入", "导入将合并课程，同名课程中的同名单元文件将被覆盖。\n确定要继续吗？", parent=self):
+            return
+
+        try:
+            shutil.unpack_archive(filepath, COURSES_BASE_DIR, 'zip')
+            messagebox.showinfo("成功", "课程已成功导入并合并。", parent=self)
+            self._refresh_all_lists()
+        except Exception as e:
+            messagebox.showerror("导入失败", f"导入课程时出错: {e}", parent=self)
+
+    def export_all_courses(self):
+        timestamp = datetime.datetime.now().strftime("%Y%m%d_%H%M%S")
+        suggested_filename = f"courses_backup_{timestamp}.zip"
+
+        filepath = filedialog.asksaveasfilename(
+            title="选择导出位置",
+            initialfile=suggested_filename,
+            defaultextension=".zip",
+            filetypes=[("Zip files", "*.zip")],
+            parent=self
+        )
+        if not filepath:
+            return
+
+        # The path given to make_archive should not include the extension.
+        archive_path_base = filepath.rsplit('.', 1)[0]
+
+        try:
+            shutil.make_archive(archive_path_base, 'zip', COURSES_BASE_DIR)
+            messagebox.showinfo("成功", f"所有课程已成功导出到:\n{filepath}", parent=self)
+        except Exception as e:
+            messagebox.showerror("导出失败", f"导出课程时出错: {e}", parent=self)
+
+
 if __name__ == "__main__":
-    # ... (no changes)
-    print("提示：对于 'code_challenge' 类型的关卡，请确保 'lessons_data.json' 文件中包含以下字段：")
-    print("  - \"cpp_context\": \"#include <iostream>\\nint main() {{ {user_code} return 0; }}\" (包含 {user_code} 占位符)")
-    print("  - \"expected_output\": \"预期的程序输出\" (程序输出将与此比较，首尾空格/换行符会被去除后比较)")
-    print("  - \"standard_answer_code\": \"能够产生预期输出的标准答案C++代码片段\" (可选但强烈建议，用于校验关卡数据)")
-    print("-" * 30)
+    if not os.path.exists(COURSES_BASE_DIR):
+        print(f"创建课程目录: {COURSES_BASE_DIR}")
+        os.makedirs(COURSES_BASE_DIR)
 
     root = tk.Tk()
     style = ttk.Style()
