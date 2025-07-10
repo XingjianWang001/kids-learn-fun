@@ -1,0 +1,194 @@
+{
+  "4.2. 枚举法": [
+    {
+      "type": "explanation",
+      "text": "小朋友们，欢迎来到算法的世界！\n算法就像是解决问题的“秘籍”或者“步骤说明书”。\n今天我们要学习一种简单又有趣的算法，叫做“枚举法”！",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "什么是枚举法呢？\n想象一下，你的玩具箱里有很多玩具，你想找那个红色的乐高积木。\n枚举法就像是你把玩具箱里所有的玩具都拿出来看一遍，直到找到那个红色的乐高积木为止！\n也就是说，枚举法就是把所有可能的答案都“试”一遍，直到找到正确的答案。",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "text": "枚举法就像是：",
+      "question": "枚举法就像是：",
+      "options": [
+        "只看一眼玩具箱就猜哪个是红乐高",
+        "把玩具箱里所有玩具都拿出来找红乐高",
+        "问问别人红乐高在哪里"
+      ],
+      "answer_index": 1,
+      "hint": "枚举法就是把所有可能性都检查一遍哦！",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "枚举法特别适合解决那些可能性不是特别多的小问题。\n比如，找一个数字的所有“因子”。\n因子是什么？如果一个数A能被另一个数B整除，那么B就是A的因子。\n比如，数字6的因子有：1, 2, 3, 6。",
+      "points": 0
+    },
+    {
+      "type": "explanation",
+      "text": "怎么用枚举法找一个数 `n` 的所有因子呢？\n我们可以从1开始，一个一个地试，看看1是不是 `n` 的因子，2是不是 `n` 的因子，一直试到 `n` 本身。\n如果 `n` 能被某个数 `i` 整除（也就是 `n % i == 0`），那么 `i` 就是 `n` 的一个因子！",
+      "code": "#include <iostream>\n\nint main() {\n    int n = 12; // 假设我们要找12的因子\n    // std::cout << \"请输入一个数字: \";\n    // std::cin >> n;\n    std::cout << n << \" 的因子有: \";\n    // 从1开始，一个一个试到n\n    for (int i = 1; i <= n; i++) {\n        // 检查n能不能被i整除\n        if (n % i == 0) {\n            // 如果能整除，i就是因子，把它打印出来\n            std::cout << i << \" \";\n        }\n    }\n    std::cout << std::endl;\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "fill_blank",
+      "text": "看上面的代码，我们用一个 `for` 循环来尝试所有的可能性。\n循环从 `i = 1` 开始，一直到 `i` 等于 `n`。\n循环的开始部分是 `for (int i = 1; i <= n; i++)`。\n请填写循环开始时 `i` 的值：\n`for (int i = `",
+      "question_parts": [
+        "循环从 `i = `",
+        "; i <= n; i++)"
+      ],
+      "answer": "1",
+      "hint": "找因子要从最小的可能因子开始试哦！",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "text": "循环要试到 `n` 本身，因为 `n` 也是自己的因子。\n所以循环的条件是 `i <= n`。\n请填写循环结束的条件：\n`for (int i = 1; `",
+      "question_parts": [
+        "for (int i = 1; ",
+        "; i++)"
+      ],
+      "answer": "i <= n",
+      "hint": "循环要一直试到数字本身哦！",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "text": "在循环里面，我们用 `if (n % i == 0)` 来检查 `n` 能不能被 `i` 整除。\n`%` 是取余数的符号，如果余数是0，就说明能整除。\n请填写判断能否整除的条件：\n`if (n % i == `",
+      "question_parts": [
+        "if (n % i == ",
+        ")"
+      ],
+      "answer": "0",
+      "hint": "能整除的意思就是没有余数，余数是几呢？",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "text": "如果 `n % i == 0` 这个条件成立，说明什么？",
+      "question": "如果 `n % i == 0` 这个条件成立，说明什么？",
+      "options": [
+        "`i` 是 `n` 的因子",
+        "`n` 是 `i` 的因子",
+        "`n` 和 `i` 相等"
+      ],
+      "answer_index": 0,
+      "hint": "想想看，哪个数字能被另一个数字整除，它就是另一个数字的因子？",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "现在，我们来用枚举法解决一个练习题：找出1到20之间所有能被3整除的数，每个数占一行。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 你的代码会在这里\n    // 提示：需要一个循环，从1到20\n    // 在循环里用if判断是否能被3整除\n    {user_code}\n    return 0;\n}",
+      "question": "请编写代码，使用枚举法找出并打印1到20之间所有能被3整除的数，每个数占一行。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    {user_code}\n    return 0;\n}",
+      "expected_output": "3\n6\n9\n12\n15\n18",
+      "standard_answer_code": "for (int i = 1; i <= 20; i++) {\n        if (i % 3 == 0) {\n            std::cout << i << std::endl;\n        }\n    }",
+      "hint": "你需要一个 `for` 循环来遍历1到20。在循环里面，用 `%` 符号检查当前的数字 `i` 除以3的余数是不是0。如果是，就用 `std::cout << i << std::endl;` 打印。",
+      "points": 15
+    },
+    {
+      "type": "explanation",
+      "text": "枚举法还可以用来判断一个数是不是“素数”。\n素数（也叫质数）是一个大于1的自然数，除了1和它本身以外，不能被其他自然数整除。\n比如，2, 3, 5, 7 都是素数。\n4不是素数，因为4除了1和4，还能被2整除。",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "text": "哪个数字是素数？",
+      "question": "哪个数字是素数？",
+      "options": [
+        "6 (因为它可以被2和3整除)",
+        "9 (因为它可以被3整除)",
+        "11 (因为它只能被1和11整除)"
+      ],
+      "answer_index": 2,
+      "hint": "素数只能被1和它自己整除哦！",
+      "points": 10
+    },
+    {
+      "type": "explanation",
+      "text": "怎么用枚举法判断一个数 `n` 是不是素数呢？\n我们可以从2开始，一个一个地试，看看 `n` 能不能被2整除，能不能被3整除，一直试到 `n-1`。\n为什么从2开始？因为1不是素数，而且所有数都能被1整除。\n为什么试到 `n-1`？因为 `n` 肯定能被 `n` 自己整除，这不能说明它不是素数。\n如果在2到 `n-1` 之间，我们找到了一个数 `i`，让 `n % i == 0` 成立，就说明 `n` 能被除了1和它本身以外的数整除，那 `n` 就不是素数！\n如果我们把2到 `n-1` 之间的所有数都试过了，都没有找到能整除 `n` 的，那 `n` 就是素数！",
+      "code": "#include <iostream>\n\nint main() {\n    int n = 7; // 假设我们要判断7是不是素数\n    // std::cout << \"请输入一个大于1的数字: \";\n    // std::cin >> n;\n    bool is_prime = true; // 先假设它是素数\n    \n    if (n <= 1) { // 1和负数不是素数\n        is_prime = false;\n    } else {\n        // 从2开始，试到n-1 (或者优化到 sqrt(n))\n        for (int i = 2; i < n; i++) {\n            // 如果n能被i整除\n            if (n % i == 0) {\n                is_prime = false; // 发现因子了，它不是素数\n                break; // 找到一个就行了，不用再试了\n            }\n        }\n    }\n\n    if (is_prime) {\n        std::cout << n << \" 是素数\" << std::endl;\n    } else {\n        std::cout << n << \" 不是素数\" << std::endl;\n    }\n    return 0;\n}",
+      "points": 0
+    },
+    {
+      "type": "fill_blank",
+      "text": "看上面的素数判断代码，循环是从哪个数字开始尝试的？\n`for (int i = `",
+      "question_parts": [
+        "for (int i = ",
+        "; i < n; i++)"
+      ],
+      "answer": "2",
+      "hint": "素数不能被除了1和它自己以外的数整除，所以我们从哪个数开始检查呢？",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "text": "循环要试到 `n-1`。\n所以循环的条件是 `i < n`。\n请填写循环结束的条件：\n`for (int i = 2; `",
+      "question_parts": [
+        "for (int i = 2; ",
+        "; i++)"
+      ],
+      "answer": "i < n",
+      "hint": "循环要试到 `n` 前面的那个数哦！",
+      "points": 10
+    },
+    {
+      "type": "fill_blank",
+      "text": "如果在循环中，我们发现 `n` 能被 `i` 整除 (`n % i == 0`)，就说明 `n` 不是素数了。\n请填写判断 `n` 能否被 `i` 整除的条件：\n`if (n % i == `",
+      "question_parts": [
+        "if (n % i == ",
+        ")"
+      ],
+      "answer": "0",
+      "hint": "能整除的意思就是余数是几？",
+      "points": 10
+    },
+    {
+      "type": "multiple_choice",
+      "text": "在素数判断代码中，如果循环结束了，`is_prime` 还是 `true`，说明什么？",
+      "question": "在素数判断代码中，如果循环结束了，`is_prime` 还是 `true`（并且n>1），说明什么？",
+      "options": [
+        "在2到n-1之间找到了能整除n的数",
+        "在2到n-1之间没有找到能整除n的数",
+        "n小于等于1"
+      ],
+      "answer_index": 1,
+      "hint": "`is_prime` 只有在找到因子时才会变成 `false`。",
+      "points": 10
+    },
+    {
+      "type": "code_challenge",
+      "text": "现在轮到你来写代码了！\n请编写一个程序，读取一个大于1的整数 `n` (例如，输入13)，然后判断它是不是素数。\n如果是素数，输出 \"Prime\";如果不是素数，输出 \"Not Prime\"。",
+      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int n;\n    // std::cout << \"请输入一个大于1的整数: \";\n    // std::cin >> n;\n    n = 13; // 假设输入为13用于测试\n    // 在这里写你的代码来判断n是不是素数\n    {user_code}\n    return 0;\n}",
+      "question": "请编写代码，判断输入的整数 `n` (假设为13) 是否为素数（大于1）。如果是，输出 \"Prime\" 并换行；否则输出 \"Not Prime\" 并换行。",
+      "cpp_context": "#include <iostream>\n\nint main() {\n    int n = 13; // 假设输入为13用于测试\n    {user_code}\n    return 0;\n}",
+      "expected_output": "Prime",
+      "standard_answer_code": "bool is_prime = true;\n    if (n <= 1) {\n        is_prime = false;\n    } else {\n        for (int i = 2; i * i <= n; i++) { // 优化：检查到sqrt(n)\n            if (n % i == 0) {\n                is_prime = false;\n                break;\n            }\n        }\n    }\n    if (is_prime) {\n        std::cout << \"Prime\" << std::endl;\n    } else {\n        std::cout << \"Not Prime\" << std::endl;\n    }",
+      "hint": "先读入数字n（或使用预设值13）。用一个布尔变量 `is_prime` 记住结果，一开始假设它是 `true`。如果n小于等于1，直接设 `is_prime` 为 `false`。否则，用 `for` 循环从2到 `n-1` (或优化到 `sqrt(n)`) 检查能否整除。如果找到因子，设 `is_prime` 为 `false` 并跳出循环。最后根据 `is_prime` 的值输出结果。",
+      "points": 20
+    },
+    {
+      "type": "explanation",
+      "text": "枚举法是一种简单直观的算法思想。\n它的优点是容易理解和实现。\n但它的缺点是，如果问题的可能性太多（比如要检查的数字非常大），枚举法就会非常慢，甚至算不出来。\n所以，枚举法更适合解决那些规模比较小的问题。",
+      "points": 0
+    },
+    {
+      "type": "multiple_choice",
+      "text": "枚举法最适合解决哪种问题？",
+      "question": "枚举法最适合解决哪种问题？",
+      "options": [
+        "可能性非常多、非常复杂的问题",
+        "可能性不多，或者问题规模比较小的问题",
+        "只能解决数学问题"
+      ],
+      "answer_index": 1,
+      "hint": "想想看，如果玩具箱里的玩具有一百万个，你还会一个一个拿出来看吗？",
+      "points": 10
+    }
+  ]
+}
