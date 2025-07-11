@@ -162,13 +162,12 @@ class CodeEditor(tk.Frame):
     def _configure_tags(self):
         font_name = self.code_area.cget("font")
         try:
-            # Attempt to get font details if font_name is a string like "Courier New 14"
-            font_tuple = tk_font.Font(font=font_name).actual() # Use tk_font here
+            font_tuple = tk_font.Font(font=font_name).actual()
             base_font_family = font_tuple['family']
             base_font_size = font_tuple['size']
-        except tk.TclError: # Fallback if font_name is already a tuple or other issue
-            base_font_family = "Courier New" # Default
-            base_font_size = 14 # Default
+        except tk.TclError:
+            base_font_family = "Courier New"
+            base_font_size = 14
             if isinstance(font_name, (tuple, list)) and len(font_name) >= 2:
                 base_font_family = font_name[0]
                 base_font_size = font_name[1]
@@ -210,7 +209,7 @@ class CodeEditor(tk.Frame):
             start, end = f"1.0+{match.start()}c", f"1.0+{match.end()}c"
             self.code_area.tag_add("comment", start, end)
 
-        for match in re.finditer(r'"(?:\\.|[^"\\])*"', content): # Handles escaped quotes
+        for match in re.finditer(r'"(?:\\.|[^"\\])*"', content):
             start, end = f"1.0+{match.start()}c", f"1.0+{match.end()}c"
             if not any(t in self.code_area.tag_names(start) for t in ["comment"]):
                  self.code_area.tag_add("string", start, end)
@@ -240,7 +239,6 @@ class InteractiveLearningApp:
         master.title("互动学习平台")
         master.geometry("1100x800")
 
-        # --- 字体定义 ---
         self.font_title = ("Arial", 22, "bold")
         self.font_subtitle = ("Arial", 18, "bold")
         self.font_normal_text = ("Arial", 15)
@@ -249,11 +247,10 @@ class InteractiveLearningApp:
         self.font_code_text = ("Courier New", 14)
         self.font_button = ("Arial", 14)
 
-        # --- 状态变量 ---
-        self.language_mode = "zh" # 'zh', 'en', 'bilingual'
+        self.language_mode = "zh"
         self.courses = get_courses()
         self.current_course_name = None
-        self.current_topic_key = None # "Topic" is now a "Unit"
+        self.current_topic_key = None
         self.current_lesson_index = 0
         self.scores = {}
         self.max_scores = {}
@@ -263,7 +260,6 @@ class InteractiveLearningApp:
         self.failed_attempts = {}
         self.MAX_FAILED_ATTEMPTS = 5
 
-        # --- 顶部控制栏 (语言切换等) ---
         self.top_control_frame = ttk.Frame(master)
         self.top_control_frame.pack(fill=tk.X, padx=10, pady=5)
 
@@ -280,12 +276,9 @@ class InteractiveLearningApp:
         self.review_button = ttk.Button(review_frame, text="开始复习", command=self.start_review_session, state=tk.DISABLED)
         self.review_button.pack(side=tk.LEFT, padx=5, pady=5)
 
-
-        # --- 主窗口布局 ---
         self.main_paned_window = ttk.PanedWindow(master, orient=tk.HORIZONTAL)
         self.main_paned_window.pack(fill=tk.BOTH, expand=True)
 
-        # --- 左侧面板 (课程/单元列表) ---
         self.left_panel_container = ttk.Frame(self.main_paned_window, width=280, height=700)
         self.left_panel_container.pack_propagate(False)
         self.main_paned_window.add(self.left_panel_container, weight=0)
@@ -293,13 +286,11 @@ class InteractiveLearningApp:
         self.left_panel_title = ttk.Label(self.left_panel_container, text="课程列表", font=self.font_subtitle)
         self.left_panel_title.pack(pady=10)
 
-        # --- 课程/单元按钮的容器 ---
         self.buttons_frame = ttk.Frame(self.left_panel_container)
         self.buttons_frame.pack(fill=tk.BOTH, expand=True)
         self.course_buttons = {}
-        self.topic_buttons = {} # For units within a course
+        self.topic_buttons = {}
 
-        # --- 右侧主内容区 ---
         self.scrollable_lesson_outer_frame = ScrollableFrame(self.main_paned_window)
         self.main_paned_window.add(self.scrollable_lesson_outer_frame, weight=1)
         self.lesson_frame = self.scrollable_lesson_outer_frame.scrollable_content_frame
@@ -319,9 +310,8 @@ class InteractiveLearningApp:
         self.input_frame = ttk.Frame(self.lesson_frame)
         self.input_frame.pack(pady=5, fill=tk.X, expand=False)
         self.answer_entry = None; self.radio_var = None; self.radio_buttons = []; self.code_input_area = None
-        self.flashcard_widgets = {} # For flashcard elements
+        self.flashcard_widgets = {}
 
-        # Frame for submit and format buttons
         self.action_buttons_frame = ttk.Frame(self.lesson_frame)
         self.action_buttons_frame.pack(pady=5, fill=tk.X)
 
@@ -353,10 +343,6 @@ class InteractiveLearningApp:
         self.display_courses()
 
     def _get_display_text(self, data):
-        """
-        Gets the appropriate text from a data dictionary based on the current language mode.
-        Handles both dicts ({'zh': '...', 'en': '...'}) and plain strings.
-        """
         if isinstance(data, dict):
             zh_text = data.get('zh', '')
             en_text = data.get('en', '')
@@ -367,22 +353,18 @@ class InteractiveLearningApp:
             elif self.language_mode == 'bilingual':
                 return f"{zh_text}\n{en_text}"
         elif isinstance(data, str):
-            return data # Fallback for old format
+            return data
         return ""
 
     def switch_language(self):
         self.language_mode = self.lang_var.get()
-        # Reload the current lesson to reflect the language change
         if self.current_topic_key:
             self.load_lesson()
 
     def start_review_session(self):
-        # This will be implemented later
         messagebox.showinfo("即将推出", "复习功能正在开发中！")
 
-
     def display_courses(self):
-        """Clears the left panel and shows the list of available courses."""
         for widget in self.buttons_frame.winfo_children():
             widget.destroy()
         self.left_panel_title.config(text="课程列表")
@@ -397,30 +379,16 @@ class InteractiveLearningApp:
             btn.pack(pady=5, padx=5, fill=tk.X)
             self.course_buttons[course_name] = btn
 
-        # --- 添加管理按钮 ---
         manage_btn = ttk.Button(self.buttons_frame, text="⚙️ 课程管理", command=self.open_management_window)
         manage_btn.pack(side=tk.BOTTOM, pady=20, padx=5, fill=tk.X)
 
     def open_management_window(self):
-        """Opens the course management window."""
         management_win = CourseManagementWindow(self.master, self)
-        management_win.grab_set() # Modal-like behavior
+        management_win.grab_set()
 
     def select_course(self, course_name):
-        """Loads a course and displays its units."""
         global LESSONS_DATA
-
-        # Force-reset all course-specific state before loading new data
         self.current_course_name = course_name
-        self.scores = {}
-        self.max_scores = {}
-        self.lesson_points_awarded = {}
-        self.total_score = 0
-        self.total_max_score = 0
-        self.current_topic_key = None
-        self.current_lesson_index = 0
-        LESSONS_DATA = {}
-
         LESSONS_DATA = load_units_from_course(course_name)
 
         if not LESSONS_DATA:
@@ -428,29 +396,28 @@ class InteractiveLearningApp:
             self._clear_input_widgets()
             self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
             self.explanation_text.insert(tk.END, "这个课程里还没有任何学习单元。"); self.explanation_text.config(state=tk.DISABLED)
-            self.update_score_display() # Update score display to 0/0
             return
 
-        # Calculate scores for the newly loaded course
         self.scores = {topic: 0 for topic in LESSONS_DATA}
         self.max_scores = {topic: sum(l.get('points', 0) for l in lessons) for topic, lessons in LESSONS_DATA.items()}
+        self.lesson_points_awarded = {}
+        self.total_score = 0
         self.total_max_score = sum(self.max_scores.values())
+        self.current_topic_key = None
+        self.current_lesson_index = 0
 
         self.display_units()
         self.update_score_display()
-        # Select the first unit automatically
         first_unit_key = next(iter(LESSONS_DATA), None)
         if first_unit_key:
             self.select_topic(first_unit_key)
 
     def display_units(self):
-        """Displays the units for the currently selected course."""
         for widget in self.buttons_frame.winfo_children():
             widget.destroy()
         self.left_panel_title.config(text=f"课程: {self.current_course_name}")
         self.topic_buttons = {}
 
-        # Add a "Back to Courses" button
         back_btn = ttk.Button(self.buttons_frame, text="« 返回课程列表", command=self.display_courses)
         back_btn.pack(pady=(5, 10), padx=5, fill=tk.X)
 
@@ -458,12 +425,11 @@ class InteractiveLearningApp:
             btn = ttk.Button(self.buttons_frame, text=topic_key, command=lambda k=topic_key: self.select_topic(k), width=25, style="Large.TButton")
             btn.pack(pady=5, padx=5, fill=tk.X)
             self.topic_buttons[topic_key] = btn
-            self.update_topic_button_text(topic_key) # Update with initial score
+            self.update_topic_button_text(topic_key)
 
     def select_topic(self, topic_key):
         self.current_topic_key = topic_key
         self.current_lesson_index = 0
-        # The title is now set inside load_lesson to support language switching
         self.load_lesson()
         self.update_score_display()
 
@@ -482,17 +448,16 @@ class InteractiveLearningApp:
         self.output_display_area.pack_forget()
         self.output_display_area.config(state=tk.NORMAL); self.output_display_area.delete('1.0', tk.END)
         self.output_display_area.config(state=tk.DISABLED)
-        self.format_code_button.config(state=tk.DISABLED) # Keep it part of action_buttons_frame
+        self.format_code_button.config(state=tk.DISABLED)
 
     def load_lesson(self):
         self.feedback_label.config(text="", foreground="black")
         self._clear_input_widgets()
 
-        # Ensure the submit button is visible before being potentially disabled
         self.submit_button.pack(side=tk.LEFT, padx=5, expand=True)
 
         self.submit_button.config(state=tk.DISABLED)
-        self.format_code_button.config(state=tk.DISABLED) # Ensure format button is disabled initially
+        self.format_code_button.config(state=tk.DISABLED)
 
         if not self.current_topic_key or not LESSONS_DATA.get(self.current_topic_key):
             return
@@ -502,7 +467,6 @@ class InteractiveLearningApp:
         self.prev_button.config(state=tk.NORMAL if self.current_lesson_index > 0 else tk.DISABLED)
 
         if self.current_lesson_index >= num_lessons:
-            # ... (completion message logic)
             return
 
         self.skip_button.config(state=tk.NORMAL)
@@ -511,9 +475,7 @@ class InteractiveLearningApp:
         lesson_id = (self.current_topic_key, self.current_lesson_index)
         points_already_awarded = self.lesson_points_awarded.get(lesson_id, False)
 
-        # Update lesson title with language support
         self.lesson_title_label.config(text=self._get_display_text(self.current_topic_key))
-
 
         self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
         self.explanation_text.insert(tk.END, self._get_display_text(lesson.get("text", ""))); self.explanation_text.config(state=tk.DISABLED)
@@ -586,7 +548,6 @@ class InteractiveLearningApp:
             if points_already_awarded:
                 self._show_flashcard_answer(is_already_answered=True)
 
-
         self.update_topic_button_text(self.current_topic_key)
         self.master.update_idletasks()
         canvas = self.scrollable_lesson_outer_frame.winfo_children()[0]
@@ -615,16 +576,19 @@ class InteractiveLearningApp:
         lesson = topic_lessons[self.current_lesson_index]
         lesson_id = (self.current_topic_key, self.current_lesson_index)
 
-        if knew_it:
-            self._handle_correct_answer(lesson, lesson_id)
-        else:
-            self.feedback_label.config(text=f"没关系，多复习几次！提示：{self._get_display_text(lesson.get('hint', ''))}", foreground="red")
-            self.submit_button.config(state=tk.DISABLED)
+        # Flashcards are not scored, but we mark them as "awarded" to prevent re-doing them
+        self.lesson_points_awarded[lesson_id] = True
 
-        self.flashcard_widgets['feedback_frame'].pack_forget()
+        if knew_it:
+            self.feedback_label.config(text="很好，记住了！", foreground="green")
+        else:
+            self.feedback_label.config(text="没关系，多复习几次！", foreground="red")
+
+        # Disable buttons after rating
+        if self.flashcard_widgets.get('feedback_frame'):
+            self.flashcard_widgets['feedback_frame'].pack_forget()
         self.update_score_display()
         self.update_topic_button_text(self.current_topic_key)
-
 
     def _auto_indent_code(self, code_text):
         lines = code_text.split('\n')
@@ -648,7 +612,6 @@ class InteractiveLearningApp:
             self.code_input_area._on_key_release()
 
     def _parse_compiler_errors(self, stderr):
-        """Attempts to parse g++ errors and provide friendlier messages."""
         error_map = {
             r"expected ';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
             r"was not declared in this scope": "嗯，你用了一个变量或者函数，但是好像忘记先告诉电脑它是什么了（忘记声明了）。",
@@ -958,11 +921,9 @@ class CourseManagementWindow(tk.Toplevel):
         self.title("课程与单元管理")
         self.geometry("900x600")
 
-        # --- Main Paned Window ---
         main_pane = ttk.PanedWindow(self, orient=tk.HORIZONTAL)
         main_pane.pack(fill=tk.BOTH, expand=True, padx=10, pady=10)
 
-        # --- Courses Panel (Left) ---
         courses_frame = ttk.LabelFrame(main_pane, text="课程管理", padding=10)
         main_pane.add(courses_frame, weight=1)
 
@@ -976,7 +937,6 @@ class CourseManagementWindow(tk.Toplevel):
         ttk.Button(courses_btn_frame, text="重命名", command=self.rename_course).pack(side=tk.LEFT, expand=True, padx=2)
         ttk.Button(courses_btn_frame, text="删除课程", command=self.delete_course).pack(side=tk.LEFT, expand=True, padx=2)
 
-        # --- Units Panel (Right) ---
         units_frame = ttk.LabelFrame(main_pane, text="单元管理 (请先选择左侧课程)", padding=10)
         main_pane.add(units_frame, weight=2)
 
@@ -989,7 +949,6 @@ class CourseManagementWindow(tk.Toplevel):
         ttk.Button(units_btn_frame, text="编辑单元", command=self.edit_unit).pack(side=tk.LEFT, expand=True, padx=2)
         ttk.Button(units_btn_frame, text="删除单元", command=self.delete_unit).pack(side=tk.LEFT, expand=True, padx=2)
 
-        # --- Import/Export Frame ---
         io_frame = ttk.LabelFrame(self, text="导入 / 导出", padding=10)
         io_frame.pack(fill=tk.X, padx=10, pady=(0, 10))
         ttk.Button(io_frame, text="导入课程(.zip)", command=self.import_courses).pack(side=tk.LEFT, expand=True, padx=5)
@@ -1019,7 +978,6 @@ class CourseManagementWindow(tk.Toplevel):
                 self.unit_listbox.insert(tk.END, unit)
 
     def _refresh_all_lists(self):
-        """Refreshes the course lists in both the management window and the main app."""
         self.populate_course_list()
         self.app.courses = get_courses()
         self.app.display_courses()
