@@ -14,7 +14,7 @@
   - `multiple_choice`: 单项选择题。
   - `fill_blank`: 填空题。
   - `flashcard`: 闪卡，用于核心概念的记忆。
-- `points`: 完成该关卡获得的分数。`explanation`类型通常为0，其他类型可以为5或10。
+- `points`: (可选) 完成该关卡获得的分数。`explanation` 和 `flashcard` 类型不应包含此字段。其他题型（如选择题、填空题）可以设置为5或10。
 
 ## 特定类型关卡的附加字段
 
@@ -36,6 +36,7 @@
 - `concept`: (必需) 一个JSON对象，包含`zh`和`en`键，存储要记忆的概念或术语。
 - `definition`: (必需) 一个JSON对象，包含`zh`和`en`键，存储该概念的定义或解释。
 - `hint`: (可选) 一个JSON对象，包含`zh`和`en`键，存储提示信息。
+- **注意**: `flashcard` 类型不应包含 `points` 字段。
 
 # 任务指令
 1.  **分析材料**: 通读我提供的原始材料，理解核心概念和知识点。
@@ -81,8 +82,7 @@
       "hint": {
         "zh": "想想人与人之间的“互动”。",
         "en": "Think about the 'interaction' between people."
-      },
-      "points": 5
+      }
     },
     {
       "type": "multiple_choice",
