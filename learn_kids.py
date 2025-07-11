@@ -409,7 +409,18 @@ class InteractiveLearningApp:
     def select_course(self, course_name):
         """Loads a course and displays its units."""
         global LESSONS_DATA
+
+        # Force-reset all course-specific state before loading new data
         self.current_course_name = course_name
+        self.scores = {}
+        self.max_scores = {}
+        self.lesson_points_awarded = {}
+        self.total_score = 0
+        self.total_max_score = 0
+        self.current_topic_key = None
+        self.current_lesson_index = 0
+        LESSONS_DATA = {}
+
         LESSONS_DATA = load_units_from_course(course_name)
 
         if not LESSONS_DATA:
@@ -417,16 +428,13 @@ class InteractiveLearningApp:
             self._clear_input_widgets()
             self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
             self.explanation_text.insert(tk.END, "这个课程里还没有任何学习单元。"); self.explanation_text.config(state=tk.DISABLED)
+            self.update_score_display() # Update score display to 0/0
             return
 
-        # Reset scores and state for the new course
+        # Calculate scores for the newly loaded course
         self.scores = {topic: 0 for topic in LESSONS_DATA}
         self.max_scores = {topic: sum(l.get('points', 0) for l in lessons) for topic, lessons in LESSONS_DATA.items()}
-        self.lesson_points_awarded = {}
-        self.total_score = 0
         self.total_max_score = sum(self.max_scores.values())
-        self.current_topic_key = None
-        self.current_lesson_index = 0
 
         self.display_units()
         self.update_score_display()
