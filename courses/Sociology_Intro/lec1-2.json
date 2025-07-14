@@ -1,0 +1,333 @@
+{
+    "社会学导论": [
+      {
+        "type": "explanation",
+        "text": {
+          "zh": "这两场讲座围绕社会学导论展开，介绍了社会学的定义、研究方法、历史发展以及主要理论视角。",
+          "en": "These two lectures provide an introduction to sociology, covering its definition, research methods, historical development, and main theoretical perspectives."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "社会学",
+          "en": "Sociology"
+        },
+        "definition": {
+          "zh": "对社会以及人类和社会互动进行的系统性研究。",
+          "en": "The systematic study of society and of human and social interactions."
+        },
+        "hint": {
+          "zh": "它研究我们为什么做我们所做的事情，为什么以某种方式行为，为什么相信某些事物。",
+          "en": "It explores why we do what we do, why we behave in certain ways, and why we believe certain things."
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "zh": "社会学的主要目的是什么？",
+          "en": "What is the main purpose of sociology?"
+        },
+        "options": [
+          { "zh": "分析个体心理健康问题。", "en": "To analyze individual mental health issues." },
+          { "zh": "研究地球的地理特征。", "en": "To study the geographical features of the Earth." },
+          { "zh": "分析日常行为，帮助我们理解自己以及他人行为和信仰的原因。", "en": "To analyze everyday behaviors, helping us understand ourselves and why people act and believe the way they do." },
+          { "zh": "预测未来的经济趋势。", "en": "To predict future economic trends." }
+        ],
+        "answer_index": 2,
+        "points": 10
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "制度 (Institutions)",
+          "en": "Institutions"
+        },
+        "definition": {
+          "zh": "文化、社会和世界中非常重要的宏观结构，如家庭、宗教、政治、教育、刑事司法系统等。",
+          "en": "Large-scale structures that are very important for our culture, society, and world, such as family, religion, politics, education, and the criminal justice system."
+        },
+        "hint": {
+          "zh": "社会学研究个体如何受其影响，以及个体如何反过来影响这些制度。",
+          "en": "Sociology also studies how individuals are affected and influenced by institutions, and how individuals, in turn, influence these institutions."
+        }
+      },
+      {
+        "type": "explanation",
+        "text": {
+          "zh": "社会学家通常使用微观层面和宏观层面这两个分析层面来审视社会。",
+          "en": "Sociologists generally use two levels of analysis when examining society: micro and macro."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "微观社会学 (Micro-sociology)",
+          "en": "Micro-sociology"
+        },
+        "definition": {
+          "zh": "关注日常互动和个体关系，例如与朋友和父母的关系。它研究这些个人互动如何影响我们。",
+          "en": "Focuses on everyday interactions and individual relationships, such as those with friends and parents. It examines how these personal interactions affect who we are."
+        },
+        "hint": {
+          "zh": "“微观”意为小。",
+          "en": "'Micro' means small."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "宏观社会学 (Macro-sociology)",
+          "en": "Macro-sociology"
+        },
+        "definition": {
+          "zh": "关注制度以及这些制度如何影响我们。",
+          "en": "Focuses on institutions and how these institutions affect who we are."
+        },
+        "hint": {
+          "zh": "“宏观”意为大。",
+          "en": "'Macro' means large."
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "zh": "研究宗教信仰如何影响一个人的决策和行为属于哪个社会学分析层面？",
+          "en": "Studying how religious beliefs influence an individual's decisions and behaviors falls under which level of sociological analysis?"
+        },
+        "options": [
+          { "zh": "微观社会学", "en": "Micro-sociology" },
+          { "zh": "宏观社会学", "en": "Macro-sociology" },
+          { "zh": "心理学", "en": "Psychology" },
+          { "zh": "人类学", "en": "Anthropology" }
+        ],
+        "answer_index": 1,
+        "hint": {
+          "zh": "宗教是一种制度。",
+          "en": "Religion is an institution."
+        },
+        "points": 10
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "社会学想象力 (The Sociological Imagination)",
+          "en": "The Sociological Imagination"
+        },
+        "definition": {
+          "zh": "理解个体经验与社会制度之间关系的能力。它揭示了我们作为个体受到超出我们控制范围的力量、制度、政策、规则和法规的影响。",
+          "en": "The ability to understand the relationship between individual experiences and the institutions in our society. It reveals that we as individuals are influenced and affected by forces, institutions, policies, rules, and regulations that are beyond our control."
+        },
+        "hint": {
+          "zh": "我们不像自己想象的那么个人主义。",
+          "en": "We are not as individualistic as we think we are."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question_parts": [
+          { "zh": "社会学想象力揭示，学生上大学并非总是出于自愿，而是因为社会结构要求他们获得", "en": "The sociological imagination reveals that students attending college are often not there purely by choice, but because society is structured to require " },
+          { "zh": "以找到体面的工作并养活自己和家人。", "en": " to get decent-paying jobs and support themselves and their families." }
+        ],
+        "answer": {
+          "zh": "学历",
+          "en": "qualifications"
+        },
+        "hint": {
+          "zh": "社会对职业的要求。",
+          "en": "Societal requirements for careers."
+        },
+        "points": 10
+      },
+      {
+        "type": "explanation",
+        "text": {
+          "zh": "工业革命是社会学发展的主要原因之一，它带来了巨大的社会变迁，并导致了不同社会阶级的兴起。",
+          "en": "The Industrial Revolution was one of the main reasons why sociology developed. It brought about significant societal changes and led to the rise of different social classes."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "工业革命 (The Industrial Revolution)",
+          "en": "The Industrial Revolution"
+        },
+        "definition": {
+          "zh": "世界从依赖人力劳动转向机器劳动，导致人们从农村迁往城市，并在工厂工作，引发了城市化和新的社会阶级。",
+          "en": "The world moved from relying on human labor to machine labor, leading people to move from rural communities to cities to work in factories, causing urbanization and new social classes."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "资产阶级 (Bourgeoisie)",
+          "en": "Bourgeoisie"
+        },
+        "definition": {
+          "zh": "富人，工厂主，控制生产资料的阶级。",
+          "en": "The rich people, owners of factories, who controlled the means of production."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "无产阶级 (Proletariat)",
+          "en": "Proletariat"
+        },
+        "definition": {
+          "zh": "工人阶级，穷人，在工厂工作但没有生产资料的阶级。",
+          "en": "The working class, the poor, who worked in factories but did not own the means of production."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "赫伯特·斯宾塞 (Herbert Spencer)",
+          "en": "Herbert Spencer"
+        },
+        "definition": {
+          "zh": "一位社会学家，提出了“适者生存”的概念，并将其应用于社会背景，认为社会中的成功者是“最适者”，反对福利。",
+          "en": "A sociologist who coined the idea of 'survival of the fittest' in a social context, arguing that successful individuals in society were the 'fittest' and opposing welfare."
+        },
+        "hint": {
+          "zh": "他将贫困归咎于个体的不适应性。",
+          "en": "He blamed individuals for their poverty due to their unfitness."
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "zh": "赫伯特·斯宾塞认为“适者生存”的概念在社会背景下意味着什么？",
+          "en": "What did Herbert Spencer believe the concept of 'survival of the fittest' meant in a social context?"
+        },
+        "options": [
+          { "zh": "社会应该通过福利系统帮助所有成员。", "en": "Society should help all members through welfare systems." },
+          { "zh": "富人之所以成功是因为他们有适应和改变的“自然能力”。", "en": "The rich succeeded because they had the 'natural ability to adapt and to change'." },
+          { "zh": "贫困是社会不平等的直接结果。", "en": "Poverty is a direct result of societal inequalities." },
+          { "zh": "社会应该确保每个人都有平等的资源分配。", "en": "Society should ensure equal distribution of resources for everyone." }
+        ],
+        "answer_index": 1,
+        "hint": {
+          "zh": "他认为“不适者”应该“消亡”。",
+          "en": "He believed the 'unfit' should 'die off'."
+        },
+        "points": 10
+      },
+      {
+        "type": "explanation",
+        "text": {
+          "zh": "讲座中提到了四种主要的当代社会学视角：结构功能主义、冲突视角、符号互动论和女权主义。",
+          "en": "The lecture mentions four main contemporary sociological perspectives: Structural Functionalism, Conflict Perspective, Symbolic Interactionism, and Feminism."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "结构功能主义 (Structural Functionalism)",
+          "en": "Structural Functionalism"
+        },
+        "definition": {
+          "zh": "一种宏观层面视角，认为社会由各种不同的部分或制度组成，每个部分都为整个社会执行着重要的功能。只要这些部分各司其职，社会就能有效运作。",
+          "en": "A macro-level perspective that views society as composed of various parts or institutions, each performing important functions for the larger society. Society operates effectively as long as these parts do their job."
+        },
+        "hint": {
+          "zh": "想想汽车的各个部件协同工作。",
+          "en": "Think of a car's parts working together."
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "zh": "根据结构功能主义，如果社会中的某个部分失灵，会发生什么？",
+          "en": "According to Structural Functionalism, what happens if an element or part of society is not doing its job?"
+        },
+        "options": [
+          { "zh": "社会会自动调整并找到新的平衡。", "en": "Society will automatically adjust and find a new balance." },
+          { "zh": "它会对整个社会产生负面影响。", "en": "It could have a negative impact on the larger society." },
+          { "zh": "这只会影响到个体层面，不会影响整个社会。", "en": "It will only affect individuals, not the entire society." },
+          { "zh": "社会将经历一场革命。", "en": "Society will undergo a revolution." }
+        ],
+        "answer_index": 1,
+        "points": 10
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "冲突视角 (Conflict Perspective)",
+          "en": "Conflict Perspective"
+        },
+        "definition": {
+          "zh": "一种宏观层面视角，深受卡尔·马克思影响，认为社会本质上是不平等的，资源分配不均，这种不平等是社会中所有冲突的根源。",
+          "en": "A macro-level perspective, heavily influenced by Karl Marx, that views society as inherently unequal with unequal distribution of resources, and these inequalities are the root of all conflicts in society."
+        },
+        "hint": {
+          "zh": "它反对资本主义。",
+          "en": "It opposes capitalism."
+        }
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "卡尔·马克思 (Karl Marx)",
+          "en": "Karl Marx"
+        },
+        "definition": {
+          "zh": "冲突视角的主要影响者，认为资本主义是一个固有的不平等系统，主张通过重新分配资源实现更平等的社会（共产主义）。",
+          "en": "A major influence on the Conflict Perspective, who argued that capitalism is an inherently unequal system and advocated for redistributing resources to achieve a more equal society (communism)."
+        }
+      },
+      {
+        "type": "fill_blank",
+        "question_parts": [
+          { "zh": "根据卡尔·马克思的冲突视角，社会中所有冲突的根源是", "en": "According to Karl Marx's Conflict Perspective, the root of all conflicts in society is " },
+          { "zh": "。", "en": "." }
+        ],
+        "answer": {
+          "zh": "不平等和资源分配不均",
+          "en": "inequality and unequal distribution of resources"
+        },
+        "hint": {
+          "zh": "想想资产阶级和无产阶级之间的差异。",
+          "en": "Think about the differences between the bourgeoisie and the proletariat."
+        },
+        "points": 10
+      },
+      {
+        "type": "flashcard",
+        "concept": {
+          "zh": "符号互动论 (Symbolic Interactionism)",
+          "en": "Symbolic Interactionism"
+        },
+        "definition": {
+          "zh": "一种微观层面视角，关注个体以及他们的关系，强调符号和互动的重要性，认为我们互动的人和我们使用的符号会影响我们是谁以及我们如何看待自己和他人。",
+          "en": "A micro-level perspective that focuses on the individual and their relationships, emphasizing the importance of symbols and interactions, believing that the people we interact with and the symbols we use influence who we are and how we view ourselves and others."
+        },
+        "hint": {
+          "zh": "想想名牌包或豪车的象征意义。",
+          "en": "Think about the symbolic meaning of designer bags or luxury cars."
+        }
+      },
+      {
+        "type": "multiple_choice",
+        "question": {
+          "zh": "根据符号互动论，购买豪车或名牌包除了其功能性之外，还代表着什么？",
+          "en": "According to Symbolic Interactionism, what do buying an expensive car or a designer purse represent, beyond their functionality?"
+        },
+        "options": [
+          { "zh": "仅仅是个人喜好。", "en": "Just personal preference." },
+          { "zh": "财富、地位或身份的象征。", "en": "Symbols of wealth, status, or identity." },
+          { "zh": "对经济的贡献。", "en": "A contribution to the economy." },
+          { "zh": "对环境的关注。", "en": "Concern for the environment." }
+        ],
+        "answer_index": 1,
+        "points": 10
+      },
+      {
+        "type": "explanation",
+        "text": {
+          "zh": "女权主义是讲座中提到的四种当代社会学视角之一，但其内容未在提供的讲座记录中详细阐述。",
+          "en": "Feminism is mentioned as one of the four contemporary sociological perspectives in the lecture, but its content was not elaborated upon in the provided lecture transcripts."
+        }
+      }
+    ]
+  }

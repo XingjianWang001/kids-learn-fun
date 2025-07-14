@@ -1,0 +1,21 @@
+[
+    {
+        "course": "Sociology_Intro",
+        "unit": "理解社会学",
+        "card_data": {
+            "type": "flashcard",
+            "concept": {
+                "zh": "社会学想象力 (Sociological Imagination)",
+                "en": "Sociological Imagination"
+            },
+            "definition": {
+                "zh": "一种认识个体与更广泛社会之间关系的能力，既包括现在也包括过去。它允许我们超越对事物和人的有限理解，获得更广阔的社会视野。",
+                "en": "An awareness of the relationship between an individual and the wider society, both today and in the past. It allows us to look beyond a limited understanding of things and people in the world and allows for a broader vision of society."
+            },
+            "hint": {
+                "zh": "将个人问题置于社会背景中理解。",
+                "en": "Understanding personal troubles within a broader social context."
+            }
+        }
+    }
+]

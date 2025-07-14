@@ -11,6 +11,7 @@ import datetime
 
 # --- 全局常量 ---
 COURSES_BASE_DIR = os.path.join(os.path.dirname(__file__), "courses")
+REVIEW_CARDS_FILE = os.path.join(os.path.dirname(__file__), "review_cards.json")
 
 # --- 函数：获取课程列表 ---
 def get_courses():
@@ -259,6 +260,7 @@ class InteractiveLearningApp:
         self.total_max_score = 0
         self.failed_attempts = {}
         self.MAX_FAILED_ATTEMPTS = 5
+        self.review_cards = self.load_review_cards()
 
         self.top_control_frame = ttk.Frame(master)
         self.top_control_frame.pack(fill=tk.X, padx=10, pady=5)
@@ -275,6 +277,7 @@ class InteractiveLearningApp:
         review_frame.pack(side=tk.LEFT, padx=10)
         self.review_button = ttk.Button(review_frame, text="开始复习", command=self.start_review_session, state=tk.DISABLED)
         self.review_button.pack(side=tk.LEFT, padx=5, pady=5)
+        self.update_review_button_state()
 
         self.main_paned_window = ttk.PanedWindow(master, orient=tk.HORIZONTAL)
         self.main_paned_window.pack(fill=tk.BOTH, expand=True)
@@ -361,8 +364,69 @@ class InteractiveLearningApp:
         if self.current_topic_key:
             self.load_lesson()
 
+    def load_review_cards(self):
+        """Loads review cards from the JSON file."""
+        if not os.path.exists(REVIEW_CARDS_FILE):
+            return []
+        try:
+            with open(REVIEW_CARDS_FILE, 'r', encoding='utf-8') as f:
+                # Handle empty file case
+                content = f.read()
+                if not content:
+                    return []
+                return json.loads(content)
+        except (json.JSONDecodeError, IOError):
+            # If file is corrupted or unreadable, start fresh
+            return []
+
+    def save_review_cards(self):
+        """Saves the current list of review cards to the JSON file."""
+        try:
+            with open(REVIEW_CARDS_FILE, 'w', encoding='utf-8') as f:
+                json.dump(self.review_cards, f, ensure_ascii=False, indent=4)
+        except IOError as e:
+            messagebox.showerror("保存复习卡片失败", f"无法写入文件: {e}")
+
+    def update_review_button_state(self):
+        """Enables or disables the review button based on available cards."""
+        self.review_cards = self.load_review_cards()
+        if self.review_cards:
+            self.review_button.config(state=tk.NORMAL)
+        else:
+            self.review_button.config(state=tk.DISABLED)
+
     def start_review_session(self):
-        messagebox.showinfo("即将推出", "复习功能正在开发中！")
+        self.update_review_button_state()
+        if not self.review_cards:
+            messagebox.showinfo("复习", "太棒了！目前没有需要复习的卡片。", parent=self.master)
+            return
+
+        # --- Unit Selection ---
+        all_units = sorted(list(set(f"{card['course']} - {card['unit']}" for card in self.review_cards)))
+
+        selection_dialog = UnitSelectionDialog(self.master, "选择复习单元", all_units)
+        self.master.wait_window(selection_dialog)
+
+        selected_units = selection_dialog.selected_units
+        if not selected_units:
+            return # User cancelled or selected nothing
+
+        cards_to_review_filtered = []
+        if "all" in selected_units:
+            cards_to_review_filtered = self.review_cards
+        else:
+            cards_to_review_filtered = [
+                card for card in self.review_cards
+                if f"{card['course']} - {card['unit']}" in selected_units
+            ]
+
+        if not cards_to_review_filtered:
+            messagebox.showinfo("复习", "所选单元中没有需要复习的卡片。", parent=self.master)
+            return
+
+        review_win = ReviewWindow(self.master, self, cards_to_review_filtered)
+        review_win.grab_set()
+
 
     def display_courses(self):
         for widget in self.buttons_frame.winfo_children():
@@ -582,13 +646,28 @@ class InteractiveLearningApp:
         if knew_it:
             self.feedback_label.config(text="很好，记住了！", foreground="green")
         else:
-            self.feedback_label.config(text="没关系，多复习几次！", foreground="red")
+            self.feedback_label.config(text="没关系，已加入复习列表！", foreground="red")
+            card_to_review = {
+                "course": self.current_course_name,
+                "unit": self.current_topic_key,
+                "card_data": lesson
+            }
+            # Avoid duplicates based on content
+            is_duplicate = any(
+                c.get("card_data", {}).get("concept") == lesson.get("concept") and
+                c.get("card_data", {}).get("definition") == lesson.get("definition")
+                for c in self.review_cards
+            )
+            if not is_duplicate:
+                self.review_cards.append(card_to_review)
+                self.save_review_cards()
 
         # Disable buttons after rating
         if self.flashcard_widgets.get('feedback_frame'):
             self.flashcard_widgets['feedback_frame'].pack_forget()
         self.update_score_display()
         self.update_topic_button_text(self.current_topic_key)
+        self.update_review_button_state()
 
     def _auto_indent_code(self, code_text):
         lines = code_text.split('\n')
@@ -912,6 +991,163 @@ class InteractiveLearningApp:
 
         if has_scorable_topics and all_scorable_topics_completed:
             messagebox.showinfo("恭喜!", "太厉害啦! 你已经完成了所有课程的学习，并获得了所有分数! 你是最棒的!")
+
+
+class UnitSelectionDialog(tk.Toplevel):
+    def __init__(self, parent, title, units):
+        super().__init__(parent)
+        self.title(title)
+        self.geometry("400x500")
+        self.transient(parent)
+        self.protocol("WM_DELETE_WINDOW", self._on_cancel)
+
+        self.selected_units = []
+        self.vars = {}
+
+        main_frame = ttk.Frame(self, padding=10)
+        main_frame.pack(fill=tk.BOTH, expand=True)
+
+        ttk.Label(main_frame, text="请选择要复习的单元:", font=("Arial", 14)).pack(anchor="w", pady=(0, 10))
+
+        # --- Scrollable Checkbox List ---
+        scroll_frame = ScrollableFrame(main_frame)
+        scroll_frame.pack(fill=tk.BOTH, expand=True)
+        content_frame = scroll_frame.scrollable_content_frame
+
+        # "All" option
+        all_var = tk.BooleanVar(value=True)
+        all_cb = ttk.Checkbutton(content_frame, text="全部单元", variable=all_var, command=self._on_toggle_all)
+        all_cb.pack(anchor="w", padx=5, pady=2)
+        self.vars["all"] = all_var
+
+        separator = ttk.Separator(content_frame, orient='horizontal')
+        separator.pack(fill='x', pady=5, padx=5)
+
+        # Individual unit options
+        for unit in units:
+            var = tk.BooleanVar(value=True)
+            cb = ttk.Checkbutton(content_frame, text=unit, variable=var, command=self._on_unit_toggle)
+            cb.pack(anchor="w", padx=5, pady=2)
+            self.vars[unit] = var
+
+        # --- Buttons ---
+        btn_frame = ttk.Frame(main_frame)
+        btn_frame.pack(fill=tk.X, pady=(10, 0))
+        ttk.Button(btn_frame, text="开始复习", command=self._on_ok).pack(side=tk.LEFT, expand=True, padx=5)
+        ttk.Button(btn_frame, text="取消", command=self._on_cancel).pack(side=tk.LEFT, expand=True, padx=5)
+
+    def _on_toggle_all(self):
+        is_all_selected = self.vars["all"].get()
+        for unit, var in self.vars.items():
+            if unit != "all":
+                var.set(is_all_selected)
+
+    def _on_unit_toggle(self):
+        all_selected = all(var.get() for unit, var in self.vars.items() if unit != "all")
+        self.vars["all"].set(all_selected)
+
+    def _on_ok(self):
+        if self.vars["all"].get():
+            self.selected_units = ["all"]
+        else:
+            self.selected_units = [unit for unit, var in self.vars.items() if unit != "all" and var.get()]
+        self.destroy()
+
+    def _on_cancel(self):
+        self.selected_units = []
+        self.destroy()
+
+
+class ReviewWindow(tk.Toplevel):
+    def __init__(self, parent, app_instance, cards_to_review):
+        super().__init__(parent)
+        self.app = app_instance
+        self.original_cards = list(cards_to_review) # Keep a copy
+        self.cards_to_review = list(cards_to_review) # This list will be modified
+        self.current_card_index = 0
+
+        self.title("闪卡复习")
+        self.geometry("800x600")
+        self.protocol("WM_DELETE_WINDOW", self.on_close)
+
+        # --- UI Elements ---
+        main_frame = ttk.Frame(self, padding=20)
+        main_frame.pack(fill=tk.BOTH, expand=True)
+
+        self.progress_label = ttk.Label(main_frame, text="", font=self.app.font_normal_bold)
+        self.progress_label.pack(pady=(0, 15), anchor="center")
+
+        self.concept_label = ttk.Label(main_frame, text="", font=self.app.font_title, wraplength=750, justify=tk.CENTER)
+        self.concept_label.pack(pady=20, fill=tk.X)
+
+        self.answer_label = ttk.Label(main_frame, text="", font=self.app.font_normal_text, wraplength=750, justify=tk.LEFT)
+        self.answer_label.pack(pady=20, fill=tk.X)
+
+        self.button_frame = ttk.Frame(main_frame)
+        self.button_frame.pack(pady=20, fill=tk.X)
+
+        self.show_answer_btn = ttk.Button(self.button_frame, text="显示答案", command=self.show_answer)
+        self.show_answer_btn.pack(expand=True, fill=tk.X, ipady=10)
+
+        self.feedback_frame = ttk.Frame(self.button_frame)
+        self.know_btn = ttk.Button(self.feedback_frame, text="我记住了", command=lambda: self.rate_card(True), style="Completed.TButton")
+        self.not_know_btn = ttk.Button(self.feedback_frame, text="还是不认识", command=lambda: self.rate_card(False))
+
+        self.load_card()
+
+    def load_card(self):
+        # Reset UI state
+        self.answer_label.config(text="")
+        self.feedback_frame.pack_forget()
+        self.show_answer_btn.pack(expand=True, fill=tk.X, ipady=10)
+
+        if self.current_card_index >= len(self.cards_to_review):
+            self.finish_session()
+            return
+
+        card = self.cards_to_review[self.current_card_index]
+        concept_text = self.app._get_display_text(card["card_data"].get("concept", ""))
+        self.concept_label.config(text=concept_text)
+        self.update_progress()
+
+    def show_answer(self):
+        card = self.cards_to_review[self.current_card_index]
+        answer_text = self.app._get_display_text(card["card_data"].get("definition", ""))
+        self.answer_label.config(text=answer_text)
+
+        self.show_answer_btn.pack_forget()
+        self.feedback_frame.pack(expand=True, fill=tk.X)
+        self.know_btn.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=5, ipady=10)
+        self.not_know_btn.pack(side=tk.LEFT, expand=True, fill=tk.X, padx=5, ipady=10)
+
+    def rate_card(self, remembered):
+        card_to_process = self.cards_to_review[self.current_card_index]
+
+        if remembered:
+            # Remove from the main app's review list and save
+            self.app.review_cards.remove(card_to_process)
+            self.app.save_review_cards()
+            # Remove from this session's list
+            self.cards_to_review.pop(self.current_card_index)
+        else:
+            # Just move to the next card in this session
+            self.current_card_index += 1
+
+        # Load the next card (or finish)
+        self.load_card()
+
+    def update_progress(self):
+        total_in_session = len(self.cards_to_review)
+        current_number = self.current_card_index + 1
+        self.progress_label.config(text=f"复习进度: {current_number} / {total_in_session}")
+
+    def finish_session(self):
+        messagebox.showinfo("复习完成", "本次复习结束！", parent=self)
+        self.on_close()
+
+    def on_close(self):
+        self.app.update_review_button_state()
+        self.destroy()
 
 
 class CourseManagementWindow(tk.Toplevel):
