@@ -12,6 +12,7 @@ import datetime
 # --- 全局常量 ---
 COURSES_BASE_DIR = os.path.join(os.path.dirname(__file__), "courses")
 REVIEW_CARDS_FILE = os.path.join(os.path.dirname(__file__), "review_cards.json")
+PROGRESS_FILE = os.path.join(os.path.dirname(__file__), "progress.json")
 
 # --- 函数：获取课程列表 ---
 def get_courses():
@@ -273,6 +274,11 @@ class InteractiveLearningApp:
         ttk.Radiobutton(lang_frame, text="English", variable=self.lang_var, value="en", command=self.switch_language).pack(side=tk.LEFT, padx=5)
         ttk.Radiobutton(lang_frame, text="中英对照", variable=self.lang_var, value="bilingual", command=self.switch_language).pack(side=tk.LEFT, padx=5)
 
+        progress_frame = ttk.LabelFrame(self.top_control_frame, text="学习进度")
+        progress_frame.pack(side=tk.LEFT, padx=10)
+        ttk.Button(progress_frame, text="保存进度", command=self.save_progress).pack(side=tk.LEFT, padx=5, pady=5)
+        ttk.Button(progress_frame, text="加载进度", command=self.load_progress).pack(side=tk.LEFT, padx=5, pady=5)
+
         review_frame = ttk.LabelFrame(self.top_control_frame, text="学习模式")
         review_frame.pack(side=tk.LEFT, padx=10)
         self.review_button = ttk.Button(review_frame, text="开始复习", command=self.start_review_session, state=tk.DISABLED)
@@ -426,6 +432,63 @@ class InteractiveLearningApp:
 
         review_win = ReviewWindow(self.master, self, cards_to_review_filtered)
         review_win.grab_set()
+
+    def save_progress(self):
+        """Saves the user's current progress to a file."""
+        if not self.current_course_name:
+            messagebox.showwarning("无课程", "请先选择一个课程再保存进度。", parent=self.master)
+            return
+
+        progress_data = {
+            "course_name": self.current_course_name,
+            "scores": self.scores,
+            "lesson_points_awarded": {str(k): v for k, v in self.lesson_points_awarded.items()}, # Convert tuple keys to strings
+        }
+
+        try:
+            with open(PROGRESS_FILE, 'w', encoding='utf-8') as f:
+                json.dump(progress_data, f, ensure_ascii=False, indent=4)
+            messagebox.showinfo("成功", "学习进度已成功保存！", parent=self.master)
+        except IOError as e:
+            messagebox.showerror("保存失败", f"无法写入进度文件: {e}", parent=self.master)
+
+    def load_progress(self):
+        """Loads the user's progress from a file."""
+        if not os.path.exists(PROGRESS_FILE):
+            messagebox.showinfo("无进度", "没有找到已保存的进度文件。", parent=self.master)
+            return
+
+        try:
+            with open(PROGRESS_FILE, 'r', encoding='utf-8') as f:
+                progress_data = json.load(f)
+        except (json.JSONDecodeError, IOError) as e:
+            messagebox.showerror("加载失败", f"读取进度文件时出错: {e}", parent=self.master)
+            return
+
+        course_name = progress_data.get("course_name")
+        if not course_name or course_name not in self.courses:
+            messagebox.showerror("课程不匹配", "保存的进度对应的课程已不存在。", parent=self.master)
+            return
+
+        # Select the course and load its data
+        self.select_course(course_name)
+
+        # Restore progress state
+        self.scores = progress_data.get("scores", {})
+        # Convert string keys back to tuples
+        self.lesson_points_awarded = {eval(k): v for k, v in progress_data.get("lesson_points_awarded", {}).items()}
+        self.total_score = sum(self.scores.values())
+
+        # Refresh UI
+        self.update_score_display()
+        for topic_key in self.topic_buttons:
+            self.update_topic_button_text(topic_key)
+
+        # Reload the current lesson view if a topic was selected
+        if self.current_topic_key:
+            self.load_lesson()
+
+        messagebox.showinfo("成功", f"课程 '{course_name}' 的进度已成功加载！", parent=self.master)
 
 
     def display_courses(self):

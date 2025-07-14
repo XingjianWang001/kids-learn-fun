@@ -1,0 +1,10 @@
+{
+    "course_name": "Sociology_Intro",
+    "scores": {
+        "理解社会学": 10,
+        "社会学导论": 0
+    },
+    "lesson_points_awarded": {
+        "('理解社会学', 4)": true
+    }
+}
