@@ -473,11 +473,16 @@ class InteractiveLearningApp:
         # Select the course and load its data
         self.select_course(course_name)
 
-        # Restore progress state
-        self.scores = progress_data.get("scores", {})
+        # Restore progress state by updating, not overwriting.
+        # This prevents errors if units were added since the last save.
+        loaded_scores = progress_data.get("scores", {})
+        for topic, score in loaded_scores.items():
+            if topic in self.scores: # Only load scores for topics that still exist
+                self.scores[topic] = score
+
         # Convert string keys back to tuples
         self.lesson_points_awarded = {eval(k): v for k, v in progress_data.get("lesson_points_awarded", {}).items()}
-        self.total_score = sum(self.scores.values())
+        self.total_score = sum(self.scores.values()) # Recalculate total score
 
         # Refresh UI
         self.update_score_display()
@@ -555,6 +560,9 @@ class InteractiveLearningApp:
             self.update_topic_button_text(topic_key)
 
     def select_topic(self, topic_key):
+        # Ensure the topic exists in scores dictionary before proceeding. A safety check.
+        self.scores.setdefault(topic_key, 0)
+
         self.current_topic_key = topic_key
         self.current_lesson_index = 0
         self.load_lesson()
