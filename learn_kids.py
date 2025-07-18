@@ -12,7 +12,7 @@ import datetime
 # --- 全局常量 ---
 COURSES_BASE_DIR = os.path.join(os.path.dirname(__file__), "courses")
 REVIEW_CARDS_FILE = os.path.join(os.path.dirname(__file__), "review_cards.json")
-PROGRESS_FILE = os.path.join(os.path.dirname(__file__), "progress.json")
+PROGRESS_DIR = os.path.join(os.path.dirname(__file__), "progress")
 
 # --- 函数：获取课程列表 ---
 def get_courses():
@@ -264,6 +264,9 @@ class InteractiveLearningApp:
         self.failed_attempts = {}
         self.MAX_FAILED_ATTEMPTS = 5
         self.review_cards = self.load_review_cards()
+        self.progress_changed = False # <-- 添加此行
+
+        master.protocol("WM_DELETE_WINDOW", self.on_closing) # <-- 添加此行
 
         self.top_control_frame = ttk.Frame(master)
         self.top_control_frame.pack(fill=tk.X, padx=10, pady=5)
@@ -397,7 +400,7 @@ class InteractiveLearningApp:
 
     def update_review_button_state(self):
         """Enables or disables the review button based on available cards."""
-        self.review_cards = self.load_review_cards()
+        # self.review_cards = self.load_review_cards() # Now checks in-memory list
         if self.review_cards:
             self.review_button.config(state=tk.NORMAL)
         else:
@@ -435,67 +438,113 @@ class InteractiveLearningApp:
         review_win = ReviewWindow(self.master, self, cards_to_review_filtered)
         review_win.grab_set()
 
-    def save_progress(self):
-        """Saves the user's current progress to a file."""
+    def _get_progress_filepath(self, course_name):
+        """Generates the file path for a course's progress file."""
+        if not course_name:
+            return None
+        # Sanitize filename
+        safe_filename = "".join(c for c in course_name if c.isalnum() or c in (' ', '_')).rstrip()
+        return os.path.join(PROGRESS_DIR, f"{safe_filename}.json")
+
+    def save_progress(self, force_save=False):
+        """Saves the current course's progress to its own file."""
         if not self.current_course_name:
             messagebox.showwarning("无课程", "请先选择一个课程再保存进度。", parent=self.master)
-            return
+            return False
+
+        progress_filepath = self._get_progress_filepath(self.current_course_name)
+        if not progress_filepath:
+            return False
+
+        # --- Overwrite Check ---
+        if not force_save and os.path.exists(progress_filepath):
+            try:
+                with open(progress_filepath, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    if not content: raise json.JSONDecodeError("Empty file", content, 0)
+                    existing_progress = json.loads(content)
+
+                existing_scores = existing_progress.get("scores", {})
+                current_scores = self.scores
+                conflicts = []
+                for topic, existing_score in existing_scores.items():
+                    current_score = current_scores.get(topic, 0)
+                    if existing_score > current_score:
+                        conflicts.append(f"单元 '{topic}': 已保存 {existing_score}分 -> 即将保存 {current_score}分")
+
+                if conflicts:
+                    conflict_msg = "警告：您即将保存的进度得分低于已有的记录！\n\n" + "\n".join(conflicts) + "\n\n您确定要覆盖吗？"
+                    if not messagebox.askyesno("确认覆盖", conflict_msg, parent=self.master):
+                        return False
+            except (IOError, json.JSONDecodeError):
+                pass
 
         progress_data = {
-            "course_name": self.current_course_name,
             "scores": self.scores,
-            "lesson_points_awarded": {str(k): v for k, v in self.lesson_points_awarded.items()}, # Convert tuple keys to strings
+            "lesson_points_awarded": {str(k): v for k, v in self.lesson_points_awarded.items()},
         }
 
         try:
-            with open(PROGRESS_FILE, 'w', encoding='utf-8') as f:
+            os.makedirs(PROGRESS_DIR, exist_ok=True)
+            with open(progress_filepath, 'w', encoding='utf-8') as f:
                 json.dump(progress_data, f, ensure_ascii=False, indent=4)
-            messagebox.showinfo("成功", "学习进度已成功保存！", parent=self.master)
+
+            self.save_review_cards()
+
+            self.progress_changed = False
+            if not force_save:
+                messagebox.showinfo("成功", f"课程 '{self.current_course_name}' 的进度已成功保存！", parent=self.master)
+            return True
         except IOError as e:
             messagebox.showerror("保存失败", f"无法写入进度文件: {e}", parent=self.master)
+            return False
 
-    def load_progress(self):
-        """Loads the user's progress from a file."""
-        if not os.path.exists(PROGRESS_FILE):
-            messagebox.showinfo("无进度", "没有找到已保存的进度文件。", parent=self.master)
+    def load_progress(self, silent=False):
+        """Loads the current course's progress from its file."""
+        if not self.current_course_name:
+            if not silent:
+                messagebox.showwarning("无课程", "请先选择一个课程再加载进度。", parent=self.master)
+            return
+
+        progress_filepath = self._get_progress_filepath(self.current_course_name)
+
+        # Reset progress before attempting to load
+        self.scores = {topic: 0 for topic in LESSONS_DATA}
+        self.lesson_points_awarded = {}
+        self.total_score = 0
+
+        if not progress_filepath or not os.path.exists(progress_filepath):
+            if not silent:
+                messagebox.showinfo("无进度", f"没有找到课程 '{self.current_course_name}' 已保存的进度文件。", parent=self.master)
+            self.update_score_display() # Update display to show 0
             return
 
         try:
-            with open(PROGRESS_FILE, 'r', encoding='utf-8') as f:
+            with open(progress_filepath, 'r', encoding='utf-8') as f:
                 progress_data = json.load(f)
         except (json.JSONDecodeError, IOError) as e:
-            messagebox.showerror("加载失败", f"读取进度文件时出错: {e}", parent=self.master)
+            if not silent:
+                messagebox.showerror("加载失败", f"读取进度文件时出错: {e}", parent=self.master)
             return
 
-        course_name = progress_data.get("course_name")
-        if not course_name or course_name not in self.courses:
-            messagebox.showerror("课程不匹配", "保存的进度对应的课程已不存在。", parent=self.master)
-            return
-
-        # Select the course and load its data
-        self.select_course(course_name)
-
-        # Restore progress state by updating, not overwriting.
-        # This prevents errors if units were added since the last save.
         loaded_scores = progress_data.get("scores", {})
         for topic, score in loaded_scores.items():
-            if topic in self.scores: # Only load scores for topics that still exist
+            if topic in self.scores:
                 self.scores[topic] = score
 
-        # Convert string keys back to tuples
         self.lesson_points_awarded = {eval(k): v for k, v in progress_data.get("lesson_points_awarded", {}).items()}
-        self.total_score = sum(self.scores.values()) # Recalculate total score
+        self.total_score = sum(self.scores.values())
 
-        # Refresh UI
         self.update_score_display()
-        for topic_key in self.topic_buttons:
-            self.update_topic_button_text(topic_key)
 
-        # Reload the current lesson view if a topic was selected
         if self.current_topic_key:
             self.load_lesson()
 
-        messagebox.showinfo("成功", f"课程 '{course_name}' 的进度已成功加载！", parent=self.master)
+        self.progress_changed = False
+        if not silent:
+            for topic_key in self.topic_buttons:
+                self.update_topic_button_text(topic_key)
+            messagebox.showinfo("成功", f"课程 '{self.current_course_name}' 的进度已成功加载！", parent=self.master)
 
 
     def display_courses(self):
@@ -522,6 +571,18 @@ class InteractiveLearningApp:
 
     def select_course(self, course_name):
         global LESSONS_DATA
+        if self.progress_changed:
+            response = messagebox.askyesnocancel(
+                "切换课程",
+                "当前课程有未保存的更改。是否要在切换前保存？",
+                parent=self.master
+            )
+            if response is True:
+                if not self.save_progress(force_save=True):
+                    return # Abort switching if save fails or is cancelled
+            elif response is None:
+                return # User cancelled the switch
+
         self.current_course_name = course_name
         LESSONS_DATA = load_units_from_course(course_name)
 
@@ -540,11 +601,14 @@ class InteractiveLearningApp:
         self.current_topic_key = None
         self.current_lesson_index = 0
 
-        self.display_units()
-        self.update_score_display()
+        self.load_progress(silent=True) # Load data into memory first
+        self.display_units() # Then create UI elements which will use the loaded data
+
         first_unit_key = next(iter(LESSONS_DATA), None)
         if first_unit_key:
             self.select_topic(first_unit_key)
+
+        self.progress_changed = False
 
     def display_units(self):
         for widget in self.buttons_frame.winfo_children():
@@ -733,8 +797,9 @@ class InteractiveLearningApp:
             )
             if not is_duplicate:
                 self.review_cards.append(card_to_review)
-                self.save_review_cards()
+                # self.save_review_cards() # Removed to bundle saving
 
+        self.progress_changed = True # Mark progress as changed
         # Disable buttons after rating
         if self.flashcard_widgets.get('feedback_frame'):
             self.flashcard_widgets['feedback_frame'].pack_forget()
@@ -858,6 +923,7 @@ class InteractiveLearningApp:
             self.scores[self.current_topic_key] += points
             self.total_score = sum(self.scores.values())
             self.lesson_points_awarded[lesson_id] = True
+            self.progress_changed = True # Mark progress as changed
             feedback_msg = f"太棒了! 完全正确! +{points}分"
         elif self.lesson_points_awarded.get(lesson_id, False):
             feedback_msg = "太棒了! 你之前已经答对这题了!"
@@ -1041,6 +1107,23 @@ class InteractiveLearningApp:
         else:
             btn.config(style="Large.TButton")
         btn.config(text=progress_text)
+
+    def on_closing(self):
+        """Handle the window closing event."""
+        if self.progress_changed:
+            response = messagebox.askyesnocancel(
+                "退出前保存",
+                "您的学习进度有未保存的更改。是否要在退出前保存？",
+                parent=self.master
+            )
+            if response is True: # Yes
+                if self.save_progress(force_save=True):
+                    self.master.destroy()
+            elif response is False: # No
+                self.master.destroy()
+            # else (response is None - Cancel), do nothing
+        else:
+            self.master.destroy()
 
     def check_all_topics_completed(self):
         if not LESSONS_DATA or self.total_max_score == 0: return
@@ -1489,9 +1572,10 @@ class CourseManagementWindow(tk.Toplevel):
 
 
 if __name__ == "__main__":
-    if not os.path.exists(COURSES_BASE_DIR):
-        print(f"创建课程目录: {COURSES_BASE_DIR}")
-        os.makedirs(COURSES_BASE_DIR)
+    for dir_path in [COURSES_BASE_DIR, PROGRESS_DIR]:
+        if not os.path.exists(dir_path):
+            print(f"创建目录: {dir_path}")
+            os.makedirs(dir_path)
 
     root = tk.Tk()
     style = ttk.Style()
