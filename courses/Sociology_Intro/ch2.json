@@ -1,0 +1,537 @@
+{
+  "社会学研究": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "本章将深入探讨社会学研究的方法和设计。社会学家致力于在研究中使用科学方法，这是一系列系统的步骤，旨在确保研究问题的最大客观性和一致性。我们将涵盖从问题定义到结论形成的关键步骤，以及主要的调查设计和研究伦理。",
+        "en": "This chapter will delve into the methods and designs of sociological research. Sociologists are committed to using the scientific method in their research, a systematic series of steps that ensures maximum objectivity and consistency in researching a problem. We will cover key steps from problem definition to conclusion development, as well as major research designs and ethical considerations."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "科学方法",
+        "en": "Scientific Method"
+      },
+      "definition": {
+        "zh": "科学方法是一系列系统化、有组织的步骤，确保在研究问题时达到最大程度的客观性和一致性。\n\n简单来说：这是一套严谨的研究流程，就像做实验的步骤一样，确保研究结果尽可能准确、可靠，并且可以被其他人验证。",
+        "en": "The scientific method is a systematic, organized series of steps that ensures maximum objectivity and consistency in researching a problem.\n\nIn simple terms: It's a rigorous research process, like the steps in an experiment, designed to ensure that research results are as accurate and reliable as possible, and can be verified by others."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "科学方法的第一步是定义问题。为了评估或衡量一个抽象概念，研究人员需要一个操作性定义。",
+        "en": "The first step in the scientific method is defining the problem. To assess or measure an abstract concept, a researcher needs an operational definition."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "操作性定义",
+        "en": "Operational Definition"
+      },
+      "definition": {
+        "zh": "操作性定义是对抽象概念的解释，其具体程度足以让研究人员评估或衡量该概念。\n\n简单来说：就是把一个抽象的词（比如“幸福”或“社会地位”）变成可以具体测量和观察的东西。例如，要研究“社会地位”，可以将其操作性定义为“是否是某高级俱乐部的会员”。",
+        "en": "An operational definition is an explanation of an abstract concept that is specific enough to allow a researcher to assess or measure the concept.\n\nIn simple terms: It's turning an abstract term (like 'happiness' or 'social status') into something that can be concretely measured and observed. For example, to study 'social status,' one might operationally define it as 'membership in exclusive social clubs'."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "在定义问题之后，研究人员会回顾相关文献，以完善问题、考虑之前的研究尝试并减少可避免的错误。接下来是提出假设。",
+        "en": "After defining the problem, researchers review relevant literature to refine the problem, consider previous research attempts, and reduce avoidable mistakes. The next step is formulating a hypothesis."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "假设",
+        "en": "Hypothesis"
+      },
+      "definition": {
+        "zh": "假设是关于两个或多个变量之间关系的推测性陈述。\n\n简单来说：就是对研究问题的一个初步的、可验证的猜测或预测，通常说明了不同事物之间可能存在的关系。比如，“学习时间越长，考试成绩越高”。",
+        "en": "A hypothesis is a speculative statement about the relationship between two or more variables.\n\nIn simple terms: It's an initial, testable guess or prediction about a research question, usually stating a possible relationship between different things. For example, 'The longer the study time, the higher the exam score'."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "变量",
+        "en": "Variable"
+      },
+      "definition": {
+        "zh": "变量是可测量的特质或特征，在特定条件下会发生变化。\n\n简单来说：研究中可以改变或测量的任何事物，比如年龄、收入、受教育程度等。",
+        "en": "A variable is a measurable trait or characteristic that is subject to change under certain conditions.\n\nIn simple terms: Anything that can change or be measured in a study, such as age, income, or education level."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "自变量",
+        "en": "Independent Variable"
+      },
+      "definition": {
+        "zh": "自变量是因果关系中导致或影响另一个变量变化的变量。\n\n简单来说：研究中被研究者操纵或改变的因素，它被认为是“原因”。比如在“学习时间影响考试成绩”中，“学习时间”就是自变量。",
+        "en": "The independent variable is the one in a causal relationship that causes or influences a change in another variable.\n\nIn simple terms: It's the factor manipulated or changed by the researcher in a study, considered to be the 'cause.' For example, in 'study time affects exam scores,' 'study time' is the independent variable."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "因变量",
+        "en": "Dependent Variable"
+      },
+      "definition": {
+        "zh": "因变量是被自变量改变或依赖于自变量的变量。\n\n简单来说：研究中被观察和测量的结果，它被认为是“结果”。比如在“学习时间影响考试成绩”中，“考试成绩”就是因变量。",
+        "en": "The dependent variable is the variable in a causal relationship that is subject to the influence of another variable.\n\nIn simple terms: It's the outcome observed and measured in a study, considered to be the 'effect.' For example, in 'study time affects exam scores,' 'exam scores' is the dependent variable."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "控制变量",
+        "en": "Control Variable"
+      },
+      "definition": {
+        "zh": "控制变量是为检验自变量和因变量之间关系的强度而保持不变的因素。\n\n简单来说：在研究中，为了确保结果的准确性，需要保持不变的因素，以排除它们对结果的影响。比如研究学习时间对成绩的影响时，要控制学生的智力水平或学习环境。",
+        "en": "A control variable is a factor that is held constant to test the relative impact of an independent variable.\n\nIn simple terms: In research, these are factors that need to be kept constant to ensure accuracy and exclude their influence on the results. For example, when studying the effect of study time on grades, one might control for students' intelligence levels or learning environment."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "因果逻辑",
+        "en": "Causal Logic"
+      },
+      "definition": {
+        "zh": "因果逻辑是指条件或变量与特定结果之间的关系，其中一个导致另一个。\n\n简单来说：就是A导致B发生，A是原因，B是结果。比如，下雨导致地面湿滑。",
+        "en": "Causal logic involves the relationship between a condition or variable and a particular consequence, with one leading to the other.\n\nIn simple terms: It means A causes B to happen, where A is the cause and B is the effect. For example, rain causes the ground to be wet."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "相关性",
+        "en": "Correlation"
+      },
+      "definition": {
+        "zh": "当一个变量的变化与另一个变量的变化同时发生时，就存在相关性；然而，相关关系不一定表明因果关系。\n\n简单来说：两个事物一起变化，但一个不一定是另一个的原因。比如，冰淇淋销量增加和溺水事件增加可能同时发生，但冰淇淋不导致溺水，而是夏季气温高导致两者都增加。",
+        "en": "A correlation exists when a change in one variable coincides with a change in the other; however, a correlational relationship does not necessarily indicate a causal relationship.\n\nIn simple terms: Two things change together, but one doesn't necessarily cause the other. For example, increased ice cream sales and increased drowning incidents might occur simultaneously, but ice cream doesn't cause drowning; rather, high summer temperatures cause both to increase."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项陈述正确描述了相关性与因果关系的区别？",
+        "en": "Which statement correctly describes the difference between correlation and causation?"
+      },
+      "options": [
+        { "zh": "相关性意味着一个变量直接导致另一个变量的变化。", "en": "Correlation means one variable directly causes a change in another." },
+        { "zh": "因果关系意味着两个变量同时变化。", "en": "Causation means two variables change simultaneously." },
+        { "zh": "相关性表明一个变量的变化与另一个变量的变化同时发生，但不一定意味着因果关系。", "en": "Correlation indicates that a change in one variable coincides with a change in another, but does not necessarily imply causation." },
+        { "zh": "因果关系和相关性是同一个概念。", "en": "Causation and correlation are the same concept." }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "相关不等于因果。",
+        "en": "Correlation does not equal causation."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "在收集和分析数据时，研究人员需要选择一个样本并确保研究的有效性和可靠性。",
+        "en": "When collecting and analyzing data, researchers need to select a sample and ensure the validity and reliability of their study."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "样本",
+        "en": "Sample"
+      },
+      "definition": {
+        "zh": "样本是从更大的人口中进行的选择，该选择在统计学上代表了该人口。\n\n简单来说：从一个大的研究对象群体中挑选出来的一小部分，这小部分要能代表整个大群体，这样研究结果才能推广到大群体。",
+        "en": "A sample is a selection from a larger population that is statistically representative of that population.\n\nIn simple terms: A small portion selected from a larger group of study subjects, where this small portion is representative of the entire larger group, so that research findings can be generalized to the larger group."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "随机样本",
+        "en": "Random Sample"
+      },
+      "definition": {
+        "zh": "随机样本是指所研究的总体中的每个成员都有相同的机会被选中进行研究的样本。\n\n简单来说：在选择样本时，每个人被选中的机会都是均等的，就像抽签一样，这样可以最大程度地保证样本的代表性。",
+        "en": "A random sample occurs when every member of an entire population has the same chance of being selected for the study.\n\nIn simple terms: When selecting a sample, every individual has an equal chance of being chosen, like drawing lots, which maximizes the representativeness of the sample."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "效度",
+        "en": "Validity"
+      },
+      "definition": {
+        "zh": "效度是指衡量或量表真实反映所研究现象的程度。\n\n简单来说：你的测量工具是否真的测量了你想测量的东西。比如，一个智力测试是否真的测量了智力，而不是记忆力。",
+        "en": "Validity refers to the degree to which a measure or scale truly reflects the phenomenon under study.\n\nIn simple terms: Whether your measurement tool truly measures what you intend to measure. For example, whether an intelligence test truly measures intelligence, not just memory."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "信度",
+        "en": "Reliability"
+      },
+      "definition": {
+        "zh": "信度是指衡量产生一致结果的程度。\n\n简单来说：你的测量工具是否能每次都得出相似的结果，即使重复测量。比如，一个体重秤每次称重都显示相同的体重（如果体重没变），它就是可靠的。",
+        "en": "Reliability refers to the extent to which a measure produces consistent results.\n\nIn simple terms: Whether your measurement tool consistently yields similar results, even with repeated measurements. For example, if a scale shows the same weight each time (assuming weight hasn't changed), it is reliable."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "在社会学研究中，____________是指衡量或量表真实反映所研究现象的程度，而____________是指衡量产生一致结果的程度。",
+          "en": "In sociological research, ____________ refers to the degree to which a measure or scale truly reflects the phenomenon under study, while ____________ refers to the extent to which a measure produces consistent results."
+        }
+      ],
+      "answer": {
+        "zh": "效度, 信度",
+        "en": "validity, reliability"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "一个是“测得准不准”，一个是“测得稳不稳”。",
+        "en": "One is 'accuracy,' the other is 'consistency'."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "研究设计是科学获取数据的详细计划或方法。主要的研究设计包括调查、民族志、实验和使用现有来源。",
+        "en": "A research design is a detailed plan or method for obtaining data scientifically. Major research designs include surveys, ethnography, experiments, and the use of existing sources."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "研究设计",
+        "en": "Research Design"
+      },
+      "definition": {
+        "zh": "研究设计是科学获取或收集数据的详细计划或方法。\n\n简单来说：就是你为了回答研究问题，如何一步步去收集和分析数据的“路线图”或“蓝图”。",
+        "en": "A research design is a detailed plan or method for obtaining or collecting data scientifically.\n\nIn simple terms: It's your 'roadmap' or 'blueprint' for how you will systematically collect and analyze data to answer your research question."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "调查",
+        "en": "Survey"
+      },
+      "definition": {
+        "zh": "调查通常以访谈或问卷的形式进行，为研究人员提供关于人们如何思考或行为的信息。\n\n简单来说：通过提问（面对面、电话、在线或书面问卷）来收集大量人的观点和信息。",
+        "en": "A survey is a study, generally in the form of an interview or questionnaire, that provides researchers with information about how people think and act.\n\nIn simple terms: Collecting information and opinions from a large number of people through questioning (face-to-face, phone, online, or written questionnaires)."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "定量研究",
+        "en": "Quantitative Research"
+      },
+      "definition": {
+        "zh": "定量研究是一种主要以数字形式收集和报告数据的方法。\n\n简单来说：用数字和统计来分析数据，比如统计有多少人同意某个观点，或者计算平均收入。",
+        "en": "Quantitative research is a method in which data are represented as numbers or statistics.\n\nIn simple terms: Analyzing data using numbers and statistics, such as counting how many people agree with a certain opinion, or calculating average income."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "定性研究",
+        "en": "Qualitative Research"
+      },
+      "definition": {
+        "zh": "定性研究依赖于在现场或自然环境中观察到的内容，而不是统计数据。\n\n简单来说：通过深入观察、访谈等方式，收集非数字的、更详细、更深入的信息，以理解人们的感受、经验和意义，而不是简单地统计数量。",
+        "en": "Qualitative research relies on what is seen in field or naturalistic settings more than on statistical data.\n\nIn simple terms: Collecting non-numerical, more detailed, and in-depth information through methods like in-depth observation and interviews, to understand people's feelings, experiences, and meanings, rather than simply counting numbers."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "民族志",
+        "en": "Ethnography"
+      },
+      "definition": {
+        "zh": "民族志是通过扩展的系统观察来研究整个社会环境。\n\n简单来说：研究者沉浸在一个群体或社区中，通过长时间的直接参与和观察，深入了解他们的生活方式、文化和互动。",
+        "en": "Ethnography is the study of an entire social setting through extended systematic observation.\n\nIn simple terms: Researchers immerse themselves in a group or community, gaining an in-depth understanding of their way of life, culture, and interactions through prolonged direct participation and observation."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "观察",
+        "en": "Observation"
+      },
+      "definition": {
+        "zh": "观察是一种研究技术，研究者通过直接参与，密切观察一个群体或社区来收集信息。\n\n简单来说：研究者通过亲身参与或近距离观看，来收集关于某个群体或社区的信息。这是民族志的基本技术。",
+        "en": "Observation is a research technique in which an investigator collects information through direct participation, by closely watching a group or community.\n\nIn simple terms: A researcher collects information about a group or community by directly participating in or closely watching them. This is a basic technique of ethnography."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "实验",
+        "en": "Experiment"
+      },
+      "definition": {
+        "zh": "实验是人为创造的情境，允许研究人员操纵变量。\n\n简单来说：在受控的环境中，研究者改变一个因素（自变量），然后观察这会如何影响另一个因素（因变量），以确定因果关系。",
+        "en": "An experiment is an artificially created situation that allows a researcher to manipulate variables.\n\nIn simple terms: In a controlled environment, researchers change one factor (independent variable) and then observe how it affects another factor (dependent variable) to determine cause-and-effect relationships."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "实验组",
+        "en": "Experimental Group"
+      },
+      "definition": {
+        "zh": "实验组是实验中暴露于研究人员引入的自变量的受试者。\n\n简单来说：在实验中，接受“处理”或“干预”的那个组。比如，接受新药治疗的病人组。",
+        "en": "The experimental group consists of the subjects in an experiment who are exposed to an independent variable introduced by a researcher.\n\nIn simple terms: In an experiment, this is the group that receives the 'treatment' or 'intervention.' For example, the group of patients receiving a new drug."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "控制组",
+        "en": "Control Group"
+      },
+      "definition": {
+        "zh": "控制组是实验中未引入自变量的受试者。\n\n简单来说：在实验中，不接受“处理”或“干预”的那个组，用于与实验组进行比较，以确定干预的效果。比如，接受安慰剂的病人组。",
+        "en": "The control group consists of the subjects in an experiment who are not introduced to the independent variable by the researcher.\n\nIn simple terms: In an experiment, this is the group that does not receive the 'treatment' or 'intervention,' used for comparison with the experimental group to determine the effect of the intervention. For example, the group of patients receiving a placebo."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "霍桑效应",
+        "en": "Hawthorne Effect"
+      },
+      "definition": {
+        "zh": "霍桑效应是指观察者或实验对受试者可能产生的意外影响，导致受试者偏离典型行为。\n\n简单来说：当人们知道自己正在被观察或参与实验时，他们可能会不自觉地改变自己的行为，而不是表现出平时自然的行为。",
+        "en": "The Hawthorne effect refers to the unintended influence that observers or experiments can have on their subjects.\n\nIn simple terms: When people know they are being observed or participating in an experiment, they might unconsciously alter their behavior, rather than acting naturally."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "当研究对象因为知道自己正在被观察而改变行为时，这种现象被称为____________。",
+          "en": "When research subjects alter their behavior because they know they are being observed, this phenomenon is known as the ____________."
+        }
+      ],
+      "answer": {
+        "zh": "霍桑效应",
+        "en": "Hawthorne effect"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "这是观察本身对结果产生影响。",
+        "en": "This is when the observation itself influences the results."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "二手分析",
+        "en": "Secondary Analysis"
+      },
+      "definition": {
+        "zh": "二手分析是指利用先前收集的或公开可获取的信息和数据的各种研究技术。\n\n简单来说：不是自己去收集新数据，而是使用别人已经收集好的数据（比如政府的普查数据、历史文献）来进行研究。",
+        "en": "Secondary analysis refers to a variety of research techniques that make use of previously collected and publicly accessible information and data.\n\nIn simple terms: Instead of collecting new data yourself, you use data that has already been collected by others (e.g., government census data, historical documents) for your research."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "内容分析",
+        "en": "Content Analysis"
+      },
+      "definition": {
+        "zh": "内容分析是系统编码和客观记录数据的方法，这些数据由某种原理指导。\n\n简单来说：对报纸、书籍、电影、歌曲等各种文本或媒体内容进行系统性的分析，从中提取信息并找出模式或趋势。",
+        "en": "Content analysis involves the systematic coding and objective recording of data, guided by some rationale.\n\nIn simple terms: Systematically analyzing various texts or media content such as newspapers, books, films, and songs, to extract information and identify patterns or trends."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会学研究还涉及统计学概念，如平均数、中位数、众数和百分比，以及交叉列表来展示变量之间的关系。",
+        "en": "Sociological research also involves statistical concepts such as mean, median, mode, and percentage, as well as cross-tabulation to show relationships between variables."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "平均数 (Mean)",
+        "en": "Mean"
+      },
+      "definition": {
+        "zh": "平均数是通过将一系列数值相加然后除以数值的数量计算得出的数字。\n\n简单来说：就是我们通常说的“平均值”，把所有数字加起来再除以数字的个数。",
+        "en": "Mean is the number calculated by adding a series of values and then dividing by the number of values.\n\nIn simple terms: It's what we commonly call the 'average,' calculated by summing all numbers and dividing by the count of numbers."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "中位数 (Median)",
+        "en": "Median"
+      },
+      "definition": {
+        "zh": "中位数是把一系列数值分成两组等量数值的中间点或数字。\n\n简单来说：把所有数字按大小排列后，位于最中间的那个数字。如果数字个数是偶数，就是中间两个数的平均值。",
+        "en": "Median is the midpoint or number that divides a series of values into two groups of equal numbers of values.\n\nIn simple terms: When all numbers are arranged in order, it's the middle number. If there's an even number of values, it's the average of the two middle numbers."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "众数 (Mode)",
+        "en": "Mode"
+      },
+      "definition": {
+        "zh": "众数是一系列分数中最常见的单个值。\n\n简单来说：在一组数据中出现次数最多的那个数字。",
+        "en": "Mode is the single most common value in a series of scores.\n\nIn simple terms: The number that appears most frequently in a set of data."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "百分比",
+        "en": "Percentage"
+      },
+      "definition": {
+        "zh": "百分比是100的一部分。\n\n简单来说：表示一个数量占总量的多少，以100为基数，用百分号（%）表示。",
+        "en": "A percentage is a portion of 100.\n\nIn simple terms: It expresses a quantity as a fraction of 100, denoted by the percent sign (%)."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "交叉列表",
+        "en": "Cross-tabulation"
+      },
+      "definition": {
+        "zh": "交叉列表是显示两个或多个变量之间关系的表格或矩阵。\n\n简单来说：一种表格，用来同时展示两个或多个不同类别的数据，看看它们之间有什么关系，比如性别和对某个政策的看法。",
+        "en": "Cross-tabulation is a table or matrix that shows the relationship between two or more variables.\n\nIn simple terms: A table used to display two or more categories of data simultaneously, to see how they relate to each other, such as gender and opinions on a certain policy."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "所有研究人员都必须遵守一套研究伦理规范，以确保研究不会造成伤害或侵犯个人隐私。这包括保密性、利益冲突和价值中立。",
+        "en": "All researchers must adhere to a code of ethics to ensure that research does not cause harm or violate personal privacy. This includes confidentiality, conflict of interest, and value neutrality."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "伦理规范",
+        "en": "Code of Ethics"
+      },
+      "definition": {
+        "zh": "伦理规范是为专业成员制定和遵守的可接受行为标准。\n\n简单来说：在进行研究时，研究人员必须遵守的一套行为准则，确保研究过程公正、负责，并保护参与者的权益。",
+        "en": "A code of ethics consists of the standards of acceptable behavior developed by and for members of a profession.\n\nIn simple terms: A set of behavioral guidelines that researchers must follow to ensure that the research process is fair, responsible, and protects the rights of participants."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "保密性",
+        "en": "Confidentiality"
+      },
+      "definition": {
+        "zh": "保密性是指研究人员保护研究参与者身份和提供信息不被泄露的原则。\n\n简单来说：研究中收集到的个人信息和数据不会被公开，只有研究人员知道，以保护参与者的隐私。",
+        "en": "Confidentiality refers to the principle that researchers protect the identity of research participants and the information they provide from being disclosed.\n\nIn simple terms: Personal information and data collected in research will not be made public, known only to researchers, to protect participants' privacy."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "利益冲突",
+        "en": "Conflict of Interest"
+      },
+      "definition": {
+        "zh": "利益冲突是指当研究人员的个人利益或资助来源可能影响研究的客观性时出现的情况。\n\n简单来说：当研究人员的个人关系、财务或其他利益，可能影响他们研究的公正性或结果时，就存在利益冲突。",
+        "en": "Conflict of interest refers to a situation that arises when a researcher's personal interests or funding sources might influence the objectivity of the research.\n\nIn simple terms: A situation where a researcher's personal relationships, financial gains, or other interests could affect the impartiality or outcome of their research."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "价值中立",
+        "en": "Value Neutrality"
+      },
+      "definition": {
+        "zh": "价值中立是马克斯·韦伯提出的术语，指社会学家在解释数据时保持客观性。\n\n简单来说：研究人员在进行研究和解释数据时，不带入自己的个人情感、偏见或价值观，力求客观公正。",
+        "en": "Value neutrality is Max Weber's term for objectivity of sociologists in the interpretation of data.\n\nIn simple terms: Researchers conduct their studies and interpret data without letting their personal feelings, biases, or values influence the process, striving for objectivity and impartiality."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "根据马克斯·韦伯的观点，社会学家在解释数据时应努力做到什么？",
+        "en": "According to Max Weber, what should sociologists strive for when interpreting data?"
+      },
+      "options": [
+        { "zh": "个人情感的表达。", "en": "Expression of personal feelings." },
+        { "zh": "价值中立。", "en": "Value neutrality." },
+        { "zh": "支持资助者的利益。", "en": "Supporting the interests of funders." },
+        { "zh": "仅关注定性数据。", "en": "Focusing solely on qualitative data." }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "韦伯强调研究的客观性。",
+        "en": "Weber emphasized objectivity in research."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "女权主义方法论和酷儿理论也对社会学研究产生了影响，它们挑战了传统的研究视角，并揭示了研究中可能存在的性别和性取向偏见。",
+        "en": "Feminist methodology and queer theory have also influenced sociological research, challenging traditional research perspectives and revealing potential gender and sexual orientation biases in research."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "视觉社会学",
+        "en": "Visual Sociology"
+      },
+      "definition": {
+        "zh": "视觉社会学涉及使用照片、电影和视频来研究社会。\n\n简单来说：就是用图像和影像（比如照片、电影、视频）作为研究工具，来观察和分析社会现象和人类行为。",
+        "en": "Visual sociology involves the use of photographs, film, and video to study society.\n\nIn simple terms: It's using images and moving pictures (like photos, films, and videos) as research tools to observe and analyze social phenomena and human behavior."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "应用社会学",
+        "en": "Applied Sociology"
+      },
+      "definition": {
+        "zh": "应用社会学是指运用社会学学科，旨在为人类行为和组织提供实际应用。\n\n简单来说：把社会学的理论和研究成果，用来解决现实世界中的实际问题，比如改善社区关系、提高组织效率等。",
+        "en": "Applied sociology involves the use of the discipline of sociology to yield practical applications for human behavior and organizations.\n\nIn simple terms: Applying sociological theories and research findings to solve real-world problems, such as improving community relations or increasing organizational efficiency."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "随着计算机和可用数据的大量增加，社会学家现在能够进行十年前几乎不可能进行的研究，例如对人类性行为的研究，尽管这仍然是一个敏感且具有挑战性的话题。",
+        "en": "With the advent of computers and massive increases in available data, sociologists can now undertake research that was nearly impossible a decade ago, such as studies on human sexuality, although this remains a sensitive and challenging topic."
+      }
+    }
+  ]
+}

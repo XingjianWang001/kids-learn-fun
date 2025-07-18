@@ -1,0 +1,429 @@
+{
+  "越轨、犯罪与社会控制": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "本章将探讨社会学中关于越轨、犯罪和社会控制的核心概念。我们将了解什么是越轨行为，社会如何通过各种机制来控制它，以及不同的社会学视角如何解释越轨和犯罪现象。此外，我们还将深入研究不同类型的犯罪，并分析犯罪统计数据和与死刑相关的社会政策。",
+        "en": "This chapter will explore core concepts in sociology regarding deviance, crime, and social control. We will understand what deviant behavior is, how society controls it through various mechanisms, and how different sociological perspectives explain deviance and crime. Furthermore, we will delve into various types of crime, analyze crime statistics, and discuss social policies related to the death penalty."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "越轨",
+        "en": "Deviance"
+      },
+      "definition": {
+        "zh": "越轨被定义为违反群体或社会行为准则或期望的行为。\n\n简单来说：任何不符合社会或群体规范和期望的行为，无论是轻微的（如穿奇装异服）还是严重的（如犯罪），都属于越轨。",
+        "en": "Deviance is defined as behavior that violates the standards of conduct or expectations of a group or society.\n\nIn simple terms: Any behavior that goes against the norms and expectations of a society or group, whether minor (like dressing unusually) or severe (like committing a crime), is considered deviant."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "污名",
+        "en": "Stigma"
+      },
+      "definition": {
+        "zh": "污名是社会用来贬低某些社会群体成员的标签。\n\n简单来说：社会给某些人贴上的负面标签，这些标签会让他们被贬低、歧视，即使他们已经不再从事导致污名的行为了。",
+        "en": "Stigma is a label used to devalue members of certain social groups.\n\nIn simple terms: A negative label society attaches to certain individuals, causing them to be devalued and discriminated against, even if they no longer engage in the behavior that led to the stigma."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项是“越轨”的定义？",
+        "en": "Which of the following is the definition of 'deviance'?"
+      },
+      "options": [
+        { "zh": "任何违法行为。", "en": "Any illegal act." },
+        { "zh": "违反群体或社会行为准则或期望的行为。", "en": "Behavior that violates the standards of conduct or expectations of a group or society." },
+        { "zh": "一种心理疾病。", "en": "A psychological illness." },
+        { "zh": "仅仅指犯罪行为。", "en": "Refers only to criminal behavior." }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "越轨是一个比犯罪更广泛的概念。",
+        "en": "Deviance is a broader concept than crime."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会控制是指用于预防社会中越轨人类行为的技术和策略。它包括顺从、服从以及非正式和正式的社会控制。",
+        "en": "Social control refers to the techniques and strategies for preventing deviant human behavior in any society. It includes conformity, obedience, and informal and formal social control."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会控制",
+        "en": "Social Control"
+      },
+      "definition": {
+        "zh": "社会控制是指预防任何社会中越轨人类行为的技术和策略。\n\n简单来说：社会用来确保人们遵守规则、不做出越轨行为的各种方法，可以是鼓励性的，也可以是惩罚性的。",
+        "en": "Social control refers to the techniques and strategies for preventing deviant human behavior in any society.\n\nIn simple terms: Various methods society uses to ensure people follow rules and do not engage in deviant behavior, which can be either encouraging or punitive."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "顺从",
+        "en": "Conformity"
+      },
+      "definition": {
+        "zh": "顺从被定义为与同伴（与我们地位相同、无权直接指导我们行为的个体）保持一致。\n\n简单来说：指一个人在没有明确指令的情况下，自愿地跟随同伴或群体的大多数人的行为和观念。",
+        "en": "Conformity is defined as going along with one's peers—individuals of our own status who have no special right to direct our behavior.\n\nIn simple terms: When an individual voluntarily follows the behavior and beliefs of their peers or the majority of a group, even without explicit instructions."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "服从",
+        "en": "Obedience"
+      },
+      "definition": {
+        "zh": "服从被定义为在层级结构中遵守更高权威的命令。\n\n简单来说：指一个人按照来自更高权力或权威人物的指示行事，即使这些指示可能与自己的意愿相悖。",
+        "en": "Obedience is defined as compliance with higher authorities in a hierarchical structure.\n\nIn simple terms: When an individual acts according to instructions from a higher authority or power figure, even if those instructions go against their own will."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "非正式社会控制",
+        "en": "Informal Social Control"
+      },
+      "definition": {
+        "zh": "非正式社会控制是由普通人通过笑声、微笑和嘲笑等方式随意进行的社会控制。\n\n简单来说：日常生活中，通过非正式的方式（比如朋友的玩笑、家人的批评、他人的眼神）来约束行为，让人们遵守社会规范。",
+        "en": "Informal social control is carried out casually by ordinary people through such means as laughter, smiles, and ridicule.\n\nIn simple terms: Everyday regulation of behavior through informal means (like a friend's joke, family criticism, or others' glances) to encourage compliance with social norms."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "正式社会控制",
+        "en": "Formal Social Control"
+      },
+      "definition": {
+        "zh": "正式社会控制是由授权机构（如警察、法官、学校行政人员和雇主）执行的社会控制。\n\n简单来说：由政府或正式机构（如警察、法院、学校）通过明确的规则和惩罚来约束行为，确保社会秩序。",
+        "en": "Formal social control is carried out by authorized agents, such as police officers, judges, school administrators, and employers.\n\nIn simple terms: Regulation of behavior by government or formal institutions (like police, courts, schools) through explicit rules and punishments to maintain social order."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "法律",
+        "en": "Law"
+      },
+      "definition": {
+        "zh": "法律被定义为政府的社会控制。\n\n简单来说：由政府制定和执行的，具有强制力的行为规则，违反者将受到正式惩罚。",
+        "en": "Law is defined as governmental social control.\n\nIn simple terms: Rules of conduct established and enforced by the government, carrying formal penalties for violations."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "控制理论",
+        "en": "Control Theory"
+      },
+      "definition": {
+        "zh": "控制理论是一种关于顺从和越轨的观点，认为我们与社会成员的联系使我们系统地顺从社会的规范。\n\n简单来说：认为人们之所以不越轨，是因为他们与社会有联系，这些联系（比如家庭、朋友、工作）会约束他们的行为，让他们选择遵守社会规范。",
+        "en": "Control theory suggests that our connection to members of society leads us to systematically conform to society's norms.\n\nIn simple terms: This theory suggests that people conform to societal norms because their connections to society (e.g., family, friends, work) restrain their behavior and encourage them to comply."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "米尔格拉姆（Milgram）的实验主要研究了以下哪种社会控制形式？",
+        "en": "Milgram's experiment primarily studied which form of social control?"
+      },
+      "options": [
+        { "zh": "非正式社会控制", "en": "Informal social control" },
+        { "zh": "顺从", "en": "Conformity" },
+        { "zh": "服从", "en": "Obedience" },
+        { "zh": "法律", "en": "Law" }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "实验中涉及的是权威人物的指令。",
+        "en": "The experiment involved instructions from authority figures."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会学家从不同视角解释越轨行为。功能主义者认为越轨是人类存在的普遍部分，有助于定义行为界限。冲突理论家认为权力群体定义越轨以维护自身利益。互动主义者关注日常行为，并通过文化传播和社会解组理论解释犯罪。标签理论则探讨为什么某些人被贴上越轨标签。",
+        "en": "Sociologists explain deviant behavior from various perspectives. Functionalists view deviance as a common part of human existence that helps define behavioral boundaries. Conflict theorists argue that powerful groups define deviance to maintain their own interests. Interactionists focus on everyday behavior and explain crime through cultural transmission and social disorganization theories. Labeling theory explores why certain individuals are labeled as deviant."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "失范",
+        "en": "Anomie"
+      },
+      "definition": {
+        "zh": "失范是涂尔干提出的术语，指当社会对个体行为的社会控制变得无效时，社会中感受到的方向迷失。\n\n简单来说：社会规范变得模糊或失效，导致人们感到迷茫、不知所措，不知道该如何行为，从而可能导致越轨行为的增加。",
+        "en": "Anomie is Durkheim's term for the loss of direction felt in a society when social control of individual behavior has become ineffective.\n\nIn simple terms: When social norms become unclear or ineffective, leading people to feel confused and disoriented about how to behave, which can result in an increase in deviant behavior."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "越轨的失范理论",
+        "en": "Anomie Theory of Deviance"
+      },
+      "definition": {
+        "zh": "罗伯特·默顿的越轨理论，将其视为对社会规定目标或实现这些目标的手段，或两者兼而有之的适应。\n\n简单来说：默顿认为，当社会的目标（如财富）和实现这些目标的合法手段（如教育、工作）之间存在差距时，人们可能会通过五种方式（顺从、退缩、创新、仪式主义、反叛）来适应，其中一些方式是越轨的。",
+        "en": "Robert Merton's theory of deviance as an adaptation of socially prescribed goals or of the means governing their attainment, or both.\n\nIn simple terms: Merton argued that when there's a gap between societal goals (like wealth) and legitimate means to achieve them (like education, work), people might adapt in five ways (conformity, retreatism, innovation, ritualism, rebellion), some of which are deviant."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "文化传播",
+        "en": "Cultural Transmission"
+      },
+      "definition": {
+        "zh": "文化传播学派认为犯罪行为是通过社会互动学习的。\n\n简单来说：犯罪行为不是天生的，而是通过与他人的互动、学习和模仿而获得的，就像学习其他文化一样。",
+        "en": "The cultural transmission school argues that criminal behavior is learned through social interactions.\n\nIn simple terms: Criminal behavior is not innate but acquired through interaction, learning, and imitation from others, just like learning other aspects of culture."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "差异性联结",
+        "en": "Differential Association"
+      },
+      "definition": {
+        "zh": "差异性联结理论认为违反规则是由于接触到有利于犯罪行为的态度。\n\n简单来说：一个人之所以会犯罪，是因为他接触到更多支持犯罪行为的态度和价值观，而不是反对犯罪的态度和价值观。",
+        "en": "Differential association is a theory of deviance that holds that violation of rules results from exposure to attitudes favorable to criminal acts.\n\nIn simple terms: An individual commits crimes because they are exposed to more attitudes and values that favor criminal acts than those that oppose them."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会解组理论",
+        "en": "Social Disorganization Theory"
+      },
+      "definition": {
+        "zh": "社会解组理论认为犯罪和越轨是由于社区关系和社会机构的缺失或崩溃造成的。\n\n简单来说：当一个社区的家庭、学校、教会等社会组织和关系变得薄弱或瓦解时，这个社区的犯罪和越轨行为就会增加。",
+        "en": "Social disorganization theory contends that deviance and crime increase due to a breakdown in or absence of communal relationships and other social institutions.\n\nIn simple terms: When social organizations and relationships like families, schools, and churches weaken or break down in a community, crime and deviance in that community tend to increase."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "标签理论",
+        "en": "Labeling Theory"
+      },
+      "definition": {
+        "zh": "标签理论是一种越轨方法，试图解释为什么某些人被视为越轨者，而从事相同行为的其他人则不是。\n\n简单来说：越轨行为不是行为本身，而是社会对这种行为的反应和给个人贴上的“越轨者”标签。一旦被贴上标签，个人可能会内化这个身份，并继续从事越轨行为。",
+        "en": "Labeling theory is an approach to deviance that attempts to explain why certain people are viewed as deviants while others engaged in the same behavior are not.\n\nIn simple terms: Deviant behavior is not inherent in the act itself, but rather in society's reaction to the act and the 'deviant' label applied to the individual. Once labeled, individuals may internalize this identity and continue to engage in deviant behavior."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会反应方法",
+        "en": "Societal-Reaction Approach"
+      },
+      "definition": {
+        "zh": "社会反应方法是标签理论的另一个名称。\n\n简单来说：与标签理论相同，强调社会对行为的反应决定了该行为是否被视为越轨。",
+        "en": "Societal-reaction approach is another name for labeling theory.\n\nIn simple terms: Same as labeling theory, emphasizing that society's reaction to behavior determines whether it is considered deviant."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "差异性司法",
+        "en": "Differential Justice"
+      },
+      "definition": {
+        "zh": "差异性司法是指社会控制对不同群体行使方式的差异。\n\n简单来说：指不同社会群体（如不同种族、阶层）在刑事司法系统中受到不同对待的现象，例如穷人或少数族裔可能面临更严厉的判决。",
+        "en": "Differential justice refers to differences in the way social control is exercised over different groups.\n\nIn simple terms: The phenomenon where different social groups (e.g., different races, social classes) are treated differently within the criminal justice system, for instance, the poor or minorities might face harsher sentences."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "种族貌相",
+        "en": "Racial Profiling"
+      },
+      "definition": {
+        "zh": "种族貌相是当局根据种族、民族或国籍而非个人行为而采取的任何任意行动。\n\n简单来说：执法人员仅仅因为一个人的种族、民族或国籍，就对其进行怀疑、盘查或采取行动，而不是基于其具体的行为。",
+        "en": "Racial profiling is any arbitrary action initiated by an authority based on race, ethnicity, or national origin rather than on a person's behavior.\n\nIn simple terms: When law enforcement or authorities target individuals for suspicion, questioning, or action solely based on their race, ethnicity, or national origin, rather than on their specific behavior."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "哪种社会学视角认为越轨是社会对行为的反应和给个人贴上的标签的结果？",
+        "en": "Which sociological perspective argues that deviance is a result of society's reaction to behavior and the labels applied to individuals?"
+      },
+      "options": [
+        { "zh": "功能主义视角", "en": "Functionalist perspective" },
+        { "zh": "冲突视角", "en": "Conflict perspective" },
+        { "zh": "标签理论", "en": "Labeling theory" },
+        { "zh": "文化传播理论", "en": "Cultural transmission theory" }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "这个理论强调社会“贴标签”的作用。",
+        "en": "This theory emphasizes the role of societal 'labeling'."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "犯罪是违反刑法并受到政府部门正式惩罚的行为。社会学家将犯罪分为多种类型，包括无受害者犯罪、职业犯罪、有组织犯罪、白领和技术犯罪、仇恨犯罪和跨国犯罪。",
+        "en": "Crime is a violation of criminal law for which some governmental authority applies formal penalties. Sociologists categorize crime into various types, including victimless crimes, professional crime, organized crime, white-collar and technology-based crime, hate crimes, and transnational crime."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "犯罪",
+        "en": "Crime"
+      },
+      "definition": {
+        "zh": "犯罪是违反刑法的行为，政府部门会对此施加正式惩罚。\n\n简单来说：任何违反国家法律并会受到政府惩罚的行为。",
+        "en": "Crime is a violation of criminal law for which some governmental authority applies formal penalties.\n\nIn simple terms: Any act that violates national laws and is subject to formal punishment by the government."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "无受害者犯罪",
+        "en": "Victimless Crime"
+      },
+      "definition": {
+        "zh": "无受害者犯罪是社会学家用来描述成年人之间自愿交换广受欢迎但非法的商品和服务的术语。\n\n简单来说：没有直接受害者的犯罪，通常是成年人之间自愿进行的非法交易，比如吸毒、赌博、卖淫等。",
+        "en": "Victimless crime is a term used by sociologists to describe the willing exchange among adults of widely desired but illegal goods and services.\n\nIn simple terms: Crimes that don't have a direct victim, usually involving voluntary illegal transactions between adults, such as drug use, gambling, or prostitution."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "职业罪犯",
+        "en": "Professional Criminal"
+      },
+      "definition": {
+        "zh": "职业罪犯是指以犯罪为日常职业，发展熟练技术并在其他罪犯中享有一定地位的人。\n\n简单来说：把犯罪当作一份“工作”来做的人，他们有专门的犯罪技能，并以此为生。",
+        "en": "A professional criminal is a person who pursues crime as a day-to-day occupation, developing skilled techniques and enjoying a certain degree of status among other criminals.\n\nIn simple terms: Someone who treats crime as a 'job,' possessing specialized criminal skills and earning a living from it."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "有组织犯罪",
+        "en": "Organized Crime"
+      },
+      "definition": {
+        "zh": "有组织犯罪是一个群体的工作，该群体规范涉及非法活动（包括走私和非法毒品、卖淫和赌博的销售）的各种犯罪企业之间的关系。\n\n简单来说：由一群人组成的犯罪团伙，他们有严密的组织和分工，从事各种非法活动，比如贩毒、走私、开设赌场等。",
+        "en": "Organized crime is the work of a group that regulates relations among criminal enterprises involved in illegal activities including smuggling and sale of illegal drugs, prostitution, and gambling.\n\nIn simple terms: A criminal group with a strict structure and division of labor, engaging in various illegal activities such as drug trafficking, smuggling, and running gambling operations."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "白领犯罪",
+        "en": "White-Collar Crime"
+      },
+      "definition": {
+        "zh": "白领犯罪是指富裕的“受人尊敬的”个人在商业活动过程中实施的非法行为。\n\n简单来说：指那些有社会地位、受过良好教育的人在商业活动中利用自己的职位或专业知识进行的非法行为，比如贪污、税务欺诈、内幕交易等。",
+        "en": "White-collar crime consists of illegal acts committed by affluent, “respectable” individuals in the course of business activities.\n\nIn simple terms: Illegal acts committed by socially respected, educated individuals in business contexts, leveraging their position or expertise, such as embezzlement, tax fraud, or insider trading."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "网络犯罪",
+        "en": "Cybercrime"
+      },
+      "definition": {
+        "zh": "网络犯罪是主要通过使用计算机硬件或软件进行的非法活动。\n\n简单来说：利用电脑和网络进行的犯罪行为，比如黑客攻击、网络诈骗、散布病毒等。",
+        "en": "Cybercrime is illegal activity primarily conducted through the use of computer hardware or software.\n\nIn simple terms: Criminal acts committed using computers and the internet, such as hacking, online fraud, or spreading viruses."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "仇恨犯罪",
+        "en": "Hate Crime"
+      },
+      "definition": {
+        "zh": "仇恨犯罪是由于犯罪者对种族、宗教、民族、国籍或性取向的偏见而实施的刑事犯罪。也称为偏见犯罪。\n\n简单来说：因为对某个群体（如特定种族、宗教、性取向的人）的仇恨或偏见而实施的犯罪行为。",
+        "en": "Hate crime is a criminal offense committed because of the offender's bias against a race, religion, ethnic group, national origin, or sexual orientation. Also referred to as bias crime.\n\nIn simple terms: A criminal act motivated by hatred or prejudice against a particular group (e.g., based on race, religion, sexual orientation)."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "跨国犯罪",
+        "en": "Transnational Crime"
+      },
+      "definition": {
+        "zh": "跨国犯罪是跨越多个国家边界发生的犯罪。\n\n简单来说：涉及多个国家的犯罪活动，比如国际贩毒、人口贩卖、恐怖主义等。",
+        "en": "Transnational crime is crime that occurs across multiple national borders.\n\nIn simple terms: Criminal activities that involve multiple countries, such as international drug trafficking, human trafficking, or terrorism."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "富裕的“受人尊敬的”个人在商业活动过程中实施的非法行为被称为____________。",
+          "en": "Illegal acts committed by affluent, 'respectable' individuals in the course of business activities are known as ____________."
+        }
+      ],
+      "answer": {
+        "zh": "白领犯罪",
+        "en": "white-collar crime"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "这种犯罪通常与职业和经济地位有关。",
+        "en": "This type of crime is usually associated with occupation and economic status."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "犯罪统计数据通常基于联邦调查局（FBI）每年统计的八种主要犯罪（指数犯罪）和犯罪受害者调查。尽管美国暴力犯罪率近年来显著下降，但与其他西方国家相比仍然较高。",
+        "en": "Crime statistics are typically based on the eight major crimes tabulated annually by the FBI (index crimes) and victimization surveys. Although violent crime rates in the United States have significantly declined in recent years, they remain higher compared to other Western countries."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "指数犯罪",
+        "en": "Index Crimes"
+      },
+      "definition": {
+        "zh": "指数犯罪是联邦调查局（FBI）每年在《统一犯罪报告》中统计的八种犯罪类型：谋杀、强奸、抢劫、袭击、入室盗窃、盗窃、机动车盗窃和纵火。\n\n简单来说：美国联邦调查局用来衡量犯罪率的八种主要犯罪类型，包括暴力犯罪和财产犯罪。",
+        "en": "Index crimes are the eight types of crime tabulated each year by the FBI in the Uniform Crime Reports: murder, rape, robbery, assault, burglary, larceny-theft, motor vehicle theft, and arson.\n\nIn simple terms: The eight major crime types used by the FBI to measure crime rates in the U.S., including both violent and property crimes."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "受害者调查",
+        "en": "Victimization Survey"
+      },
+      "definition": {
+        "zh": "受害者调查是对人口样本进行的问卷或访谈，以确定人们是否曾是犯罪受害者。\n\n简单来说：通过直接询问普通民众是否曾是犯罪的受害者，来收集犯罪数据，弥补官方报告的不足。",
+        "en": "A victimization survey is a questionnaire or interview given to a sample of the population to determine whether people have been victims of crime.\n\nIn simple terms: A method of collecting crime data by directly asking ordinary people if they have been victims of crime, supplementing official reports."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "死刑在美国和全球范围内都是一个备受争议的社会政策和控制问题。功能主义者认为对越轨行为的制裁有助于强化社会规范，而冲突理论家则认为死刑反映了社会不平等，对贫困和少数族裔群体不利。",
+        "en": "The death penalty remains a controversial social policy and control issue in the United States and worldwide. Functionalists argue that sanctions against deviant acts help reinforce social norms, while conflict theorists contend that the death penalty reflects social inequality and disproportionately disadvantages poor and minority groups."
+      }
+    }
+  ]
+}

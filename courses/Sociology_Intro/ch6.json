@@ -1,0 +1,194 @@
+{
+  "大众媒体与社交媒体": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "本章将深入探讨大众媒体和社交媒体在社会学中的作用。我们将从功能主义、冲突、女权主义和互动主义等不同社会学视角审视媒体，了解它们如何塑造我们的社会现实、影响受众行为，并探讨媒体在全球范围内的影响以及审查制度等相关社会政策问题。",
+        "en": "This chapter will delve into the role of mass media and social media in sociology. We will examine media from various sociological perspectives, including functionalist, conflict, feminist, and interactionist views, to understand how they shape our social reality, influence audience behavior, and explore their global reach and related social policy issues such as censorship."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "大众媒体",
+        "en": "Mass Media"
+      },
+      "definition": {
+        "zh": "大众媒体是指将信息传播给广泛受众的印刷和电子传播方式。\n\n简单来说：指那些能够把信息传递给大量人群的工具和渠道，比如报纸、电视、广播、传统网站等。",
+        "en": "Mass media embrace print and electronic means of communication that carry messages to widespread audiences.\n\nIn simple terms: Tools and channels that can transmit information to a large number of people, such as newspapers, television, radio, and traditional websites."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社交媒体",
+        "en": "Social Media"
+      },
+      "definition": {
+        "zh": "社交媒体是指使人们能够创建和分享内容或参与社交网络的网站和在线应用程序。\n\n简单来说：指那些允许用户创建、分享内容并进行社交互动的在线平台，比如微信、微博、Facebook、Twitter等。",
+        "en": "Social media refer to the websites and online applications that enable people to create and share content or to participate in social networking.\n\nIn simple terms: Online platforms that allow users to create and share content and engage in social interaction, such as WeChat, Weibo, Facebook, and Twitter."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "功能主义视角强调媒体在社会中的积极作用，包括娱乐、社会化、规范执行、赋予地位和促进消费。然而，媒体也可能存在功能失调，例如麻醉功能失调。",
+        "en": "The functionalist perspective emphasizes the positive roles of media in society, including entertainment, socialization, enforcing norms, conferring status, and promoting consumption. However, media can also have dysfunctions, such as narcotizing dysfunction."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "麻醉功能失调",
+        "en": "Narcotizing Dysfunction"
+      },
+      "definition": {
+        "zh": "麻醉功能失调是指媒体提供如此大量的信息，以至于受众变得麻木，并且无论问题多么紧迫，都未能对信息采取行动的现象。\n\n简单来说：媒体信息太多，把人淹没了，导致人们对重要问题感到麻木，虽然知道很多信息，却不采取实际行动。",
+        "en": "Narcotizing dysfunction refers to the phenomenon in which the media provide such massive amounts of coverage that the audience becomes numb and fails to act on the information, regardless of how compelling the issue.\n\nIn simple terms: When media overload makes people numb to important issues, causing them to know a lot but take no action."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "根据功能主义视角，以下哪项是大众媒体的功能失调？",
+        "en": "According to the functionalist perspective, which of the following is a dysfunction of mass media?"
+      },
+      "options": [
+        { "zh": "促进消费。", "en": "Promoting consumption." },
+        { "zh": "赋予地位。", "en": "Conferring status." },
+        { "zh": "麻醉功能失调。", "en": "Narcotizing dysfunction." },
+        { "zh": "社会化。", "en": "Socialization." }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "功能失调指的是负面影响。",
+        "en": "Dysfunction refers to a negative impact."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "冲突视角认为媒体反映并可能加剧社会和世界内部的许多分歧，包括基于性别、种族、民族和阶级的划分。媒体通过“守门”过程和传播主导意识形态来维护强大群体的特权。",
+        "en": "The conflict perspective argues that media reflect and may exacerbate many divisions within society and the world, including those based on gender, race, ethnicity, and social class. Media maintain the privileges of powerful groups through 'gatekeeping' and the dissemination of dominant ideologies."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "守门",
+        "en": "Gatekeeping"
+      },
+      "definition": {
+        "zh": "守门是指媒体行业中少数人控制最终到达受众的材料的过程。\n\n简单来说：媒体公司或政府中的少数人决定哪些信息可以被公众看到，哪些不能。他们就像“守门员”一样，筛选信息。",
+        "en": "Gatekeeping is the process by which a relatively small number of people in the media industry control what material eventually reaches the audience.\n\nIn simple terms: A small number of people in media companies or governments decide what information reaches the public and what doesn't. They act as 'gatekeepers,' filtering information."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "数字鸿沟",
+        "en": "Digital Divide"
+      },
+      "definition": {
+        "zh": "数字鸿沟是指低收入群体、种族和少数民族、农村居民以及发展中国家公民相对缺乏最新技术的使用机会。\n\n简单来说：不同群体之间在获取和使用信息技术（如互联网、智能手机）方面存在的巨大差距，导致信息和机会的不平等。",
+        "en": "The digital divide is the relative lack of access to the latest technologies among low-income groups, racial and ethnic minorities, rural residents, and the citizens of developing countries.\n\nIn simple terms: The significant gap between different groups in accessing and using information technology (such as the internet and smartphones), leading to inequalities in information and opportunities."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "____________是指媒体行业中少数人控制最终到达受众的材料的过程。",
+          "en": "____________ refers to the process by which a relatively small number of people in the media industry control what material eventually reaches the audience."
+        }
+      ],
+      "answer": {
+        "zh": "守门",
+        "en": "Gatekeeping"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "想象一下信息传播的“检查点”。",
+        "en": "Imagine a 'checkpoint' for information dissemination."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "女权主义视角认为大众媒体对社会现实存在刻板印象和歪曲，特别是对女性的描绘。互动主义者则关注媒体如何塑造日常社会行为，例如通过社会资本和社交网络。",
+        "en": "The feminist perspective argues that mass media stereotype and misrepresent social reality, particularly in their portrayal of women. Interactionists focus on how media shape day-to-day social behavior, for instance, through social capital and social networks."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会资本",
+        "en": "Social Capital"
+      },
+      "definition": {
+        "zh": "社会资本是建立在互惠信任基础上的社会网络的集体利益。\n\n简单来说：通过人际关系网络（比如朋友、同事、社区联系）获得的资源和好处，这些关系基于信任和互助，能帮助个人或群体实现目标。",
+        "en": "Social capital is the collective benefit of social networks, which are built on reciprocal trust.\n\nIn simple terms: Resources and benefits gained through social networks (e.g., friends, colleagues, community ties), which are based on trust and mutual assistance, helping individuals or groups achieve their goals."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "意见领袖",
+        "en": "Opinion Leader"
+      },
+      "definition": {
+        "zh": "意见领袖是指通过日常个人接触和交流影响他人意见和决策的人。\n\n简单来说：在某个领域或群体中，那些因为专业知识、经验或影响力，能够影响他人观点和决策的人。",
+        "en": "An opinion leader is someone who, through day-to-day personal contacts and communication, influences the opinions and decisions of others.\n\nIn simple terms: Individuals who, due to their expertise, experience, or influence, can shape the opinions and decisions of others within a specific field or group."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "网红/影响者",
+        "en": "Influencer"
+      },
+      "definition": {
+        "zh": "网红/影响者是指在特定行业（如时尚、电子产品或玩具）建立信誉的社交媒体用户。\n\n简单来说：在社交媒体上拥有大量粉丝，并通过发布内容影响他人购买决策或生活方式的人。",
+        "en": "An influencer is a social media user who has established credibility in a specific industry, such as fashion or electronics or toys.\n\nIn simple terms: A social media user with a large following who influences others' purchasing decisions or lifestyles by creating content."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "刻板印象",
+        "en": "Stereotype"
+      },
+      "definition": {
+        "zh": "刻板印象是对群体所有成员不可靠的概括，不承认群体内的个体差异。\n\n简单来说：对某个群体（比如某个民族、某个职业的人）形成的一种过于简化、固定的看法，认为这个群体所有人都一样，不考虑个体差异。",
+        "en": "A stereotype is an unreliable generalization about all members of a group that does not recognize individual differences within the group.\n\nIn simple terms: An oversimplified, fixed idea about a particular group (e.g., an ethnic group, a profession), assuming all members are the same without acknowledging individual differences."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "媒体受众日益细分，广告商通过精准营销来吸引特定市场。媒体的全球影响力巨大，创造了“地球村”，但同时也伴随着审查制度的增加和隐私权的担忧。",
+        "en": "Media audiences are increasingly segmented, with advertisers using precise marketing to target specific markets. The global reach of media is immense, creating a 'global village,' but it also brings increased censorship and concerns about privacy rights."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项是“意见领袖”的定义？",
+        "en": "Which of the following is the definition of an 'opinion leader'?"
+      },
+      "options": [
+        { "zh": "一个在特定行业建立信誉的社交媒体用户。", "en": "A social media user who has established credibility in a specific industry." },
+        { "zh": "通过日常个人接触和交流影响他人意见和决策的人。", "en": "Someone who influences the opinions and decisions of others through day-to-day personal contact and communication." },
+        { "zh": "一个对媒体信息感到麻木并未能采取行动的受众。", "en": "An audience member who becomes numb to media information and fails to act." },
+        { "zh": "一个仅仅消费媒体内容而不与他人互动的人。", "en": "Someone who only consumes media content without interacting with others." }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "意见领袖通过人际互动发挥影响力。",
+        "en": "Opinion leaders exert influence through interpersonal interaction."
+      }
+    }
+  ]
+}

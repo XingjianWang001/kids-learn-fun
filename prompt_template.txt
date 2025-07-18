@@ -34,7 +34,7 @@
 
 ### 4. 如果 `type` 是 `flashcard`:
 - `concept`: (必需) 一个JSON对象，包含`zh`和`en`键，存储要记忆的概念或术语。
-- `definition`: (必需) 一个JSON对象，包含`zh`和`en`键，存储该概念的定义或解释。
+- `definition`: (必需) 一个JSON对象，包含`zh`和`en`键。该字段的内容应包含两部分：首先是来自原文的准确定义，然后另起一行，使用“简单来说：”或类似的引导语，提供一个更长、更通俗易懂的解释。
 - `hint`: (可选) 一个JSON对象，包含`zh`和`en`键，存储提示信息。
 - **注意**: `flashcard` 类型不应包含 `points` 字段。
 
@@ -76,8 +76,8 @@
         "en": "Social Interaction"
       },
       "definition": {
-        "zh": "在社会关系中，个体之间相互作用、相互影响的过程。",
-        "en": "The process of mutual action and influence among individuals in social relationships."
+        "zh": "在社会关系中，个体之间相互作用、相互影响的过程。\n\n简单来说：就像你和朋友一起玩游戏、聊天或吵架，人与人之间做的任何相互影响的事情，都叫社会互动。",
+        "en": "The process of mutual action and influence among individuals in social relationships.\n\nIn simple terms: It's like when you play games, chat, or even argue with your friends. Anything people do that affects each other is social interaction."
       },
       "hint": {
         "zh": "想想人与人之间的“互动”。",

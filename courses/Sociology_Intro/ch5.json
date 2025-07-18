@@ -1,0 +1,594 @@
+{
+  "社会互动、群体与社会结构": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "本章将探讨社会学中的核心概念：社会互动、群体和社会结构。我们将了解社会如何组织成可预测的关系，以及这些元素如何共同塑造我们的日常行为和现实感知。此外，还将深入研究不同类型的社会地位、角色、群体和组织，并从全球视角审视社会结构。",
+        "en": "This chapter will explore core concepts in sociology: social interaction, groups, and social structure. We will understand how societies are organized into predictable relationships, and how these elements collectively shape our daily behaviors and perceptions of reality. Furthermore, we will delve into different types of social statuses, roles, groups, and organizations, and examine social structure from a global perspective."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会互动",
+        "en": "Social Interaction"
+      },
+      "definition": {
+        "zh": "社会互动是指人们相互回应的方式。\n\n简单来说：就是人与人之间相互交流、相互影响的各种行为和过程，比如对话、眼神交流、合作或冲突。",
+        "en": "Social interaction refers to the ways in which people respond to one another.\n\nIn simple terms: It encompasses all the ways people communicate and influence each other, such as conversations, eye contact, cooperation, or conflict."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会结构",
+        "en": "Social Structure"
+      },
+      "definition": {
+        "zh": "社会结构是指一个社会组织成可预测关系的方式。\n\n简单来说：社会中人与人之间、群体与群体之间形成的相对稳定和有规律的模式和关系，比如家庭、学校、政府等制度，以及人们在这些制度中的地位和角色。",
+        "en": "Social structure refers to the way in which a society is organized into predictable relationships.\n\nIn simple terms: It's the relatively stable and patterned ways in which people and groups are organized within a society, including institutions like family, school, and government, as well as the statuses and roles people occupy within them."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会学家使用“地位”一词来指社会中任何社会定义的职位。地位不等于声望，任何职位，无论好坏，都是一种地位。",
+        "en": "Sociologists use the term 'status' to refer to any socially defined position within a society. Status does not equate to prestige; any position, whether deemed good or bad, is a status."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "地位",
+        "en": "Status"
+      },
+      "definition": {
+        "zh": "地位是社会学中用来指一个大型群体或社会中所有社会定义的职位的术语。\n\n简单来说：一个人在社会中或群体中所占据的任何社会位置，比如“学生”、“医生”、“父亲”等。",
+        "en": "Status is a term used by sociologists to refer to any of the full range of socially defined positions within a large group or society.\n\nIn simple terms: Any social position an individual occupies within a society or group, such as 'student,' 'doctor,' or 'father'."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "先赋地位",
+        "en": "Ascribed Status"
+      },
+      "definition": {
+        "zh": "先赋地位是社会赋予一个人的社会地位，不考虑其独特的才能或特征，通常在出生时就已确定。\n\n简单来说：一个人出生时就获得，或者非自愿被社会赋予的地位，比如种族、性别、年龄等，不是通过自己的努力获得的。",
+        "en": "Ascribed status is a social position assigned to a person by society without regard for the person's unique talents or characteristics, generally at birth.\n\nIn simple terms: A status an individual is born with or involuntarily assigned by society, such as race, gender, or age, not earned through personal effort."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "自致地位",
+        "en": "Achieved Status"
+      },
+      "definition": {
+        "zh": "自致地位主要是通过一个人的努力获得的。\n\n简单来说：一个人通过自己的努力、选择和行动获得的社会地位，比如“律师”、“教授”、“罪犯”等。",
+        "en": "Achieved status is attained by a person largely through their own efforts.\n\nIn simple terms: A social position an individual earns through their own efforts, choices, and actions, such as 'lawyer,' 'professor,' or 'convict'."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "主导地位",
+        "en": "Master Status"
+      },
+      "definition": {
+        "zh": "主导地位是指支配其他地位，从而决定一个人在社会中的总体地位的地位。\n\n简单来说：在一个人所有的地位中，最能定义和影响其社会身份和他人对其看法的那个地位，比如“残疾人”、“医生”或“囚犯”。",
+        "en": "A master status dominates other statuses and thereby determines a person's general position within society.\n\nIn simple terms: The most defining and influential status among all of an individual's statuses, shaping their social identity and how others perceive them, such as 'person with a disability,' 'doctor,' or 'convict'."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项是“自致地位”的例子？",
+        "en": "Which of the following is an example of an 'achieved status'?"
+      },
+      "options": [
+        { "zh": "出生时的种族。", "en": "Race at birth." },
+        { "zh": "一个人的性别。", "en": "One's gender." },
+        { "zh": "成为一名律师。", "en": "Becoming a lawyer." },
+        { "zh": "一个人的年龄。", "en": "One's age." }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "自致地位是通过努力获得的。",
+        "en": "Achieved status is earned through effort."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会角色是人们在特定社会地位或身份中应有的行为期望。当一个人同时扮演多个角色，且这些角色之间存在不兼容的期望时，就会发生角色冲突。当同一个社会地位施加相互冲突的需求和期望时，就会发生角色紧张。",
+        "en": "A social role is a set of expectations for people who occupy a given social position or status. Role conflict occurs when incompatible expectations arise from two or more social positions held by the same person. Role strain arises when the same social position imposes conflicting demands and expectations."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会角色",
+        "en": "Social Role"
+      },
+      "definition": {
+        "zh": "社会角色是对于占据特定社会位置或身份的人们的一系列期望。\n\n简单来说：社会对处于特定地位的人应该如何行为、思考和感受的一套规范和期望。比如，一个“老师”应该教书育人，一个“学生”应该努力学习。",
+        "en": "A social role is a set of expectations for people who occupy a given social position or status.\n\nIn simple terms: A set of norms and expectations that society has for how people in a specific status should behave, think, and feel. For example, a 'teacher' is expected to educate, and a 'student' is expected to study diligently."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "角色冲突",
+        "en": "Role Conflict"
+      },
+      "definition": {
+        "zh": "角色冲突发生在同一个人所担任的两个或多个社会职位出现不兼容的期望时。\n\n简单来说：当一个人同时扮演多个角色，而这些角色之间有矛盾的要求，让他难以同时满足。比如，一个警察既是执法者，又是自己孩子的父母，在处理自己孩子犯错时可能面临冲突。",
+        "en": "Role conflict occurs when incompatible expectations arise from two or more social positions held by the same person.\n\nIn simple terms: When an individual simultaneously plays multiple roles, and these roles have conflicting demands, making it difficult to satisfy them all. For example, a police officer who is also a parent might face conflict when dealing with their own child's misbehavior."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "角色紧张",
+        "en": "Role Strain"
+      },
+      "definition": {
+        "zh": "角色紧张是指同一社会地位施加相互冲突的需求和期望时所产生的困难。\n\n简单来说：当一个人扮演一个角色时，这个角色本身就有内在的矛盾或多重压力，让他感到难以应对。比如，一个经理既要严格管理员工，又要关心员工福利，可能感到紧张。",
+        "en": "Role strain refers to the difficulty that arises when the same social position imposes conflicting demands and expectations.\n\nIn simple terms: When a single role an individual plays has inherent contradictions or multiple pressures, making it difficult to cope. For example, a manager who needs to be strict with employees but also care for their well-being might experience strain."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "角色退出",
+        "en": "Role Exit"
+      },
+      "definition": {
+        "zh": "角色退出是指脱离一个对其自我认同至关重要的角色，以便建立新角色和身份的过程。\n\n简单来说：一个人放弃一个对他来说非常重要的身份和角色，转而接受一个新的身份和生活方式。比如，从学生身份转变为职场人士，或者离婚后放弃“配偶”身份。",
+        "en": "Role exit is the process of disengaging from a role that is central to one's self-identity in order to establish a new role and identity.\n\nIn simple terms: The process of an individual giving up a significant identity and role to adopt a new one and a new way of life. For example, transitioning from a student to a professional, or relinquishing the 'spouse' identity after divorce."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "当同一个人所担任的两个或多个社会职位出现不兼容的期望时，就会发生____________。",
+          "en": "____________ occurs when incompatible expectations arise from two or more social positions held by the same person."
+        }
+      ],
+      "answer": {
+        "zh": "角色冲突",
+        "en": "role conflict"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "想想不同角色之间的“矛盾”。",
+        "en": "Think about 'contradictions' between different roles."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "群体是社会结构的重要组成部分。社会学家区分了不同类型的群体，包括初级群体、次级群体、内群体、外群体、参照群体和联盟。",
+        "en": "Groups are a vital component of social structure. Sociologists distinguish between different types of groups, including primary groups, secondary groups, in-groups, out-groups, reference groups, and coalitions."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "群体",
+        "en": "Group"
+      },
+      "definition": {
+        "zh": "群体是指任何数量的具有相似规范、价值观和期望并定期相互交流的人。\n\n简单来说：一群人有共同的特点、价值观，并且经常在一起互动，比如一个篮球队、一个大学联谊会。",
+        "en": "A group consists of any number of people with similar norms, values, and expectations who interact with one another on a regular basis.\n\nIn simple terms: A collection of people with shared characteristics, values, and regular interactions, such as a basketball team or a college fraternity."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "初级群体",
+        "en": "Primary Group"
+      },
+      "definition": {
+        "zh": "初级群体是特征为亲密、面对面互动和合作的小群体。\n\n简单来说：规模小、成员之间关系亲密、互动频繁、情感联系深厚的群体，比如家庭、亲密的朋友圈。",
+        "en": "A primary group is a small group characterized by intimate, face-to-face association and cooperation.\n\nIn simple terms: A small group with close, frequent, and emotionally deep interactions among its members, such as a family or a close circle of friends."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "次级群体",
+        "en": "Secondary Group"
+      },
+      "definition": {
+        "zh": "次级群体是正式的、非个人化的群体，其中社会亲密感或相互理解很少。\n\n简单来说：规模较大、成员之间关系不那么亲密、互动更正式、以完成特定目标为主的群体，比如一个公司、一个大学班级。",
+        "en": "A secondary group is a formal, impersonal group in which there is little social intimacy or mutual understanding.\n\nIn simple terms: A larger group where relationships among members are less intimate, interactions are more formal, and the group primarily focuses on achieving specific goals, such as a company or a university class."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "内群体",
+        "en": "In-group"
+      },
+      "definition": {
+        "zh": "内群体是人们觉得他们属于的任何群体或类别。\n\n简单来说：一个人觉得自己是其中一员，并对其有归属感、认同感的群体。通常会觉得“我们”比“他们”好。",
+        "en": "An in-group is any group or category to which people feel they belong.\n\nIn simple terms: A group that an individual feels they belong to and identifies with, often perceiving 'us' as superior to 'them'."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "外群体",
+        "en": "Out-group"
+      },
+      "definition": {
+        "zh": "外群体是人们觉得他们不属于的任何群体或类别。\n\n简单来说：一个人不属于，也不认同的群体，通常会觉得“他们”和“我们”不同。",
+        "en": "An out-group is any group or category to which people feel they do not belong.\n\nIn simple terms: A group that an individual does not belong to or identify with, often perceiving 'them' as different from 'us'."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "参照群体",
+        "en": "Reference Group"
+      },
+      "definition": {
+        "zh": "参照群体是个人用来评估自己和自己行为标准的任何群体。\n\n简单来说：一个我们用来比较自己、衡量自己行为是否合适的群体，即使我们不一定是这个群体的成员。比如，一个学生会模仿他们崇拜的明星群体。",
+        "en": "A reference group is any group that individuals use as a standard for evaluating themselves and their own behavior.\n\nIn simple terms: A group we use to compare ourselves and evaluate our behavior, even if we are not members of that group. For example, a student might emulate a group of celebrities they admire."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "联盟",
+        "en": "Coalition"
+      },
+      "definition": {
+        "zh": "联盟是为实现共同目标而形成的临时或永久性联盟。\n\n简单来说：为了共同的目标，不同群体或个人暂时或长期地联合起来。",
+        "en": "A coalition is a temporary or permanent alliance geared toward a common goal.\n\nIn simple terms: Different groups or individuals temporarily or permanently uniting to achieve a common objective."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "一个家庭通常被认为是哪种类型的群体？",
+        "en": "Which type of group is a family typically considered?"
+      },
+      "options": [
+        { "zh": "次级群体", "en": "Secondary group" },
+        { "zh": "外群体", "en": "Out-group" },
+        { "zh": "初级群体", "en": "Primary group" },
+        { "zh": "参照群体", "en": "Reference group" }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "想想家庭成员之间的关系特点。",
+        "en": "Think about the characteristics of relationships among family members."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会网络是一系列社会关系，将一个人直接与他人联系起来，并通过他们间接与更多人联系。社会机构是围绕基本社会需求而形成的信仰和行为的组织模式。",
+        "en": "A social network is a series of social relationships that links a person directly to others and through them indirectly to still more people. Social institutions are organized patterns of beliefs and behavior centered on meeting basic social needs."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会网络",
+        "en": "Social Network"
+      },
+      "definition": {
+        "zh": "社会网络是一系列社会关系，将一个人直接与他人联系起来，并通过他们间接与更多人联系。\n\n简单来说：由人际关系构成的复杂网络，一个人通过朋友认识朋友的朋友，形成一个庞大的关系网。",
+        "en": "A social network is a series of social relationships that links a person directly to others and through them indirectly to still more people.\n\nIn simple terms: A complex web of human relationships where an individual is connected to others, and through them, to even more people, forming a vast network of connections."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会机构",
+        "en": "Social Institution"
+      },
+      "definition": {
+        "zh": "社会机构是围绕基本社会需求（如人员更替（家庭）和维护秩序（政府））而形成的信仰和行为的组织模式。\n\n简单来说：为了满足社会的基本需求而建立的、有组织、有规律的信仰和行为模式，比如家庭、教育、政府、经济、宗教等。",
+        "en": "A social institution is an organized pattern of beliefs and behavior centered on meeting basic social needs such as replacing personnel (the family) and preserving order (the government).\n\nIn simple terms: Organized and regular patterns of beliefs and behaviors established to meet fundamental societal needs, such as family, education, government, economy, and religion."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "功能主义者认为社会机构对于社会生存至关重要。冲突理论家则认为社会机构维护了社会中最有权势的个人和群体的特权。互动主义者强调我们的社会行为受我们接受的角色和地位、我们所属的群体以及我们所处的机构的影响。",
+        "en": "Functionalists view social institutions as essential for societal survival. Conflict theorists argue that social institutions maintain the privileges of the most powerful individuals and groups. Interactionists emphasize that our social behavior is conditioned by the roles and statuses we accept, the groups we belong to, and the institutions within which we function."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "哪种社会学视角认为社会机构维护了社会中最有权势的个人和群体的特权？",
+        "en": "Which sociological perspective suggests that social institutions maintain the privileges of the most powerful individuals and groups in a society?"
+      },
+      "options": [
+        { "zh": "功能主义视角", "en": "Functionalist perspective" },
+        { "zh": "冲突视角", "en": "Conflict perspective" },
+        { "zh": "互动主义视角", "en": "Interactionist perspective" }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "这个视角关注不平等和权力斗争。",
+        "en": "This perspective focuses on inequality and power struggles."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "随着当代社会变得更加复杂，我们的生活越来越受正式组织的支配。官僚制是正式组织的一个组成部分，它利用规则和层级排名来提高效率。",
+        "en": "As contemporary societies have become more complex, our lives are increasingly dominated by formal organizations. Bureaucracy is a component of formal organization that uses rules and hierarchical ranking to achieve efficiency."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "正式组织",
+        "en": "Formal Organization"
+      },
+      "definition": {
+        "zh": "正式组织是为特定目的而设计并为实现最大效率而构建的群体。\n\n简单来说：为了实现某个特定目标而有意识地建立起来的、有明确规则和结构的群体，比如公司、大学、政府机构。",
+        "en": "A formal organization is a group designed for a special purpose and structured for maximum efficiency.\n\nIn simple terms: A group intentionally established with clear rules and structures to achieve a specific purpose, such as a company, university, or government agency."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "官僚制",
+        "en": "Bureaucracy"
+      },
+      "definition": {
+        "zh": "官僚制是正式组织的一个组成部分，它利用规则和层级排名来提高效率。\n\n简单来说：一种组织管理方式，特点是分工明确、层级森严、规则书面化、非个人化、按技术资格雇佣，目的是为了高效运作。",
+        "en": "A bureaucracy is a component of formal organization that uses rules and hierarchical ranking to achieve efficiency.\n\nIn simple terms: An organizational management system characterized by clear division of labor, strict hierarchy, written rules, impersonality, and employment based on technical qualifications, all aimed at efficient operation."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "异化",
+        "en": "Alienation"
+      },
+      "definition": {
+        "zh": "异化是一种与周围社会疏远或分离的状态。\n\n简单来说：在官僚制下，工人因为过度专业化，觉得自己的工作没有意义，与工作产品、同事甚至自身都产生了疏离感。",
+        "en": "Alienation is a condition of estrangement or dissociation from the surrounding society.\n\nIn simple terms: In a bureaucracy, workers, due to over-specialization, feel their work is meaningless and experience a sense of detachment from the product of their labor, their colleagues, and even themselves."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "训练有素的无能",
+        "en": "Trained Incapacity"
+      },
+      "definition": {
+        "zh": "训练有素的无能是指官僚机构中的工人变得如此专业化，以至于他们产生盲点并未能注意到明显问题的倾向。\n\n简单来说：一个人因为在某个领域过度专业化，反而对其他领域或整体情况视而不见，导致无法解决简单或明显的问题。",
+        "en": "Trained incapacity is the tendency of workers in a bureaucracy to become so specialized that they develop blind spots and fail to notice obvious problems.\n\nIn simple terms: When someone becomes so specialized in one area that they develop blind spots and fail to notice obvious problems or broader issues outside their narrow expertise."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "目标位移",
+        "en": "Goal Displacement"
+      },
+      "definition": {
+        "zh": "目标位移是指过分遵守官僚机构的官方规定，以至于变得功能失调。\n\n简单来说：组织成员过于死板地遵守规则，以至于忘记了组织最初的目标，甚至阻碍了目标的实现。",
+        "en": "Goal displacement refers to overzealous conformity to official regulations of a bureaucracy to the point of becoming dysfunctional.\n\nIn simple terms: When members of an organization become so rigid in following rules that they lose sight of the organization's original goals, sometimes even hindering their achievement."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "彼得原理",
+        "en": "Peter Principle"
+      },
+      "definition": {
+        "zh": "彼得原理是一种组织生活原则，根据该原则，层级结构中的每个员工都倾向于晋升到他们无法胜任的级别。\n\n简单来说：在组织中，员工会一直被提拔，直到他们升到一个自己能力无法胜任的职位，然后就停留在那个位置上。",
+        "en": "The Peter principle is a principle of organizational life according to which every employee within a hierarchy tends to rise to their level of incompetence.\n\nIn simple terms: In an organization, employees are promoted until they reach a position where they are no longer competent, and then they remain in that position."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "官僚化",
+        "en": "Bureaucratization"
+      },
+      "definition": {
+        "zh": "官僚化是指一个群体、组织或社会运动变得越来越官僚化的过程。\n\n简单来说：一个组织或群体变得越来越像官僚机构，有更多的规则、层级和正式程序。",
+        "en": "Bureaucratization is the process by which a group, organization, or social movement becomes increasingly bureaucratic.\n\nIn simple terms: The process where an organization or group increasingly adopts bureaucratic characteristics, such as more rules, hierarchy, and formal procedures."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "寡头铁律",
+        "en": "Iron Law of Oligarchy"
+      },
+      "definition": {
+        "zh": "寡头铁律是一种组织生活原则，根据该原则，即使是民主组织最终也会发展成为由少数人统治的官僚机构。\n\n简单来说：即使是最初很民主的组织，最终也会不可避免地被少数精英领导者所控制，形成一个由少数人统治的寡头政治。",
+        "en": "The iron law of oligarchy is a principle of organizational life under which even a democratic organization will eventually develop into a bureaucracy ruled by a few individuals.\n\nIn simple terms: Even organizations that start democratically will inevitably become controlled by a small group of elite leaders, forming an oligarchy ruled by a few."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "根据马克斯·韦伯的观点，以下哪项不是理想官僚制的特征？",
+        "en": "According to Max Weber, which of the following is NOT a characteristic of an ideal bureaucracy?"
+      },
+      "options": [
+        { "zh": "分工明确", "en": "Clear division of labor" },
+        { "zh": "非个人化", "en": "Impersonality" },
+        { "zh": "非正式规则", "en": "Informal rules" },
+        { "zh": "基于技术资格的雇佣", "en": "Employment based on technical qualifications" }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "理想官僚制强调的是书面和正式的规则。",
+        "en": "An ideal bureaucracy emphasizes written and formal rules."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "埃米尔·涂尔干（Émile Durkheim）提出了机械团结和有机团结的概念，以描述劳动分工简单或复杂的社会中形成的意识。费迪南德·滕尼斯（Ferdinand Tönnies）则使用“共同体”（Gemeinschaft）和“社会”（Gesellschaft）来描述不同类型的社会。",
+        "en": "Émile Durkheim developed the concepts of mechanical solidarity and organic solidarity to describe the consciousness that develops in societies with simple or complex divisions of labor, respectively. Ferdinand Tönnies used the terms 'Gemeinschaft' (community) and 'Gesellschaft' (society) to describe different types of societies."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "机械团结",
+        "en": "Mechanical Solidarity"
+      },
+      "definition": {
+        "zh": "机械团结存在于劳动分工最小的社会中。它强调群体团结的集体意识。\n\n简单来说：在早期或简单社会中，人们因为从事相似的工作、拥有相似的信仰和价值观而紧密联系在一起，就像机器的各个部分一样，功能相同，容易替代。",
+        "en": "Mechanical solidarity exists in societies with a minimal division of labor. A collective consciousness develops that emphasizes group solidarity.\n\nIn simple terms: In early or simple societies, people are closely connected because they do similar work and share similar beliefs and values, much like parts of a machine that perform the same function and are easily replaceable."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "有机团结",
+        "en": "Organic Solidarity"
+      },
+      "definition": {
+        "zh": "有机团结存在于劳动分工复杂的社会中。它强调群体和机构之间的相互依赖性，就像身体的器官相互依赖一样。\n\n简单来说：在现代或复杂社会中，人们因为从事不同的专业工作而相互依赖，就像身体的不同器官一样，虽然功能不同，但缺一不可，共同维持社会运转。",
+        "en": "Organic solidarity exists in societies with a complex division of labor. It emphasizes mutual interdependence among groups and institutions—in much the same way as organs of the body are interdependent.\n\nIn simple terms: In modern or complex societies, people are interdependent due to specialized work, much like different organs of a body; though their functions differ, each is essential for the society to function as a whole."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "共同体 (Gemeinschaft)",
+        "en": "Gemeinschaft"
+      },
+      "definition": {
+        "zh": "共同体是一种紧密联系的社区，通常存在于农村地区，成员之间通过强烈的个人纽带团结在一起。\n\n简单来说：一种传统、亲密、基于血缘或地域的小型社区，人们相互熟悉，关系紧密，价值观高度一致，通常见于农村生活。",
+        "en": "A Gemeinschaft community is a close-knit community, often found in rural areas, in which strong personal bonds unite members.\n\nIn simple terms: A traditional, intimate, small community based on kinship or locality, where people know each other well, have close relationships, and share strong common values, typically found in rural life."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会 (Gesellschaft)",
+        "en": "Gesellschaft"
+      },
+      "definition": {
+        "zh": "社会是一种理想类型，是现代城市生活的特征。在这里，大多数人都是陌生人，彼此之间很少有共同点。\n\n简单来说：一种现代、大型、非个人化的社会，人们之间关系疏远，主要基于理性、目标导向的交往，通常见于城市生活。",
+        "en": "A Gesellschaft is an ideal type characteristic of modern urban life. Here, most people are strangers and feel little in common with one another.\n\nIn simple terms: A modern, large, impersonal society where relationships are often distant and primarily based on rational, goal-oriented interactions, typically found in urban life."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "根据费迪南德·滕尼斯（Ferdinand Tönnies）的观点，以下哪项描述了“共同体”（Gemeinschaft）？",
+        "en": "According to Ferdinand Tönnies, which of the following describes 'Gemeinschaft'?"
+      },
+      "options": [
+        { "zh": "大型、非个人化的城市社区。", "en": "A large, impersonal urban community." },
+        { "zh": "成员之间通过强烈的个人纽带团结在一起的紧密联系的社区。", "en": "A close-knit community in which strong personal bonds unite members." },
+        { "zh": "主要由经济奖励驱动的组织。", "en": "An organization primarily driven by economic rewards." },
+        { "zh": "一个由少数精英统治的官僚机构。", "en": "A bureaucracy ruled by a few elites." }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "共同体强调亲密关系和集体感。",
+        "en": "Gemeinschaft emphasizes intimate relationships and a sense of community."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "格哈德·伦斯基（Gerhard Lenski）的社会文化演进方法认为，社会是根据技术水平而变化的。他区分了前工业社会（狩猎采集社会、园艺社会、农业社会）、工业社会和后工业社会，以及后现代社会。",
+        "en": "Gerhard Lenski's sociocultural evolution approach posits that societies change according to their level of technology. He distinguished between preindustrial societies (hunting-and-gathering, horticultural, agrarian), industrial societies, postindustrial societies, and postmodern societies."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会文化演进",
+        "en": "Sociocultural Evolution"
+      },
+      "definition": {
+        "zh": "社会文化演进是指社会中由于连续性、创新和选择的相互作用而产生的长期社会趋势。\n\n简单来说：社会随着时间推移，在技术、文化和组织结构上发生的变化和发展过程，通常由技术水平的进步驱动。",
+        "en": "Sociocultural evolution refers to long-term social trends in societies resulting from the interplay of continuity, innovation, and selection.\n\nIn simple terms: The process of change and development in societies over time, in terms of technology, culture, and organizational structure, often driven by advancements in technology."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "前工业社会",
+        "en": "Preindustrial Society"
+      },
+      "definition": {
+        "zh": "前工业社会是技术水平较低的社会，包括狩猎采集社会、园艺社会和农业社会。\n\n简单来说：在工业革命之前，主要依靠自然资源（如狩猎采集）、简单种植（园艺）或基本农业（农业）维持生存的社会。",
+        "en": "A preindustrial society is a society with a low level of technology, including hunting-and-gathering, horticultural, and agrarian societies.\n\nIn simple terms: Societies before the Industrial Revolution, primarily relying on natural resources (like hunting and gathering), simple cultivation (horticultural), or basic agriculture (agrarian) for survival."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "工业社会",
+        "en": "Industrial Society"
+      },
+      "definition": {
+        "zh": "工业社会是依靠机械化生产商品和服务的社会。\n\n简单来说：以机器生产和工厂化大生产为主的社会，通常伴随着城市化和技术进步。",
+        "en": "An industrial society is a society that depends on mechanization to produce its goods and services.\n\nIn simple terms: A society primarily based on machine production and large-scale factory manufacturing, usually accompanied by urbanization and technological advancement."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "后工业社会",
+        "en": "Postindustrial Society"
+      },
+      "definition": {
+        "zh": "后工业社会是指其经济系统主要从事信息处理和控制的社会。\n\n简单来说：经济重心从制造业转向服务业和信息产业的社会，信息和知识成为最重要的资源。",
+        "en": "A postindustrial society is a society whose economic system is engaged primarily in the processing and control of information.\n\nIn simple terms: A society where the economic focus shifts from manufacturing to service and information industries, with information and knowledge becoming the most important resources."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "后现代社会",
+        "en": "Postmodern Society"
+      },
+      "definition": {
+        "zh": "后现代社会是一个技术先进、沉迷于消费品和媒体图像的社会。\n\n简单来说：一个高度依赖技术、信息和全球化，同时人们更加关注消费、媒体形象和个人选择的社会。",
+        "en": "A postmodern society is a technologically sophisticated society that is preoccupied with consumer goods and media images.\n\nIn simple terms: A society highly reliant on technology, information, and globalization, where people are also more focused on consumption, media images, and individual choices."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "在格哈德·伦斯基的社会文化演进方法中，哪个社会类型主要从事信息处理和控制？",
+        "en": "In Gerhard Lenski's sociocultural evolution approach, which societal type is primarily engaged in the processing and control of information?"
+      },
+      "options": [
+        { "zh": "工业社会", "en": "Industrial society" },
+        { "zh": "农业社会", "en": "Agrarian society" },
+        { "zh": "后工业社会", "en": "Postindustrial society" },
+        { "zh": "狩猎采集社会", "en": "Hunting-and-gathering society" }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "这个社会类型强调信息的作用。",
+        "en": "This societal type emphasizes the role of information."
+      }
+    }
+  ]
+}

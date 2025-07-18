@@ -1,0 +1,568 @@
+{
+  "文化入门": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "本章将探讨文化及其在社会学中的重要性。文化是社会生活的核心，塑造着我们的行为、信仰和互动。我们还将深入了解文化的各个组成部分，以及它如何在全球范围内发展和传播。",
+        "en": "This chapter will explore culture and its significance in sociology. Culture is central to social life, shaping our behaviors, beliefs, and interactions. We will also delve into the various components of culture and how it develops and spreads globally."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "文化",
+        "en": "Culture"
+      },
+      "definition": {
+        "zh": "文化是习得的、通过社会传播的习俗、知识、物质对象和行为的总和。\n\n简单来说：文化就像是一个社会的“操作手册”和“工具箱”，包含了人们共同学习、分享和传承的所有东西，无论是看得见的物品（如手机、汽车），还是看不见的观念（如价值观、信仰）。",
+        "en": "Culture is the totality of learned, socially transmitted customs, knowledge, material objects, and behavior.\n\nIn simple terms: Culture is like a society's 'operating manual' and 'toolbox,' encompassing everything people collectively learn, share, and pass down, whether it's tangible items (like phones, cars) or intangible ideas (like values, beliefs)."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会",
+        "en": "Society"
+      },
+      "definition": {
+        "zh": "一个社会是指生活在同一地域、相对独立于其区域外的人口，并参与共同文化的相当数量的人群。\n\n简单来说：一群生活在一起，共享很多东西（比如语言、习俗），并且相互联系的人，就可以称之为社会。例如，一个国家就是一个社会，一个大的部落也可以是一个社会。",
+        "en": "A society is a fairly large number of people living in the same territory, who are relatively independent of people outside their area and who participate in a common culture.\n\nIn simple terms: A group of people living together, sharing many things (like language, customs), and interacting with each other can be called a society. For example, a nation is a society, and a large tribe can also be a society."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "根据社会学定义，以下哪项最能概括“文化”？",
+        "en": "According to the sociological definition, which of the following best summarizes 'culture'?"
+      },
+      "options": [
+        { "zh": "仅仅是艺术和音乐。", "en": "Only art and music." },
+        { "zh": "只有物质产品。", "en": "Only material products." },
+        { "zh": "习得的、通过社会传播的习俗、知识、物质对象和行为的总和。", "en": "The totality of learned, socially transmitted customs, knowledge, material objects, and behavior." },
+        { "zh": "一个特定地区的地理特征。", "en": "Geographical features of a particular region." }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "文化包含物质和非物质两方面。",
+        "en": "Culture includes both material and nonmaterial aspects."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "尽管文化具有多样性，但世界上所有社会都分享一些共同的实践和信仰，这些被称为文化普遍性。然而，这些普遍性的具体表现形式在不同社会中会有很大差异。",
+        "en": "Despite cultural diversity, all societies worldwide share some common practices and beliefs, known as cultural universals. However, the specific expression of these universals can vary considerably from one society to another."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "文化普遍性",
+        "en": "Cultural Universal"
+      },
+      "definition": {
+        "zh": "文化普遍性是指在世界各地所有文化中都能找到的实践或信仰。\n\n简单来说：就是所有人类社会都会有的一些共同特征，比如家庭、婚礼、体育运动、烹饪等，尽管它们在不同地方的具体形式可能千差万别。",
+        "en": "Cultural universals are practices and beliefs found in all cultures around the world.\n\nIn simple terms: These are common characteristics found in all human societies, such as family, weddings, sports, and cooking, even though their specific forms may vary greatly from place to place."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "文化____________是指在世界各地所有文化中都能找到的实践或信仰。",
+          "en": "Cultural ____________ are practices and beliefs found in all cultures around the world."
+        }
+      ],
+      "answer": {
+        "zh": "普遍性",
+        "en": "universals"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "它强调的是所有文化中都存在的共同点。",
+        "en": "It emphasizes commonalities found across all cultures."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "由于我们大多数人一生都沉浸在单一文化中，我们往往会认为自己的文化特征和实践是“正常”或优越的。这被称为民族中心主义，而其反面是文化相对主义。",
+        "en": "Since most of us are embedded in a single culture for most of our lives, we tend to think of our native cultural traits and practices as 'normal' or superior. This is known as ethnocentrism, and its opposite is cultural relativism."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "民族中心主义",
+        "en": "Ethnocentrism"
+      },
+      "definition": {
+        "zh": "民族中心主义是指倾向于认为自己的文化和生活方式是规范的或优于所有其他文化的倾向。\n\n简单来说：就是觉得“我们”的方式是最好的，而“他们”的方式是奇怪的或错误的。比如，认为自己的饮食习惯比其他国家的更健康、更美味。",
+        "en": "Ethnocentrism refers to the tendency to assume that one's own culture and way of life represent the norm or are superior to all others.\n\nIn simple terms: It's thinking that 'our' way is the best, and 'their' way is strange or wrong. For example, believing your own eating habits are healthier or more delicious than those of other countries."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "文化相对主义",
+        "en": "Cultural Relativism"
+      },
+      "definition": {
+        "zh": "文化相对主义是指从人们自身文化的角度看待其行为和信仰。\n\n简单来说：就是尝试理解别人的文化时，不带有自己的偏见，而是站在他们的角度去理解，认识到不同社会背景会产生不同的规范和价值观。",
+        "en": "Cultural relativism refers to the viewing of people's behavior and beliefs from the perspective of their own culture.\n\nIn simple terms: It's trying to understand other cultures without your own biases, putting yourself in their shoes to understand, and recognizing that different social contexts give rise to different norms and values."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪种观念是民族中心主义的体现？",
+        "en": "Which of the following ideas demonstrates ethnocentrism?"
+      },
+      "options": [
+        { "zh": "理解萨米文化中关于雪和冰的区别。", "en": "Understanding the distinctions concerning snow and ice in Sami culture." },
+        { "zh": "认为自己的语言比所有其他语言都优越。", "en": "Believing one's own language is superior to all others." },
+        { "zh": "观察日本人在厕所里使用专用拖鞋，并理解其文化背景。", "en": "Observing the Japanese use of special slippers exclusively for the toilet and understanding its cultural context." }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "民族中心主义意味着以自己的文化为标准来评判他人。",
+        "en": "Ethnocentrism means judging others based on your own culture's standards."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会生物学与文化研究人类行为的生物学基础，而社会学则强调文化的习得性。语言是文化的基础，它不仅描述现实，还塑造文化。",
+        "en": "Sociobiology studies the biological bases of human behavior in relation to culture, while sociology emphasizes the learned nature of culture. Language is the foundation of every culture; it not only describes reality but also shapes it."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会生物学",
+        "en": "Sociobiology"
+      },
+      "definition": {
+        "zh": "社会生物学是一门涉及社会行为生物学基础的系统研究的学科。\n\n简单来说：这门学科试图用生物学（比如基因、进化）的原理来解释为什么人类会有某些社会行为，而不是仅仅归结为后天学习或环境影响。",
+        "en": "Sociobiology is a discipline that involves the systematic study of the biological bases of social behavior.\n\nIn simple terms: This field attempts to explain why humans exhibit certain social behaviors using biological principles (such as genes, evolution), rather than attributing them solely to learned behavior or environmental influences."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "语言",
+        "en": "Language"
+      },
+      "definition": {
+        "zh": "语言是文化所有方面的词义和符号的抽象系统；包括手势和其他非语言交流。\n\n简单来说：语言不只是我们说话、写字用的词语，也包括所有能让我们交流和理解世界的符号系统，比如非语言的手势、表情，甚至数学符号。",
+        "en": "Language is an abstract system of word meanings and symbols for all aspects of culture; includes gestures and other nonverbal communication.\n\nIn simple terms: Language is not just the words we speak or write, but also all symbolic systems that allow us to communicate and understand the world, such as nonverbal gestures, expressions, and even mathematical symbols."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "非语言交流",
+        "en": "Nonverbal Communication"
+      },
+      "definition": {
+        "zh": "非语言交流包括手势、面部表情和其他习得的视觉图像。\n\n简单来说：就是不通过语言，而是通过身体动作、表情、眼神等方式来传递信息。比如，你高兴时会笑，生气时会皱眉。",
+        "en": "Nonverbal communication includes gestures, facial expressions, and other learned visual images.\n\nIn simple terms: It's communicating without words, but through body movements, facial expressions, eye contact, etc. For example, you smile when you're happy and frown when you're angry."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "符号",
+        "en": "Symbol"
+      },
+      "definition": {
+        "zh": "符号是构成人类交流基础的手势、对象或词语。\n\n简单来说：任何能代表其他事物的手势、物品或词语都叫符号。比如红绿灯的颜色，或是“和平”手势。",
+        "en": "A symbol is a gesture, object, or word that forms the basis of human communication.\n\nIn simple terms: Any gesture, object, or word that represents something else is a symbol. For example, the colors of a traffic light, or the 'peace' sign."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项不是非语言交流的例子？",
+        "en": "Which of the following is NOT an example of nonverbal communication?"
+      },
+      "options": [
+        { "zh": "高五庆祝胜利。", "en": "High-fiving to celebrate a victory." },
+        { "zh": "对着朋友微笑。", "en": "Smiling at a friend." },
+        { "zh": "用电话给朋友发短信。", "en": "Texting a friend on the phone." },
+        { "zh": "通过点头表示同意。", "en": "Nodding to show agreement." }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "非语言交流不涉及书面或口头语言。",
+        "en": "Nonverbal communication does not involve written or spoken language."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会通过规范和价值观来维护秩序和指导行为。规范是既定的行为标准，而价值观是关于什么是好、可取和适当的集体观念。",
+        "en": "Societies maintain order and guide behavior through norms and values. Norms are established standards of behavior, while values are collective conceptions of what is considered good, desirable, and proper."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "规范",
+        "en": "Norm"
+      },
+      "definition": {
+        "zh": "规范是社会维护的行为既定标准。\n\n简单来说：社会里大家普遍遵守的“规矩”，告诉你什么能做，什么不能做。比如排队、见面打招呼都是规范。",
+        "en": "Norms are established standards of behavior maintained by society.\n\nIn simple terms: These are the 'rules' generally followed in a society, telling you what you can and cannot do. For example, queuing up or greeting people are norms."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "正式规范",
+        "en": "Formal Norm"
+      },
+      "definition": {
+        "zh": "正式规范通常被书写下来，并规定了违反行为的严格惩罚。\n\n简单来说：那些写在纸上，有明确惩罚规定的规矩，比如法律、规章制度。",
+        "en": "Formal norms are generally written down and specify strict punishments for violations.\n\nIn simple terms: These are rules written down, with clear punishments for breaking them, such as laws and regulations."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "非正式规范",
+        "en": "Informal Norm"
+      },
+      "definition": {
+        "zh": "非正式规范通常被理解但没有精确记录。\n\n简单来说：社会中大家默认的、没有明确写下来的规矩，比如穿衣得体、排队不插队等。",
+        "en": "Informal norms are generally understood but not precisely recorded.\n\nIn simple terms: These are unspoken, unwritten rules that are generally understood in a society, such as dressing appropriately or not cutting in line."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "道德规范 (Mores)",
+        "en": "Mores"
+      },
+      "definition": {
+        "zh": "道德规范是社会认为对社会福祉高度必要并要求服从的规范。\n\n简单来说：社会上那些被认为非常重要，违反了会引起强烈谴责甚至惩罚的规矩，比如不能杀人、不能偷盗。",
+        "en": "Mores are norms deemed highly necessary to the welfare of society and demand obedience.\n\nIn simple terms: These are highly important social rules, the violation of which would lead to strong disapproval or even punishment, such as prohibitions against murder or theft."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "风俗 (Folkway)",
+        "en": "Folkway"
+      },
+      "definition": {
+        "zh": "风俗是规范日常行为的规范，其违反行为引起的关注相对较少。\n\n简单来说：日常生活中那些比较随意，违反了也不会有严重后果的习惯或礼仪，比如吃饭用筷子还是刀叉，或者在电梯里要不要跟人说话。",
+        "en": "A folkway is a norm governing everyday behavior whose violation raises comparatively little concern.\n\nIn simple terms: These are informal customs or courtesies in daily life, the violation of which doesn't lead to serious consequences, such as using chopsticks versus a fork and knife, or whether to talk to people in an elevator."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "制裁",
+        "en": "Sanction"
+      },
+      "definition": {
+        "zh": "制裁是指与社会规范相关的行为的惩罚或奖励。\n\n简单来说：为了鼓励人们遵守规范或惩罚违反规范的行为，社会会给予的奖励（如表扬）或惩罚（如罚款、批评）。",
+        "en": "A sanction is a penalty or reward for conduct concerning a social norm.\n\nIn simple terms: These are rewards (like praise) or punishments (like fines, criticism) given by society to encourage people to follow norms or to penalize those who violate them."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "价值观",
+        "en": "Value"
+      },
+      "definition": {
+        "zh": "价值观是关于文化中什么是好的、可取的和适当的，或者什么是坏的、不可取的和不适当的集体观念。\n\n简单来说：一个社会普遍认为“什么重要”、“什么正确”的信念。比如，诚实、自由、努力工作在很多文化中都是重要的价值观。",
+        "en": "A value is a collective conception of what is considered good, desirable, and proper—or bad, undesirable, and improper—in a culture.\n\nIn simple terms: These are the beliefs that a society generally considers 'important' or 'right.' For example, honesty, freedom, and hard work are important values in many cultures."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项是“道德规范 (Mores)”的例子？",
+        "en": "Which of the following is an example of 'Mores'?"
+      },
+      "options": [
+        { "zh": "在餐厅排队。", "en": "Waiting in line at a restaurant." },
+        { "zh": "禁止谋杀。", "en": "Prohibition of murder." },
+        { "zh": "在公共场合穿衣得体。", "en": "Dressing appropriately in public." },
+        { "zh": "在电梯里不对陌生人说话。", "en": "Not speaking to strangers in an elevator." }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "道德规范是社会福祉所必需的。",
+        "en": "Mores are necessary for the welfare of society."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "近年来，文化冲突已成为一个全球性现象，有时被视为“文明的冲突”。文化信仰也受到主导意识形态的影响。",
+        "en": "In recent years, cultural conflict has become a global phenomenon, sometimes viewed as a 'clash of civilizations.' Cultural beliefs are also influenced by the dominant ideology."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "文化战争",
+        "en": "Culture War"
+      },
+      "definition": {
+        "zh": "文化战争是指社会围绕有争议的文化要素产生两极分化的现象。\n\n简单来说：当社会中不同群体在一些重要的文化议题（比如价值观、道德观、生活方式等）上发生激烈争执，导致社会分裂和对抗时，就称为文化战争。例如关于堕胎权、同性婚姻的争论。",
+        "en": "Culture war refers to the polarization of society over controversial cultural elements.\n\nIn simple terms: When different groups in a society intensely dispute important cultural issues (such as values, morals, lifestyles), leading to social division and confrontation, it's called a culture war. Examples include debates over abortion rights or same-sex marriage."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "主导意识形态",
+        "en": "Dominant Ideology"
+      },
+      "definition": {
+        "zh": "主导意识形态是一套有助于维护强大社会、经济和政治利益的文化信仰和实践。\n\n简单来说：一个社会中，那些掌握权力的人（或群体）所推崇和传播的思想、观念，它们通常有利于维护现有秩序和他们的利益。",
+        "en": "A dominant ideology is a set of cultural beliefs and practices that help maintain powerful social, economic, and political interests.\n\nIn simple terms: These are the ideas and beliefs promoted and disseminated by those in power (or dominant groups) in a society, which generally serve to maintain the existing order and their interests."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "在一个国家内部，人口的某些部分可能会发展出不同于主导社会的文化模式，这包括亚文化和反文化。当人们遇到不同于自己的文化习俗时，可能会经历文化冲击。",
+        "en": "Within a single nation, certain segments of the populace may develop cultural patterns that differ from the patterns of the dominant society. This includes subcultures and countercultures. People may also experience culture shock when encountering cultural practices different from their own."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "亚文化",
+        "en": "Subculture"
+      },
+      "definition": {
+        "zh": "亚文化是社会中一个共享不同于主流社会模式的独特风俗、民俗和价值观的群体。\n\n简单来说：一个大文化里面，有一群人有自己独特的爱好、语言、习惯，但总体上还是认同主流文化。比如，动漫迷群体、某个地方的方言使用者。",
+        "en": "A subculture is a segment of society that shares a distinctive pattern of mores, folkways, and values that differs from the pattern of the larger society.\n\nIn simple terms: Within a larger culture, there's a group of people with unique hobbies, language, and customs, but they generally still identify with the mainstream culture. Examples include anime fans or speakers of a regional dialect."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "行话 (Argot)",
+        "en": "Argot"
+      },
+      "definition": {
+        "zh": "行话是特定群体或亚文化成员使用的专业语言。\n\n简单来说：特定圈子里的人才懂的“黑话”或专业术语。比如程序员之间的“bug”、“debug”，或者游戏玩家的“GG”、“MVP”。",
+        "en": "Argot is specialized language used by members of a group or subculture.\n\nIn simple terms: It's jargon or specialized terminology understood only by people within a specific group. For example, 'bug' and 'debug' among programmers, or 'GG' and 'MVP' among gamers."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "反文化",
+        "en": "Counterculture"
+      },
+      "definition": {
+        "zh": "反文化是故意反对较大文化某些方面的亚文化。\n\n简单来说：一个群体不仅有自己的特色，还明确反对或挑战主流文化的一些价值观和行为。比如上世纪的嬉皮士运动。",
+        "en": "A counterculture is a subculture that conspicuously and deliberately opposes certain aspects of the larger culture.\n\nIn simple terms: A group that not only has its own characteristics but also explicitly opposes or challenges some values and behaviors of the mainstream culture. An example is the hippie movement of the last century."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项最能区分“亚文化”和“反文化”？",
+        "en": "Which of the following best distinguishes 'subculture' from 'counterculture'?"
+      },
+      "options": [
+        { "zh": "亚文化规模更大，反文化规模较小。", "en": "Subcultures are larger, while countercultures are smaller." },
+        { "zh": "亚文化是合法的，反文化是非法的。", "en": "Subcultures are legal, while countercultures are illegal." },
+        { "zh": "亚文化与主流文化兼容，而反文化则刻意反对主流文化。", "en": "Subcultures are compatible with the dominant culture, while countercultures deliberately oppose it." },
+        { "zh": "亚文化只存在于年轻人中，反文化则没有年龄限制。", "en": "Subcultures exist only among young people, while countercultures have no age limits." }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "反文化具有对抗性。",
+        "en": "Countercultures are antagonistic."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "文化冲击",
+        "en": "Culture Shock"
+      },
+      "definition": {
+        "zh": "文化冲击是指人们在遇到与自己不同的文化习俗时所经历的惊喜和迷失感。\n\n简单来说：当你到了一个完全陌生的国家或环境，发现当地人的生活方式、习惯和你自己完全不同，感到很惊讶、不适应甚至有点困惑和不安，这就是文化冲击。",
+        "en": "Culture shock refers to the surprise and disorientation experienced when people encounter cultural practices different from their own.\n\nIn simple terms: When you arrive in a completely unfamiliar country or environment and find that the local way of life and customs are totally different from your own, feeling surprised, uncomfortable, or even confused and uneasy, that's culture shock."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "文化通过创新、全球化和扩散等过程在世界范围内发展和传播。技术加速了这一过程，但也可能导致物质文化和非物质文化之间的文化滞后。",
+        "en": "Culture develops and spreads worldwide through processes like innovation, globalization, and diffusion. Technology accelerates this process, but it can also lead to cultural lag between material and nonmaterial culture."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "创新",
+        "en": "Innovation"
+      },
+      "definition": {
+        "zh": "创新是指向文化引入新想法或新事物的过程。\n\n简单来说：创造出新的东西或者发现以前不知道的东西，比如发明了轮子，或者发现了电。",
+        "en": "Innovation refers to the process of introducing a new idea or object to a culture.\n\nIn simple terms: Creating something new or discovering something previously unknown, such as inventing the wheel or discovering electricity."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "发现",
+        "en": "Discovery"
+      },
+      "definition": {
+        "zh": "发现是指揭示或分享某一方面现实存在的过程。\n\n简单来说：把原来就存在但还没被人类知道的东西找出来，比如发现了新大陆，或者发现了DNA的结构。",
+        "en": "Discovery involves making known or sharing the existence of an aspect of reality.\n\nIn simple terms: Uncovering something that already exists but was previously unknown to humans, such as discovering a new continent or the structure of DNA."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "发明",
+        "en": "Invention"
+      },
+      "definition": {
+        "zh": "发明是指将现有文化物品组合成以前不存在的形式。\n\n简单来说：把现有的东西重新组合，创造出全新的东西，比如把轮子和马车结合起来发明了汽车，或者把文字和印刷术结合起来发明了活字印刷。",
+        "en": "Invention results when existing cultural items are combined into a form that did not exist before.\n\nIn simple terms: Combining existing elements to create something entirely new, such as combining wheels and carriages to invent the automobile, or combining writing and printing to invent movable type printing."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "扩散",
+        "en": "Diffusion"
+      },
+      "definition": {
+        "zh": "扩散是指文化物品从一个群体传播到另一个群体或社会的过程。\n\n简单来说：一个地方的文化元素（比如食物、时尚、技术）传播到另一个地方，被当地人接受并使用。就像手机从一个国家流行到全世界。",
+        "en": "Diffusion refers to the process by which a cultural item spreads from group to group or society to society.\n\nIn simple terms: When cultural elements (like food, fashion, technology) from one place spread to another and are adopted by the local people. For example, mobile phones becoming popular worldwide after originating in one country."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "麦当劳化",
+        "en": "McDonaldization"
+      },
+      "definition": {
+        "zh": "麦当劳化是指许多行业（如高等教育、购物、银行和医疗保健）采纳最初与快餐业相关的特征的过程。\n\n简单来说：就是指像麦当劳快餐店那样，追求效率、可预测性、可计算性和控制，并且逐渐把这种模式推广到社会生活的各个领域，比如去医院看病也像点快餐一样流程化。",
+        "en": "McDonaldization refers to the adoption of characteristics originally associated with the fast food industry by many other industries, such as higher education, shopping, banking, and health care.\n\nIn simple terms: It refers to the process where various sectors of society adopt the principles of efficiency, predictability, calculability, and control, similar to those found in fast-food restaurants like McDonald's. For example, when visiting a hospital becomes as standardized and process-driven as ordering fast food."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "技术",
+        "en": "Technology"
+      },
+      "definition": {
+        "zh": "技术是指关于如何利用环境中的物质资源来满足人类需求和欲望的文化信息。\n\n简单来说：我们如何利用工具、知识和技能来改造自然、解决问题，比如手机、互联网、农业灌溉系统，都是技术的体现。",
+        "en": "Technology refers to cultural information about the ways in which the material resources of the environment may be used to satisfy human needs and desires.\n\nIn simple terms: It's how we use tools, knowledge, and skills to transform nature and solve problems. Examples include mobile phones, the internet, and agricultural irrigation systems, all of which are manifestations of technology."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "物质文化",
+        "en": "Material Culture"
+      },
+      "definition": {
+        "zh": "物质文化是指我们日常生活中的物理或技术方面。\n\n简单来说：所有能被我们看到、摸到的具体物品，比如衣服、汽车、建筑物、手机等。",
+        "en": "Material culture refers to the physical or technological aspects of our daily lives.\n\nIn simple terms: All tangible items that we can see and touch, such as clothes, cars, buildings, and mobile phones."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "非物质文化",
+        "en": "Nonmaterial Culture"
+      },
+      "definition": {
+        "zh": "非物质文化是指使用物质对象的方式，以及习俗、信仰、哲学和交流模式。\n\n简单来说：那些看不见、摸不着的文化元素，比如价值观、信仰、语言、风俗习惯、政府形式等。",
+        "en": "Nonmaterial culture refers to ways of using material objects, as well as customs, beliefs, philosophies, governments, and patterns of communication.\n\nIn simple terms: These are the intangible cultural elements, such as values, beliefs, language, customs, and forms of government."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "文化滞后",
+        "en": "Culture Lag"
+      },
+      "definition": {
+        "zh": "文化滞后是指非物质文化仍在努力适应新物质条件时的失调时期。\n\n简单来说：当一项新技术（物质文化）出现得很快，但社会中人们的观念、法律、道德（非物质文化）却跟不上，导致两者之间出现不协调或冲突。比如网络技术的快速发展，但关于网络隐私和版权的法律却迟迟未能完善。",
+        "en": "Culture lag refers to the period of maladjustment when the nonmaterial culture is still struggling to adapt to new material conditions.\n\nIn simple terms: When a new technology (material culture) emerges rapidly, but society's ideas, laws, and morals (nonmaterial culture) fail to keep pace, leading to a disconnect or conflict between the two. For example, the rapid development of internet technology while laws regarding online privacy and copyright lag behind."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "当非物质文化难以适应新的物质条件时，就会发生____________。",
+          "en": "____________ occurs when nonmaterial culture struggles to adapt to new material conditions."
+        }
+      ],
+      "answer": {
+        "zh": "文化滞后",
+        "en": "Culture lag"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "想想“物质”和“非物质”文化发展速度不一致的情况。",
+        "en": "Think about the different paces of 'material' and 'nonmaterial' culture development."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "双语制在社会政策中扮演着重要角色，尤其是在工作场所或学校等特定环境中，两种语言都被视为同等合法。",
+        "en": "Bilingualism plays a significant role in social policy, especially in specific settings such as workplaces or schools, where both languages are treated as equally legitimate."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "双语制",
+        "en": "Bilingualism"
+      },
+      "definition": {
+        "zh": "双语制是指在特定环境（如工作场所或学校）中使用两种语言，将每种语言视为同等合法。\n\n简单来说：在同一个地方（比如一个学校或一个国家），同时使用两种语言进行交流和教学，并且这两种语言都受到尊重，拥有平等的地位。",
+        "en": "Bilingualism refers to the use of two languages in a particular setting, such as the workplace or schoolroom, treating each language as equally legitimate.\n\nIn simple terms: It means using two languages simultaneously in the same place (like a school or a country) for communication and instruction, with both languages being respected and having equal status."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "“双语制”的定义是：",
+        "en": "The definition of 'Bilingualism' is:"
+      },
+      "options": [
+        { "zh": "在一个国家只使用一种官方语言。", "en": "Using only one official language in a country." },
+        { "zh": "使用两种或更多语言，但在不同场合。", "en": "Using two or more languages, but in different settings." },
+        { "zh": "在特定环境（如工作场所或学校）中使用两种语言，将每种语言视为同等合法。", "en": "The use of two languages in a particular setting, such as the workplace or schoolroom, treating each language as equally legitimate." },
+        { "zh": "学习一门外语以进行旅游。", "en": "Learning a foreign language for travel." }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "关注“特定环境”和“同等合法”。",
+        "en": "Focus on 'particular setting' and 'equally legitimate'."
+      }
+    }
+  ]
+}

@@ -1,0 +1,627 @@
+{
+  "社会学第二周学习目标回顾": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "本学习单元旨在帮助您掌握社会化、社会互动、社会结构以及越轨行为和社会控制等核心社会学概念。",
+        "en": "This learning unit aims to help you master core sociological concepts such as socialization, social interaction, social structure, and deviance and social control."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会化",
+        "en": "Socialization"
+      },
+      "definition": {
+        "zh": "人们学习适合其作为特定文化成员的态度、价值观和行为的终身过程。",
+        "en": "The lifelong process whereby people learn the attitudes, values, and behaviors appropriate to individuals as members of a particular culture."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会化的作用不仅在于帮助我们学会如何正确行事，还在于文化传承和塑造个性，即一个人的典型态度、需求、特征和行为模式。",
+        "en": "The role of socialization is not only to help us discover how to behave properly but also to transmit culture and shape personality—a person's typical patterns of attitudes, needs, characteristics, and behavior."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "社会化在个人发展中扮演了什么角色？",
+        "en": "What role does socialization play in individual development?"
+      },
+      "options": [
+        {
+          "zh": "仅限于童年时期的行为学习。",
+          "en": "Limited to behavior learning during childhood."
+        },
+        {
+          "zh": "帮助人们发现如何正确行事，并塑造个性。",
+          "en": "Helps people discover how to behave properly and shapes personality."
+        },
+        {
+          "zh": "主要由遗传因素决定。",
+          "en": "Primarily determined by hereditary factors."
+        }
+      ],
+      "answer_index": 1,
+      "points": 10
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "镜中自我",
+        "en": "Looking-Glass Self"
+      },
+      "definition": {
+        "zh": "查尔斯·霍顿·库利提出的概念，认为我们的自我意识来自于我们如何向他人展示自己，他人如何评价我们，以及我们如何内化或评估这些评价。",
+        "en": "A concept by Charles Horton Cooley suggesting that our sense of self results from how we present ourselves to others, how others evaluate us, and how we internalize or assess those evaluations."
+      },
+      "hint": {
+        "zh": "想想“镜子”如何反映你的形象。",
+        "en": "Think about how a 'mirror' reflects your image."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "根据乔治·赫伯特·米德的理论，自我通过三个阶段在儿童早期形成：准备阶段（模仿他人）、玩耍阶段（扮演他人角色）和游戏阶段（理解复杂社会情境中的多重角色）。",
+        "en": "According to George Herbert Mead, the self emerges in early childhood through three stages: the preparatory stage (imitating others), the play stage (role-taking), and the game stage (understanding multiple positions/roles in complex social situations)."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "准备阶段 (米德)",
+        "en": "Preparatory Stage (Mead)"
+      },
+      "definition": {
+        "zh": "米德的自我发展阶段之一，儿童在此阶段仅仅模仿周围的人。",
+        "en": "One of Mead's stages of self-development, where children merely imitate those around them."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "玩耍阶段 (米德)",
+        "en": "Play Stage (Mead)"
+      },
+      "definition": {
+        "zh": "米德的自我发展阶段之一，儿童在此阶段假装是另一个人，并开始扮演角色。",
+        "en": "One of Mead's stages of self-development, where children pretend to be other people and begin to engage in role-taking."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "游戏阶段 (米德)",
+        "en": "Game Stage (Mead)"
+      },
+      "definition": {
+        "zh": "米德的自我发展阶段之一，儿童在此阶段理解自己和他人在复杂社会情境中的位置。",
+        "en": "One of Mead's stages of self-development, where children grasp their own social positions, as well as everyone else's position in complex social situations."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "在米德的自我发展理论中，儿童在_______阶段开始扮演他人角色。",
+          "en": "In Mead's theory of self-development, children begin to engage in role-taking during the _______ stage."
+        }
+      ],
+      "answer": {
+        "zh": "玩耍",
+        "en": "play"
+      },
+      "points": 5
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "预期社会化",
+        "en": "Anticipatory Socialization"
+      },
+      "definition": {
+        "zh": "个体为未来可能担任的角色进行排练的社会化过程。",
+        "en": "Processes of socialization in which a person rehearses for future positions, occupations, and social relationships."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "再社会化",
+        "en": "Resocialization"
+      },
+      "definition": {
+        "zh": "个体抛弃旧有行为模式并接受新行为模式的过程，作为其生活中转变的一部分。",
+        "en": "The process of discarding former behavior patterns and accepting new ones as part of a transition in one's life."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会化的主要媒介包括家庭、学校、同伴群体、大众媒体和技术、工作场所、宗教和国家。",
+        "en": "Key agents of socialization include family, school, peer group, mass media and technology, workplace, religion, and the state."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项被认为是社会化最重要的媒介？",
+        "en": "Which of the following is considered the most important agent of socialization?"
+      },
+      "options": [
+        { "zh": "学校", "en": "School" },
+        { "zh": "家庭", "en": "Family" },
+        { "zh": "大众媒体", "en": "Mass Media" }
+      ],
+      "answer_index": 1,
+      "points": 10
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会互动",
+        "en": "Social Interaction"
+      },
+      "definition": {
+        "zh": "个体在社会关系中相互回应的方式。",
+        "en": "The ways in which people respond to one another in social relationships."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会现实",
+        "en": "Social Reality"
+      },
+      "definition": {
+        "zh": "根据互动主义观点，社会现实是根据我们的社会互动实际构建的。",
+        "en": "From an interactionist perspective, social reality is literally constructed from our social interactions."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会结构是社会以可预测的关系组织起来的方式，其要素包括地位、社会角色、群体、社会网络和社会制度。",
+        "en": "Social structure refers to the way a society is organized into predictable relationships, and its elements include statuses, social roles, groups, social networks, and social institutions."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "先赋地位",
+        "en": "Ascribed Status"
+      },
+      "definition": {
+        "zh": "社会不考虑个人才能或特征而在出生时赋予的社会地位。",
+        "en": "A social position assigned to a person by society without regard for the person's unique talents or characteristics, generally at birth."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "自致地位",
+        "en": "Achieved Status"
+      },
+      "definition": {
+        "zh": "个人主要通过自身努力获得的社会地位。",
+        "en": "A social position that a person attains largely through their own efforts."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "“性别”和“种族”最常被归类为哪种社会地位？",
+        "en": "Which type of social status are 'gender' and 'race' most commonly categorized as?"
+      },
+      "options": [
+        { "zh": "自致地位", "en": "Achieved status" },
+        { "zh": "先赋地位", "en": "Ascribed status" },
+        { "zh": "主导地位", "en": "Master status" }
+      ],
+      "answer_index": 1,
+      "points": 10
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会角色",
+        "en": "Social Role"
+      },
+      "definition": {
+        "zh": "对担任特定社会地位或身份的人的一系列期望。",
+        "en": "A set of expectations for people who occupy a given social position or status."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "角色冲突",
+        "en": "Role Conflict"
+      },
+      "definition": {
+        "zh": "当一个人同时担任两个或更多社会地位时，出现不兼容期望的情况。",
+        "en": "The situation that occurs when incompatible expectations arise from two or more social positions held by the same person."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "角色紧张",
+        "en": "Role Strain"
+      },
+      "definition": {
+        "zh": "同一社会地位施加相互冲突的要求和期望时出现的困难。",
+        "en": "The difficulty that arises when the same social position imposes conflicting demands and expectations."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "角色退出",
+        "en": "Role Exit"
+      },
+      "definition": {
+        "zh": "脱离某个对自我认同至关重要的角色，以建立新角色和身份的过程。",
+        "en": "The process of disengagement from a role that is central to one's self-identity in order to establish a new role and identity."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "当同一社会地位施加相互冲突的要求时，人们会经历_______。",
+          "en": "When the same social position imposes conflicting demands, people experience _______."
+        }
+      ],
+      "answer": {
+        "zh": "角色紧张",
+        "en": "role strain"
+      },
+      "points": 5
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "群体在社会结构的功能中扮演着重要角色。它们是具有相似规范、价值观和期望并定期互动的任何人数的人群。",
+        "en": "Groups play an important part in the function of social structure. They consist of any number of people with similar norms, values, and expectations who interact with one another on a regular basis."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "初级群体",
+        "en": "Primary Group"
+      },
+      "definition": {
+        "zh": "以亲密、面对面互动和合作为特征的小群体。",
+        "en": "A small group characterized by intimate, face-to-face association and cooperation."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "次级群体",
+        "en": "Secondary Group"
+      },
+      "definition": {
+        "zh": "一个正式的、非个人化的群体，其中社会亲密感或相互理解很少。",
+        "en": "A formal, impersonal group in which there is little social intimacy or mutual understanding."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "内群体",
+        "en": "In-Group"
+      },
+      "definition": {
+        "zh": "人们觉得他们属于的任何群体或类别。",
+        "en": "Any group or category to which people feel they belong."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "外群体",
+        "en": "Out-Group"
+      },
+      "definition": {
+        "zh": "人们认为不属于的群体或类别。",
+        "en": "A group or category to which people feel they do not belong."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "参照群体",
+        "en": "Reference Group"
+      },
+      "definition": {
+        "zh": "个体用来评估自己和行为的标准。",
+        "en": "Any group that individuals use as a standard for evaluating themselves and their own behavior."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会网络",
+        "en": "Social Network"
+      },
+      "definition": {
+        "zh": "一系列社会关系，将一个人直接与他人连接，并通过他人间接与更多人连接。",
+        "en": "A series of social relationships that links a person directly to others and through them indirectly to still more people."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "技术进步，特别是电子社会网络，使得社会关系的维持不再需要面对面接触，极大地影响了社会互动。",
+        "en": "Advances in technology, especially electronic social networks, have made it possible to maintain social relationships without face-to-face contact, greatly impacting social interaction."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会制度是围绕基本社会需求而组织起来的信仰和行为模式。功能主义者认为社会制度对社会生存至关重要，冲突理论家则认为它们维护了社会中强势群体的特权，而互动主义者强调角色和地位对社会行为的影响。",
+        "en": "Social institutions are organized patterns of beliefs and behavior centered on basic social needs. Functionalists view social institutions as essential for societal survival, conflict theorists argue they maintain the privileges of powerful groups, while interactionists emphasize the impact of roles and statuses on social behavior."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "正式组织",
+        "en": "Formal Organization"
+      },
+      "definition": {
+        "zh": "为特定目的设计并为实现最大效率而结构化的群体。",
+        "en": "A group designed for a special purpose and structured for maximum efficiency."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "科层制 (官僚制)",
+        "en": "Bureaucracy"
+      },
+      "definition": {
+        "zh": "正式组织的一个组成部分，它使用规则和等级排序来实现效率。",
+        "en": "A component of formal organization that uses rules and hierarchical ranking to achieve efficiency."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "马克斯·韦伯提出了科层制的五个基本特征：劳动分工、权力等级、书面规则和规定、非个人化以及基于技术资格的雇佣。",
+        "en": "Max Weber identified five basic characteristics of bureaucracy: division of labor, hierarchy of authority, written rules and regulations, impersonality, and employment based on technical qualifications."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "麦当劳化",
+        "en": "McDonaldization"
+      },
+      "definition": {
+        "zh": "科层制原则日益塑造全球组织的过程。",
+        "en": "The process by which the principles of bureaucratization have increasingly shaped organizations worldwide."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "当今的工作场所正日益受到科层化和人类关系方法的影响，后者强调人员、沟通和参与在科层制中的作用，与传统上仅关注经济回报的科学管理方法不同。",
+        "en": "Today's workplace is increasingly influenced by bureaucratization and the human relations approach, which emphasizes the role of people, communication, and participation in a bureaucracy, differing from the classical scientific management approach that focused solely on economic rewards."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会控制",
+        "en": "Social Control"
+      },
+      "definition": {
+        "zh": "用于预防社会中越轨人类行为的技术和策略。",
+        "en": "The techniques and strategies for preventing deviant human behavior in any society."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "服从",
+        "en": "Obedience"
+      },
+      "definition": {
+        "zh": "遵守等级结构中较高权威的指示。",
+        "en": "Compliance with higher authorities in a hierarchical structure."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "制裁",
+        "en": "Sanction"
+      },
+      "definition": {
+        "zh": "对涉及社会规范行为的惩罚或奖励。",
+        "en": "A penalty or reward for conduct concerning a social norm."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "遵从",
+        "en": "Conformity"
+      },
+      "definition": {
+        "zh": "与同伴保持一致，即使他们没有特殊权利指导我们的行为。",
+        "en": "Going along with peers—individuals of our own status who have no special right to direct our behavior."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "非正式社会控制",
+        "en": "Informal Social Control"
+      },
+      "definition": {
+        "zh": "普通人通过笑声、微笑和嘲讽等方式随意执行的社会控制。",
+        "en": "Social control that is carried out casually by ordinary people through such means as laughter, smiles, and ridicule."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "正式社会控制",
+        "en": "Formal Social Control"
+      },
+      "definition": {
+        "zh": "由授权机构（如警察、法官、学校行政人员和雇主）执行的社会控制。",
+        "en": "Social control that is carried out by authorized agents, such as police officers, judges, school administrators, and employers."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "交通罚单属于哪种类型的社会控制？",
+        "en": "A speeding ticket is an example of what type of social control?"
+      },
+      "options": [
+        { "zh": "非正式社会控制", "en": "Informal social control" },
+        { "zh": "正式社会控制", "en": "Formal social control" },
+        { "zh": "内部控制", "en": "Internal control" }
+      ],
+      "answer_index": 1,
+      "points": 10
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "越轨行为",
+        "en": "Deviance"
+      },
+      "definition": {
+        "zh": "违反群体或社会行为标准或期望的行为。",
+        "en": "Behavior that violates the standards of conduct or expectations of a group or society."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "越轨行为既可以挑战社会规范，例如通过抗议推动社会变革，也可以通过明确界定可接受行为的界限来强化社会规范，从而有助于社会稳定。",
+        "en": "Deviance can both challenge social norms, for example by driving social change through protest, and reinforce them by clearly defining the limits of acceptable behavior, thereby contributing to social stability."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "对越轨行为的理解可以从功能主义、互动主义（包括标签理论）和冲突理论以及女性主义视角进行比较和对比。",
+        "en": "The understanding of deviance can be compared and contrasted through functionalist, interactionist (including labeling theory), conflict, and feminist perspectives."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "标签理论",
+        "en": "Labeling Theory"
+      },
+      "definition": {
+        "zh": "一种越轨理论，试图解释为什么某些人被视为越轨者，而其他人从事相同行为却不被视为越轨者。",
+        "en": "An approach to deviance that attempts to explain why certain people are viewed as deviants while others engaged in the same behavior are not."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "冲突视角 (越轨)",
+        "en": "Conflict Perspective (Deviance)"
+      },
+      "definition": {
+        "zh": "认为有权势的人保护自己的利益并根据自己的需求定义越轨行为。",
+        "en": "Suggests that people with power protect their own interests and define deviance to suit their own needs."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "哪种理论认为越轨行为是社会控制失败的结果？",
+        "en": "Which theory suggests that deviant behavior is a result of a breakdown in social control?"
+      },
+      "options": [
+        { "zh": "标签理论", "en": "Labeling theory" },
+        { "zh": "文化传播理论", "en": "Cultural transmission theory" },
+        { "zh": "社会解组理论", "en": "Social disorganization theory" }
+      ],
+      "answer_index": 2,
+      "points": 10
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "犯罪",
+        "en": "Crime"
+      },
+      "definition": {
+        "zh": "违反刑法，并受到政府当局正式处罚的行为。",
+        "en": "A violation of criminal law for which some governmental authority applies formal penalties."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "越轨行为是一个比犯罪更广泛的概念。越轨行为是指任何违反社会规范的行为，无论是否构成法律罪行；而犯罪则特指违反刑法并受到正式处罚的行为。",
+        "en": "Deviance is a broader concept than crime. Deviance refers to any behavior that violates social norms, whether or not it constitutes a legal offense; crime specifically refers to acts that violate criminal law and incur formal penalties."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "白领犯罪",
+        "en": "White-Collar Crime"
+      },
+      "definition": {
+        "zh": "富裕、受人尊敬的个人在商业活动中实施的非法行为。",
+        "en": "Illegal acts committed by affluent, “respectable” individuals in the course of business activities."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "街头犯罪",
+        "en": "Street Crime"
+      },
+      "definition": {
+        "zh": "通常指传统上与公共场所暴力、盗窃等相关的犯罪行为，与白领犯罪形成对比。",
+        "en": "Refers to traditional criminal acts often associated with public places, such as violence and theft, contrasted with white-collar crime."
+      },
+      "hint": {
+        "zh": "想想常见的“犯罪新闻”中报道的类型。",
+        "en": "Think about the types of crimes reported in common 'crime news'."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "白领犯罪通常在职业角色中实施，涉及税务欺诈、挪用公款和贿赂等，其后果可能不如街头犯罪（如谋杀、抢劫等）那样引人注目，但经济影响巨大。",
+        "en": "White-collar crimes are often perpetrated through occupational roles, involving acts like income tax evasion, embezzlement, and bribery. Their consequences may be less publicly sensational than street crimes (e.g., murder, robbery), but they often have significant economic impacts."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "税务欺诈和挪用公款属于哪种类型的犯罪？",
+        "en": "Tax evasion and embezzlement fall under which type of crime?"
+      },
+      "options": [
+        { "zh": "街头犯罪", "en": "Street crime" },
+        { "zh": "白领犯罪", "en": "White-collar crime" },
+        { "zh": "受害者犯罪", "en": "Victimless crime" }
+      ],
+      "answer_index": 1,
+      "points": 10
+    }
+  ]
+}

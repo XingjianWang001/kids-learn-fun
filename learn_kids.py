@@ -82,11 +82,13 @@ class ScrollableFrame(ttk.Frame):
         scrollbar_x.pack(side="bottom", fill="x")
 
         def _on_mousewheel(event):
+            if not canvas.winfo_exists(): return
             if event.num == 4: canvas.yview_scroll(-1, "units")
             elif event.num == 5: canvas.yview_scroll(1, "units")
             else: canvas.yview_scroll(int(-1*(event.delta/120)), "units")
 
         def _on_shift_mousewheel(event):
+            if not canvas.winfo_exists(): return
             if event.num == 4: canvas.xview_scroll(-1, "units")
             elif event.num == 5: canvas.xview_scroll(1, "units")
             else: canvas.xview_scroll(int(-1*(event.delta/120)), "units")

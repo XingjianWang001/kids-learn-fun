@@ -1,0 +1,369 @@
+{
+  "社会化与生命历程": [
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "本章将探讨社会学中的社会化概念，即个体如何学习文化、形成自我，以及影响这一过程的各种社会化媒介。我们还将审视社会化在整个生命历程中的作用，以及与社会政策相关的议题。",
+        "en": "This chapter will explore the concept of socialization in sociology, how individuals learn culture and form their self, and the various agents of socialization that influence this process. We will also examine the role of socialization throughout the life course and related social policy issues."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "社会化",
+        "en": "Socialization"
+      },
+      "definition": {
+        "zh": "社会化是人们学习适合作为特定文化成员的态度、价值观和行为的终身过程。\n\n简单来说：社会化就是一个人从出生到死亡，不断学习如何成为社会一员的过程，包括学习语言、行为规范、价值观等，从而形成自己的个性。",
+        "en": "Socialization is the lifelong process in which people learn the attitudes, values, and behaviors appropriate for members of a particular culture.\n\nIn simple terms: Socialization is the lifelong process from birth to death where individuals continuously learn how to be a member of society, including learning language, behavioral norms, values, and thus forming their personality."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会环境对人类发展至关重要。隔离案例研究，如伊莎贝尔（Isabelle）和罗马尼亚孤儿，以及灵长类动物研究（哈里·哈洛的恒河猴实验），都强调了社会互动在个体发展中的必要性。这些研究表明，在正常情况下，环境因素与遗传因素相互作用，共同影响社会化过程。",
+        "en": "The social environment is crucial for human development. Case studies of isolation, such as Isabelle and the Romanian orphans, and primate studies (Harry Harlow's rhesus monkey experiments), all underscore the necessity of social interaction in individual development. These studies indicate that, under normal circumstances, environmental factors interact with hereditary factors to influence the socialization process."
+      }
+    },
+    {
+      "type": "fill_blank",
+      "question_parts": [
+        {
+          "zh": "哈里·哈洛（Harry Harlow）对恒河猴的实验表明，隔离对猴子有____________影响。",
+          "en": "Harry Harlow's experiments with rhesus monkeys concluded that isolation had a ____________ effect on the monkeys."
+        }
+      ],
+      "answer": {
+        "zh": "破坏性",
+        "en": "damaging"
+      },
+      "points": 10,
+      "hint": {
+        "zh": "隔离对社会发展的影响是负面的。",
+        "en": "The impact of isolation on social development is negative."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "自我是一个独特的身份，使我们与他人区分开来，并在我们的一生中不断发展和变化。互动主义视角对于理解自我的发展非常有用。",
+        "en": "The self is a distinct identity that sets us apart from others and continues to develop and change throughout our lives. The interactionist perspective is useful in understanding the development of the self."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "自我",
+        "en": "Self"
+      },
+      "definition": {
+        "zh": "自我是一个独特的身份，使我们与他人区分开来。\n\n简单来说：自我就是我们对自己的认识和感受，包括我们的个性、能力、价值观等，是我们区别于他人的独特之处。",
+        "en": "The self is a distinct identity that sets each of us apart from others.\n\nIn simple terms: The self is our understanding and feelings about who we are, including our personality, abilities, and values, which make us unique from others."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会学家查尔斯·霍顿·库利（Charles Horton Cooley）、乔治·赫伯特·米德（George Herbert Mead）和欧文·戈夫曼（Erving Goffman）都加深了我们对自我发展的理解。",
+        "en": "Sociologists Charles Horton Cooley, George Herbert Mead, and Erving Goffman have all furthered our understanding about the development of the self."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "镜中我",
+        "en": "Looking-Glass Self"
+      },
+      "definition": {
+        "zh": "库利的镜中我理论认为，我们的自我意识源于我们如何向他人展示自己，他人如何评价我们，以及我们如何内化或评估这些评价。\n\n简单来说：我们对自己的看法，就像照镜子一样，是基于我们想象中别人如何看待我们、评价我们，然后我们根据这些想象形成对自己的感觉。",
+        "en": "Cooley's looking-glass self suggests that our sense of self results from how we present ourselves to others, how others evaluate us, and how we internalize or assess those evaluations.\n\nIn simple terms: Our self-perception is like looking in a mirror, based on how we imagine others see and evaluate us, and then forming feelings about ourselves based on those imagined impressions."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "米德（Mead）概述了自我发展的三个阶段：1. 准备阶段：儿童模仿周围的人；2. 玩耍阶段：儿童开始假装是其他人，并进行角色扮演；3. 游戏阶段：儿童理解自己在社会中的位置以及他人的位置，并学会考虑到“概化他人”的观点。",
+        "en": "Mead outlined three stages of self-development: 1. The preparatory stage, in which children merely imitate those around them; 2. The play stage, in which children pretend to be other people and engage in role taking; 3. The game stage, in which children grasp their own social positions and the positions of others, learning to take into account the perspective of the 'generalized other'."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "角色扮演",
+        "en": "Role Taking"
+      },
+      "definition": {
+        "zh": "角色扮演是心理上设想他人的视角并从想象中的观点做出回应的过程。\n\n简单来说：就是设身处地地想象自己是另一个人，从他们的角度去思考和感受，从而更好地理解他人。",
+        "en": "Role taking is the process of mentally assuming the perspective of another and responding from that imagined viewpoint.\n\nIn simple terms: It's putting yourself in someone else's shoes, imagining their perspective, and thinking and feeling as they would, to better understand them."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "概化他人",
+        "en": "Generalized Other"
+      },
+      "definition": {
+        "zh": "概化他人是指社会中他人（作为一个整体）的态度、观点和期望，个体在以特定方式行动之前会考虑到这些。\n\n简单来说：社会作为一个整体对我们行为的普遍期望和规范，我们通过与他人的互动逐渐内化这些期望，从而指导自己的行为。",
+        "en": "The term generalized other refers to the attitudes, viewpoints, and expectations of others in society as a whole that an individual takes into account before acting in a particular way.\n\nIn simple terms: It's the general expectations and norms of society as a whole regarding our behavior, which we gradually internalize through interaction with others, guiding our own actions."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "重要他人",
+        "en": "Significant Other"
+      },
+      "definition": {
+        "zh": "重要他人是指在个体发展中最重要的个人，例如父母、朋友或老师。\n\n简单来说：对一个人的自我发展和个性形成影响最大的人，通常是家庭成员、亲密朋友或老师等。",
+        "en": "A significant other is an individual who is most important in the development of the self, such as a parent, friend, or teacher.\n\nIn simple terms: The individuals who have the most significant influence on a person's self-development and personality formation, typically family members, close friends, or teachers."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "戈夫曼（Goffman）的戏剧学方法将人们视为戏剧表演者，通过印象管理和面子工作来呈现自我。",
+        "en": "Goffman's dramaturgical approach views people as theatrical performers, presenting themselves through impression management and facework."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "印象管理",
+        "en": "Impression Management"
+      },
+      "definition": {
+        "zh": "印象管理是指个体通过改变自我的呈现方式，以创造独特的外表并满足特定受众的过程。\n\n简单来说：为了给别人留下特定的印象，我们有意识地调整自己的言行举止，比如面试时表现得专业，约会时表现得迷人。",
+        "en": "Impression management involves an individual's slanting their presentation of the self to create distinctive appearances and to satisfy particular audiences.\n\nIn simple terms: Consciously adjusting our words and behaviors to create a specific impression on others, such as acting professionally during an interview or charming on a date."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "戏剧学方法",
+        "en": "Dramaturgical Approach"
+      },
+      "definition": {
+        "zh": "戏剧学方法是基于人们像演员一样行事，通过呈现被认为能取悦他人的形象的观点。\n\n简单来说：把社会互动看作一场戏剧表演，每个人都在扮演自己的角色，努力向观众（其他人）呈现一个理想的形象。",
+        "en": "The dramaturgical approach is based upon people behaving as actors by putting forth an image believed to be pleasing to others.\n\nIn simple terms: It views social interaction as a theatrical performance, where everyone plays a role and strives to present an ideal image to their audience (others)."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "面子工作",
+        "en": "Facework"
+      },
+      "definition": {
+        "zh": "戈夫曼的面子工作涉及人们为保持适当形象和避免公开尴尬所做的努力。\n\n简单来说：为了维护自己在他人面前的形象和尊严，避免出丑或尴尬而采取的各种言行举止。",
+        "en": "Goffman's facework involves people trying to maintain or save an image or face and avoid public embarrassment.\n\nIn simple terms: Various words and behaviors adopted to maintain one's image and dignity in front of others and to avoid embarrassment or losing face."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "当一个人为了给别人留下好印象而改变自己的行为时，这被称为：",
+        "en": "When an individual alters their behavior to create a favorable impression on others, this is known as:"
+      },
+      "options": [
+        { "zh": "角色扮演", "en": "Role taking" },
+        { "zh": "镜中我", "en": "Looking-glass self" },
+        { "zh": "印象管理", "en": "Impression management" },
+        { "zh": "概化他人", "en": "Generalized other" }
+      ],
+      "answer_index": 2,
+      "points": 10,
+      "hint": {
+        "zh": "这是关于自我呈现的策略。",
+        "en": "This is about strategies of self-presentation."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "心理学家也对自我发展做出了贡献。西格蒙德·弗洛伊德（Sigmund Freud）强调了先天驱动力的作用，而让·皮亚杰（Jean Piaget）的认知发展理论则确定了儿童人格发展的四个阶段：感觉运动阶段、前运算阶段、具体运算阶段和形式运算阶段。皮亚杰认为社会互动是发展的关键。",
+        "en": "Psychologists have also contributed to self-development. Sigmund Freud stressed the role of inborn drives, while Jean Piaget's cognitive theory of development identified four stages of child personality development: sensorimotor, preoperational, concrete operational, and formal operational stages. Piaget viewed social interaction as key to development."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "认知发展理论",
+        "en": "Cognitive Theory of Development"
+      },
+      "definition": {
+        "zh": "认知发展理论是关于儿童思维通过四个发展阶段进步的理论。\n\n简单来说：皮亚杰提出的理论，认为儿童的思维能力是分阶段发展的，从感知和动作开始，逐步发展出抽象思维能力。",
+        "en": "The cognitive theory of development is the theory that children's thought progresses through four stages of development.\n\nIn simple terms: Piaget's theory suggests that children's cognitive abilities develop in stages, starting from sensory and motor actions and gradually progressing to abstract thought."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会化在整个生命历程中由多种社会力量和媒介影响。家庭被认为是社会化最重要的媒介，学校、同伴群体、大众媒体和技术、工作场所、宗教和国家也都在塑造个体方面发挥着重要作用。",
+        "en": "Socialization throughout the life course is influenced by various social forces and agents. The family is considered the most important agent of socialization, while schools, peer groups, mass media and technology, the workplace, religion, and the state also play significant roles in shaping individuals."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "性别角色",
+        "en": "Gender Role"
+      },
+      "definition": {
+        "zh": "性别角色是指关于男性和女性适当行为、态度和活动的期望。\n\n简单来说：社会对男性和女性应该如何表现、思考和行动的普遍期望和规范。",
+        "en": "Gender role refers to expectations regarding the proper behavior, attitudes, and activities of males and females.\n\nIn simple terms: Societal expectations and norms about how males and females should behave, think, and act."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪项被认为是社会化最重要的媒介？",
+        "en": "Which of the following is considered the most important agent of socialization?"
+      },
+      "options": [
+        { "zh": "学校", "en": "School" },
+        { "zh": "家庭", "en": "Family" },
+        { "zh": "同伴群体", "en": "Peer Group" },
+        { "zh": "大众媒体", "en": "Mass Media" }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "这是个体最早接触的社会化环境。",
+        "en": "This is the earliest socialization environment an individual encounters."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "社会学家采用生命历程方法，密切关注影响人们从出生到死亡的社会因素。生命历程中的过渡点通常通过“通过仪式”来戏剧化和验证。社会化还包括“预期性社会化”和“再社会化”。",
+        "en": "Sociologists employ the life course approach, closely examining the social factors that influence individuals from birth to death. Transitional points in the life course are often dramatized and validated through 'rites of passage.' Socialization also includes 'anticipatory socialization' and 'resocialization'."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "生命历程方法",
+        "en": "Life Course Approach"
+      },
+      "definition": {
+        "zh": "生命历程方法是一种研究取向，社会学家和其他社会科学家密切关注影响人们从出生到死亡的社会因素。\n\n简单来说：这是一种研究视角，关注一个人从出生到死亡的整个生命过程中，社会因素如何持续地影响着他们的发展和经历。",
+        "en": "The life course approach is a research orientation in which sociologists and other social scientists look closely at the social factors that influence people throughout their lives, from birth to death.\n\nIn simple terms: It's a research perspective that focuses on how social factors continuously influence an individual's development and experiences throughout their entire life, from birth to death."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "通过仪式",
+        "en": "Rite of Passage"
+      },
+      "definition": {
+        "zh": "通过仪式是标志从一个社会地位到另一个社会地位的象征性过渡的仪式。\n\n简单来说：在一个人生命中，从一个阶段过渡到另一个阶段时，社会会举行一些特殊的仪式来庆祝或确认这种变化，比如成年礼、婚礼、毕业典礼等。",
+        "en": "A rite of passage is a ritual marking the symbolic transition from one social position to another.\n\nIn simple terms: Special ceremonies held by society to celebrate or confirm a person's transition from one life stage to another, such as coming-of-age ceremonies, weddings, or graduation ceremonies."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "预期性社会化",
+        "en": "Anticipatory Socialization"
+      },
+      "definition": {
+        "zh": "预期性社会化是指一个人为未来可能承担的角色、职业和社会关系进行排练的社会化过程。\n\n简单来说：在真正进入某个新角色之前，提前学习和练习这个角色所需的行为和态度，比如高中生为上大学做准备，或者准妈妈学习育儿知识。",
+        "en": "Anticipatory socialization refers to a person rehearsing for future positions, occupations, and social relationships.\n\nIn simple terms: Learning and practicing the behaviors and attitudes required for a new role before actually entering it, such as high school students preparing for college, or expectant mothers learning about childcare."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "再社会化",
+        "en": "Resocialization"
+      },
+      "definition": {
+        "zh": "再社会化是指抛弃旧的行为模式并接受新行为模式，作为一个人生活中过渡的一部分。\n\n简单来说：当一个人进入一个全新的环境，需要彻底放弃旧有的行为习惯和价值观，学习并适应一套全新的行为模式，比如进入军队、监狱或修道院。",
+        "en": "Resocialization refers to discarding former behavior patterns and accepting new ones as part of a transition in one's life.\n\nIn simple terms: When a person enters a completely new environment and needs to completely abandon old behaviors and values, learning and adapting to a new set of behavioral patterns, such as entering the military, prison, or a convent."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "全控机构",
+        "en": "Total Institution"
+      },
+      "definition": {
+        "zh": "全控机构是指在单一权力下规范一个人生活所有方面的机构，例如监狱、军队、精神病院或修道院。\n\n简单来说：一种完全控制个人生活各个方面，使其与外界隔绝的机构，目的是对个人进行彻底的改造或规训。",
+        "en": "A total institution is an institution that regulates all aspects of a person's life under a single authority, such as a prison, the military, a mental hospital, or a convent.\n\nIn simple terms: An institution that completely controls every aspect of an individual's life, isolating them from the outside world, with the aim of thoroughly transforming or disciplining them."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "贬低仪式",
+        "en": "Degradation Ceremony"
+      },
+      "definition": {
+        "zh": "贬低仪式是全控机构内社会化过程的一个方面，其中人们受到羞辱性仪式的对待。\n\n简单来说：在全控机构中，为了让个人放弃旧的自我认同，会通过一些公开的、羞辱性的仪式来摧毁其自尊和个性，使其更容易接受新的规则和身份。",
+        "en": "A degradation ceremony is an aspect of the socialization process within some total institutions, in which people are subjected to humiliating rituals.\n\nIn simple terms: In total institutions, certain public, humiliating rituals are used to strip individuals of their old self-identity and self-esteem, making them more receptive to new rules and identities."
+      }
+    },
+    {
+      "type": "multiple_choice",
+      "question": {
+        "zh": "以下哪种社会化类型涉及抛弃旧的行为模式并接受新的行为模式？",
+        "en": "Which type of socialization involves discarding former behavior patterns and accepting new ones?"
+      },
+      "options": [
+        { "zh": "预期性社会化", "en": "Anticipatory socialization" },
+        { "zh": "再社会化", "en": "Resocialization" },
+        { "zh": "初级社会化", "en": "Primary socialization" },
+        { "zh": "性别社会化", "en": "Gender socialization" }
+      ],
+      "answer_index": 1,
+      "points": 10,
+      "hint": {
+        "zh": "通常发生在全控机构中。",
+        "en": "This often occurs in total institutions."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "中年危机",
+        "en": "Midlife Crisis"
+      },
+      "definition": {
+        "zh": "中年危机是一个通常始于40岁左右的自我评估的压力时期。\n\n简单来说：一个人在40岁左右时，对自己的生活、成就和未来产生疑问和焦虑，从而经历一个充满压力的自我反思时期。",
+        "en": "A midlife crisis is a stressful period of self-evaluation that commonly begins at about age 40.\n\nIn simple terms: A period of intense self-reflection and anxiety that typically begins around age 40, where individuals question their life, achievements, and future."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "夹心世代",
+        "en": "Sandwich Generation"
+      },
+      "definition": {
+        "zh": "夹心世代是指同时努力满足父母和子女相互竞争需求的成年人。\n\n简单来说：指那些既要照顾年迈的父母，又要抚养未成年子女的成年人，他们就像被夹在中间一样，承受着双重压力。",
+        "en": "The sandwich generation consists of adults who simultaneously try to meet the competing needs of their parents and their children.\n\nIn simple terms: Adults who are simultaneously caring for their elderly parents and raising their minor children, experiencing dual pressures as if they are 'sandwiched' between two generations."
+      }
+    },
+    {
+      "type": "flashcard",
+      "concept": {
+        "zh": "自然形成退休社区 (NORC)",
+        "en": "Naturally Occurring Retirement Community (NORC)"
+      },
+      "definition": {
+        "zh": "自然形成退休社区是指一个逐渐成为老年人非正式中心的区域。\n\n简单来说：一个社区，最初不是专门为老年人设计的，但随着居民年龄增长，逐渐聚集了大量老年人，并形成了为老年人服务的非正式网络和设施。",
+        "en": "A Naturally Occurring Retirement Community (NORC) is an area that has gradually become an informal center for senior citizens.\n\nIn simple terms: A community not originally designed for seniors, but which gradually attracts a large number of older residents as its inhabitants age, forming an informal network and facilities that cater to seniors."
+      }
+    },
+    {
+      "type": "explanation",
+      "text": {
+        "zh": "全球范围内的育儿政策和实践差异很大。日托中心在美国已成为核心家庭的职能等效物，但其质量差异很大。冲突理论家和女权主义理论家对日托的成本和政府支持不足表示担忧，认为这反映了社会对女性劳动力的看法。",
+        "en": "Childcare policies and practices vary significantly worldwide. Day care centers have become the functional equivalent of the nuclear family in the United States, though their quality varies widely. Conflict theorists and feminist theorists express concerns about the cost of childcare and insufficient government support, viewing it as reflecting societal attitudes toward women's labor."
+      }
+    }
+  ]
+}
