@@ -264,9 +264,11 @@ class InteractiveLearningApp:
         self.failed_attempts = {}
         self.MAX_FAILED_ATTEMPTS = 5
         self.review_cards = self.load_review_cards()
-        self.progress_changed = False # <-- 添加此行
+        self.lessons_viewed = set()
+        self.completion_message_shown = set()
+        self.progress_changed = False
 
-        master.protocol("WM_DELETE_WINDOW", self.on_closing) # <-- 添加此行
+        master.protocol("WM_DELETE_WINDOW", self.on_closing)
 
         self.top_control_frame = ttk.Frame(master)
         self.top_control_frame.pack(fill=tk.X, padx=10, pady=5)
@@ -482,6 +484,8 @@ class InteractiveLearningApp:
         progress_data = {
             "scores": self.scores,
             "lesson_points_awarded": {str(k): v for k, v in self.lesson_points_awarded.items()},
+            "lessons_viewed": [list(item) for item in self.lessons_viewed],
+            "completion_message_shown": list(self.completion_message_shown),
         }
 
         try:
@@ -511,6 +515,8 @@ class InteractiveLearningApp:
         # Reset progress before attempting to load
         self.scores = {topic: 0 for topic in LESSONS_DATA}
         self.lesson_points_awarded = {}
+        self.lessons_viewed = set()
+        self.completion_message_shown = set()
         self.total_score = 0
 
         if not progress_filepath or not os.path.exists(progress_filepath):
@@ -533,6 +539,8 @@ class InteractiveLearningApp:
                 self.scores[topic] = score
 
         self.lesson_points_awarded = {eval(k): v for k, v in progress_data.get("lesson_points_awarded", {}).items()}
+        self.lessons_viewed = {tuple(item) for item in progress_data.get("lessons_viewed", [])}
+        self.completion_message_shown = set(progress_data.get("completion_message_shown", []))
         self.total_score = sum(self.scores.values())
 
         self.update_score_display()
@@ -668,12 +676,25 @@ class InteractiveLearningApp:
         self.prev_button.config(state=tk.NORMAL if self.current_lesson_index > 0 else tk.DISABLED)
 
         if self.current_lesson_index >= num_lessons:
+            # Logic to handle reaching the end of a unit
+            is_all_viewed = all((self.current_topic_key, i) in self.lessons_viewed for i in range(num_lessons))
+            if is_all_viewed and self.current_topic_key not in self.completion_message_shown:
+                messagebox.showinfo("单元完成！", f"恭喜你！你已经完成了单元 “{self.current_topic_key}” 的所有学习内容！", parent=self.master)
+                self.completion_message_shown.add(self.current_topic_key)
+                self.progress_changed = True
+            self.update_topic_button_text(self.current_topic_key)
             return
 
         self.skip_button.config(state=tk.NORMAL)
         self.next_button.config(state=tk.NORMAL)
         lesson = topic_lessons[self.current_lesson_index]
         lesson_id = (self.current_topic_key, self.current_lesson_index)
+
+        # Mark lesson as viewed
+        if lesson_id not in self.lessons_viewed:
+            self.lessons_viewed.add(lesson_id)
+            self.progress_changed = True
+
         points_already_awarded = self.lesson_points_awarded.get(lesson_id, False)
 
         self.lesson_title_label.config(text=self._get_display_text(self.current_topic_key))
@@ -1086,26 +1107,24 @@ class InteractiveLearningApp:
         current_s = self.scores.get(topic_key, 0)
         progress_text = f"{topic_key} ({current_s}/{max_s})"
 
-        is_topic_fully_completed = True
-        if LESSONS_DATA.get(topic_key) and max_s > 0:
-            for i, lesson_in_topic in enumerate(LESSONS_DATA[topic_key]):
-                lesson_id = (topic_key, i)
-                if lesson_in_topic.get("points", 0) > 0 and not self.lesson_points_awarded.get(lesson_id, False):
-                    is_topic_fully_completed = False
-                    break
-            if current_s < max_s :
-                is_topic_fully_completed = False
-        elif max_s == 0:
-            is_topic_fully_completed = True
-        else:
-            is_topic_fully_completed = False
+        lessons_in_topic = LESSONS_DATA.get(topic_key, [])
+        num_lessons = len(lessons_in_topic)
 
+        # 检查所有关卡是否已阅
+        all_lessons_viewed = all((topic_key, i) in self.lessons_viewed for i in range(num_lessons))
 
-        if max_s > 0 and is_topic_fully_completed :
+        # 检查是否获得满分
+        is_score_perfect = (current_s == max_s)
+
+        if all_lessons_viewed and is_score_perfect:
+            progress_text += " ⭐"
+            btn.config(style="Perfect.TButton")
+        elif all_lessons_viewed:
             progress_text += " ✔️"
             btn.config(style="Completed.TButton")
         else:
             btn.config(style="Large.TButton")
+
         btn.config(text=progress_text)
 
     def on_closing(self):
@@ -1587,7 +1606,10 @@ if __name__ == "__main__":
 
     style.configure("TButton", font=button_font_config, padding=5)
     style.configure("Large.TButton", font=button_font_config, padding=5)
-    style.configure("Completed.TButton", foreground="green", font=(button_font_config[0], button_font_config[1], 'bold'), padding=5)
+    # Blue for viewed
+    style.configure("Completed.TButton", foreground="blue", font=(button_font_config[0], button_font_config[1], 'bold'), padding=5)
+    # Green for perfect score and viewed
+    style.configure("Perfect.TButton", foreground="green", font=(button_font_config[0], button_font_config[1], 'bold'), padding=5)
 
     app = InteractiveLearningApp(root)
     root.mainloop()
