@@ -267,6 +267,7 @@ class InteractiveLearningApp:
         self.lessons_viewed = set()
         self.completion_message_shown = set()
         self.progress_changed = False
+        self.last_position = {} # To store {"topic": key, "lesson": index}
 
         master.protocol("WM_DELETE_WINDOW", self.on_closing)
 
@@ -307,18 +308,37 @@ class InteractiveLearningApp:
         self.course_buttons = {}
         self.topic_buttons = {}
 
-        self.scrollable_lesson_outer_frame = ScrollableFrame(self.main_paned_window)
-        self.main_paned_window.add(self.scrollable_lesson_outer_frame, weight=1)
+        # --- Right Panel (Main Content Area) ---
+        right_panel_container = ttk.Frame(self.main_paned_window)
+        self.main_paned_window.add(right_panel_container, weight=1)
+
+        # This frame is for fixed buttons at the bottom
+        self.fixed_bottom_frame = ttk.Frame(right_panel_container)
+        self.fixed_bottom_frame.pack(fill="x", side="bottom", pady=10, padx=10)
+
+        # This frame will hold the scrollable content
+        self.scrollable_lesson_outer_frame = ScrollableFrame(right_panel_container)
+        self.scrollable_lesson_outer_frame.pack(fill="both", expand=True)
         self.lesson_frame = self.scrollable_lesson_outer_frame.scrollable_content_frame
 
+
+        # --- Widgets inside the SCROLLABLE lesson_frame ---
         self.lesson_title_label = ttk.Label(self.lesson_frame, text="请从左侧选择一个课程开始学习", font=self.font_title)
         self.lesson_title_label.pack(pady=(5,10), anchor="w")
 
-        self.explanation_text = scrolledtext.ScrolledText(self.lesson_frame, wrap=tk.WORD, height=5, font=self.font_normal_text, relief=tk.SOLID, borderwidth=1)
-        self.explanation_text.pack(pady=5, fill=tk.X); self.explanation_text.config(state=tk.DISABLED)
+        # Paned window for resizable text areas
+        self.text_paned_window = ttk.PanedWindow(self.lesson_frame, orient=tk.VERTICAL)
+        # We pack it in load_lesson based on content
 
-        self.code_display_text = scrolledtext.ScrolledText(self.lesson_frame, wrap=tk.WORD, height=6, font=self.font_code_text, relief=tk.SOLID, borderwidth=1)
-        self.code_display_text.pack(pady=5, fill=tk.X); self.code_display_text.config(state=tk.DISABLED)
+        self.explanation_frame = ttk.Frame(self.text_paned_window)
+        self.explanation_text = scrolledtext.ScrolledText(self.explanation_frame, wrap=tk.WORD, font=self.font_normal_text, relief=tk.SOLID, borderwidth=1)
+        self.explanation_text.pack(fill="both", expand=True)
+        self.explanation_text.config(state=tk.DISABLED)
+
+        self.code_display_frame = ttk.Frame(self.text_paned_window)
+        self.code_display_text = scrolledtext.ScrolledText(self.code_display_frame, wrap=tk.WORD, font=self.font_code_text, relief=tk.SOLID, borderwidth=1)
+        self.code_display_text.pack(fill="both", expand=True)
+        self.code_display_text.config(state=tk.DISABLED)
 
         self.question_label = ttk.Label(self.lesson_frame, text="", font=self.font_italic_text, wraplength=700)
         self.question_label.pack(pady=(10,5), anchor="w")
@@ -328,7 +348,15 @@ class InteractiveLearningApp:
         self.answer_entry = None; self.radio_var = None; self.radio_buttons = []; self.code_input_area = None
         self.flashcard_widgets = {}
 
-        self.action_buttons_frame = ttk.Frame(self.lesson_frame)
+        self.feedback_label = ttk.Label(self.lesson_frame, text="", font=self.font_normal_bold, wraplength=700)
+        self.feedback_label.pack(pady=5, anchor="w")
+
+        self.output_title_label = ttk.Label(self.lesson_frame, text="程序输出/错误信息:", font=self.font_normal_bold)
+        self.output_display_area = scrolledtext.ScrolledText(self.lesson_frame, wrap=tk.WORD, height=7, font=self.font_code_text, relief=tk.SOLID, borderwidth=1)
+        self.output_display_area.config(state=tk.DISABLED)
+
+        # --- Widgets inside the FIXED bottom_frame ---
+        self.action_buttons_frame = ttk.Frame(self.fixed_bottom_frame)
         self.action_buttons_frame.pack(pady=5, fill=tk.X)
 
         self.submit_button = ttk.Button(self.action_buttons_frame, text="提交答案", command=self.check_answer, state=tk.DISABLED)
@@ -337,15 +365,8 @@ class InteractiveLearningApp:
         self.format_code_button = ttk.Button(self.action_buttons_frame, text="整理代码", command=self._format_code_action, state=tk.DISABLED)
         self.format_code_button.pack(side=tk.LEFT, padx=5, expand=True)
 
-        self.feedback_label = ttk.Label(self.lesson_frame, text="", font=self.font_normal_bold, wraplength=700)
-        self.feedback_label.pack(pady=5, anchor="w")
-
-        self.output_title_label = ttk.Label(self.lesson_frame, text="程序输出/错误信息:", font=self.font_normal_bold)
-        self.output_display_area = scrolledtext.ScrolledText(self.lesson_frame, wrap=tk.WORD, height=7, font=self.font_code_text, relief=tk.SOLID, borderwidth=1)
-        self.output_display_area.config(state=tk.DISABLED)
-
-        self.nav_frame = ttk.Frame(self.lesson_frame)
-        self.nav_frame.pack(pady=20, fill=tk.X)
+        self.nav_frame = ttk.Frame(self.fixed_bottom_frame)
+        self.nav_frame.pack(pady=5, fill=tk.X)
         self.prev_button = ttk.Button(self.nav_frame, text="上一关卡", command=self.previous_lesson, state=tk.DISABLED)
         self.prev_button.pack(side=tk.LEFT, padx=10, expand=True)
         self.skip_button = ttk.Button(self.nav_frame, text="跳过关卡", command=self.skip_lesson, state=tk.DISABLED)
@@ -486,6 +507,7 @@ class InteractiveLearningApp:
             "lesson_points_awarded": {str(k): v for k, v in self.lesson_points_awarded.items()},
             "lessons_viewed": [list(item) for item in self.lessons_viewed],
             "completion_message_shown": list(self.completion_message_shown),
+            "last_position": self.last_position,
         }
 
         try:
@@ -541,6 +563,7 @@ class InteractiveLearningApp:
         self.lesson_points_awarded = {eval(k): v for k, v in progress_data.get("lesson_points_awarded", {}).items()}
         self.lessons_viewed = {tuple(item) for item in progress_data.get("lessons_viewed", [])}
         self.completion_message_shown = set(progress_data.get("completion_message_shown", []))
+        self.last_position = progress_data.get("last_position", {})
         self.total_score = sum(self.scores.values())
 
         self.update_score_display()
@@ -608,10 +631,22 @@ class InteractiveLearningApp:
         self.total_max_score = sum(self.max_scores.values())
         self.current_topic_key = None
         self.current_lesson_index = 0
+        self.last_position = {}
 
-        self.load_progress(silent=True) # Load data into memory first
-        self.display_units() # Then create UI elements which will use the loaded data
+        self.load_progress(silent=True)
+        self.display_units()
 
+        # --- Ask to resume ---
+        resume_topic = self.last_position.get("topic")
+        resume_lesson_idx = self.last_position.get("lesson")
+
+        if resume_topic and resume_topic in LESSONS_DATA and isinstance(resume_lesson_idx, int):
+            if messagebox.askyesno("恢复进度", f"检测到您上次学习到单元 “{resume_topic}”。\n是否直接跳转到上次中断的地方？", parent=self.master):
+                self.select_topic(resume_topic, lesson_index=resume_lesson_idx)
+                self.progress_changed = False
+                return
+
+        # --- Default to first unit if not resuming ---
         first_unit_key = next(iter(LESSONS_DATA), None)
         if first_unit_key:
             self.select_topic(first_unit_key)
@@ -633,12 +668,12 @@ class InteractiveLearningApp:
             self.topic_buttons[topic_key] = btn
             self.update_topic_button_text(topic_key)
 
-    def select_topic(self, topic_key):
+    def select_topic(self, topic_key, lesson_index=0):
         # Ensure the topic exists in scores dictionary before proceeding. A safety check.
         self.scores.setdefault(topic_key, 0)
 
         self.current_topic_key = topic_key
-        self.current_lesson_index = 0
+        self.current_lesson_index = lesson_index
         self.load_lesson()
         self.update_score_display()
 
@@ -690,19 +725,45 @@ class InteractiveLearningApp:
         lesson = topic_lessons[self.current_lesson_index]
         lesson_id = (self.current_topic_key, self.current_lesson_index)
 
-        # Mark lesson as viewed
+        # Mark lesson as viewed and update last position
         if lesson_id not in self.lessons_viewed:
             self.lessons_viewed.add(lesson_id)
             self.progress_changed = True
+        self.last_position = {"topic": self.current_topic_key, "lesson": self.current_lesson_index}
+        self.progress_changed = True
+
 
         points_already_awarded = self.lesson_points_awarded.get(lesson_id, False)
 
         self.lesson_title_label.config(text=self._get_display_text(self.current_topic_key))
 
-        self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
-        self.explanation_text.insert(tk.END, self._get_display_text(lesson.get("text", ""))); self.explanation_text.config(state=tk.DISABLED)
-        self.code_display_text.config(state=tk.NORMAL); self.code_display_text.delete('1.0', tk.END)
-        self.code_display_text.insert(tk.END, lesson.get("code", "")); self.code_display_text.config(state=tk.DISABLED)
+        # --- Dynamic Text/Code Box Visibility ---
+        # Forget all panes first
+        self.text_paned_window.pack_forget()
+        try: self.text_paned_window.remove(self.explanation_frame)
+        except tk.TclError: pass
+        try: self.text_paned_window.remove(self.code_display_frame)
+        except tk.TclError: pass
+
+        explanation_content = self._get_display_text(lesson.get("text", ""))
+        code_content = lesson.get("code", "")
+
+        has_explanation = bool(explanation_content.strip())
+        has_code = bool(code_content.strip())
+
+        if has_explanation:
+            self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
+            self.explanation_text.insert(tk.END, explanation_content); self.explanation_text.config(state=tk.DISABLED)
+            self.text_paned_window.add(self.explanation_frame, weight=1)
+
+        if has_code:
+            self.code_display_text.config(state=tk.NORMAL); self.code_display_text.delete('1.0', tk.END)
+            self.code_display_text.insert(tk.END, code_content); self.code_display_text.config(state=tk.DISABLED)
+            self.text_paned_window.add(self.code_display_frame, weight=1)
+
+        if has_explanation or has_code:
+            self.text_paned_window.pack(pady=5, fill="both", expand=True)
+
 
         lesson_type = lesson["type"]
         if not points_already_awarded and lesson_type != "explanation":
