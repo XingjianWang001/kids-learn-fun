@@ -359,7 +359,15 @@ class InteractiveLearningApp:
         self.prev_button.config(state=tk.NORMAL if self.current_lesson_index > 0 else tk.DISABLED)
 
         if self.current_lesson_index >= num_lessons:
-            # ... (completion message logic)
+            self.skip_button.config(state=tk.DISABLED)
+            self.next_button.config(state=tk.DISABLED)
+            score = f"{self.scores.get(self.current_topic_key, 0)} / {self.max_scores.get(self.current_topic_key, 0)}"
+            self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
+            self.explanation_text.insert(tk.END, f"恭喜你完成了「{self.current_topic_key}」的全部关卡！\n本课得分: {score}\n可以点击左边的课程列表继续学习，或者点「上一关卡」复习。")
+            self.explanation_text.config(state=tk.DISABLED)
+            self.code_display_text.config(state=tk.NORMAL); self.code_display_text.delete('1.0', tk.END)
+            self.code_display_text.config(state=tk.DISABLED)
+            self.update_topic_button_text(self.current_topic_key)
             return
 
         self.skip_button.config(state=tk.NORMAL)
@@ -502,15 +510,18 @@ class InteractiveLearningApp:
 
         try:
             with open(cpp_file_path, 'w', encoding='utf-8') as f: f.write(full_code)
+            # g++ and the program print UTF-8 (the source is UTF-8); Windows would otherwise decode with its ANSI code page (e.g. GBK).
             compile_process = subprocess.run(
                 ['g++', cpp_file_path, '-o', exe_file_path, '-std=c++11'],
-                capture_output=True, text=True, timeout=10
+                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10
             )
             if compile_process.returncode != 0:
                 friendly_error = self._parse_compiler_errors(compile_process.stderr)
                 return {'success': False, 'output': '', 'error': friendly_error} # Use friendly error
 
-            run_process = subprocess.run([exe_file_path], capture_output=True, text=True, timeout=5)
+            # stdin=DEVNULL: cin gets end-of-input at once instead of hanging the window until the timeout.
+            run_process = subprocess.run([exe_file_path], stdin=subprocess.DEVNULL, capture_output=True,
+                                         text=True, encoding='utf-8', errors='replace', timeout=5)
             runtime_error_info = f"\n运行时信息/错误:\n{run_process.stderr}" if run_process.stderr else ""
             return {'success': True, 'output': run_process.stdout, 'error': runtime_error_info}
         except subprocess.TimeoutExpired as te:
@@ -547,7 +558,8 @@ class InteractiveLearningApp:
         points = lesson.get("points", 0)
         feedback_msg = ""
 
-        if not self.lesson_points_awarded.get(lesson_id, False) and points > 0:
+        newly_awarded = not self.lesson_points_awarded.get(lesson_id, False) and points > 0
+        if newly_awarded:
             self.scores[self.current_topic_key] += points
             self.total_score = sum(self.scores.values())
             self.lesson_points_awarded[lesson_id] = True
@@ -565,6 +577,7 @@ class InteractiveLearningApp:
         self.format_code_button.config(state=tk.DISABLED) # Disable format button on correct answer
 
         self.failed_attempts[lesson_id] = 0
+        if newly_awarded: self.check_all_topics_completed()  # after the feedback is shown
 
     def _handle_incorrect_answer(self, lesson, lesson_id, cpp_error_message=""):
         # ... (no changes here, but cpp_error_message will now be friendlier if parsed)
