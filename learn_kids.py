@@ -48,7 +48,8 @@ def load_lessons_from_file(directory="."):
 
     return all_lessons_data
 
-LESSONS_DATA = load_lessons_from_file(directory=".")
+# Lesson files sit next to this script, wherever it is launched from.
+LESSONS_DATA = load_lessons_from_file(directory=os.path.dirname(os.path.abspath(__file__)))
 if not LESSONS_DATA:
     print("CRITICAL: No lesson data loaded. Application might not function correctly.")
 
@@ -137,14 +138,11 @@ class CodeEditor(tk.Frame):
         return "break"
 
     def _apply_indentation(self):
-        current_line_number_str = self.code_area.index(tk.INSERT).split('.')[0]
-        if current_line_number_str == "1": prev_line_content = ""
-        else:
-            prev_line_number = int(current_line_number_str) - 1
-            prev_line_content = self.code_area.get(f"{prev_line_number}.0", f"{prev_line_number}.end")
-
-        indentation = "".join(char for char in prev_line_content if char in ' \t')
-        if prev_line_content.strip().endswith('{'): indentation += "    "
+        # Enter splits the line at the cursor, so the new line follows the text before the cursor.
+        line_before_cursor = self.code_area.get("insert linestart", tk.INSERT)
+        stripped = line_before_cursor.lstrip(' \t')
+        indentation = line_before_cursor[:len(line_before_cursor) - len(stripped)]
+        if stripped.rstrip().endswith('{'): indentation += "    "
         self.code_area.insert(tk.INSERT, "\n" + indentation)
 
     def _update_line_numbers(self, event=None):
