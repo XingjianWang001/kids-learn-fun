@@ -53,6 +53,11 @@ LESSONS_DATA = load_lessons_from_file(directory=os.path.dirname(os.path.abspath(
 if not LESSONS_DATA:
     print("CRITICAL: No lesson data loaded. Application might not function correctly.")
 
+def accepted_answers(lesson):
+    """A fill_blank `answer` is one string or a list of accepted ones; the first is the one shown."""
+    answer = lesson["answer"]
+    return answer if isinstance(answer, list) else [answer]
+
 class ScrollableFrame(ttk.Frame):
     """A pure Tkinter scrollable frame that actually works!"""
     def __init__(self, container, *args, **kwargs):
@@ -413,7 +418,7 @@ class InteractiveLearningApp:
             self.answer_entry = ttk.Entry(self.input_frame, font=self.font_normal_text, width=30)
             self.answer_entry.pack(pady=5)
             if points_already_awarded:
-                self.answer_entry.insert(0, str(lesson["answer"]))
+                self.answer_entry.insert(0, str(accepted_answers(lesson)[0]))
                 self.answer_entry.config(state=tk.DISABLED)
                 self.feedback_label.config(text="你已经答对过这题啦！", foreground="blue")
             else:
@@ -544,7 +549,7 @@ class InteractiveLearningApp:
         # ... (no changes here)
         lesson_type = lesson["type"]
         if lesson_type == "fill_blank":
-            return f"“{lesson['answer']}”"
+            return f"“{accepted_answers(lesson)[0]}”"
         elif lesson_type == "multiple_choice":
             return f"“{lesson['options'][lesson['answer_index']]}”"
         elif lesson_type == "code_challenge":
@@ -632,8 +637,8 @@ class InteractiveLearningApp:
         if lesson_type == "fill_blank":
             # ...
             if self.answer_entry:
-                user_answer = self.answer_entry.get().strip()
-                is_correct = (user_answer.lower() == str(lesson["answer"]).lower())
+                normalize = lambda s: re.sub(r"\s+", "", str(s)).lower()
+                is_correct = normalize(self.answer_entry.get()) in map(normalize, accepted_answers(lesson))
         elif lesson_type == "multiple_choice":
             # ...
             if self.radio_var:
