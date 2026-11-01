@@ -58,6 +58,12 @@ def accepted_answers(lesson):
     answer = lesson["answer"]
     return answer if isinstance(answer, list) else [answer]
 
+
+def normalize_answer(text):
+    """Spaces don't change a C++ expression, so `i<=n` matches `i <= n`."""
+    return re.sub(r"\s+", "", str(text)).lower()
+
+
 class ScrollableFrame(ttk.Frame):
     """A pure Tkinter scrollable frame that actually works!"""
     def __init__(self, container, *args, **kwargs):
@@ -639,8 +645,7 @@ class InteractiveLearningApp:
         if lesson_type == "fill_blank":
             # ...
             if self.answer_entry:
-                normalize = lambda s: re.sub(r"\s+", "", str(s)).lower()
-                is_correct = normalize(self.answer_entry.get()) in map(normalize, accepted_answers(lesson))
+                is_correct = normalize_answer(self.answer_entry.get()) in map(normalize_answer, accepted_answers(lesson))
         elif lesson_type == "multiple_choice":
             # ...
             if self.radio_var:
@@ -719,7 +724,6 @@ class InteractiveLearningApp:
             self.load_lesson()
 
     def skip_lesson(self):
-        # ... (no changes)
         self.next_lesson()  # load_lesson() clears the feedback, so set it afterwards
         self.feedback_label.config(text="已跳过当前关卡。", foreground="blue")
 
