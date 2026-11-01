@@ -53,6 +53,17 @@ LESSONS_DATA = load_lessons_from_file(directory=os.path.dirname(os.path.abspath(
 if not LESSONS_DATA:
     print("CRITICAL: No lesson data loaded. Application might not function correctly.")
 
+def accepted_answers(lesson):
+    """A fill_blank `answer` is one string or a list of accepted ones; the first is the one shown."""
+    answer = lesson["answer"]
+    return answer if isinstance(answer, list) else [answer]
+
+
+def normalize_answer(text):
+    """Spaces don't change a C++ expression, so `i<=n` matches `i <= n`."""
+    return re.sub(r"\s+", "", str(text)).lower()
+
+
 class ScrollableFrame(ttk.Frame):
     """A pure Tkinter scrollable frame that actually works!"""
     def __init__(self, container, *args, **kwargs):
@@ -127,7 +138,9 @@ class CodeEditor(tk.Frame):
         self.line_numbers.yview(*args)
         self._update_line_numbers()
 
-    def _on_scroll(self, event=None):
+    def _on_scroll(self, event):
+        # Scroll here and "break": Text's own wheel binding and the page's bind_all handler would scroll again.
+        self.code_area.yview_scroll(-3 if event.num == 4 or event.delta > 0 else 3, "units")
         self.line_numbers.yview_moveto(self.code_area.yview()[0])
         self._update_line_numbers()
         return "break"
@@ -413,7 +426,7 @@ class InteractiveLearningApp:
             self.answer_entry = ttk.Entry(self.input_frame, font=self.font_normal_text, width=30)
             self.answer_entry.pack(pady=5)
             if points_already_awarded:
-                self.answer_entry.insert(0, str(lesson["answer"]))
+                self.answer_entry.insert(0, str(accepted_answers(lesson)[0]))
                 self.answer_entry.config(state=tk.DISABLED)
                 self.feedback_label.config(text="你已经答对过这题啦！", foreground="blue")
             else:
@@ -544,7 +557,7 @@ class InteractiveLearningApp:
         # ... (no changes here)
         lesson_type = lesson["type"]
         if lesson_type == "fill_blank":
-            return f"“{lesson['answer']}”"
+            return f"“{accepted_answers(lesson)[0]}”"
         elif lesson_type == "multiple_choice":
             return f"“{lesson['options'][lesson['answer_index']]}”"
         elif lesson_type == "code_challenge":
@@ -632,8 +645,7 @@ class InteractiveLearningApp:
         if lesson_type == "fill_blank":
             # ...
             if self.answer_entry:
-                user_answer = self.answer_entry.get().strip()
-                is_correct = (user_answer.lower() == str(lesson["answer"]).lower())
+                is_correct = normalize_answer(self.answer_entry.get()) in map(normalize_answer, accepted_answers(lesson))
         elif lesson_type == "multiple_choice":
             # ...
             if self.radio_var:
@@ -712,9 +724,8 @@ class InteractiveLearningApp:
             self.load_lesson()
 
     def skip_lesson(self):
-        # ... (no changes)
+        self.next_lesson()  # load_lesson() clears the feedback, so set it afterwards
         self.feedback_label.config(text="已跳过当前关卡。", foreground="blue")
-        self.next_lesson()
 
     def update_score_display(self):
         # ... (no changes)
