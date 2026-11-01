@@ -577,7 +577,9 @@ class InteractiveLearningApp:
         self.format_code_button.config(state=tk.DISABLED) # Disable format button on correct answer
 
         self.failed_attempts[lesson_id] = 0
-        if newly_awarded: self.check_all_topics_completed()  # after the feedback is shown
+        if newly_awarded:
+            self.update_score_display()  # show the final score before the modal congratulation
+            self.check_all_topics_completed()
 
     def _handle_incorrect_answer(self, lesson, lesson_id, cpp_error_message=""):
         # ... (no changes here, but cpp_error_message will now be friendlier if parsed)

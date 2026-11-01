@@ -50,7 +50,9 @@ def test_finishing_a_topic_shows_completion_and_stops_navigation(app):
     assert str(app.prev_button.cget("state")) == tk.NORMAL
 
 
-def test_last_correct_answer_congratulates(app):
+def test_last_correct_answer_congratulates(app, monkeypatch):
+    monkeypatch.setattr(app, "lesson_points_awarded", {})
+    monkeypatch.setattr(app, "scores", dict(app.scores))
     topic, i = next(
         (t, i)
         for t, lessons in LESSONS_DATA.items()
