@@ -720,8 +720,8 @@ class InteractiveLearningApp:
 
     def skip_lesson(self):
         # ... (no changes)
+        self.next_lesson()  # load_lesson() clears the feedback, so set it afterwards
         self.feedback_label.config(text="已跳过当前关卡。", foreground="blue")
-        self.next_lesson()
 
     def update_score_display(self):
         # ... (no changes)

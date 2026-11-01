@@ -127,3 +127,16 @@ def test_fill_blank_questions_have_at_most_two_parts():
         for i, lesson in enumerate(lessons)
         if lesson["type"] == "fill_blank" and len(lesson["question_parts"]) > 2
     ] == []
+
+
+@pytest.mark.parametrize("last", [False, True], ids=["middle", "last"])
+def test_skip_says_the_lesson_was_skipped(app, last):
+    topic = next(iter(LESSONS_DATA))
+    app.select_topic(topic)
+    if last:
+        app.current_lesson_index = len(LESSONS_DATA[topic]) - 1
+        app.load_lesson()
+
+    app.skip_lesson()
+
+    assert app.feedback_label.cget("text") == "已跳过当前关卡。"
