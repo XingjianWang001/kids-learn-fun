@@ -117,3 +117,13 @@ def test_fill_blank_shows_first_accepted_answer(app, monkeypatch):
     app.lesson_points_awarded[(app.current_topic_key, app.current_lesson_index)] = True
     app.load_lesson()
     assert app.answer_entry.get() == "i--"
+
+
+def test_fill_blank_questions_have_at_most_two_parts():
+    # load_lesson shows question_parts[0] + blank + question_parts[1]; a 3rd part would be dropped.
+    assert [
+        (t, i)
+        for t, lessons in LESSONS_DATA.items()
+        for i, lesson in enumerate(lessons)
+        if lesson["type"] == "fill_blank" and len(lesson["question_parts"]) > 2
+    ] == []
