@@ -41,3 +41,24 @@ def test_adds_indent_after_brace_on_indented_line(root):
 
 def test_enter_mid_line_moves_rest_of_line_down(root):
     assert press_enter(root, "    a; b;", cursor="1.7") == "    b;"
+
+
+@pytest.mark.parametrize("event,options,direction", [
+    ("<MouseWheel>", {"delta": -120}, 1),  # Windows / macOS
+    ("<MouseWheel>", {"delta": 120}, -1),
+    ("<Button-5>", {}, 1),  # Linux (X11)
+    ("<Button-4>", {}, -1),
+])
+def test_mouse_wheel_scrolls_editor_and_line_numbers(root, event, options, direction):
+    editor = CodeEditor(root)
+    editor.pack()
+    editor.code_area.insert("1.0", "\n".join(f"x{i};" for i in range(100)))
+    root.update_idletasks()
+    editor.code_area.yview_moveto(0.5)
+    before = editor.code_area.yview()[0]
+    editor.code_area.event_generate(event, **options)
+    after = editor.code_area.yview()[0]
+    line_numbers_top = editor.line_numbers.yview()[0]
+    editor.destroy()
+    assert (after - before) * direction > 0
+    assert line_numbers_top == pytest.approx(after, abs=0.01)

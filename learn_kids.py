@@ -132,7 +132,9 @@ class CodeEditor(tk.Frame):
         self.line_numbers.yview(*args)
         self._update_line_numbers()
 
-    def _on_scroll(self, event=None):
+    def _on_scroll(self, event):
+        # Scroll here and "break": Text's own wheel binding and the page's bind_all handler would scroll again.
+        self.code_area.yview_scroll(-3 if event.num == 4 or event.delta > 0 else 3, "units")
         self.line_numbers.yview_moveto(self.code_area.yview()[0])
         self._update_line_numbers()
         return "break"
