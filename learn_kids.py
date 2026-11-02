@@ -5,7 +5,11 @@ import subprocess
 import tempfile
 import os
 import re # Added for error parsing and syntax highlighting
+import shutil
+import threading
 from tkinter import font as tk_font # Import the font module
+
+OUTPUT_LIMIT = 64 * 1024  # bytes kept per stream; an endless print loop would otherwise fill memory
 
 # --- 函数：加载课程数据 ---
 def load_lessons_from_file(directory="."):
@@ -510,9 +514,7 @@ class InteractiveLearningApp:
         return f"原始编译错误：\n{stderr}" # Fallback to original error if no match
 
     def execute_cpp_code(self, user_code_snippet, context_template):
-        try:
-            subprocess.run(['g++', '--version'], check=True, capture_output=True, text=True)
-        except (subprocess.CalledProcessError, FileNotFoundError):
+        if not shutil.which('g++'):
             return {'success': False, 'output': '', 'error': "C++编译器 (g++) 未找到或无法执行。\n请确保已安装g++并将其添加到系统PATH中。"}
 
         full_code = context_template.replace("{user_code}", user_code_snippet)
@@ -524,22 +526,45 @@ class InteractiveLearningApp:
         try:
             with open(cpp_file_path, 'w', encoding='utf-8') as f: f.write(full_code)
             # g++ and the program print UTF-8 (the source is UTF-8); Windows would otherwise decode with its ANSI code page (e.g. GBK).
-            compile_process = subprocess.run(
-                ['g++', cpp_file_path, '-o', exe_file_path, '-std=c++11'],
-                capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10
-            )
+            try:
+                compile_process = subprocess.run(
+                    ['g++', cpp_file_path, '-o', exe_file_path, '-std=c++11'],
+                    capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10
+                )
+            except subprocess.TimeoutExpired:
+                return {'success': False, 'output': '', 'error': "编译超时！请稍后再试一次。"}
             if compile_process.returncode != 0:
                 friendly_error = self._parse_compiler_errors(compile_process.stderr)
                 return {'success': False, 'output': '', 'error': friendly_error} # Use friendly error
 
             # stdin=DEVNULL: cin gets end-of-input at once instead of hanging the window until the timeout.
-            run_process = subprocess.run([exe_file_path], stdin=subprocess.DEVNULL, capture_output=True,
-                                         text=True, encoding='utf-8', errors='replace', timeout=5)
-            runtime_error_info = f"\n运行时信息/错误:\n{run_process.stderr}" if run_process.stderr else ""
-            return {'success': True, 'output': run_process.stdout, 'error': runtime_error_info}
-        except subprocess.TimeoutExpired as te:
-            error_type = "编译" if 'compile_process' not in locals() or te is compile_process else "执行"
-            return {'success': False, 'output': '', 'error': f"{error_type}超时！代码可能进入了无限循环或运行时间过长。"}
+            with subprocess.Popen([exe_file_path], stdin=subprocess.DEVNULL,
+                                  stdout=subprocess.PIPE, stderr=subprocess.PIPE) as proc:
+                timer = threading.Timer(5, proc.kill)
+                outputs = {}
+
+                def read_capped(name, stream):
+                    # Stop the program once a stream passes the limit instead of buffering all of it.
+                    outputs[name] = stream.read(OUTPUT_LIMIT + 1)
+                    if len(outputs[name]) > OUTPUT_LIMIT:
+                        proc.kill()
+
+                stderr_reader = threading.Thread(target=read_capped, args=('stderr', proc.stderr))
+                timer.start()
+                stderr_reader.start()
+                read_capped('stdout', proc.stdout)
+                stderr_reader.join()
+                proc.wait()
+                timed_out = timer.finished.is_set()  # set only if the timer fired, until cancel() below
+                timer.cancel()
+            if any(len(data) > OUTPUT_LIMIT for data in outputs.values()):
+                return {'success': False, 'output': '', 'error': "输出过长（超过 64 KB）！代码可能进入了无限循环。"}
+            if timed_out:
+                return {'success': False, 'output': '', 'error': "执行超时！代码可能进入了无限循环或运行时间过长。"}
+            # Decode like text=True did: UTF-8, and \r\n to \n so Windows output matches the expected text.
+            stdout, stderr = (outputs[name].decode('utf-8', 'replace').replace('\r\n', '\n') for name in ('stdout', 'stderr'))
+            runtime_error_info = f"\n运行时信息/错误:\n{stderr}" if stderr else ""
+            return {'success': True, 'output': stdout, 'error': runtime_error_info}
         except Exception as e:
             return {'success': False, 'output': '', 'error': f"执行时发生意外错误: {str(e)}"}
         finally:
@@ -676,6 +701,8 @@ class InteractiveLearningApp:
                     self.format_code_button.config(state=tk.DISABLED)
                     return
 
+                self.feedback_label.config(text="正在编译运行…", foreground="black")
+                self.feedback_label.update_idletasks()  # show it before the window blocks on g++
                 result = self.execute_cpp_code(user_code, context)
                 self.output_display_area.config(state=tk.NORMAL)
                 self.output_display_area.delete('1.0', tk.END)
