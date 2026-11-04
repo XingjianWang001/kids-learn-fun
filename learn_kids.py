@@ -11,6 +11,31 @@ from tkinter import font as tk_font # Import the font module
 
 OUTPUT_LIMIT = 64 * 1024  # bytes kept per stream; an endless print loop would otherwise fill memory
 
+# g++ error regex -> friendly hint; more specific patterns first.
+COMPILER_ERROR_HINTS = {
+    r"expected ';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
+    r"was not declared in this scope": "嗯，你用了一个变量或者函数，但是好像忘记先告诉电脑它是什么了（忘记声明了）。",
+    r"expected primary-expression before '.*' token": "这里似乎有点小问题，电脑不太明白你想做什么。检查一下是不是有奇怪的符号或者漏了东西？",
+    r"stray '\\[0-9]*' in program": "代码里好像有一些奇怪的、看不懂的符号，检查一下是不是不小心打错了？",
+    r"undefined reference to": "电脑找到了一个名字，但是找不到它具体代表什么（比如一个函数）。是不是忘记写这个函数了，或者链接的时候出错了？",
+    r"expected '}' at end of input": "代码的最后好像少了一个大括号 '}' 来收尾哦。",
+    r"expected declaration before '}' token": "这个大括号 '}' 前面是不是少了点什么代码呢？",
+    r"conflicting declaration '.*'": "这个名字好像之前用过了，但是这次用它的方式和之前不一样哦。",
+    r"redeclaration of '.*'": "这个名字你好像声明过两次了，检查一下是不是写多了？",
+    r"no match for 'operator<<'": "使用 `cout << ...` 的时候，`<<` 右边的东西电脑不认识，看看是不是类型不对？",
+    r"no match for 'operator>>'": "使用 `cin >> ...` 的时候，`>>` 右边的变量电脑不认识，看看是不是类型不对或者没声明？",
+    r"expected unqualified-id before numeric constant": "数字前面是不是不小心写了什么不该写的东西？",
+    r"expected 'while' before '\('": "for或者do-while循环是不是少了 `while` 关键字？",
+    r"expected expression before '\)' token": "括号 `()` 里面好像少了点东西，或者括号不匹配哦。",
+    r"expected '\)' before ';' token": "是不是有一行代码的括号 `(` 没有对应的 `)` 就直接写分号了？",
+    r"else without a previous if": "`else` 是跟着 `if` 用的，这里好像没有找到前面的 `if` 呀。",
+    r"return-statement with no value, in function returning 'int'": "这个函数应该返回一个整数，但是 `return;` 后面忘记写返回值了。",
+    r"note: expected 'int' but argument is of type": "函数需要的参数类型和你给的不一样哦，检查一下参数类型吧。",
+    r"too few arguments to function": "调用函数的时候，给的参数数量不够哦。",
+    r"too many arguments to function": "调用函数的时候，给的参数数量太多了哦。",
+    r"error: (ld returned 1 exit status|linker command failed)": "代码编译好了，但是在最后组合（链接）的时候出错了。通常是找不到 main 函数或者某些库函数。"
+}
+
 # --- 函数：加载课程数据 ---
 def load_lessons_from_file(directory="."):
     """
@@ -476,39 +501,16 @@ class InteractiveLearningApp:
             self.code_input_area.insert("1.0", formatted_code)
             self.code_input_area._on_key_release()
 
-    def _parse_compiler_errors(self, stderr):
+    def _parse_compiler_errors(self, stderr, context_template):
         """Attempts to parse g++ errors and provide friendlier messages."""
-        # Simple error mapping (can be expanded)
-        error_map = {
-            r"expected ';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
-            r"was not declared in this scope": "嗯，你用了一个变量或者函数，但是好像忘记先告诉电脑它是什么了（忘记声明了）。",
-            r"expected primary-expression before '.*' token": "这里似乎有点小问题，电脑不太明白你想做什么。检查一下是不是有奇怪的符号或者漏了东西？",
-            r"stray '\\[0-9]*' in program": "代码里好像有一些奇怪的、看不懂的符号，检查一下是不是不小心打错了？",
-            r"undefined reference to": "电脑找到了一个名字，但是找不到它具体代表什么（比如一个函数）。是不是忘记写这个函数了，或者链接的时候出错了？",
-            r"expected '}' at end of input": "代码的最后好像少了一个大括号 '}' 来收尾哦。",
-            r"expected declaration before '}' token": "这个大括号 '}' 前面是不是少了点什么代码呢？",
-            r"conflicting declaration '.*'": "这个名字好像之前用过了，但是这次用它的方式和之前不一样哦。",
-            r"redeclaration of '.*'": "这个名字你好像声明过两次了，检查一下是不是写多了？",
-            r"no match for 'operator<<'": "使用 `cout << ...` 的时候，`<<` 右边的东西电脑不认识，看看是不是类型不对？",
-            r"no match for 'operator>>'": "使用 `cin >> ...` 的时候，`>>` 右边的变量电脑不认识，看看是不是类型不对或者没声明？",
-            r"expected unqualified-id before numeric constant": "数字前面是不是不小心写了什么不该写的东西？",
-            r"expected 'while' before '('": "for或者do-while循环是不是少了 `while` 关键字？",
-            r"expected expression before ')' token": "括号 `()` 里面好像少了点东西，或者括号不匹配哦。",
-            r"expected ')' before ';' token": "是不是有一行代码的括号 `(` 没有对应的 `)` 就直接写分号了？",
-            r"else without a previous if": "`else` 是跟着 `if` 用的，这里好像没有找到前面的 `if` 呀。",
-            r"return-statement with no value, in function returning 'int'": "这个函数应该返回一个整数，但是 `return;` 后面忘记写返回值了。",
-            r"note: expected 'int' but argument is of type": "函数需要的参数类型和你给的不一样哦，检查一下参数类型吧。",
-            r"too few arguments to function": "调用函数的时候，给的参数数量不够哦。",
-            r"too many arguments to function": "调用函数的时候，给的参数数量太多了哦。",
-            r"error: (ld returned 1 exit status|linker command failed)": "代码编译好了，但是在最后组合（链接）的时候出错了。通常是找不到 main 函数或者某些库函数。"
-        }
-        # More specific error patterns can be added above less specific ones.
-        for pattern, friendly_message in error_map.items():
+        for pattern, friendly_message in COMPILER_ERROR_HINTS.items():
             if re.search(pattern, stderr, re.IGNORECASE):
                 # Try to extract line number if possible
                 line_match = re.search(r":(\d+):\d+:", stderr)
-                if line_match:
-                    return f"提示：在第 {line_match.group(1)} 行附近，{friendly_message}\n\n原始错误片段：\n{stderr[:300]}" # Show a snippet
+                # g++ counts the hidden cpp_context lines too; < 1 means the error is in the template.
+                user_line = int(line_match.group(1)) - context_template.split("{user_code}")[0].count("\n") if line_match else 0
+                if user_line >= 1:
+                    return f"提示：在第 {user_line} 行附近，{friendly_message}\n\n原始错误片段：\n{stderr[:300]}" # Show a snippet
                 return f"提示：{friendly_message}\n\n原始错误片段：\n{stderr[:300]}"
 
         return f"原始编译错误：\n{stderr}" # Fallback to original error if no match
@@ -534,7 +536,7 @@ class InteractiveLearningApp:
             except subprocess.TimeoutExpired:
                 return {'success': False, 'output': '', 'error': "编译超时！请稍后再试一次。"}
             if compile_process.returncode != 0:
-                friendly_error = self._parse_compiler_errors(compile_process.stderr)
+                friendly_error = self._parse_compiler_errors(compile_process.stderr, context_template)
                 return {'success': False, 'output': '', 'error': friendly_error} # Use friendly error
 
             # stdin=DEVNULL: cin gets end-of-input at once instead of hanging the window until the timeout.
@@ -564,6 +566,8 @@ class InteractiveLearningApp:
             # Decode like text=True did: UTF-8, and \r\n to \n so Windows output matches the expected text.
             stdout, stderr = (outputs[name].decode('utf-8', 'replace').replace('\r\n', '\n') for name in ('stdout', 'stderr'))
             runtime_error_info = f"\n运行时信息/错误:\n{stderr}" if stderr else ""
+            if proc.returncode != 0:
+                return {'success': False, 'output': '', 'error': f"程序异常退出 (code {proc.returncode}){runtime_error_info}"}
             return {'success': True, 'output': stdout, 'error': runtime_error_info}
         except Exception as e:
             return {'success': False, 'output': '', 'error': f"执行时发生意外错误: {str(e)}"}
@@ -712,7 +716,7 @@ class InteractiveLearningApp:
                     expected_output_trimmed = expected_out_str.strip()
                     is_correct = (actual_output_trimmed == expected_output_trimmed)
                     display_text = f"你的程序输出:\n---\n{result['output']}\n---"
-                    if result['error']: display_text += f"\n运行时信息/错误:\n{result['error']}\n---"
+                    if result['error']: display_text += f"{result['error']}\n---"
                     self.output_display_area.insert(tk.END, display_text)
                     if not is_correct:
                         cpp_specific_error_message = "输出与预期不符。" # This will be shown by _handle_incorrect_answer

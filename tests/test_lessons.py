@@ -1,3 +1,4 @@
+import re
 import shutil
 from unittest import mock
 
@@ -140,3 +141,8 @@ def test_skip_says_the_lesson_was_skipped(app, last):
     app.skip_lesson()
 
     assert app.feedback_label.cget("text") == "已跳过当前关卡。"
+
+
+def test_compiler_error_patterns_are_valid_regexes():
+    for pattern in learn_kids.COMPILER_ERROR_HINTS:
+        re.compile(pattern)
