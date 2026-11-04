@@ -35,3 +35,20 @@ def test_normal_program_output_is_returned():
     result = run('std::cout << "a\\nb" << std::endl;')
     assert result["success"]
     assert result["output"] == "a\nb\n"
+
+
+def test_crash_is_reported_as_failure():
+    result = run('std::cout << "hi" << std::endl; return 3;')
+    assert not result["success"]
+    assert "程序异常退出 (code 3)" in result["error"]
+
+
+def test_compile_error_line_counts_only_user_code():
+    app = InteractiveLearningApp.__new__(InteractiveLearningApp)  # no window needed
+    result = app.execute_cpp_code("int y = 2;\nstd::cout << zz;", CONTEXT)
+    assert "第 2 行" in result["error"]
+
+
+def test_compile_error_in_template_has_no_line_hint():
+    message = InteractiveLearningApp._parse_compiler_errors(None, "a.cpp:1:1: error: 'x' was not declared in this scope", CONTEXT)
+    assert "行附近" not in message

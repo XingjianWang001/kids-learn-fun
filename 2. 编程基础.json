@@ -320,10 +320,10 @@
       "text": "请编写代码，计算输入的 N 个整数的平均值。\n你需要先输入 N，然后循环 N 次输入数字，把它们加起来，最后除以 N 得到平均值。\n假设输入N为3，然后输入10, 20, 30，则平均值为20。",
       "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n  int n; // 数字的个数\n  int num; // 每次输入的数字\n  double sum = 0; // 所有数字的总和，用 double 避免除法丢失小数\n  double average; // 平均值\n  \n  std::cout << \"请输入数字的个数: \";\n  std::cin >> n;\n  \n  std::cout << \"请依次输入 \" << n << \" 个整数:\" << std::endl;\n  \n  // 在这里写你的循环和求和代码\n  {user_code}\n  // 在这里计算平均值\n  \n  std::cout << \"这些数字的平均值是: \" << average << std::endl;\n  \n  return 0;\n}",
       "question": "计算输入的 N 个整数的平均值。例如，若N=3，数字为10, 20, 30，则输出平均值20。",
-      "cpp_context": "#include <iostream>\n\nint main() {\n  int n;\n  int num;\n  double sum = 0;\n  double average;\n  \n  // 为了测试方便，我们预设输入，实际程序中会由用户输入\n  // std::cout << \"请输入数字的个数: \";\n  // std::cin >> n;\n  // std::cout << \"请依次输入 \" << n << \" 个整数:\" << std::endl;\n  n = 3; // 假设用户输入3\n  \n  {user_code}\n  \n  // std::cout << \"这些数字的平均值是: \" << average << std::endl;\n  // 为了简化输出匹配，我们直接输出 average 的值\n  std::cout << average << std::endl;\n  \n  return 0;\n}",
+      "cpp_context": "#include <iostream>\n\nint main() {\n  int n;\n  int num;\n  double sum = 0;\n  double average;\n  \n  // 为了测试方便，我们预设输入，实际程序中会由用户输入\n  // std::cout << \"请输入数字的个数: \";\n  // std::cin >> n;\n  // std::cout << \"请依次输入 \" << n << \" 个整数:\" << std::endl;\n  n = 3; // 假设用户输入3\n  int inputs[] = {10, 20, 30}; // 预设的输入数字\n  \n  {user_code}\n  \n  // std::cout << \"这些数字的平均值是: \" << average << std::endl;\n  // 为了简化输出匹配，我们直接输出 average 的值\n  std::cout << average << std::endl;\n  \n  return 0;\n}",
       "expected_output": "20",
-      "standard_answer_code": "  // 模拟用户输入数字 10, 20, 30\n  // 实际代码中，这部分会在循环内用 std::cin >> num;\n  int inputs[] = {10, 20, 30};\n  for (int i = 0; i < n; i++) {\n    // num = inputs[i]; // 在测试环境中模拟输入\n    // 真实场景应该是 std::cin >> num;\n    // 为了让用户能写出通用的代码，我们假设用户会写 cin\n    // 但在我们的标准答案里，为了能运行，我们直接用预设值\n    if (i == 0) num = 10;\n    else if (i == 1) num = 20;\n    else if (i == 2) num = 30;\n    sum += num;\n  }\n  if (n > 0) {\n    average = sum / n;\n  } else {\n    average = 0; //避免除以0\n  }",
-      "hint": "用一个 `for` 循环读取 N 个数字（或在这个挑战中，按顺序使用预设的10, 20, 30），把它们累加到一个 `sum` 变量里。循环结束后，用 `sum / n` 计算平均值。",
+      "standard_answer_code": "  for (int i = 0; i < n; i++) {\n    num = inputs[i]; // 真实程序中这里是 std::cin >> num;\n    sum += num;\n  }\n  if (n > 0) {\n    average = sum / n;\n  } else {\n    average = 0; //避免除以0\n  }",
+      "hint": "用一个 `for` 循环读取 N 个数字（在这个挑战中没有键盘输入，请用预设数组 `inputs[i]` 取第 i 个数字：10, 20, 30），把它们累加到一个 `sum` 变量里。循环结束后，用 `sum / n` 计算平均值。",
       "points": 15
     },
     {
