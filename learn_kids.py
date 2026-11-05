@@ -93,6 +93,13 @@ def normalize_answer(text):
     return re.sub(r"\s+", "", str(text)).lower()
 
 
+def wheel_steps(event):
+    """-1 to scroll up, 1 down, 0 for none. Only the sign counts: macOS and touchpads send deltas far below 120."""
+    if event.num in (4, 5):  # X11 sends the wheel as buttons 4 and 5
+        return -1 if event.num == 4 else 1
+    return (event.delta < 0) - (event.delta > 0)
+
+
 class ScrollableFrame(ttk.Frame):
     """A pure Tkinter scrollable frame that actually works!"""
     def __init__(self, container, *args, **kwargs):
@@ -117,24 +124,10 @@ class ScrollableFrame(ttk.Frame):
         scrollbar_y.pack(side="right", fill="y")
         scrollbar_x.pack(side="bottom", fill="x")
 
-        def _on_mousewheel(event):
-            if event.num == 4: canvas.yview_scroll(-1, "units")
-            elif event.num == 5: canvas.yview_scroll(1, "units")
-            else: canvas.yview_scroll(int(-1*(event.delta/120)), "units")
-
-        def _on_shift_mousewheel(event):
-            if event.num == 4: canvas.xview_scroll(-1, "units")
-            elif event.num == 5: canvas.xview_scroll(1, "units")
-            else: canvas.xview_scroll(int(-1*(event.delta/120)), "units")
-
-        if container.tk.call('tk', 'windowingsystem') == 'aqua':
-            canvas.bind_all("<MouseWheel>", _on_mousewheel)
-            canvas.bind_all("<Shift-MouseWheel>", _on_shift_mousewheel)
-        else:
-            canvas.bind_all("<MouseWheel>", _on_mousewheel)
-            canvas.bind_all("<Shift-MouseWheel>", _on_shift_mousewheel)
-            canvas.bind_all("<Button-4>", _on_mousewheel)
-            canvas.bind_all("<Button-5>", _on_mousewheel)
+        canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(wheel_steps(e), "units"))
+        canvas.bind_all("<Shift-MouseWheel>", lambda e: canvas.xview_scroll(wheel_steps(e), "units"))
+        canvas.bind_all("<Button-4>", lambda e: canvas.yview_scroll(wheel_steps(e), "units"))  # X11
+        canvas.bind_all("<Button-5>", lambda e: canvas.yview_scroll(wheel_steps(e), "units"))
 
 class CodeEditor(tk.Frame):
     def __init__(self, master, font=None, **kwargs):
@@ -169,7 +162,7 @@ class CodeEditor(tk.Frame):
 
     def _on_scroll(self, event):
         # Scroll here and "break": Text's own wheel binding and the page's bind_all handler would scroll again.
-        self.code_area.yview_scroll(-3 if event.num == 4 or event.delta > 0 else 3, "units")
+        self.code_area.yview_scroll(3 * wheel_steps(event), "units")
         self.line_numbers.yview_moveto(self.code_area.yview()[0])
         self._update_line_numbers()
         return "break"

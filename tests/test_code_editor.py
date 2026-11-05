@@ -2,7 +2,7 @@ import pytest
 
 tk = pytest.importorskip("tkinter")
 
-from learn_kids import CodeEditor  # noqa: E402
+from learn_kids import CodeEditor, ScrollableFrame  # noqa: E402
 
 
 @pytest.fixture(scope="module")
@@ -46,6 +46,7 @@ def test_enter_mid_line_moves_rest_of_line_down(root):
 @pytest.mark.parametrize("event,options,direction", [
     ("<MouseWheel>", {"delta": -120}, 1),  # Windows / macOS
     ("<MouseWheel>", {"delta": 120}, -1),
+    ("<MouseWheel>", {"delta": -1}, 1),  # macOS Tk 8.6 and touchpads send less than 120
     ("<Button-5>", {}, 1),  # Linux (X11)
     ("<Button-4>", {}, -1),
 ])
@@ -62,3 +63,19 @@ def test_mouse_wheel_scrolls_editor_and_line_numbers(root, event, options, direc
     editor.destroy()
     assert (after - before) * direction > 0
     assert line_numbers_top == pytest.approx(after, abs=0.01)
+
+
+@pytest.mark.parametrize("delta,direction", [(-120, 1), (120, -1), (-1, 1), (1, -1), (-30, 1)])
+def test_mouse_wheel_scrolls_lesson_page(root, delta, direction):
+    page = ScrollableFrame(root)
+    page.pack()
+    for i in range(200):
+        tk.Label(page.scrollable_content_frame, text=f"row {i}").pack()
+    root.update()
+    canvas = page.winfo_children()[0]
+    canvas.yview_moveto(0.5)
+    before = canvas.yview()[0]
+    canvas.event_generate("<MouseWheel>", delta=delta)
+    after = canvas.yview()[0]
+    page.destroy()
+    assert (after - before) * direction > 0
