@@ -41,7 +41,10 @@
         "伪代码是给",
         "看的，C++代码是给计算机看的。"
       ],
-      "answer": "人",
+      "answer": [
+        "人",
+        "人类"
+      ],
       "hint": "伪代码是为了帮助谁理解算法？",
       "points": 10
     },
@@ -90,7 +93,10 @@
         "",
         " i 从 1 到 n"
       ],
-      "answer": "对于",
+      "answer": [
+        "对于",
+        "循环"
+      ],
       "hint": "看看阶乘的伪代码例子，循环是怎么开始的？",
       "points": 10
     },
@@ -175,13 +181,12 @@
     },
     {
       "type": "code_challenge",
-      "text": "好了，我们已经用伪代码规划了计算 1 到 n 的和的算法。\n现在，请你把这个算法变成真正的C++代码吧！\n你需要从键盘输入一个整数 n (例如，输入5)，然后计算 1 + 2 + ... + n 的结果，并输出它。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n// using namespace std; // 建议在main函数内或特定作用域使用\n\nint main() {\n  int n;\n  std::cout << \"请输入一个整数n: \";\n  std::cin >> n;\n  // 在这里写你的计算和输出代码\n  {user_code}\n  return 0;\n}",
-      "question": "请编写C++代码，计算并输出从1加到输入的整数n的结果。例如，若输入n为5，则输出15。",
+      "text": "好了，我们已经用伪代码规划了计算 1 到 n 的和的算法。\n现在，请你把这个算法变成真正的C++代码吧！\n程序里已经把 n 设成了 5（代替键盘输入），也准备好了保存总和的变量 `sum_val`，最后会自动输出它。",
+      "question": "请编写循环，把 1 到 n 的每个数都加到 `sum_val` 里。例如 n 为 5 时，程序输出 15。",
       "cpp_context": "#include <iostream>\n\nint main() {\n  int n;\n  // std::cout << \"请输入一个整数n: \"; // 实际程序中会提示输入\n  // std::cin >> n;\n  n = 5; // 假设输入为5用于测试\n  int sum_val = 0; // 声明一个变量来存储和\n  {user_code}\n  std::cout << sum_val << std::endl; // 输出计算得到的和\n  return 0;\n}",
       "expected_output": "15",
       "standard_answer_code": "for (int i = 1; i <= n; ++i) {\n    sum_val += i;\n  }",
-      "hint": "你需要一个循环从1到n，用一个变量（比如 `sum_val`）累加求和。最后用 `std::cout` 输出结果。",
+      "hint": "用一个 `for` 循环让 i 从 1 走到 n，每次执行 `sum_val += i;`。不用再声明 `sum_val`，也不用自己输出。",
       "points": 20
     },
     {

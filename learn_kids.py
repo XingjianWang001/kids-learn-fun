@@ -13,7 +13,7 @@ OUTPUT_LIMIT = 64 * 1024  # bytes kept per stream; an endless print loop would o
 
 # g++ error regex -> friendly hint; more specific patterns first.
 COMPILER_ERROR_HINTS = {
-    r"expected ';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
+    r"expected (',' or )?';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
     r"was not declared in this scope": "嗯，你用了一个变量或者函数，但是好像忘记先告诉电脑它是什么了（忘记声明了）。",
     r"expected primary-expression before '.*' token": "这里似乎有点小问题，电脑不太明白你想做什么。检查一下是不是有奇怪的符号或者漏了东西？",
     r"stray '\\[0-9]*' in program": "代码里好像有一些奇怪的、看不懂的符号，检查一下是不是不小心打错了？",
@@ -28,7 +28,7 @@ COMPILER_ERROR_HINTS = {
     r"expected 'while' before '\('": "for或者do-while循环是不是少了 `while` 关键字？",
     r"expected expression before '\)' token": "括号 `()` 里面好像少了点东西，或者括号不匹配哦。",
     r"expected '\)' before ';' token": "是不是有一行代码的括号 `(` 没有对应的 `)` 就直接写分号了？",
-    r"else without a previous if": "`else` 是跟着 `if` 用的，这里好像没有找到前面的 `if` 呀。",
+    r"'else' without a previous 'if'": "`else` 是跟着 `if` 用的，这里好像没有找到前面的 `if` 呀。",
     r"return-statement with no value, in function returning 'int'": "这个函数应该返回一个整数，但是 `return;` 后面忘记写返回值了。",
     r"note: expected 'int' but argument is of type": "函数需要的参数类型和你给的不一样哦，检查一下参数类型吧。",
     r"too few arguments to function": "调用函数的时候，给的参数数量不够哦。",
@@ -414,7 +414,8 @@ class InteractiveLearningApp:
         self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
         self.explanation_text.insert(tk.END, lesson.get("text", "")); self.explanation_text.config(state=tk.DISABLED)
         self.code_display_text.config(state=tk.NORMAL); self.code_display_text.delete('1.0', tk.END)
-        self.code_display_text.insert(tk.END, lesson.get("code", "")); self.code_display_text.config(state=tk.DISABLED)
+        # Code challenges show cpp_context: the program that actually runs.
+        self.code_display_text.insert(tk.END, lesson.get("cpp_context") or lesson.get("code", "")); self.code_display_text.config(state=tk.DISABLED)
 
         lesson_type = lesson["type"]
         if not points_already_awarded and lesson_type != "explanation":
@@ -524,7 +525,8 @@ class InteractiveLearningApp:
             try:
                 compile_process = subprocess.run(
                     ['g++', cpp_file_path, '-o', exe_file_path, '-std=c++11'],
-                    capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10
+                    capture_output=True, text=True, encoding='utf-8', errors='replace', timeout=10,
+                    env={**os.environ, 'LC_ALL': 'C'},  # English messages with ASCII quotes, as COMPILER_ERROR_HINTS expects
                 )
             except subprocess.TimeoutExpired:
                 return {'success': False, 'output': '', 'error': "编译超时！请稍后再试一次。"}
@@ -639,7 +641,7 @@ class InteractiveLearningApp:
             hint_text = lesson.get('hint', '没有提示。')
 
             if lesson["type"] == "code_challenge" and cpp_error_message:
-                self.feedback_label.config(text=f"{cpp_error_message}\n剩余尝试次数: {remaining_attempts}", foreground="red")
+                self.feedback_label.config(text=f"本关提示：{hint_text}\n{cpp_error_message}\n剩余尝试次数: {remaining_attempts}", foreground="red")
             else: # Fallback for other errors or non-code challenges
                 self.feedback_label.config(text=f"不对哦，再想想看! 提示：{hint_text}\n剩余尝试次数: {remaining_attempts}", foreground="red")
 

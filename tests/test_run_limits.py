@@ -52,3 +52,14 @@ def test_compile_error_line_counts_only_user_code():
 def test_compile_error_in_template_has_no_line_hint():
     message = InteractiveLearningApp._parse_compiler_errors(None, "a.cpp:1:1: error: 'x' was not declared in this scope", CONTEXT)
     assert "行附近" not in message
+
+
+@pytest.mark.parametrize("code, hint", [
+    ("int x = 5\nstd::cout << x;", "分号"),
+    ("int x = 5;\nint x = 6;", "声明过两次"),
+    ("else { }", "else"),
+])
+def test_common_mistakes_get_a_friendly_hint(code, hint):
+    app = InteractiveLearningApp.__new__(InteractiveLearningApp)  # no window needed
+    error = app.execute_cpp_code(code, CONTEXT)["error"]
+    assert error.startswith("提示：在第") and hint in error
