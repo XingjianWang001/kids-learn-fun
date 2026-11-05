@@ -414,7 +414,8 @@ class InteractiveLearningApp:
         self.explanation_text.config(state=tk.NORMAL); self.explanation_text.delete('1.0', tk.END)
         self.explanation_text.insert(tk.END, lesson.get("text", "")); self.explanation_text.config(state=tk.DISABLED)
         self.code_display_text.config(state=tk.NORMAL); self.code_display_text.delete('1.0', tk.END)
-        self.code_display_text.insert(tk.END, lesson.get("cpp_context") or lesson.get("code", ""))  # code challenges show the program that runs; self.code_display_text.config(state=tk.DISABLED)
+        # Code challenges show cpp_context: the program that actually runs.
+        self.code_display_text.insert(tk.END, lesson.get("cpp_context") or lesson.get("code", "")); self.code_display_text.config(state=tk.DISABLED)
 
         lesson_type = lesson["type"]
         if not points_already_awarded and lesson_type != "explanation":
@@ -640,7 +641,7 @@ class InteractiveLearningApp:
             hint_text = lesson.get('hint', '没有提示。')
 
             if lesson["type"] == "code_challenge" and cpp_error_message:
-                self.feedback_label.config(text=f"{cpp_error_message}\n提示：{hint_text}\n剩余尝试次数: {remaining_attempts}", foreground="red")
+                self.feedback_label.config(text=f"本关提示：{hint_text}\n{cpp_error_message}\n剩余尝试次数: {remaining_attempts}", foreground="red")
             else: # Fallback for other errors or non-code challenges
                 self.feedback_label.config(text=f"不对哦，再想想看! 提示：{hint_text}\n剩余尝试次数: {remaining_attempts}", foreground="red")
 
