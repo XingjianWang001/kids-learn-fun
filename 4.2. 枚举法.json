@@ -83,7 +83,6 @@
     {
       "type": "code_challenge",
       "text": "现在，我们来用枚举法解决一个练习题：找出1到20之间所有能被3整除的数，每个数占一行。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 你的代码会在这里\n    // 提示：需要一个循环，从1到20\n    // 在循环里用if判断是否能被3整除\n    {user_code}\n    return 0;\n}",
       "question": "请编写代码，使用枚举法找出并打印1到20之间所有能被3整除的数，每个数占一行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    {user_code}\n    return 0;\n}",
       "expected_output": "3\n6\n9\n12\n15\n18",
@@ -164,7 +163,6 @@
     {
       "type": "code_challenge",
       "text": "现在轮到你来写代码了！\n请编写一个程序，读取一个大于1的整数 `n` (例如，输入13)，然后判断它是不是素数。\n如果是素数，输出 \"Prime\";如果不是素数，输出 \"Not Prime\"。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int n;\n    // std::cout << \"请输入一个大于1的整数: \";\n    // std::cin >> n;\n    n = 13; // 假设输入为13用于测试\n    // 在这里写你的代码来判断n是不是素数\n    {user_code}\n    return 0;\n}",
       "question": "请编写代码，判断输入的整数 `n` (假设为13) 是否为素数（大于1）。如果是，输出 \"Prime\" 并换行；否则输出 \"Not Prime\" 并换行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    int n = 13; // 假设输入为13用于测试\n    {user_code}\n    return 0;\n}",
       "expected_output": "Prime",

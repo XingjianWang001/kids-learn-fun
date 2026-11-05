@@ -146,3 +146,26 @@ def test_skip_says_the_lesson_was_skipped(app, last):
 def test_compiler_error_patterns_are_valid_regexes():
     for pattern in learn_kids.COMPILER_ERROR_HINTS:
         re.compile(pattern)
+
+
+@pytest.mark.parametrize("topic,i,lesson", CHALLENGES, ids=[f"{t}#{i}" for t, i, _ in CHALLENGES])
+def test_code_challenge_shows_the_program_that_runs(app, topic, i, lesson):
+    # A second, hand-written copy of the program kept drifting from the one that runs, so there is only one.
+    assert "code" not in lesson
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    assert app.code_display_text.get("1.0", "end-1c") == lesson["cpp_context"]
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+def test_wrong_code_answer_shows_the_hint(app, monkeypatch):
+    for attr in ("lesson_points_awarded", "failed_attempts"):
+        monkeypatch.setattr(app, attr, {})
+    topic, i, lesson = next(c for c in CHALLENGES if "inputs[i]" in c[2].get("hint", ""))  # the challenge with preset input
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.code_input_area.insert("1.0", "std::cin >> num;")
+
+    app.check_answer()
+
+    assert lesson["hint"] in app.feedback_label.cget("text")

@@ -75,13 +75,12 @@
     },
     {
       "type": "code_challenge",
-      "text": "现在，请你来写一个简单的 C++ 程序，让它在屏幕上显示你的名字吧！\n比如，如果你的名字是“小明”，程序就应该输出“小明”。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 请在这里写你的代码，输出你的名字，并换行\n    {user_code}\n    return 0;\n}",
-      "question": "请在 `main` 函数里，使用 `std::cout` 输出你的名字（例如 \"小华\"），并在名字后面加上 `std::endl`。",
+      "text": "现在，请你来写一个简单的 C++ 程序，让它在屏幕上显示一个名字吧！\n这次我们来显示名字“小华”。",
+      "question": "请在 `main` 函数里，使用 `std::cout` 输出名字 \"小华\"，并在名字后面加上 `std::endl`。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
       "expected_output": "小华",
       "standard_answer_code": "std::cout << \"小华\" << std::endl;",
-      "hint": "别忘了在名字两边加上双引号哦！使用 `std::cout << \"你的名字\" << std::endl;`",
+      "hint": "别忘了在名字两边加上双引号哦！使用 `std::cout << \"小华\" << std::endl;`",
       "points": 15
     },
     {
@@ -144,7 +143,6 @@
     {
       "type": "code_challenge",
       "text": "请声明一个名为 `myScore` 的整数变量，并给它赋值为 95，然后将这个变量的值打印出来。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 请在这里写你的代码\n    {user_code}\n    return 0;\n}",
       "question": "请声明一个名为 `myScore` 的整数变量，给它赋值为 95，并使用 `std::cout` 将其值输出到屏幕上，末尾换行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
       "expected_output": "95",
@@ -214,7 +212,6 @@
     {
       "type": "code_challenge",
       "text": "请写一个程序，使用 `for` 循环从 1 打印到 5，每个数字占一行。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 请在这里写你的代码\n    {user_code}\n    return 0;\n}",
       "question": "请使用 `for` 循环，从数字 1 开始，打印到数字 5，每个数字占一行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
       "expected_output": "1\n2\n3\n4\n5",
@@ -272,7 +269,6 @@
     {
       "type": "code_challenge",
       "text": "请写一个程序，计算并输出从 1 加到 10 的和。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    // 你需要一个变量来存放总和，一个循环来遍历 1 到 10\n    {user_code}\n    return 0;\n}",
       "question": "请使用循环计算 1 + 2 + ... + 10 的结果，并用 `std::cout` 输出总和，末尾换行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    // 用户代码将在此处插入\n    {user_code}\n    return 0;\n}",
       "expected_output": "55",

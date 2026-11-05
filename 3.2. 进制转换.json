@@ -130,7 +130,6 @@
     {
       "type": "code_challenge",
       "text": "在C++里，我们可以用一个叫做 `bitset` 的小工具来方便地显示一个数字的二进制。\n需要先写 `#include <bitset>`。\n然后用 `std::bitset<位数>(数字)` 就可以看到二进制啦！比如 `std::bitset<8>(7)` 会显示数字7的8位二进制。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n#include <bitset>\n\nint main() {\n  int num = 7;\n  // 在这里写代码，把 num 的8位二进制打印出来\n  {user_code}\n  return 0;\n}",
       "question": "请用C++代码把十进制数字 `7` 显示成8位的二进制，并换行。",
       "cpp_context": "#include <iostream>\n#include <bitset>\n\nint main() {\n  int num = 7;\n  {user_code}\n  return 0;\n}",
       "expected_output": "00000111",
@@ -236,7 +235,6 @@
     {
       "type": "code_challenge",
       "text": "请用C++代码把十进制数字 `50` 显示成十六进制。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n#include <iomanip> // For std::hex\n\nint main() {\n  int num = 50;\n  // 在这里写代码，把 num 用十六进制打印出来\n  {user_code}\n  return 0;\n}",
       "question": "请用C++代码把十进制数字 `50` 显示成十六进制，并换行。",
       "cpp_context": "#include <iostream>\n#include <iomanip>\n\nint main() {\n  int num = 50;\n  {user_code}\n  return 0;\n}",
       "expected_output": "32",
@@ -302,7 +300,6 @@
     {
       "type": "code_challenge",
       "text": "现在我们来做一个综合练习！\n编写一个程序，读取一个十进制整数，然后分别用十六进制和8位二进制格式打印出来。\n例如输入26，输出十六进制为 1a，二进制为 00011010。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n#include <bitset>\n#include <iomanip> // 需要这个库来使用 std::hex 和 std::dec\n\nint main() {\n  int num;\n  std::cout << \"请输入一个十进制整数: \";\n  std::cin >> num;\n\n  // 在这里写代码，先打印十六进制，再打印8位二进制\n  {user_code}\n\n  return 0;\n}",
       "question": "编写一个程序，读取一个十进制整数 `num` (例如26)，然后先输出其十六进制形式，换行，再输出其8位二进制形式，换行。",
       "cpp_context": "#include <iostream>\n#include <bitset>\n#include <iomanip>\n\nint main() {\n  int num;\n  // std::cout << \"请输入一个十进制整数: \";\n  // std::cin >> num;\n  num = 26; // 假设输入为26用于测试\n  {user_code}\n  return 0;\n}",
       "expected_output": "1a\n00011010",

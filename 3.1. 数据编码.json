@@ -217,13 +217,12 @@
     },
     {
       "type": "code_challenge",
-      "text": "请修改下面的代码，让它输出数字 -10 的 8位二进制（补码）。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n#include <bitset>\n\nint main() {\n    int num = -5; // 将这里的-5修改为-10\n    {user_code} // 用户需要写出显示 bitset 的代码\n    return 0;\n}",
-      "question": "请将代码中的 `-5` 改为 `-10`，并使用 `std::bitset<8>` 输出 `num` 的8位二进制补码，末尾换行。",
+      "text": "请补全下面的代码，让它输出数字 -10 的 8位二进制（补码）。",
+      "question": "代码里已经写好了 `int num = -10;`。请使用 `std::bitset<8>` 输出 `num` 的8位二进制补码，末尾换行。",
       "cpp_context": "#include <iostream>\n#include <bitset>\n\nint main() {\n    int num = -10;\n    {user_code}\n    return 0;\n}",
       "expected_output": "11110110",
       "standard_answer_code": "std::bitset<8> bits(num);\n    std::cout << bits << std::endl;",
-      "hint": "将 `int num = -5;` 改为 `int num = -10;`。然后用 `std::bitset<8> bits(num);` 和 `std::cout << bits << std::endl;` 来显示。",
+      "hint": "不用再声明 `num`。用 `std::bitset<8> bits(num);` 和 `std::cout << bits << std::endl;` 来显示。",
       "points": 20
     },
     {

@@ -77,9 +77,8 @@
     },
     {
       "type": "code_challenge",
-      "text": "请编写代码，将字符 '5' 转换成整数 5，并打印出来。\n提示：字符 '5' 和数字 5 是不一样的哦！字符 '0' 的ASCII码是48，字符 '1' 是49，以此类推。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n  char char_five = '5';\n  int int_five;\n  \n  // 在这里写你的代码，将 char_five 转换成整数 5 存入 int_five\n  {user_code}\n  \n  std::cout << \"转换后的整数是: \" << int_five << std::endl;\n  \n  return 0;\n}",
-      "question": "将字符 '5' (char_five) 转换成整数 5 (int_five)，并打印 int_five。",
+      "text": "请编写代码，将字符 '5' 转换成整数 5（程序最后会把它打印出来）。\n提示：字符 '5' 和数字 5 是不一样的哦！字符 '0' 的ASCII码是48，字符 '1' 是49，以此类推。",
+      "question": "将字符 '5' (char_five) 转换成整数 5，存入 int_five。程序最后会自动打印 int_five。",
       "cpp_context": "#include <iostream>\n\nint main() {\n  char char_five = '5';\n  int int_five;\n  \n  {user_code}\n  \n  std::cout << \"转换后的整数是: \" << int_five << std::endl;\n  return 0;\n}",
       "expected_output": "转换后的整数是: 5",
       "standard_answer_code": "int_five = char_five - '0';",
@@ -137,7 +136,6 @@
     {
       "type": "code_challenge",
       "text": "请编写代码，检查一个输入的数字 `num` 是否既是正数又是偶数。\n如果两个条件都满足，输出 \"正偶数\";否则不输出任何内容。\n提示：你需要先检查它是不是正数，如果是，再检查它是不是偶数。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n  int num;\n  std::cout << \"请输入一个整数: \";\n  std::cin >> num;\n  \n  // 在这里写你的嵌套分支代码\n  {user_code}\n  \n  return 0;\n}",
       "question": "检查输入的数字 `num` 是否既是正数又是偶数。如果是，输出 \"正偶数\" 并换行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n  int num;\n  // std::cout << \"请输入一个整数: \";\n  // std::cin >> num;\n  num = 8; // 假设输入为8用于测试\n  \n  {user_code}\n  \n  return 0;\n}",
       "expected_output": "正偶数",
@@ -196,7 +194,6 @@
     {
       "type": "code_challenge",
       "text": "请编写代码，使用 `for` 循环和 `if` 语句，找出并打印出 1 到 20 之间所有能被 3 整除的数字，每个数字占一行。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n  // 在这里写你的代码\n  {user_code}\n  return 0;\n}",
       "question": "打印 1 到 20 之间所有能被 3 整除的数字，每个数字占一行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n  {user_code}\n  return 0;\n}",
       "expected_output": "3\n6\n9\n12\n15\n18",
@@ -207,7 +204,6 @@
     {
       "type": "code_challenge",
       "text": "请编写代码，判断输入的年份 `year` 是否为闰年。\n闰年的规则：能被 4 整除但不能被 100 整除，或者能被 400 整除。\n如果是闰年，输出 \"Leap year\";否则输出 \"Not a leap year\"。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n  int year;\n  std::cout << \"请输入年份: \";\n  std::cin >> year;\n  \n  // 在这里写你的判断闰年的代码 (使用嵌套 if 或逻辑运算符)\n  {user_code}\n  \n  return 0;\n}",
       "question": "判断输入的年份 `year` 是否为闰年。如果是，输出 \"Leap year\" 并换行；否则输出 \"Not a leap year\" 并换行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n  int year;\n  // std::cout << \"请输入年份: \";\n  // std::cin >> year;\n  year = 2024; // 假设输入为2024用于测试\n  \n  {user_code}\n  \n  return 0;\n}",
       "expected_output": "Leap year",
@@ -274,7 +270,6 @@
     {
       "type": "code_challenge",
       "text": "请编写代码，计算点 (x1, y1) 和点 (x2, y2) 之间的距离。\n距离公式是：`sqrt((x2-x1)^2 + (y2-y1)^2)`。\n你需要用到 `sqrt` 函数和一些基本的数学运算。平方可以用 `pow(base, exponent)` 或者直接相乘。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n#include <cmath> // For sqrt and pow\n\nint main() {\n  double x1 = 1.0, y1 = 1.0, x2 = 4.0, y2 = 5.0; // 示例坐标\n  // 如果需要用户输入，可以取消下面行的注释\n  // std::cout << \"请输入第一个点的坐标 (x1 y1): \"; std::cin >> x1 >> y1;\n  // std::cout << \"请输入第二个点的坐标 (x2 y2): \"; std::cin >> x2 >> y2;\n  \n  double distance; // 用来存放计算出的距离\n  \n  // 在这里写你的代码，计算 distance\n  {user_code}\n  \n  std::cout << \"两点之间的距离是: \" << distance << std::endl;\n  \n  return 0;\n}",
       "question": "计算平面上两点 (x1, y1) 和 (x2, y2) 之间的距离，并将结果存入 `distance` 变量。使用示例坐标 x1=1, y1=1, x2=4, y2=5。",
       "cpp_context": "#include <iostream>\n#include <cmath>\n\nint main() {\n  double x1 = 1.0, y1 = 1.0, x2 = 4.0, y2 = 5.0;\n  double distance;\n  {user_code}\n  std::cout << \"两点之间的距离是: \" << distance << std::endl;\n  return 0;\n}",
       "expected_output": "两点之间的距离是: 5",
@@ -285,7 +280,6 @@
     {
       "type": "code_challenge",
       "text": "请编写代码，找出输入的三个整数 `a`, `b`, `c` 中最大的那个，并打印出来。\n你可以使用 `std::max` 函数，它一次只能比较两个数。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n#include <algorithm> // For std::max\n\nint main() {\n  int a = 10, b = 25, c = 15; // 示例数字\n  // 如果需要用户输入，可以取消下面行的注释\n  // std::cout << \"请输入三个整数: \"; std::cin >> a >> b >> c;\n  \n  int maximum; // 用来存放最大的数\n  \n  // 在这里写你的代码，找出最大的数存入 maximum\n  {user_code}\n  \n  std::cout << \"最大的数是: \" << maximum << std::endl;\n  \n  return 0;\n}",
       "question": "找出三个整数 `a=10`, `b=25`, `c=15` 中的最大值，并将结果存入 `maximum` 变量。",
       "cpp_context": "#include <iostream>\n#include <algorithm>\n\nint main() {\n  int a = 10, b = 25, c = 15;\n  int maximum;\n  {user_code}\n  std::cout << \"最大的数是: \" << maximum << std::endl;\n  return 0;\n}",
       "expected_output": "最大的数是: 25",
@@ -318,7 +312,6 @@
     {
       "type": "code_challenge",
       "text": "请编写代码，计算输入的 N 个整数的平均值。\n你需要先输入 N，然后循环 N 次输入数字，把它们加起来，最后除以 N 得到平均值。\n假设输入N为3，然后输入10, 20, 30，则平均值为20。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n  int n; // 数字的个数\n  int num; // 每次输入的数字\n  double sum = 0; // 所有数字的总和，用 double 避免除法丢失小数\n  double average; // 平均值\n  \n  std::cout << \"请输入数字的个数: \";\n  std::cin >> n;\n  \n  std::cout << \"请依次输入 \" << n << \" 个整数:\" << std::endl;\n  \n  // 在这里写你的循环和求和代码\n  {user_code}\n  // 在这里计算平均值\n  \n  std::cout << \"这些数字的平均值是: \" << average << std::endl;\n  \n  return 0;\n}",
       "question": "计算输入的 N 个整数的平均值。例如，若N=3，数字为10, 20, 30，则输出平均值20。",
       "cpp_context": "#include <iostream>\n\nint main() {\n  int n;\n  int num;\n  double sum = 0;\n  double average;\n  \n  // 为了测试方便，我们预设输入，实际程序中会由用户输入\n  // std::cout << \"请输入数字的个数: \";\n  // std::cin >> n;\n  // std::cout << \"请依次输入 \" << n << \" 个整数:\" << std::endl;\n  n = 3; // 假设用户输入3\n  int inputs[] = {10, 20, 30}; // 预设的输入数字\n  \n  {user_code}\n  \n  // std::cout << \"这些数字的平均值是: \" << average << std::endl;\n  // 为了简化输出匹配，我们直接输出 average 的值\n  std::cout << average << std::endl;\n  \n  return 0;\n}",
       "expected_output": "20",
@@ -349,7 +342,6 @@
     {
       "type": "code_challenge",
       "text": "请编写代码，实现根据分数判断成绩等级的功能。\n规则：>=90 -> A, >=80 -> B, >=60 -> C, <60 -> D。\n如果输入分数为85，则输出 \"等级: B\"。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n  int score;\n  // std::cout << \"请输入分数: \";\n  // std::cin >> score;\n  score = 85; // 假设输入为85用于测试\n  \n  // 在这里写你的判断等级的代码\n  {user_code}\n  \n  return 0;\n}",
       "question": "根据分数 `score` 判断成绩等级 (A, B, C, D)，并输出如 \"等级: B\" (带换行)。假设 `score` 为 85。",
       "cpp_context": "#include <iostream>\n\nint main() {\n  int score = 85; // 假设输入为85用于测试\n  {user_code}\n  return 0;\n}",
       "expected_output": "等级: B",

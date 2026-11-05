@@ -55,7 +55,6 @@
     {
       "type": "code_challenge",
       "text": "按位与 `&` 有个小技巧：任何整数和 1 进行按位与操作，可以检查这个数是不是奇数。\n因为奇数的二进制表示，最后一位总是 1。\n例如： 5 (0101) & 1 (0001) = 0001 (1) -> 结果是 1，表示是奇数。\n     6 (0110) & 1 (0001) = 0000 (0) -> 结果是 0，表示是偶数。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 6; // 假设输入的数字是6\n    // 如果需要用户输入，可以取消下面行的注释\n    // std::cout << \"请输入一个整数: \"; std::cin >> number;\n    // 在这里写代码检查 number 是否是奇数\n    {user_code}\n    return 0;\n}",
       "question": "请在代码中判断变量 `number` (假设其值为6) 是否是奇数。如果是奇数，请输出 1；如果是偶数，请输出 0。末尾换行。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 6;\n    {user_code}\n    return 0;\n}",
       "expected_output": "0",
@@ -150,8 +149,7 @@
     {
       "type": "code_challenge",
       "text": "按位异或 `^` 有个有趣的用法：任何数和 0 进行异或，结果还是它自己。\n任何数和它自己进行异或，结果是 0。\n这就像开关，和一个“关”（0）的开关异或，状态不变；和自己一样的开关异或，状态变成“关”（0）。\n我们可以用异或来“翻转”某个特定的位。比如，想翻转一个数的最后一位，就和 1 (0001) 进行异或。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 10; // 二进制 1010\n    // 在这里写代码翻转 number 的最后一位\n    {user_code}\n    std::cout << \"翻转最后一位后: \" << number << std::endl;\n    return 0;\n}",
-      "question": "请在代码中，使用按位异或 `^` 翻转变量 `number` (初始值为10) 的最后一位，并将更新后的 `number` 打印出来。",
+      "question": "请在代码中，使用按位异或 `^` 翻转变量 `number` (初始值为10) 的最后一位。程序最后会自动打印更新后的 `number`。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 10; // 二进制 1010\n    {user_code}\n    std::cout << \"翻转最后一位后: \" << number << std::endl;\n    return 0;\n}",
       "expected_output": "翻转最后一位后: 11",
       "standard_answer_code": "number = number ^ 1; // 或者 number ^= 1;",
@@ -235,7 +233,6 @@
     {
       "type": "code_challenge",
       "text": "左移 `<<` 可以用来快速计算乘以 2 的幂。\n比如 `n << 1` 是 `n * 2`，`n << 2` 是 `n * 4`，`n << 3` 是 `n * 8`，以此类推。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 7;\n    int result;\n    // 在这里写代码计算 7 * 8 的结果，使用左移\n    {user_code}\n    std::cout << \"7 * 8 = \" << result << std::endl;\n    return 0;\n}",
       "question": "请在代码中，使用左移运算符计算 `7 * 8` 的结果，并将结果存入 `result` 变量。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 7;\n    int result;\n    {user_code}\n    std::cout << \"7 * 8 = \" << result << std::endl;\n    return 0;\n}",
       "expected_output": "7 * 8 = 56",
@@ -288,7 +285,6 @@
     {
       "type": "code_challenge",
       "text": "右移 `>>` 可以用来快速计算整数除以 2 的幂。\n比如 `n >> 1` 是 `n / 2` (整数除法)，`n >> 2` 是 `n / 4`，`n >> 3` 是 `n / 8`，以此类推。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 20;\n    int result;\n    // 在这里写代码计算 20 / 4 的结果，使用右移\n    {user_code}\n    std::cout << \"20 / 4 = \" << result << std::endl;\n    return 0;\n}",
       "question": "请在代码中，使用右移运算符计算 `20 / 4` 的结果，并将结果存入 `result` 变量。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 20;\n    int result;\n    {user_code}\n    std::cout << \"20 / 4 = \" << result << std::endl;\n    return 0;\n}",
       "expected_output": "20 / 4 = 5",
@@ -304,7 +300,6 @@
     {
       "type": "code_challenge",
       "text": "我们来试试检查一个数的某个特定的位。\n比如，我们想知道数字 12 (二进制 1100) 的从右边数第 3 个位（从 0 开始数，所以是索引 2 的位）是不是 1。\n12 的二进制是 `...01100` (假设更多位)\n第 0 位: 0\n第 1 位: 0\n第 2 位: 1 <--- 我们要检查这个位\n第 3 位: 1\n\n方法是：先把这个位移动到最右边（第 0 位），然后和 1 进行按位与 `&` 操作。\n把第 2 位移到第 0 位，需要右移 2 位： `12 >> 2` (1100 >> 2 = 0011)\n然后和 1 进行按位与： `(12 >> 2) & 1` (0011 & 0001 = 0001)\n结果是 1，说明第 2 个位是 1。",
-      "code": "// 这是一个C++程序的基本框架\n#include <iostream>\n\nint main() {\n    int number = 12; // 二进制 1100\n    int bit_index = 2; // 我们想检查第 2 个位 (从右边数，从 0 开始)\n    int bit_value;\n    // 在这里写代码检查 number 的第 bit_index 个位\n    // 并将结果 (0 或 1) 存入 bit_value\n    {user_code}\n    std::cout << \"数字 \" << number << \" 的第 \" << bit_index << \" 个位是: \" << bit_value << std::endl;\n    return 0;\n}",
       "question": "请在代码中，检查 `number` (值为12) 的第 `bit_index` (值为2) 个位是否为 1。将结果 (0 或 1) 存入 `bit_value` 变量。",
       "cpp_context": "#include <iostream>\n\nint main() {\n    int number = 12;\n    int bit_index = 2;\n    int bit_value;\n    {user_code}\n    std::cout << \"数字 \" << number << \" 的第 \" << bit_index << \" 个位是: \" << bit_value << std::endl;\n    return 0;\n}",
       "expected_output": "数字 12 的第 2 个位是: 1",
