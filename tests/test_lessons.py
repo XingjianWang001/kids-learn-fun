@@ -170,3 +170,24 @@ def test_wrong_code_answer_shows_the_hint(app, monkeypatch):
     app.check_answer()
 
     assert lesson["hint"] in app.feedback_label.cget("text")
+
+
+@pytest.fixture
+def shown_app(app):
+    app.master.geometry("1000x800")  # the size the app opens at
+    app.master.deiconify()
+    yield app
+    app.master.withdraw()
+
+
+@pytest.mark.parametrize("topic,i,lesson", CHALLENGES, ids=[f"{t}#{i}" for t, i, _ in CHALLENGES])
+def test_code_challenge_shows_user_code_line_and_submit_without_scrolling(shown_app, topic, i, lesson):
+    app = shown_app
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.master.update()
+    user_code_line = lesson["cpp_context"].split("{user_code}")[0].count("\n") + 1
+    assert app.code_display_text.dlineinfo(f"{user_code_line}.0") is not None
+    canvas = app.scrollable_lesson_outer_frame.winfo_children()[0]
+    submit_top = app.submit_button.winfo_rooty() - canvas.winfo_rooty()
+    assert 0 <= submit_top and submit_top + app.submit_button.winfo_height() <= canvas.winfo_height()

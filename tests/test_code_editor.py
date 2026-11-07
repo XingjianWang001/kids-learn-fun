@@ -2,6 +2,8 @@ import pytest
 
 tk = pytest.importorskip("tkinter")
 
+from tkinter import scrolledtext  # noqa: E402
+
 from learn_kids import CodeEditor, ScrollableFrame  # noqa: E402
 
 
@@ -79,3 +81,37 @@ def test_mouse_wheel_scrolls_lesson_page(root, delta, direction):
     after = canvas.yview()[0]
     page.destroy()
     assert (after - before) * direction > 0
+
+
+@pytest.mark.parametrize("event,options,direction", [
+    ("<MouseWheel>", {"delta": -120}, 1),
+    ("<MouseWheel>", {"delta": 120}, -1),
+    ("<Button-5>", {}, 1),  # X11
+    ("<Button-4>", {}, -1),
+])
+@pytest.mark.parametrize("text_lines,lines_left,moves", [
+    (100, 40, "text"),  # the text can still scroll that way: only the text moves
+    (100, 1, "text"),  # one line short of its end, it still moves alone
+    (100, 0, "page"),  # at its end in that direction, the page moves instead
+    (2, 0, "page"),  # all of it fits
+])
+def test_mouse_wheel_over_text_scrolls_text_or_page_not_both(root, event, options, direction, text_lines, lines_left, moves):
+    root.deiconify()  # a withdrawn window leaves the page canvas 1px tall, too small to scroll
+    page = ScrollableFrame(root)
+    page.pack()
+    text = scrolledtext.ScrolledText(page.scrollable_content_frame, height=6)
+    text.pack()
+    text.insert("1.0", "\n".join(f"line {i}" for i in range(text_lines)))
+    for i in range(200):
+        tk.Label(page.scrollable_content_frame, text=f"row {i}").pack()
+    root.update()
+    canvas = page.winfo_children()[0]
+    canvas.yview_moveto(0.5)
+    text.yview_moveto(1.0 if direction > 0 else 0.0)
+    text.yview_scroll(-direction * lines_left, "units")
+    before = text.yview()[0], canvas.yview()[0]
+    text.event_generate(event, **options)
+    after = text.yview()[0], canvas.yview()[0]
+    page.destroy()
+    root.withdraw()
+    assert [name for name, b, a in zip(("text", "page"), before, after) if b != a] == [moves]

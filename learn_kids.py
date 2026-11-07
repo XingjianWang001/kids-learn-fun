@@ -124,19 +124,30 @@ class ScrollableFrame(ttk.Frame):
         scrollbar_y.pack(side="right", fill="y")
         scrollbar_x.pack(side="bottom", fill="x")
 
-        canvas.bind_all("<MouseWheel>", lambda e: canvas.yview_scroll(wheel_steps(e), "units"))
+        def scroll(e):
+            # Over a Text, the wheel scrolls that Text while it can go further that way, otherwise the page; never both.
+            top, bottom = e.widget.yview() if isinstance(e.widget, tk.Text) else (0.0, 1.0)
+            steps = wheel_steps(e)
+            if (steps < 0 and top > 0) or (steps > 0 and bottom < 1):
+                e.widget.yview_scroll(3 * steps, "units")
+            else:
+                canvas.yview_scroll(steps, "units")
+
+        canvas.bind_all("<MouseWheel>", scroll)
         canvas.bind_all("<Shift-MouseWheel>", lambda e: canvas.xview_scroll(wheel_steps(e), "units"))
-        canvas.bind_all("<Button-4>", lambda e: canvas.yview_scroll(wheel_steps(e), "units"))  # X11
-        canvas.bind_all("<Button-5>", lambda e: canvas.yview_scroll(wheel_steps(e), "units"))
+        canvas.bind_all("<Button-4>", scroll)  # X11
+        canvas.bind_all("<Button-5>", scroll)
+        for sequence in ("<MouseWheel>", "<Button-4>", "<Button-5>"):
+            canvas.unbind_class("Text", sequence)  # Text's own wheel binding runs first and would scroll it before scroll() decides
 
 class CodeEditor(tk.Frame):
-    def __init__(self, master, font=None, **kwargs):
+    def __init__(self, master, font=None, height=None, **kwargs):
         super().__init__(master, **kwargs)
-        kwargs.pop('height', None)
 
+        # height is in lines and goes to both Texts: the frame takes the height they ask for.
         self.line_numbers = tk.Text(self, width=4, padx=4, takefocus=0, border=0,
-                                    background='lightgrey', state='disabled', wrap='none', font=font)
-        self.code_area = tk.Text(self, wrap='word', undo=True, padx=5, pady=5, font=font)
+                                    background='lightgrey', state='disabled', wrap='none', font=font, height=height)
+        self.code_area = tk.Text(self, wrap='word', undo=True, padx=5, pady=5, font=font, height=height)
 
         self.scrollbar_y = ttk.Scrollbar(self, orient="vertical", command=self._on_scrollbar)
         self.code_area.configure(yscrollcommand=self.scrollbar_y.set)
@@ -416,6 +427,9 @@ class InteractiveLearningApp:
         self.code_display_text.config(state=tk.NORMAL); self.code_display_text.delete('1.0', tk.END)
         # Code challenges show cpp_context: the program that actually runs.
         self.code_display_text.insert(tk.END, lesson.get("cpp_context") or lesson.get("code", "")); self.code_display_text.config(state=tk.DISABLED)
+        user_code_index = self.code_display_text.search("{user_code}", "1.0")
+        if user_code_index:  # most programs are taller than the box: show where the child's code goes and what runs after it
+            self.code_display_text.yview(f"{user_code_index} - 2 lines")
 
         lesson_type = lesson["type"]
         if not points_already_awarded and lesson_type != "explanation":
@@ -424,13 +438,14 @@ class InteractiveLearningApp:
 
         if lesson_type == "code_challenge":
             self.question_label.config(text=lesson.get("question", "请根据说明编写代码："))
-            self.code_input_area = CodeEditor(self.input_frame, font=self.font_code_text) # Removed height=10
+            self.code_input_area = CodeEditor(self.input_frame, font=self.font_code_text, height=10)
             self.code_input_area.pack(pady=5, fill=tk.BOTH, expand=True)
             if not points_already_awarded:
                 self.format_code_button.config(state=tk.NORMAL) # Enable format button
 
-            self.output_title_label.pack(pady=(10,0), anchor="w", before=self.action_buttons_frame) # Adjusted packing order
-            self.output_display_area.pack(pady=5, fill=tk.X, before=self.action_buttons_frame)   # Adjusted packing order
+            # Below the feedback, so 提交答案 stays right under the editor.
+            self.output_title_label.pack(pady=(10,0), anchor="w", before=self.nav_frame)
+            self.output_display_area.pack(pady=5, fill=tk.X, before=self.nav_frame)
 
             # ... (rest of code_challenge setup, including standard answer check)
             if "standard_answer_code" in lesson and "cpp_context" in lesson and "expected_output" in lesson: # Shortened for brevity
