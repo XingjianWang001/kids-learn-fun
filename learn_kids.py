@@ -11,8 +11,11 @@ from tkinter import font as tk_font # Import the font module
 
 OUTPUT_LIMIT = 64 * 1024  # bytes kept per stream; an endless print loop would otherwise fill memory
 
-# g++ error regex -> friendly hint; more specific patterns first.
+# g++ error regex -> friendly hint; more specific patterns first. tests/test_run_limits.py has a real mistake for each row.
 COMPILER_ERROR_HINTS = {
+    # Chinese IME punctuation: GCC 10+ says "extended character “" or writes ； as \U0000ff1b. First, as `"a"；` also matches the ';' row.
+    r"extended character|\\U0000(ff|20[12]|30[0-3])": "代码里有中文标点符号（比如 ； ， （ ） “ ”），要切换到英文输入法再打这些符号哦。",
+    r"a function-definition is not allowed here": "这里只要写 main 函数里面的代码，不用再写 #include 和 int main() 哦。",
     r"expected (',' or )?';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
     r"was not declared in this scope": "嗯，你用了一个变量或者函数，但是好像忘记先告诉电脑它是什么了（忘记声明了）。",
     r"expected primary-expression before '.*' token": "这里似乎有点小问题，电脑不太明白你想做什么。检查一下是不是有奇怪的符号或者漏了东西？",
@@ -26,14 +29,11 @@ COMPILER_ERROR_HINTS = {
     r"no match for 'operator>>'": "使用 `cin >> ...` 的时候，`>>` 右边的变量电脑不认识，看看是不是类型不对或者没声明？",
     r"expected unqualified-id before numeric constant": "数字前面是不是不小心写了什么不该写的东西？",
     r"expected 'while' before '\('": "for或者do-while循环是不是少了 `while` 关键字？",
-    r"expected expression before '\)' token": "括号 `()` 里面好像少了点东西，或者括号不匹配哦。",
     r"expected '\)' before ';' token": "是不是有一行代码的括号 `(` 没有对应的 `)` 就直接写分号了？",
     r"'else' without a previous 'if'": "`else` 是跟着 `if` 用的，这里好像没有找到前面的 `if` 呀。",
     r"return-statement with no value, in function returning 'int'": "这个函数应该返回一个整数，但是 `return;` 后面忘记写返回值了。",
-    r"note: expected 'int' but argument is of type": "函数需要的参数类型和你给的不一样哦，检查一下参数类型吧。",
     r"too few arguments to function": "调用函数的时候，给的参数数量不够哦。",
     r"too many arguments to function": "调用函数的时候，给的参数数量太多了哦。",
-    r"error: (ld returned 1 exit status|linker command failed)": "代码编译好了，但是在最后组合（链接）的时候出错了。通常是找不到 main 函数或者某些库函数。"
 }
 
 # --- 函数：加载课程数据 ---
@@ -511,16 +511,18 @@ class InteractiveLearningApp:
             self.code_input_area._on_key_release()
 
     def _parse_compiler_errors(self, stderr, context_template):
-        """Attempts to parse g++ errors and provide friendlier messages."""
-        for pattern, friendly_message in COMPILER_ERROR_HINTS.items():
-            if re.search(pattern, stderr, re.IGNORECASE):
-                # Try to extract line number if possible
-                line_match = re.search(r":(\d+):\d+:", stderr)
-                # g++ counts the hidden cpp_context lines too; < 1 means the error is in the template.
-                user_line = int(line_match.group(1)) - context_template.split("{user_code}")[0].count("\n") if line_match else 0
-                if user_line >= 1:
-                    return f"提示：在第 {user_line} 行附近，{friendly_message}\n\n原始错误片段：\n{stderr[:300]}" # Show a snippet
-                return f"提示：{friendly_message}\n\n原始错误片段：\n{stderr[:300]}"
+        """Explains the program's first error that has a hint, at that error's own line."""
+        # Only temp_code.cpp's own errors: an #include typed in the editor adds errors at /usr/include lines.
+        # Link errors (undefined reference) have none, so then the whole output is searched, without a line.
+        errors = re.findall(r"temp_code\.cpp:(\d+):\d+: (?:fatal )?error: (.*)", stderr) or [("0", stderr)]
+        for line, message in errors:
+            for pattern, friendly_message in COMPILER_ERROR_HINTS.items():
+                if re.search(pattern, message, re.IGNORECASE):
+                    # g++ counts the hidden cpp_context lines too; < 1 means the error is in the template.
+                    user_line = int(line) - context_template.split("{user_code}")[0].count("\n")
+                    if user_line >= 1:
+                        return f"提示：在第 {user_line} 行附近，{friendly_message}\n\n原始错误片段：\n{stderr[:300]}" # Show a snippet
+                    return f"提示：{friendly_message}\n\n原始错误片段：\n{stderr[:300]}"
 
         return f"原始编译错误：\n{stderr}" # Fallback to original error if no match
 
