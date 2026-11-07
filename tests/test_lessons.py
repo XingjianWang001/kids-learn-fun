@@ -25,6 +25,7 @@ def app():
     except tk.TclError:
         pytest.skip("needs a display (on Linux, run under xvfb-run)")
     root.withdraw()
+    root.tk.call("tk", "scaling", 96 / 72)  # fonts at 96 dpi whatever the display says, so layout tests see the same pixels
     yield InteractiveLearningApp(root)
     root.destroy()
 
@@ -291,7 +292,7 @@ EXAMPLE_CLAIMS = [
 def test_example_output_comments_say_what_the_program_prints(topic, i, claim):
     result = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(LESSONS_DATA[topic][i]["code"], "{user_code}")
     assert result["success"], result["error"]
-    assert claim in result["output"]
+    assert re.search(rf"(?<![\w.]){re.escape(claim)}(?![\w.])", result["output"]), result["output"]  # the number itself, not a digit of 25
 
 
 HINTED_FUNCTIONS = [(t, i, name) for t, i, lesson in CHALLENGES for name in re.findall(r"`((?:std::)?\w+)\(", lesson.get("hint", ""))]

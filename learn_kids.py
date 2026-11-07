@@ -723,12 +723,16 @@ class InteractiveLearningApp:
                     return
 
                 self.feedback_label.config(text="正在编译运行…", foreground="black")
-                buttons = (self.submit_button, self.prev_button, self.skip_button, self.next_button)
+                buttons = (self.submit_button, self.prev_button, self.skip_button, self.next_button,
+                           self.format_code_button, *self.topic_buttons.values())
                 for button in buttons: button.state(["disabled"])  # the flag only: -state keeps what each button should be after the run
                 self.feedback_label.update_idletasks()  # show it before the window blocks on g++
                 result = self.execute_cpp_code(user_code, context)
-                # Clicks made while the window was blocked are replayed after we return: re-apply -state only once they hit disabled buttons.
-                self.master.after(100, lambda: [button.config(state=button.cget("state")) for button in buttons])
+                def unlock():
+                    for button in buttons: button.config(state=button.cget("state"))
+                # Clicks made while the window was blocked are replayed after we return: unlock only once they hit disabled buttons.
+                # shortcut: assumes the replayed clicks arrive within 100 ms; running g++ on a worker thread (#5 option b) removes the guess.
+                self.master.after(100, unlock)
                 self.output_display_area.config(state=tk.NORMAL)
                 self.output_display_area.delete('1.0', tk.END)
 
