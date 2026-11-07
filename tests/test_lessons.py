@@ -1,3 +1,4 @@
+import json
 import re
 import shutil
 from unittest import mock
@@ -7,7 +8,7 @@ import pytest
 tk = pytest.importorskip("tkinter")
 
 import learn_kids  # noqa: E402
-from learn_kids import LESSONS_DATA, InteractiveLearningApp, accepted_answers  # noqa: E402
+from learn_kids import LESSONS_DATA, InteractiveLearningApp, accepted_answers, normalize_answer  # noqa: E402
 
 CHALLENGES = [
     (topic, i, lesson)
@@ -100,9 +101,25 @@ def submit_fill_blank(app, monkeypatch, answer, typed):
     ("i--", "--i"),
     ("i--", "i -= 1"),
     ("i--", "i=i-1"),
+    ("输出", "显示"),  # 4.1#13's hint: 要把结果『显示』出来
 ])
 def test_fill_blank_ignores_spaces_and_accepts_equivalents(app, monkeypatch, answer, typed):
     assert submit_fill_blank(app, monkeypatch, answer, typed)
+
+
+def test_fill_blank_accepts_the_english_name_the_course_gives():
+    # The course writes “字节”（byte）: a child who answers byte has learned it. Only English names, as
+    # “位”（小开关） or “力量”（权值） are explanations, not answers.
+    names = set(re.findall(r"“([^”]+)”（([A-Za-z][A-Za-z ]*)）", json.dumps(LESSONS_DATA, ensure_ascii=False)))
+    assert names  # the scan still finds the course's English names
+    assert [
+        (t, i, name)
+        for t, lessons in LESSONS_DATA.items()
+        for i, lesson in enumerate(lessons)
+        if lesson["type"] == "fill_blank"
+        for word, name in names
+        if word in accepted_answers(lesson) and normalize_answer(name) not in map(normalize_answer, accepted_answers(lesson))
+    ] == []
 
 
 def test_fill_blank_rejects_wrong_answer(app, monkeypatch):
