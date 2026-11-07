@@ -115,3 +115,31 @@ def test_mouse_wheel_over_text_scrolls_text_or_page_not_both(root, event, option
     page.destroy()
     root.withdraw()
     assert [name for name, b, a in zip(("text", "page"), before, after) if b != a] == [moves]
+
+
+@pytest.mark.parametrize("part", ["code_area", "line_numbers"])
+@pytest.mark.parametrize("lines_left,moves", [(40, "editor"), (0, "page")])
+def test_mouse_wheel_over_editor_scrolls_editor_or_page_not_both(root, part, lines_left, moves):
+    root.deiconify()
+    page = ScrollableFrame(root)
+    page.pack()
+    editor = CodeEditor(page.scrollable_content_frame, height=6)
+    editor.pack()
+    editor.code_area.insert("1.0", "\n".join(f"x{i};" for i in range(100)))
+    editor._update_line_numbers()
+    for i in range(200):
+        tk.Label(page.scrollable_content_frame, text=f"row {i}").pack()
+    root.update()
+    canvas = page.winfo_children()[0]
+    canvas.yview_moveto(0.5)
+    editor.code_area.yview_moveto(1.0)
+    editor.code_area.yview_scroll(-lines_left, "units")
+    editor.line_numbers.yview_moveto(editor.code_area.yview()[0])
+    before = editor.code_area.yview()[0], canvas.yview()[0]
+    getattr(editor, part).event_generate("<Button-5>")
+    after = editor.code_area.yview()[0], canvas.yview()[0]
+    line_numbers_top = editor.line_numbers.yview()[0]
+    page.destroy()
+    root.withdraw()
+    assert [name for name, b, a in zip(("editor", "page"), before, after) if b != a] == [moves]
+    assert line_numbers_top == pytest.approx(after[0], abs=0.01)  # the numbers stay next to their lines

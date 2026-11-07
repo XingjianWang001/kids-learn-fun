@@ -162,9 +162,9 @@ class CodeEditor(tk.Frame):
         self.code_area.pack(side="right", fill="both", expand=True)
 
         self.code_area.bind("<KeyRelease>", self._on_key_release)
-        self.code_area.bind("<MouseWheel>", self._on_scroll)
-        self.code_area.bind("<Button-4>", self._on_scroll)
-        self.code_area.bind("<Button-5>", self._on_scroll)
+        for sequence in ("<MouseWheel>", "<Button-4>", "<Button-5>"):
+            for column in (self.code_area, self.line_numbers):  # over either column, both scroll together
+                column.bind(sequence, self._on_scroll)
         self.code_area.bind("<Return>", self._on_enter_key)
         self.code_area.bind("<Configure>", self._on_key_release)
 
@@ -177,11 +177,15 @@ class CodeEditor(tk.Frame):
         self._update_line_numbers()
 
     def _on_scroll(self, event):
-        # Scroll here and "break": Text's own wheel binding and the page's bind_all handler would scroll again.
-        self.code_area.yview_scroll(3 * wheel_steps(event), "units")
+        # At the code's end in that direction, let the page's bind_all handler scroll the page instead.
+        steps = wheel_steps(event)
+        top, bottom = self.code_area.yview()
+        if (steps < 0 and top <= 0) or (steps > 0 and bottom >= 1):
+            return None
+        self.code_area.yview_scroll(3 * steps, "units")
         self.line_numbers.yview_moveto(self.code_area.yview()[0])
         self._update_line_numbers()
-        return "break"
+        return "break"  # or the page's bind_all handler would scroll too
 
     def _on_enter_key(self, event=None):
         self._apply_indentation()
