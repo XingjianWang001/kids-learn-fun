@@ -224,3 +224,20 @@ def test_clicks_made_while_code_runs_are_not_replayed(shown_app, monkeypatch, co
     app.master.update()
     assert app.next_button.instate(["!disabled"])
     assert app.submit_button.instate(["disabled" if correct else "!disabled"])
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+def test_spaces_at_the_end_of_output_lines_are_ignored(app, monkeypatch):
+    # They are invisible in the output box, so "1 \n2 \n" looks exactly like the expected "1\n2\n".
+    for attr in ("lesson_points_awarded", "failed_attempts"):
+        monkeypatch.setattr(app, attr, {})
+    monkeypatch.setattr(app, "scores", dict(app.scores))
+    monkeypatch.setattr(app, "total_score", app.total_score)
+    topic, i = next((t, i) for t, i, lesson in CHALLENGES if lesson["expected_output"].strip() == "1\n2\n3\n4\n5")
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.code_input_area.insert("1.0", 'for (int i = 1; i <= 5; i++) {\n    std::cout << i << " " << std::endl;\n}')
+
+    app.check_answer()
+
+    assert app.lesson_points_awarded.get((topic, i))

@@ -93,6 +93,11 @@ def normalize_answer(text):
     return re.sub(r"\s+", "", str(text)).lower()
 
 
+def normalize_output(text):
+    """Spaces at the end of a line can't be seen in the output box, so `1 ⏎2 ⏎` matches `1⏎2⏎`."""
+    return "\n".join(line.rstrip() for line in text.strip().splitlines())
+
+
 def wheel_steps(event):
     """-1 to scroll up, 1 down, 0 for none. Only the sign counts: macOS and touchpads send deltas far below 120."""
     if event.num in (4, 5):  # X11 sends the wheel as buttons 4 and 5
@@ -728,8 +733,8 @@ class InteractiveLearningApp:
                 self.output_display_area.delete('1.0', tk.END)
 
                 if result['success']:
-                    actual_output_trimmed = result['output'].strip()
-                    expected_output_trimmed = expected_out_str.strip()
+                    actual_output_trimmed = normalize_output(result['output'])
+                    expected_output_trimmed = normalize_output(expected_out_str)
                     is_correct = (actual_output_trimmed == expected_output_trimmed)
                     display_text = f"你的程序输出:\n---\n{result['output']}\n---"
                     if result['error']: display_text += f"{result['error']}\n---"
