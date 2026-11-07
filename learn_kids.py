@@ -34,6 +34,7 @@ COMPILER_ERROR_HINTS = {
     r"return-statement with no value, in function returning 'int'": "这个函数应该返回一个整数，但是 `return;` 后面忘记写返回值了。",
     r"too few arguments to function": "调用函数的时候，给的参数数量不够哦。",
     r"too many arguments to function": "调用函数的时候，给的参数数量太多了哦。",
+    r"to binary 'operator\^'": "C++ 里的 ^ 不是乘方，是位运算「异或」。平方要写成 x * x，或者用 pow(x, 2)。",
 }
 
 # --- 函数：加载课程数据 ---
@@ -707,8 +708,8 @@ class InteractiveLearningApp:
                     return
         elif lesson_type == "code_challenge":
             if self.code_input_area:
-                user_code = self.code_input_area.get("1.0", "end-1c").strip()
-                if not user_code:
+                user_code = self.code_input_area.get("1.0", "end-1c")  # unstripped: error line numbers must match the editor
+                if not user_code.strip():
                     self.feedback_label.config(text="请输入你的C++代码！", foreground="orange")
                     self.output_display_area.config(state=tk.NORMAL)
                     self.output_display_area.insert(tk.END, "错误: 未输入任何代码。")

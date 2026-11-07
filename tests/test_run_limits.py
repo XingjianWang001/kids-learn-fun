@@ -93,6 +93,7 @@ MISTAKES = [
     ("return;", r"return-statement with no value, in function returning 'int'"),
     ("int x = abs();", r"too few arguments to function"),
     ("int x = abs(1, 2);", r"too many arguments to function"),
+    ("double d = 1.5;\ndouble s = d^2;", r"to binary 'operator\^'"),  # ^ as a power (2#32's formula used to)
 ]
 
 

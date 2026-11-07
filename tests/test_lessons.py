@@ -190,6 +190,20 @@ def test_wrong_code_answer_shows_the_hint(app, monkeypatch):
     assert lesson["hint"] in app.feedback_label.cget("text")
 
 
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+def test_error_line_counts_blank_lines_above_the_code(app, monkeypatch):
+    for attr in ("lesson_points_awarded", "failed_attempts"):
+        monkeypatch.setattr(app, attr, {})
+    topic, i, _ = CHALLENGES[0]
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.code_input_area.insert("1.0", "\n\nstd::cout << zz;")  # the child pressed Enter first
+
+    app.check_answer()
+
+    assert "第 3 行" in app.output_display_area.get("1.0", "end-1c")
+
+
 @pytest.fixture
 def shown_app(app):
     app.master.geometry("1000x800")  # the size the app opens at
@@ -292,7 +306,8 @@ EXAMPLE_CLAIMS = [
 def test_example_output_comments_say_what_the_program_prints(topic, i, claim):
     result = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(LESSONS_DATA[topic][i]["code"], "{user_code}")
     assert result["success"], result["error"]
-    assert re.search(rf"(?<![\w.]){re.escape(claim)}(?![\w.])", result["output"]), result["output"]  # the number itself, not a digit of 25
+    # The value a line ends with, not the same number inside its label (`-3.14 的绝对值是: 3`) or a digit of 25.
+    assert re.search(rf"(?<![\w.]){re.escape(claim)}[ \t]*$", result["output"], re.M), result["output"]
 
 
 HINTED_FUNCTIONS = [(t, i, name) for t, i, lesson in CHALLENGES for name in re.findall(r"`((?:std::)?\w+)\(", lesson.get("hint", ""))]
@@ -304,3 +319,21 @@ def test_functions_a_hint_suggests_are_declared_in_the_program(topic, i, name):
     # The editor sits inside main, where a child can't add the #include the function needs.
     error = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(f"{name};", LESSONS_DATA[topic][i]["cpp_context"])["error"]
     assert "not declared" not in error and "is not a member of" not in error
+
+
+# Multiple-choice “what does the program above print?” with a complete program: run it (#14 2#14 showed 75, asked about 88).
+PRINT_QUESTIONS = [
+    (t, i, lesson) for t, lessons in LESSONS_DATA.items() for i, lesson in enumerate(lessons)
+    if lesson["type"] == "multiple_choice" and "main(" in lesson.get("code", "")
+    and re.search("输出|打印", lesson.get("question", ""))
+    and "cin" not in lesson["code"]  # shortcut: execute_cpp_code gives no stdin; add one when an input program needs this check
+]
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+@pytest.mark.parametrize("topic,i,lesson", PRINT_QUESTIONS, ids=[f"{t}#{i}" for t, i, _ in PRINT_QUESTIONS])
+def test_shown_program_prints_the_answer(topic, i, lesson):
+    result = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(lesson["code"], "{user_code}")
+    assert result["success"], result["error"]
+    printed = [option for option in lesson["options"] if option in result["output"]]
+    assert printed == [lesson["options"][lesson["answer_index"]]], result["output"]
