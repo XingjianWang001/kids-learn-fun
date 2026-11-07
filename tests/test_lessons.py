@@ -191,3 +191,36 @@ def test_code_challenge_shows_user_code_line_and_submit_without_scrolling(shown_
     canvas = app.scrollable_lesson_outer_frame.winfo_children()[0]
     submit_top = app.submit_button.winfo_rooty() - canvas.winfo_rooty()
     assert 0 <= submit_top and submit_top + app.submit_button.winfo_height() <= canvas.winfo_height()
+
+
+@pytest.mark.parametrize("correct", [False, True], ids=["wrong", "correct"])
+def test_clicks_made_while_code_runs_are_not_replayed(shown_app, monkeypatch, correct):
+    app = shown_app
+    for attr in ("lesson_points_awarded", "failed_attempts"):
+        monkeypatch.setattr(app, attr, {})
+    monkeypatch.setattr(app, "scores", dict(app.scores))
+    topic, i, lesson = CHALLENGES[0]
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.code_input_area.insert("1.0", "while (true) {}")
+    app.master.update()
+    runs = []
+
+    def blocking_run(code, context):
+        runs.append(code)
+        if len(runs) == 1:  # the window is blocked: Tk queues the child's impatient clicks and replays them afterwards
+            for button in (app.submit_button, app.submit_button, app.next_button):
+                button.event_generate("<ButtonPress-1>", when="tail")
+                button.event_generate("<ButtonRelease-1>", when="tail")
+        return {"success": True, "output": lesson["expected_output"] if correct else "?", "error": ""}
+
+    monkeypatch.setattr(app, "execute_cpp_code", blocking_run)
+    app.submit_button.invoke()
+    app.master.update()
+
+    assert len(runs) == 1
+    assert app.current_lesson_index == i
+    app.master.after(300)  # sleep past the re-enable delay
+    app.master.update()
+    assert app.next_button.instate(["!disabled"])
+    assert app.submit_button.instate(["disabled" if correct else "!disabled"])
