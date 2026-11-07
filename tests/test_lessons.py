@@ -1,3 +1,4 @@
+import json
 import re
 import shutil
 from unittest import mock
@@ -7,7 +8,7 @@ import pytest
 tk = pytest.importorskip("tkinter")
 
 import learn_kids  # noqa: E402
-from learn_kids import LESSONS_DATA, InteractiveLearningApp, accepted_answers  # noqa: E402
+from learn_kids import LESSONS_DATA, InteractiveLearningApp, accepted_answers, normalize_answer  # noqa: E402
 
 CHALLENGES = [
     (topic, i, lesson)
@@ -24,6 +25,7 @@ def app():
     except tk.TclError:
         pytest.skip("needs a display (on Linux, run under xvfb-run)")
     root.withdraw()
+    root.tk.call("tk", "scaling", 96 / 72)  # fonts at 96 dpi whatever the display says, so layout tests see the same pixels
     yield InteractiveLearningApp(root)
     root.destroy()
 
@@ -100,9 +102,25 @@ def submit_fill_blank(app, monkeypatch, answer, typed):
     ("i--", "--i"),
     ("i--", "i -= 1"),
     ("i--", "i=i-1"),
+    ("输出", "显示"),  # 4.1#13's hint: 要把结果『显示』出来
 ])
 def test_fill_blank_ignores_spaces_and_accepts_equivalents(app, monkeypatch, answer, typed):
     assert submit_fill_blank(app, monkeypatch, answer, typed)
+
+
+def test_fill_blank_accepts_the_english_name_the_course_gives():
+    # The course writes “字节”（byte）: a child who answers byte has learned it. Only English names, as
+    # “位”（小开关） or “力量”（权值） are explanations, not answers.
+    names = set(re.findall(r"“([^”]+)”（([A-Za-z][A-Za-z ]*)）", json.dumps(LESSONS_DATA, ensure_ascii=False)))
+    assert names  # the scan still finds the course's English names
+    assert [
+        (t, i, name)
+        for t, lessons in LESSONS_DATA.items()
+        for i, lesson in enumerate(lessons)
+        if lesson["type"] == "fill_blank"
+        for word, name in names
+        if word in accepted_answers(lesson) and normalize_answer(name) not in map(normalize_answer, accepted_answers(lesson))
+    ] == []
 
 
 def test_fill_blank_rejects_wrong_answer(app, monkeypatch):
@@ -170,3 +188,119 @@ def test_wrong_code_answer_shows_the_hint(app, monkeypatch):
     app.check_answer()
 
     assert lesson["hint"] in app.feedback_label.cget("text")
+
+
+@pytest.fixture
+def shown_app(app):
+    app.master.geometry("1000x800")  # the size the app opens at
+    app.master.deiconify()
+    yield app
+    app.master.withdraw()
+
+
+@pytest.mark.parametrize("topic,i,lesson", CHALLENGES, ids=[f"{t}#{i}" for t, i, _ in CHALLENGES])
+def test_code_challenge_shows_user_code_line_and_submit_without_scrolling(shown_app, topic, i, lesson):
+    app = shown_app
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.master.update()
+    user_code_line = lesson["cpp_context"].split("{user_code}")[0].count("\n") + 1
+    assert app.code_display_text.dlineinfo(f"{user_code_line}.0") is not None
+    canvas = app.scrollable_lesson_outer_frame.winfo_children()[0]
+    submit_top = app.submit_button.winfo_rooty() - canvas.winfo_rooty()
+    assert 0 <= submit_top and submit_top + app.submit_button.winfo_height() <= canvas.winfo_height()
+
+
+@pytest.mark.parametrize("correct", [False, True], ids=["wrong", "correct"])
+def test_clicks_made_while_code_runs_are_not_replayed(shown_app, monkeypatch, correct):
+    app = shown_app
+    for attr in ("lesson_points_awarded", "failed_attempts"):
+        monkeypatch.setattr(app, attr, {})
+    monkeypatch.setattr(app, "scores", dict(app.scores))
+    topic, i, lesson = CHALLENGES[0]
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.code_input_area.insert("1.0", "while (true) {}")
+    app.master.update()
+    runs = []
+
+    def blocking_run(code, context):
+        runs.append(code)
+        if len(runs) == 1:  # the window is blocked: Tk queues the child's impatient clicks and replays them afterwards
+            for button in (app.submit_button, app.submit_button, app.next_button):
+                button.event_generate("<ButtonPress-1>", when="tail")
+                button.event_generate("<ButtonRelease-1>", when="tail")
+        return {"success": True, "output": lesson["expected_output"] if correct else "?", "error": ""}
+
+    monkeypatch.setattr(app, "execute_cpp_code", blocking_run)
+    app.submit_button.invoke()
+    app.master.update()
+
+    assert len(runs) == 1
+    assert app.current_lesson_index == i
+    app.master.after(300)  # sleep past the re-enable delay
+    app.master.update()
+    assert app.next_button.instate(["!disabled"])
+    assert app.submit_button.instate(["disabled" if correct else "!disabled"])
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+def test_spaces_at_the_end_of_output_lines_are_ignored(app, monkeypatch):
+    # They are invisible in the output box, so "1 \n2 \n" looks exactly like the expected "1\n2\n".
+    for attr in ("lesson_points_awarded", "failed_attempts"):
+        monkeypatch.setattr(app, attr, {})
+    monkeypatch.setattr(app, "scores", dict(app.scores))
+    monkeypatch.setattr(app, "total_score", app.total_score)
+    topic, i = next((t, i) for t, i, lesson in CHALLENGES if lesson["expected_output"].strip() == "1\n2\n3\n4\n5")
+    app.current_topic_key, app.current_lesson_index = topic, i
+    app.load_lesson()
+    app.code_input_area.insert("1.0", 'for (int i = 1; i <= 5; i++) {\n    std::cout << i << " " << std::endl;\n}')
+
+    app.check_answer()
+
+    assert app.lesson_points_awarded.get((topic, i))
+
+
+def test_lessons_that_point_at_code_show_code():
+    # “运行上面的代码” with an empty program box: the code was in an earlier lesson, now off screen.
+    assert [
+        (t, i)
+        for t, lessons in LESSONS_DATA.items()
+        for i, lesson in enumerate(lessons)
+        if re.search(r"上面.{0,15}代码|素数判断代码", lesson.get("text", "") + lesson.get("question", ""))
+        and not (lesson.get("code") or lesson.get("cpp_context"))
+    ] == []
+
+
+def test_lessons_carry_no_authoring_notes():
+    assert [
+        (t, i) for t, lessons in LESSONS_DATA.items() for i, lesson in enumerate(lessons)
+        if re.search("原文|笔误", json.dumps(lesson, ensure_ascii=False))
+    ] == []
+
+
+EXAMPLE_CLAIMS = [
+    (t, i, claim.strip())
+    for t, lessons in LESSONS_DATA.items()
+    for i, lesson in enumerate(lessons)
+    for claim in re.findall(r"//\s*输出[ \t]+([^\n(（]+)", lesson.get("code", ""))  # `// 输出 5 (…)` claims 5
+]
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+@pytest.mark.parametrize("topic,i,claim", EXAMPLE_CLAIMS, ids=[f"{t}#{i}:{c}" for t, i, c in EXAMPLE_CLAIMS])
+def test_example_output_comments_say_what_the_program_prints(topic, i, claim):
+    result = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(LESSONS_DATA[topic][i]["code"], "{user_code}")
+    assert result["success"], result["error"]
+    assert re.search(rf"(?<![\w.]){re.escape(claim)}(?![\w.])", result["output"]), result["output"]  # the number itself, not a digit of 25
+
+
+HINTED_FUNCTIONS = [(t, i, name) for t, i, lesson in CHALLENGES for name in re.findall(r"`((?:std::)?\w+)\(", lesson.get("hint", ""))]
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+@pytest.mark.parametrize("topic,i,name", HINTED_FUNCTIONS, ids=[f"{t}#{i}:{n}" for t, i, n in HINTED_FUNCTIONS])
+def test_functions_a_hint_suggests_are_declared_in_the_program(topic, i, name):
+    # The editor sits inside main, where a child can't add the #include the function needs.
+    error = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(f"{name};", LESSONS_DATA[topic][i]["cpp_context"])["error"]
+    assert "not declared" not in error and "is not a member of" not in error

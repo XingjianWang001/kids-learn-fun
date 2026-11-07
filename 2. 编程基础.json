@@ -13,7 +13,7 @@
     {
       "type": "explanation",
       "text": "有时候，我们需要把一个“小盒子”里的东西，放到另一种类型的“小盒子”里。\n比如，把一个整数放到一个可以装小数的盒子里。这叫做“数据类型转换”。\n就像把一个方形积木放到一个可以装各种形状积木的大盒子里，通常是没问题的。",
-      "code": "#include <iostream>\n\nint main() {\n    int integer_box = 5;\n    float float_box;\n    \n    // 把整数放进小数盒子里，计算机自己就懂了\n    float_box = integer_box; \n    \n    std::cout << \"整数盒子的值: \" << integer_box << std::endl;\n    std::cout << \"小数盒子的值: \" << float_box << std::endl; // 输出 5.0\n    \n    return 0;\n}",
+      "code": "#include <iostream>\n\nint main() {\n    int integer_box = 5;\n    float float_box;\n    \n    // 把整数放进小数盒子里，计算机自己就懂了\n    float_box = integer_box; \n    \n    std::cout << \"整数盒子的值: \" << integer_box << std::endl;\n    std::cout << \"小数盒子的值: \" << float_box << std::endl; // 输出 5（cout 不显示末尾的 .0）\n    \n    return 0;\n}",
       "points": 0
     },
     {
@@ -116,6 +116,7 @@
     {
       "type": "multiple_choice",
       "text": "如果一个同学考了 88 分，运行上面 `if-else if` 的代码，会输出什么？",
+      "code": "#include <iostream>\n\nint main() {\n    int score = 75;\n    \n    if (score >= 90) {\n        std::cout << \"优秀\" << std::endl;\n    } else if (score >= 80) {\n        std::cout << \"良好\" << std::endl;\n    } else if (score >= 60) {\n        std::cout << \"及格\" << std::endl;\n    } else {\n        std::cout << \"不及格\" << std::endl;\n    }\n    \n    return 0;\n}",
       "question": "如果一个同学考了 88 分，运行上面 `if-else if` 的代码，会输出什么？",
       "options": [
         "优秀",
@@ -182,7 +183,7 @@
         "都不合适"
       ],
       "answer_index": 2,
-      "hint": "`for` 循环通常用于你知道重复次数的情况。",
+      "hint": "`while` 循环加一个计数器也能重复 7 次哦。哪种写法更直接呢？",
       "points": 10
     },
     {
@@ -236,7 +237,7 @@
     {
       "type": "explanation",
       "text": "`sqrt(x)`：这个工具可以帮你找到一个数的平方根。比如 `sqrt(16)` 的结果是 4，因为 4 * 4 = 16。\n注意，`sqrt` 函数通常用于 `double` 或 `float` 类型的数字。",
-      "code": "#include <iostream>\n#include <cmath>\n\nint main() {\n    double area = 25.0;\n    double side_length;\n    \n    // 计算平方根\n    side_length = sqrt(area); \n    \n    std::cout << \"面积是 25 的正方形边长是: \" << side_length << std::endl; // 输出 5.0\n    \n    return 0;\n}",
+      "code": "#include <iostream>\n#include <cmath>\n\nint main() {\n    double area = 25.0;\n    double side_length;\n    \n    // 计算平方根\n    side_length = sqrt(area); \n    \n    std::cout << \"面积是 25 的正方形边长是: \" << side_length << std::endl; // 输出 5（cout 不显示末尾的 .0）\n    \n    return 0;\n}",
       "points": 0
     },
     {
@@ -301,6 +302,7 @@
     {
       "type": "fill_blank",
       "text": "在上面的代码中，用来统计奇数个数的变量是：\n`int n; int num; int ",
+      "code": "#include <iostream>\n\nint main() {\n    int n; // 要输入的数字个数\n    int num; // 每次输入的数字\n    int count = 0; // 奇数计数器，一开始是0\n    \n    std::cout << \"请输入数字的个数: \";\n    std::cin >> n;\n    \n    std::cout << \"请依次输入 \" << n << \" 个整数:\" << std::endl;\n    \n    // 循环 N 次\n    for (int i = 0; i < n; i++) {\n        std::cin >> num; // 输入一个数字\n        // 检查是不是奇数 (奇数除以2余数不为0)\n        if (num % 2 != 0) {\n            count++; // 奇数计数器加1\n        }\n    }\n    \n    std::cout << \"奇数的个数是: \" << count << std::endl;\n    \n    return 0;\n}",
       "question_parts": [
         "在上面的代码中，用来统计奇数个数的变量是：\n`int n; int num; int ",
         " = 0;`"
@@ -328,6 +330,7 @@
     {
       "type": "multiple_choice",
       "text": "如果输入的学生分数是 75 分，运行上面的代码会输出什么？",
+      "code": "#include <iostream>\n\nint main() {\n    int score;\n    std::cout << \"请输入分数: \";\n    std::cin >> score;\n    \n    if (score >= 90) {\n        std::cout << \"等级: A\" << std::endl;\n    } else if (score >= 80) {\n        std::cout << \"等级: B\" << std::endl;\n    } else if (score >= 60) {\n        std::cout << \"等级: C\" << std::endl;\n    } else {\n        std::cout << \"等级: D\" << std::endl;\n    }\n    \n    return 0;\n}",
       "question": "如果输入的学生分数是 75 分，运行上面的代码会输出什么？",
       "options": [
         "等级: A",

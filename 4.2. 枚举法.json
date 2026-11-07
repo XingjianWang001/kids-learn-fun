@@ -37,6 +37,7 @@
     {
       "type": "fill_blank",
       "text": "看上面的代码，我们用一个 `for` 循环来尝试所有的可能性。\n循环从 `i = 1` 开始，一直到 `i` 等于 `n`。\n循环的开始部分是 `for (int i = 1; i <= n; i++)`。\n请填写循环开始时 `i` 的值：\n`for (int i = `",
+      "code": "#include <iostream>\n\nint main() {\n    int n = 12; // 假设我们要找12的因子\n    // std::cout << \"请输入一个数字: \";\n    // std::cin >> n;\n    std::cout << n << \" 的因子有: \";\n    // 从1开始，一个一个试到n\n    for (int i = 1; i <= n; i++) {\n        // 检查n能不能被i整除\n        if (n % i == 0) {\n            // 如果能整除，i就是因子，把它打印出来\n            std::cout << i << \" \";\n        }\n    }\n    std::cout << std::endl;\n    return 0;\n}",
       "question_parts": [
         "循环从 `i = `",
         "; i <= n; i++)"
@@ -117,6 +118,7 @@
     {
       "type": "fill_blank",
       "text": "看上面的素数判断代码，循环是从哪个数字开始尝试的？\n`for (int i = `",
+      "code": "#include <iostream>\n\nint main() {\n    int n = 7; // 假设我们要判断7是不是素数\n    // std::cout << \"请输入一个大于1的数字: \";\n    // std::cin >> n;\n    bool is_prime = true; // 先假设它是素数\n    \n    if (n <= 1) { // 1和负数不是素数\n        is_prime = false;\n    } else {\n        // 从2开始，试到n-1 (或者优化到 sqrt(n))\n        for (int i = 2; i < n; i++) {\n            // 如果n能被i整除\n            if (n % i == 0) {\n                is_prime = false; // 发现因子了，它不是素数\n                break; // 找到一个就行了，不用再试了\n            }\n        }\n    }\n\n    if (is_prime) {\n        std::cout << n << \" 是素数\" << std::endl;\n    } else {\n        std::cout << n << \" 不是素数\" << std::endl;\n    }\n    return 0;\n}",
       "question_parts": [
         "for (int i = ",
         "; i < n; i++)"
@@ -150,6 +152,7 @@
     {
       "type": "multiple_choice",
       "text": "在素数判断代码中，如果循环结束了，`is_prime` 还是 `true`，说明什么？",
+      "code": "#include <iostream>\n\nint main() {\n    int n = 7; // 假设我们要判断7是不是素数\n    // std::cout << \"请输入一个大于1的数字: \";\n    // std::cin >> n;\n    bool is_prime = true; // 先假设它是素数\n    \n    if (n <= 1) { // 1和负数不是素数\n        is_prime = false;\n    } else {\n        // 从2开始，试到n-1 (或者优化到 sqrt(n))\n        for (int i = 2; i < n; i++) {\n            // 如果n能被i整除\n            if (n % i == 0) {\n                is_prime = false; // 发现因子了，它不是素数\n                break; // 找到一个就行了，不用再试了\n            }\n        }\n    }\n\n    if (is_prime) {\n        std::cout << n << \" 是素数\" << std::endl;\n    } else {\n        std::cout << n << \" 不是素数\" << std::endl;\n    }\n    return 0;\n}",
       "question": "在素数判断代码中，如果循环结束了，`is_prime` 还是 `true`（并且n>1），说明什么？",
       "options": [
         "在2到n-1之间找到了能整除n的数",
@@ -164,7 +167,7 @@
       "type": "code_challenge",
       "text": "现在轮到你来写代码了！\n请编写一个程序，读取一个大于1的整数 `n` (例如，输入13)，然后判断它是不是素数。\n如果是素数，输出 \"Prime\";如果不是素数，输出 \"Not Prime\"。",
       "question": "请编写代码，判断输入的整数 `n` (假设为13) 是否为素数（大于1）。如果是，输出 \"Prime\" 并换行；否则输出 \"Not Prime\" 并换行。",
-      "cpp_context": "#include <iostream>\n\nint main() {\n    int n = 13; // 假设输入为13用于测试\n    {user_code}\n    return 0;\n}",
+      "cpp_context": "#include <iostream>\n#include <cmath>\n\nint main() {\n    int n = 13; // 假设输入为13用于测试\n    {user_code}\n    return 0;\n}",
       "expected_output": "Prime",
       "standard_answer_code": "bool is_prime = true;\n    if (n <= 1) {\n        is_prime = false;\n    } else {\n        for (int i = 2; i * i <= n; i++) { // 优化：检查到sqrt(n)\n            if (n % i == 0) {\n                is_prime = false;\n                break;\n            }\n        }\n    }\n    if (is_prime) {\n        std::cout << \"Prime\" << std::endl;\n    } else {\n        std::cout << \"Not Prime\" << std::endl;\n    }",
       "hint": "先读入数字n（或使用预设值13）。用一个布尔变量 `is_prime` 记住结果，一开始假设它是 `true`。如果n小于等于1，直接设 `is_prime` 为 `false`。否则，用 `for` 循环从2到 `n-1` (或优化到 `sqrt(n)`) 检查能否整除。如果找到因子，设 `is_prime` 为 `false` 并跳出循环。最后根据 `is_prime` 的值输出结果。",
