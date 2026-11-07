@@ -258,3 +258,48 @@ def test_spaces_at_the_end_of_output_lines_are_ignored(app, monkeypatch):
     app.check_answer()
 
     assert app.lesson_points_awarded.get((topic, i))
+
+
+def test_lessons_that_point_at_code_show_code():
+    # “运行上面的代码” with an empty program box: the code was in an earlier lesson, now off screen.
+    assert [
+        (t, i)
+        for t, lessons in LESSONS_DATA.items()
+        for i, lesson in enumerate(lessons)
+        if re.search(r"上面.{0,15}代码|素数判断代码", lesson.get("text", "") + lesson.get("question", ""))
+        and not (lesson.get("code") or lesson.get("cpp_context"))
+    ] == []
+
+
+def test_lessons_carry_no_authoring_notes():
+    assert [
+        (t, i) for t, lessons in LESSONS_DATA.items() for i, lesson in enumerate(lessons)
+        if re.search("原文|笔误", json.dumps(lesson, ensure_ascii=False))
+    ] == []
+
+
+EXAMPLE_CLAIMS = [
+    (t, i, claim.strip())
+    for t, lessons in LESSONS_DATA.items()
+    for i, lesson in enumerate(lessons)
+    for claim in re.findall(r"//\s*输出[ \t]+([^\n(（]+)", lesson.get("code", ""))  # `// 输出 5 (…)` claims 5
+]
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+@pytest.mark.parametrize("topic,i,claim", EXAMPLE_CLAIMS, ids=[f"{t}#{i}:{c}" for t, i, c in EXAMPLE_CLAIMS])
+def test_example_output_comments_say_what_the_program_prints(topic, i, claim):
+    result = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(LESSONS_DATA[topic][i]["code"], "{user_code}")
+    assert result["success"], result["error"]
+    assert claim in result["output"]
+
+
+HINTED_FUNCTIONS = [(t, i, name) for t, i, lesson in CHALLENGES for name in re.findall(r"`((?:std::)?\w+)\(", lesson.get("hint", ""))]
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+@pytest.mark.parametrize("topic,i,name", HINTED_FUNCTIONS, ids=[f"{t}#{i}:{n}" for t, i, n in HINTED_FUNCTIONS])
+def test_functions_a_hint_suggests_are_declared_in_the_program(topic, i, name):
+    # The editor sits inside main, where a child can't add the #include the function needs.
+    error = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(f"{name};", LESSONS_DATA[topic][i]["cpp_context"])["error"]
+    assert "not declared" not in error and "is not a member of" not in error
