@@ -17,7 +17,9 @@ COMPILER_ERROR_HINTS = {
     r"extended character|\\U0000(ff|20[12]|30[0-3])": "代码里有中文标点符号（比如 ； ， （ ） “ ”），要切换到英文输入法再打这些符号哦。",
     r"a function-definition is not allowed here": "这里只要写 main 函数里面的代码，不用再写 #include 和 int main() 哦。",
     r"expected (',' or )?';' before": "哎呀，好像在某行的末尾忘记了分号 ';' 哦！C++中很多语句需要用它来结束。",
+    r"did you mean 'std::": "`cout`、`cin`、`endl`、`max` 这些名字前面要加 `std::` 哦，比如 `std::cout`。",  # before the row below, which says to declare it
     r"was not declared in this scope": "嗯，你用了一个变量或者函数，但是好像忘记先告诉电脑它是什么了（忘记声明了）。",
+    r"missing terminating [\"'] character": "引号要成对出现哦：文字的两边都要有双引号，比如 \"小华\"。",
     r"expected primary-expression before '.*' token": "这里似乎有点小问题，电脑不太明白你想做什么。检查一下是不是有奇怪的符号或者漏了东西？",
     r"stray '\\[0-9]*' in program": "代码里好像有一些奇怪的、看不懂的符号，检查一下是不是不小心打错了？",
     r"undefined reference to": "电脑找到了一个名字，但是找不到它具体代表什么（比如一个函数）。是不是忘记写这个函数了，或者链接的时候出错了？",
@@ -25,6 +27,8 @@ COMPILER_ERROR_HINTS = {
     r"expected declaration before '}' token": "这个大括号 '}' 前面是不是少了点什么代码呢？",
     r"conflicting declaration '.*'": "这个名字好像之前用过了，但是这次用它的方式和之前不一样哦。",
     r"redeclaration of '.*'": "这个名字你好像声明过两次了，检查一下是不是写多了？",
+    # cout >> x or cin << x: before the two rows below, which blame the type of what is on the right.
+    r"no match for 'operator>>' \(operand types are 'std::ostream|no match for 'operator<<' \(operand types are 'std::istream": "箭头方向反了：`std::cout << ...` 把东西送到屏幕，`std::cin >> ...` 从键盘拿到变量里。",
     r"no match for 'operator<<'": "使用 `cout << ...` 的时候，`<<` 右边的东西电脑不认识，看看是不是类型不对？",
     r"no match for 'operator>>'": "使用 `cin >> ...` 的时候，`>>` 右边的变量电脑不认识，看看是不是类型不对或者没声明？",
     r"expected unqualified-id before numeric constant": "数字前面是不是不小心写了什么不该写的东西？",

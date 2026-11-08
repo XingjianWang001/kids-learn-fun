@@ -240,7 +240,7 @@
         "要计算数字 25 的平方根，应该使用哪个数学函数？\n`std::cout << ",
         " (25);`"
       ],
-      "answer": "sqrt",
+      "answer": ["sqrt", "std::sqrt"],
       "hint": "平方根的英文是 square root。",
       "points": 10
     },
