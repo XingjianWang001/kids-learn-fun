@@ -123,6 +123,24 @@ def test_fill_blank_accepts_the_english_name_the_course_gives():
     ] == []
 
 
+# Blanks that name a function: `std::cout << ____(-25)`. `____ (age > 18)` (if) is one too, so g++ decides what std has.
+CALL_BLANKS = [
+    (t, i, lesson) for t, lessons in LESSONS_DATA.items() for i, lesson in enumerate(lessons)
+    if lesson["type"] == "fill_blank" and lesson["question_parts"][1].lstrip().startswith("(")
+    and not lesson["question_parts"][0].endswith("std::")
+]
+
+
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+@pytest.mark.parametrize("topic,i,lesson", CALL_BLANKS, ids=[f"{t}#{i}" for t, i, _ in CALL_BLANKS])
+def test_fill_blank_accepts_std_prefix_on_a_std_function(topic, i, lesson):
+    # 2#26 writes std::abs and 1#31 says 记得要加 std::, so `std::abs(-25)` is the course's own answer.
+    answer = accepted_answers(lesson)[0]
+    in_std = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(
+        f"using std::{answer};", "#include <iostream>\n#include <cmath>\n#include <algorithm>\nint main() {\n{user_code}\n}")["success"]
+    assert not in_std or normalize_answer(f"std::{answer}") in map(normalize_answer, accepted_answers(lesson))
+
+
 def test_fill_blank_rejects_wrong_answer(app, monkeypatch):
     assert not submit_fill_blank(app, monkeypatch, "i--", "i++")
 

@@ -67,6 +67,7 @@ def test_errors_inside_system_headers_do_not_give_the_line():
 
 
 IME_PUNCTUATION = r"extended character|\\U0000(ff|20[12]|30[0-3])"
+STREAM_ARROWS = r"no match for 'operator>>' \(operand types are 'std::ostream|no match for 'operator<<' \(operand types are 'std::istream"
 
 # A real mistake for every COMPILER_ERROR_HINTS row: rows written from memory never matched g++ (#7, #12).
 MISTAKES = [
@@ -76,7 +77,10 @@ MISTAKES = [
     ('std::cout << "a"；\nstd::cout << "b";', IME_PUNCTUATION),  # not the ';' hint
     ('#include <iostream>\nint main() {\n    std::cout << "hi";\n    return 0;\n}', r"a function-definition is not allowed here"),
     ("int x = 5\nstd::cout << x;", r"expected (',' or )?';' before"),
+    ("cout << 1;", r"did you mean 'std::"),  # not the row for y below, which tells the child to declare cout
+    ("std::cout << 1 << endl;", r"did you mean 'std::"),
     ("std::cout << y;", r"was not declared in this scope"),
+    ('std::cout << "小华 << std::endl;', r"missing terminating [\"'] character"),
     ("int x = 3 + ;", r"expected primary-expression before '.*' token"),
     ('std::cout << "a" << \\n;', r"stray '\\[0-9]*' in program"),
     ("int foo();\nfoo();", r"undefined reference to"),
@@ -84,6 +88,8 @@ MISTAKES = [
     ("}", r"expected declaration before '}' token"),
     ("int x = 1;\ndouble x = 2;", r"conflicting declaration '.*'"),
     ("int x = 5;\nint x = 6;", r"redeclaration of '.*'"),
+    ("std::cout >> 1;", STREAM_ARROWS),  # not the cin >> row below: the arrow, not the variable, is wrong
+    ("int x;\nstd::cin << x;", STREAM_ARROWS),
     ("std::cout << std::cout;", r"no match for 'operator<<'"),
     ("int x; std::cin >> 5;", r"no match for 'operator>>'"),
     ("int 5x = 3;", r"expected unqualified-id before numeric constant"),

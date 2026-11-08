@@ -230,7 +230,7 @@
         "要计算数字 -25 的绝对值并打印出来，需要包含 `<cmath>`，然后写：\n`std::cout << ",
         "(-25) << std::endl;`"
       ],
-      "answer": "abs",
+      "answer": ["abs", "std::abs"],
       "hint": "哪个数学函数是用来求绝对值的？",
       "points": 10
     },
@@ -247,7 +247,7 @@
         "要计算数字 81 的平方根并存入 `double` 变量 `root`，需要包含 `<cmath>`，然后写：\n`double root = ",
         "(81.0);`"
       ],
-      "answer": "sqrt",
+      "answer": ["sqrt", "std::sqrt"],
       "hint": "哪个数学函数是用来求平方根的？",
       "points": 10
     },
