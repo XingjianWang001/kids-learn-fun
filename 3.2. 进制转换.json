@@ -229,7 +229,7 @@
     {
       "type": "explanation",
       "text": "在C++里，我们可以用 `std::hex` 来告诉 `cout` 接下来要打印的数字用十六进制显示。\n用完十六进制，可以用 `std::dec` 再换回十进制。",
-      "code": "#include <iostream>\n#include <iomanip> // 使用 std::hex 和 std::dec 需要这个头文件\n\nint main() {\n    int dec_num = 42;\n    std::cout << \"十进制: \" << dec_num << std::endl;\n    std::cout << \"十六进制: \" << std::hex << dec_num << std::endl; // 打印十六进制\n    std::cout << \"再换回十进制: \" << std::dec << dec_num << std::endl; // 换回十进制\n    return 0;\n}",
+      "code": "#include <iostream> // std::hex 和 std::dec 也在这里\n\nint main() {\n    int dec_num = 42;\n    std::cout << \"十进制: \" << dec_num << std::endl;\n    std::cout << \"十六进制: \" << std::hex << dec_num << std::endl; // 打印十六进制\n    std::cout << \"再换回十进制: \" << std::dec << dec_num << std::endl; // 换回十进制\n    return 0;\n}",
       "points": 0
     },
     {
@@ -239,7 +239,7 @@
       "cpp_context": "#include <iostream>\n#include <iomanip>\n\nint main() {\n  int num = 50;\n  {user_code}\n  return 0;\n}",
       "expected_output": "32",
       "standard_answer_code": "std::cout << std::hex << num << std::endl;",
-      "hint": "在打印数字之前，先用 `std::hex`。别忘了 `#include <iomanip>`。",
+      "hint": "在打印数字之前，先用 `std::hex`。",
       "points": 15
     },
     {
