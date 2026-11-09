@@ -355,3 +355,19 @@ def test_shown_program_prints_the_answer(topic, i, lesson):
     assert result["success"], result["error"]
     printed = [option for option in lesson["options"] if option in result["output"]]
     assert printed == [lesson["options"][lesson["answer_index"]]], result["output"]
+
+
+def test_lessons_do_not_write_powers_with_caret():
+    # In C++ ^ is XOR (3.3 teaches it), so 2^2 there is 0, not 4 (#16 found it in 2#32).
+    assert [
+        (t, i) for t, lessons in LESSONS_DATA.items() for i, lesson in enumerate(lessons)
+        if re.search(r"\w\^\w", json.dumps(lesson, ensure_ascii=False))
+    ] == []
+
+
+def test_hints_do_not_ask_for_an_include():
+    # The editor sits inside main and the program already has its headers; std::hex needs only <iostream>.
+    assert [
+        (t, i) for t, lessons in LESSONS_DATA.items() for i, lesson in enumerate(lessons)
+        if "#include" in lesson.get("hint", "")
+    ] == []
