@@ -304,7 +304,7 @@
       "cpp_context": "#include <iostream>\n#include <bitset>\n#include <iomanip>\n\nint main() {\n  int num;\n  // std::cout << \"请输入一个十进制整数: \";\n  // std::cin >> num;\n  num = 26; // 假设输入为26用于测试\n  {user_code}\n  return 0;\n}",
       "expected_output": "1a\n00011010",
       "standard_answer_code": "std::cout << std::hex << num << std::endl;\n  std::cout << std::dec << std::bitset<8>(num) << std::endl;",
-      "hint": "先用 `std::cin >> num;` 读取数字（或使用预设值26）。\n然后用 `std::cout << std::hex << num << std::endl;` 打印十六进制。\n接着用 `std::cout << std::dec << std::bitset<8>(num) << std::endl;` 打印二进制。`std::dec`确保bitset不受hex影响。",
+      "hint": "先用 `std::cin >> num;` 读取数字（或使用预设值26）。\n然后用 `std::cout << std::hex << num << std::endl;` 打印十六进制。\n接着用 `std::cout << std::bitset<8>(num) << std::endl;` 打印二进制。`bitset` 总是打印 0 和 1，不受 `std::hex` 影响。",
       "points": 15
     },
     {

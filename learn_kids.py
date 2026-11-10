@@ -38,6 +38,8 @@ COMPILER_ERROR_HINTS = {
     r"return-statement with no value, in function returning 'int'": "这个函数应该返回一个整数，但是 `return;` 后面忘记写返回值了。",
     r"too few arguments to function": "调用函数的时候，给的参数数量不够哦。",
     r"too many arguments to function": "调用函数的时候，给的参数数量太多了哦。",
+    # std::max, std::min and std::abs are overloaded or templates: g++ says this instead of the two rows above.
+    r"no matching function for call to|'__comp' cannot be used as a function": "调用函数时给的参数不对哦：数量不对，或者类型不一样（比如一个 int、一个 double）。`std::max`、`std::min` 一次只能比较两个数，三个数要写成 `std::max(a, std::max(b, c))`。",
     r"to binary 'operator\^'": "C++ 里的 ^ 不是乘方，是位运算「异或」。平方要写成 x * x，或者用 pow(x, 2)。",
 }
 

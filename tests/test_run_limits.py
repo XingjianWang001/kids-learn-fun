@@ -68,6 +68,7 @@ def test_errors_inside_system_headers_do_not_give_the_line():
 
 IME_PUNCTUATION = r"extended character|\\U0000(ff|20[12]|30[0-3])"
 STREAM_ARROWS = r"no match for 'operator>>' \(operand types are 'std::ostream|no match for 'operator<<' \(operand types are 'std::istream"
+WRONG_ARGUMENTS = r"no matching function for call to|'__comp' cannot be used as a function"
 
 # A real mistake for every COMPILER_ERROR_HINTS row: rows written from memory never matched g++ (#7, #12).
 MISTAKES = [
@@ -100,6 +101,8 @@ MISTAKES = [
     ("int x = abs();", r"too few arguments to function"),
     ("int x = abs(1, 2);", r"too many arguments to function"),
     ("double d = 1.5;\ndouble s = d^2;", r"to binary 'operator\^'"),  # ^ as a power (2#32's formula used to)
+    ("int m = std::max(1, 2.5);", WRONG_ARGUMENTS),  # an int and a double: std::max is a template, so not "too many arguments"
+    ("int m = std::max(1, 2, 3);", WRONG_ARGUMENTS),  # 2#33's three numbers: the error is inside <algorithm>
 ]
 
 

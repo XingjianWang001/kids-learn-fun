@@ -109,7 +109,7 @@
     },
     {
       "type": "explanation",
-      "text": "如果有很多条路可以选择呢？比如“如果分数大于90是优秀，否则如果分数大于80是良好，否则如果分数大于60是及格，否则是不及格”。\n这时候我们可以用 `else if` (否则如果)。",
+      "text": "如果有很多条路可以选择呢？比如“如果分数大于等于90是优秀，否则如果分数大于等于80是良好，否则如果分数大于等于60是及格，否则是不及格”。\n这时候我们可以用 `else if` (否则如果)。",
       "code": "#include <iostream>\n\nint main() {\n    int score = 75;\n    \n    if (score >= 90) {\n        std::cout << \"优秀\" << std::endl;\n    } else if (score >= 80) {\n        std::cout << \"良好\" << std::endl;\n    } else if (score >= 60) {\n        std::cout << \"及格\" << std::endl;\n    } else {\n        std::cout << \"不及格\" << std::endl;\n    }\n    \n    return 0;\n}",
       "points": 0
     },
