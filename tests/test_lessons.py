@@ -339,6 +339,16 @@ def test_functions_a_hint_suggests_are_declared_in_the_program(topic, i, name):
     assert "not declared" not in error and "is not a member of" not in error
 
 
+@pytest.mark.skipif(not shutil.which("g++"), reason="needs g++")
+@pytest.mark.parametrize("args", ["()", "(1, 2, 3)"], ids=["too-few", "too-many"])
+@pytest.mark.parametrize("topic,i,name", HINTED_FUNCTIONS, ids=[f"{t}#{i}:{n}" for t, i, n in HINTED_FUNCTIONS])
+def test_wrong_arguments_to_a_hinted_function_get_a_hint(topic, i, name, args):
+    # MISTAKES runs in a bare <iostream> program, where g++ says "too few arguments"; in the lesson's own program
+    # std::max is a template and says something else (2#33 invites std::max(a, b, c)).
+    error = InteractiveLearningApp.__new__(InteractiveLearningApp).execute_cpp_code(f"{name}{args};", LESSONS_DATA[topic][i]["cpp_context"])["error"]
+    assert error.startswith("提示："), error[:300]
+
+
 # Multiple-choice “what does the program above print?” with a complete program: run it (#14 2#14 showed 75, asked about 88).
 PRINT_QUESTIONS = [
     (t, i, lesson) for t, lessons in LESSONS_DATA.items() for i, lesson in enumerate(lessons)
